@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BattingOnClick : MonoBehaviour
 {
+    public float speed;
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -17,7 +19,13 @@ public class BattingOnClick : MonoBehaviour
         //playAnimation
         if(Detector.isHittable == true)
         {
-            //hitball
+            GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+            if(GameObject.FindGameObjectWithTag("Ball") == true)
+            {
+                var body = ball.GetComponent<Rigidbody>();
+                body.velocity = transform.forward * -speed;
+                Debug.Log("Success");
+            }
         }
     }
 }
