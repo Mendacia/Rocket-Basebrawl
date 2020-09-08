@@ -10,6 +10,7 @@ public class BattingOnClick : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -29,6 +30,7 @@ public class BattingOnClick : MonoBehaviour
             var body = ball.GetComponent<Rigidbody>();
             Vector3 camForward = Camera.main.transform.rotation * transform.forward;
             body.velocity = camForward * speed;
+            body.useGravity = true;
         }
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)

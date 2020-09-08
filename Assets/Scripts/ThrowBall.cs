@@ -6,6 +6,7 @@ public class ThrowBall : MonoBehaviour
 {
     public GameObject ball;
     public Transform ballSpawn, player;
+    public float throwRate;
     bool isThrowing = false;
 
     void Update()
@@ -24,7 +25,7 @@ public class ThrowBall : MonoBehaviour
     {
         isThrowing = true;
         Instantiate(ball, ballSpawn.position, transform.rotation);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(throwRate);
         isThrowing = false;
     }
 }
