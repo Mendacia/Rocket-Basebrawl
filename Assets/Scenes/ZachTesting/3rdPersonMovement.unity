@@ -1822,7 +1822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b7d8417c5e5dd4c9ff7ec35551dcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
+  speed: 50
 --- !u!1 &1232499090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2311,6 @@ GameObject:
   - component: {fileID: 1530400404}
   - component: {fileID: 1530400403}
   - component: {fileID: 1530400402}
-  - component: {fileID: 1530400401}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2319,22 +2318,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1530400401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530400400}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803b00b1c55094e499a99684ddbd9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Title: Over the Shoulder with Aim Mode
-  m_Description: "Turn this window off by removing the script on Main Camera\n\nUse
-    the arrow keys to move the character.  \nPress the Left Ctrl key to go into Aim
-    mode.\n"
 --- !u!114 &1530400402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3276,8 +3259,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975138964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.966, y: 0.805, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.2295, y: 0.805, z: -0.00000023842}
+  m_LocalScale: {x: 3.3519697, y: 3.3519697, z: 3.3519697}
   m_Children: []
   m_Father: {fileID: 1211479398}
   m_RootOrder: 2

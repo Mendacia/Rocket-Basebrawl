@@ -5,6 +5,12 @@ using UnityEngine;
 public class BattingOnClick : MonoBehaviour
 {
     public float speed;
+    Transform ball;
+
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
 
     void Update()
     {
@@ -17,15 +23,29 @@ public class BattingOnClick : MonoBehaviour
     void HitBall()
     {
         //playAnimation
-        if(Detector.isHittable == true)
+        if (Detector.isHittable == true)
         {
-            GameObject ball = GameObject.FindGameObjectWithTag("Ball");
-            if(GameObject.FindGameObjectWithTag("Ball") == true)
+            ball = GetClosestBall(Detector.ballCols, this.transform);
+            var body = ball.GetComponent<Rigidbody>();
+            Vector3 camForward = Camera.main.transform.rotation * transform.forward;
+            body.velocity = camForward * speed;
+        }
+    }
+    Transform GetClosestBall(List<Transform> balls, Transform fromThis)
+    {
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = fromThis.position;
+        foreach (Transform potentialTarget in balls)
+        {
+            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
             {
-                var body = ball.GetComponent<Rigidbody>();
-                body.velocity = transform.forward * -speed;
-                Debug.Log("Success");
+                closestDistanceSqr = dSqrToTarget;
+                bestTarget = potentialTarget;
             }
         }
+        return bestTarget;
     }
 }

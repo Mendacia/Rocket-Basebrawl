@@ -5,7 +5,7 @@ using UnityEngine;
 public class Detector : MonoBehaviour
 {
     public static bool isHittable = false;
-    public static List<Collider> ballCols = new List<Collider>();
+    public static List<Transform> ballCols = new List<Transform>();
 
     private void OnTriggerStay(Collider other)
     {
@@ -15,9 +15,10 @@ public class Detector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Add to list
-        if (!ballCols.Contains(other))
+        if (other.gameObject.CompareTag("Ball"))
         {
-            ballCols.Add(other);
+            Transform ballT = other.GetComponent<Transform>();
+            ballCols.Add(ballT);
         }
     }
 
@@ -25,6 +26,10 @@ public class Detector : MonoBehaviour
     {
         isHittable = false;
         //Remove from list
-        ballCols.Remove(other);
+        if (other.gameObject.CompareTag("Ball"))
+        {
+            Transform ballT = other.GetComponent<Transform>();
+            ballCols.Remove(ballT);
+        }
     }
 }
