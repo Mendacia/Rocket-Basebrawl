@@ -6,6 +6,7 @@ public class BattingOnClick : MonoBehaviour
 {
     public float speed;
     Transform ball;
+    BallBehavior ballScr;
 
     private void Start()
     {
@@ -15,7 +16,8 @@ public class BattingOnClick : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        ball = GetClosestBall(Detector.ballCols, this.transform);
+        if (Input.GetButtonDown("Fire1") && ball != null)
         {
             HitBall();
         }
@@ -23,14 +25,15 @@ public class BattingOnClick : MonoBehaviour
 
     void HitBall()
     {
+        ballScr = ball.GetComponent<BallBehavior>();
         //playAnimation
-        if (Detector.isHittable == true)
+        if (/*Detector.isHittable == true*/ ballScr.isHittable == true)
         {
-            ball = GetClosestBall(Detector.ballCols, this.transform);
             var body = ball.GetComponent<Rigidbody>();
             Vector3 camForward = Camera.main.transform.rotation * transform.forward;
             body.velocity = camForward * speed;
             body.useGravity = true;
+            ballScr.isHittable = false;
         }
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)

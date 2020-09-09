@@ -6,6 +6,7 @@ public class BallBehavior : MonoBehaviour
 {
     public float speed;
     public GameObject pitcher;
+    public bool isHittable = true;
 
     private void Start()
     {
