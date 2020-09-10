@@ -18,7 +18,8 @@ public class ThrowBall : MonoBehaviour
         var lookDir = player.position - transform.position;
         lookDir.y = 0;
         transform.rotation = Quaternion.LookRotation(lookDir);
-        
+        var playerT = GameObject.FindGameObjectWithTag("Player");
+        player = playerT.transform;
     }
 
     IEnumerator BallThrow()
