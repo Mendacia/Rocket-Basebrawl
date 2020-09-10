@@ -30,7 +30,7 @@ public class BattingOnClick : MonoBehaviour
         if (/*Detector.isHittable == true*/ ballScr.isHittable == true)
         {
             var body = ball.GetComponent<Rigidbody>();
-            Vector3 camForward = Camera.main.transform.rotation * transform.forward;
+            Vector3 camForward = Camera.main.transform.rotation * transform.right;
             body.velocity = camForward * speed;
             body.useGravity = true;
             ballScr.isHittable = false;
