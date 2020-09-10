@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class currentBaseHolder : MonoBehaviour
 {
-    
+    [System.NonSerialized]public string currentBase = "Home";
 }
