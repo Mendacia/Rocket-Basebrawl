@@ -20,19 +20,23 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BunnyBeta
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Name: BunnyBeta_Cel
+  m_Shader: {fileID: -6465566751694194690, guid: 6604ff8d2b41dd4438bb8b44ed3f9c9a,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_E758A0D8:
+        m_Texture: {fileID: 2800000, guid: 830b778a4673836449d6182e5055ab63, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 830b778a4673836449d6182e5055ab63, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -62,6 +66,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_30103FB: 0
+    - Vector1_45505783: 5
+    - Vector1_5A5E7E59: 0
+    - Vector1_9E17649B: 2.12
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -85,6 +93,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_A31AEAC8: {r: 0.37068352, g: 0.55765706, b: 0.6603774, a: 0}
+    - Color_D058FBFE: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

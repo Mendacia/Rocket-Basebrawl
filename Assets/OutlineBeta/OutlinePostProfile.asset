@@ -38,7 +38,7 @@ MonoBehaviour:
     value: {r: 0, g: 0, b: 0, a: 1}
   depthThreshold:
     overrideState: 1
-    value: 0.3
+    value: 0.35
   depthNormalThreshold:
     overrideState: 1
     value: 0.5
