@@ -7,6 +7,7 @@ public class BattingOnClick : MonoBehaviour
     public float speed;
     Transform ball;
     BallBehavior ballScr;
+    public Transform camT;
 
     private void Start()
     {
@@ -30,8 +31,9 @@ public class BattingOnClick : MonoBehaviour
         if (/*Detector.isHittable == true*/ ballScr.isHittable == true)
         {
             var body = ball.GetComponent<Rigidbody>();
-            Vector3 camForward = Camera.main.transform.rotation * transform.right;
+            Vector3 camForward = camT.rotation * transform.forward;
             body.velocity = camForward * speed;
+            body.velocity += new Vector3(0f, 1f * 10, 0f);
             body.useGravity = true;
             ballScr.isHittable = false;
         }
