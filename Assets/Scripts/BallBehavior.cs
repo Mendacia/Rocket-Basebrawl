@@ -15,4 +15,9 @@ public class BallBehavior : MonoBehaviour
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * speed;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }

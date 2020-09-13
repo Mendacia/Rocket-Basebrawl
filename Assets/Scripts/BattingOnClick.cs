@@ -28,7 +28,7 @@ public class BattingOnClick : MonoBehaviour
     {
         ballScr = ball.GetComponent<BallBehavior>();
         //playAnimation
-        if (/*Detector.isHittable == true*/ ballScr.isHittable == true)
+        if (ballScr.isHittable == true)
         {
             var body = ball.GetComponent<Rigidbody>();
             Vector3 camForward = camT.rotation * transform.forward;
