@@ -13,16 +13,7 @@ public class BallBehavior : MonoBehaviour
         pitcher = GameObject.FindGameObjectWithTag("Pitcher");
         transform.rotation = pitcher.transform.rotation;
         var body = GetComponent<Rigidbody>();
-        body.velocity = transform.forward * speed;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        /*if(collision.gameObject.tag == "Player")
-        {
-            isHittable = false;
-            Debug.Log(isHittable);
-        }*/
+        body.velocity = transform.forward * speed * 100 * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

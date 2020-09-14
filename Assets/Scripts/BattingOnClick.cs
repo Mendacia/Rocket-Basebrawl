@@ -32,7 +32,7 @@ public class BattingOnClick : MonoBehaviour
         {
             var body = ball.GetComponent<Rigidbody>();
             Vector3 camForward = camT.rotation * transform.forward;
-            body.velocity = camForward * speed;
+            body.velocity = camForward * speed * 100 * Time.deltaTime;
             body.velocity += new Vector3(0f, 1f * 10, 0f);
             body.useGravity = true;
             ballScr.isHittable = false;
