@@ -36,6 +36,7 @@ public class BattingOnClick : MonoBehaviour
             body.velocity += new Vector3(0f, 1f * 10, 0f);
             body.useGravity = true;
             ballScr.isHittable = false;
+            Detector.ballCols.Remove(ball);
         }
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)

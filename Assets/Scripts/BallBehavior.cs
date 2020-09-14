@@ -18,6 +18,19 @@ public class BallBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        /*if(collision.gameObject.tag == "Player")
+        {
+            isHittable = false;
+            Debug.Log(isHittable);
+        }*/
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            isHittable = false;
+            Detector.ballCols.Remove(this.gameObject.transform);
+        }
     }
 }
