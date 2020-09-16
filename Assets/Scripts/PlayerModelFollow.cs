@@ -15,5 +15,6 @@ public class PlayerModelFollow : MonoBehaviour
     void Update()
     {
         transform.position = player.position;
+        transform.eulerAngles = new Vector3(0, player.eulerAngles.y, 0);
     }
 }
