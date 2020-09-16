@@ -2256,11 +2256,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831975190}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0.77}
+  m_LocalPosition: {x: -0.049999237, y: 0, z: 0.7700002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 895993535}
-  m_RootOrder: 0
+  m_Father: {fileID: 841109160}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!114 &831975192
 MonoBehaviour:
@@ -2299,6 +2299,8 @@ GameObject:
   - component: {fileID: 841109159}
   - component: {fileID: 841109158}
   - component: {fileID: 841109161}
+  - component: {fileID: 841109163}
+  - component: {fileID: 841109162}
   m_Layer: 0
   m_Name: Temporary Player
   m_TagString: Player
@@ -2348,6 +2350,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 895993535}
+  - {fileID: 831975191}
+  - {fileID: 990203307}
   m_Father: {fileID: 1057162425}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2365,6 +2369,32 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &841109162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841109157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a43c6ceae46f94da978d6380ab09f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &841109163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841109157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b7d8417c5e5dd4c9ff7ec35551dcfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 150
+  camT: {fileID: 831975191}
 --- !u!1 &874264573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,41 +2437,13 @@ GameObject:
   - component: {fileID: 895993535}
   - component: {fileID: 895993534}
   - component: {fileID: 895993533}
-  - component: {fileID: 895993531}
-  - component: {fileID: 895993532}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: PlayerModel
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &895993531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895993530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b7d8417c5e5dd4c9ff7ec35551dcfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 150
-  camT: {fileID: 1057162425}
---- !u!114 &895993532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895993530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a43c6ceae46f94da978d6380ab09f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &895993533
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2498,9 +2500,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 831975191}
-  - {fileID: 990203307}
+  m_Children: []
   m_Father: {fileID: 841109160}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2858,12 +2858,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990203306}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.13}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.12999988}
   m_LocalScale: {x: 1.2658, y: 2.0357, z: 1}
   m_Children: []
-  m_Father: {fileID: 895993535}
-  m_RootOrder: 1
+  m_Father: {fileID: 841109160}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &990203308
 BoxCollider:
