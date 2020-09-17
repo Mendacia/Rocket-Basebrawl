@@ -1518,6 +1518,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 30, z: 1.0000001}
   m_Center: {x: 0, y: 15, z: 0}
+--- !u!4 &493361292 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8036274385684217785, guid: 7db1e908c6da7bd4ca3e76000081412e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8036274386338331392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &570512242
 GameObject:
   m_ObjectHideFlags: 3
@@ -5777,6 +5783,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8036274385501713835, guid: 7db1e908c6da7bd4ca3e76000081412e,
+        type: 3}
+      propertyPath: camT
+      value: 
+      objectReference: {fileID: 493361292}
     - target: {fileID: 8036274385525593113, guid: 7db1e908c6da7bd4ca3e76000081412e,
         type: 3}
       propertyPath: m_Size.y
