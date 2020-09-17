@@ -2288,6 +2288,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1838304903}
+    - target: {fileID: 6824010941868816578, guid: 26a38d00a3ffad040b14b3f0876867e5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d2f4a61d0548a64c97baec5466a35d0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26a38d00a3ffad040b14b3f0876867e5, type: 3}
 --- !u!1 &747947559 stripped
@@ -5625,7 +5630,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e2ee1d8dacc75046a6bf5733c0e9ce0, type: 2}
+  - {fileID: 2100000, guid: 0209603bab9a6324bb1334a4593a2d70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
