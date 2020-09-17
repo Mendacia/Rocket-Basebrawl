@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757c7930830877b47944add6103cde80, type: 3}
   m_Name: Ledger
   m_EditorClassIdentifier: 
-  OutstandingTasks: []
+  OutstandingTasks:
+  - Title: Need timer on bunny throwing script
+    CreationDate: 17/09/2020 | 9:58 a.m.
+    CompletionDate: 
+    HasDetails: 1
+    Details: Because rn they just use E to throw ball
+    IsCompleted: 0
+    IsDeferred: 0
+    IsColored: 1
+    DrawColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
   CompletedTasks: []
   DeferredTasks: []

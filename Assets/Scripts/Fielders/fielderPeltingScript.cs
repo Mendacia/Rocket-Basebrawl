@@ -7,6 +7,8 @@ public class fielderPeltingScript : MonoBehaviour
     public List<Transform> fieldingTeam;
     public GameObject ball;
     [SerializeField] private Transform player = null;
+    [SerializeField] private float minWaitTime = 3f;
+    [SerializeField] private float maxWaitTime = 6f;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
 
@@ -17,23 +19,31 @@ public class fielderPeltingScript : MonoBehaviour
         {
             fieldingTeam.Add(child);
         }
+        StartCoroutine(ThrowDelay());
     }
 
     private void Update()
     {
-        //Dev Toggle, replace with hitting the pitcher's ball
-        if (Input.GetKeyDown(KeyCode.E))
+        //Makes the Fielders all look at the player at all times
+        foreach(Transform fielder in fieldingTeam)
         {
-            canThrow = !canThrow;
+            fielder.LookAt(player);
         }
 
         if (canThrow == true)
         {
-            throwableUpdate();
+            ReadyThrow();
         }
     }
 
-    private void throwableUpdate()
+    IEnumerator ThrowDelay()
+    {
+        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+        canThrow = true;
+        StartCoroutine(ThrowDelay());
+    }
+
+    private void ReadyThrow()
     {
         int numberOfBallsToThrow;
         List<Transform> chosenFielders = new List<Transform>();
@@ -63,17 +73,11 @@ public class fielderPeltingScript : MonoBehaviour
             }
 
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
-            foreach(Transform fielder in chosenFielders)
+            foreach (Transform fielder in chosenFielders)
             {
-                fielder.LookAt(player);
-                Instantiate(ball, new Vector3(fielder.position.x, fielder.position.y, fielder.position.z), fielder.rotation);
+                GameObject myBall = Instantiate(ball, fielder.position + fielder.transform.forward * 1, fielder.rotation);
+                myBall.GetComponent<fielderPeltingBallBehaviour>().fielder = fielder;
             }
-
-
-
-
-
-            //hasReadiedAThrow = true;
             canThrow = false;
         }
     }

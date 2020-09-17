@@ -2412,8 +2412,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldingTeam: []
-  ball: {fileID: 6096991544565659394, guid: 1069036fbabc38046ae34afc520a7cc0, type: 3}
+  ball: {fileID: 8581812953805991084, guid: 5f71715b659aac64fb6be66e7117f5e0, type: 3}
   player: {fileID: 841109160}
+  minWaitTime: 0
+  maxWaitTime: 0
 --- !u!4 &1399274991
 Transform:
   m_ObjectHideFlags: 0
