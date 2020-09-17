@@ -8,6 +8,7 @@ TagManager:
   - Pitcher
   - Ball
   - Detector
+  - BallHit
   layers:
   - Default
   - TransparentFX

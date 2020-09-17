@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour
 {
-    public float speed;
+    public float speed, pingSpeed;
     private GameObject pitcher;
     public bool isHittable = true;
 
@@ -18,11 +18,11 @@ public class BallBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "BallHit")
         {
             var body = GetComponent<Rigidbody>();
             Vector3 pingDirection = new Vector3(Random.Range(0,-5), Random.Range(0, 2), Random.Range(-5, 5));
-            body.velocity += pingDirection * speed * 30 * Time.deltaTime;
+            body.velocity += pingDirection * speed * pingSpeed * Time.deltaTime;
             isHittable = false;
             Detector.ballCols.Remove(this.gameObject.transform);
         }

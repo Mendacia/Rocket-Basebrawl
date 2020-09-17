@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  pitcher: {fileID: 0}
+  pingSpeed: 30
   isHittable: 1
 --- !u!54 &3645039305579915771
 Rigidbody:
