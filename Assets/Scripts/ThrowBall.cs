@@ -28,7 +28,7 @@ public class ThrowBall : MonoBehaviour
         Instantiate(ball, ballSpawn.position, transform.rotation);
         if (TimeSlow.timeSlowed == true)
         {
-            yield return new WaitForSeconds(throwRate / 2);
+            yield return new WaitForSeconds(throwRate * 2);
         }
         else
         {
