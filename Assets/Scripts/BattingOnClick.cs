@@ -37,6 +37,7 @@ public class BattingOnClick : MonoBehaviour
             body.useGravity = true;
             ballScr.isHittable = false;
             Detector.ballCols.Remove(ball);
+            //AddScore OR AddScore on enemy hit. Depending on what we doing.
         }
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)
