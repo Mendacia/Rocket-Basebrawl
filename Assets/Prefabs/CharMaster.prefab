@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 150
-  camT: {fileID: 8036274385525593111}
+  camT: {fileID: 8036274385684217785}
 --- !u!114 &8036274385501713834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.4487205, y: 2.8912163, z: 4.7346516}
-  m_Center: {x: -2.7243602, y: 0.6335306, z: -0.017661095}
+  m_Size: {x: 6.4487205, y: 4.118471, z: 4.7346516}
+  m_Center: {x: -2.7243602, y: 0.449852, z: -0.017661095}
 --- !u!114 &8036274385525593112
 MonoBehaviour:
   m_ObjectHideFlags: 0
