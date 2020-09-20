@@ -9,6 +9,8 @@ public class BattingOnClick : MonoBehaviour
     BallBehavior ballScr;
     public Transform camT;
 
+    public Transform batPlane;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -22,6 +24,8 @@ public class BattingOnClick : MonoBehaviour
         {
             HitBall();
         }
+
+        RotatePlane();
     }
 
     void HitBall()
@@ -56,5 +60,10 @@ public class BattingOnClick : MonoBehaviour
             }
         }
         return bestTarget;
+    }
+
+    void RotatePlane()
+    {
+        batPlane.eulerAngles += new Vector3(0, 0, -Input.GetAxis("Mouse X") * 5);
     }
 }

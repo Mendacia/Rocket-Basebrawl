@@ -6,6 +6,8 @@ public class TimeSlow : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool timeSlowed;
+    public GameObject ballPlane;
+
     void Start()
     {
         Time.timeScale = 1;
@@ -19,12 +21,14 @@ public class TimeSlow : MonoBehaviour
             Time.timeScale = 0.4f;
             timeSlowed = true;
             Camera.main.fieldOfView = 30;
+            ballPlane.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
             timeSlowed = false;
             Camera.main.fieldOfView = 60;
+            ballPlane.SetActive(false);
         }
     }
 }
