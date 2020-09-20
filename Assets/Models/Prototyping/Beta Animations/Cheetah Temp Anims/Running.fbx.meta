@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3fe44734d5c1e9b4da42836e72757d67
+guid: 114b1f38ed019e64cbf5c5b895a05f46
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Cheetah Idle
+    second: Cheetah Running
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah Idle
+      name: Cheetah Running
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 304
+      lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
