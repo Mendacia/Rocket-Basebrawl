@@ -13,14 +13,23 @@ MonoBehaviour:
   m_Name: Ledger
   m_EditorClassIdentifier: 
   OutstandingTasks:
-  - Title: Need timer on bunny throwing script
-    CreationDate: 17/09/2020 | 9:58 a.m.
+  - Title: Just some notes about UI anchors
+    CreationDate: 22/09/2020 | 9:04 a.m.
     CompletionDate: 
     HasDetails: 1
-    Details: Because rn they just use E to throw ball
+    Details: New Game X 0.05 | 0.3 --> X 0.2 | 0.45
     IsCompleted: 0
     IsDeferred: 0
     IsColored: 1
+    DrawColor: {r: 0.7490196, g: 1, b: 1, a: 1}
+  CompletedTasks:
+  - Title: Need timer on bunny throwing script
+    CreationDate: 17/09/2020 | 9:58 a.m.
+    CompletionDate: 21/09/2020 | 8:58 a.m.
+    HasDetails: 1
+    Details: Because rn they just use E to throw ball
+    IsCompleted: 1
+    IsDeferred: 0
+    IsColored: 1
     DrawColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
-  CompletedTasks: []
   DeferredTasks: []
