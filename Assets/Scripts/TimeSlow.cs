@@ -7,6 +7,7 @@ public class TimeSlow : MonoBehaviour
     // Start is called before the first frame update
     public static bool timeSlowed;
     public GameObject ballPlane;
+    public Transform cameraNeutral, cameraAim;
 
     void Start()
     {
@@ -23,6 +24,17 @@ public class TimeSlow : MonoBehaviour
             Camera.main.fieldOfView = 30;
             ballPlane.SetActive(true);
         }
+
+        else if (Input.GetButtonDown("Fire2"))
+        {
+            Camera.main.transform.position = cameraAim.position;
+        }
+
+        else if (Input.GetButtonUp("Fire2"))
+        {
+            Camera.main.transform.position = cameraNeutral.position;
+        }
+
         else
         {
             Time.timeScale = 1;

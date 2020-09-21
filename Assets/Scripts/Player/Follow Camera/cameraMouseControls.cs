@@ -17,7 +17,7 @@ public class cameraMouseControls : MonoBehaviour
     }
     void Update()
     {
-        if (!Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2") == false)
         {
             var cameraAngle = camRotationY.transform.rotation.eulerAngles;
             camCurrentY += Input.GetAxis("Mouse Y") * sensitivityY;
@@ -29,9 +29,15 @@ public class cameraMouseControls : MonoBehaviour
             transform.position = followTarget.transform.position;
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
+            var cameraAngle = camRotationY.transform.rotation.eulerAngles;
 
+            camCurrentY += Input.GetAxis("Mouse Y") * sensitivityY;
+            camCurrentY = Mathf.Clamp(camCurrentY, camMinX, camMaxX);
+            cameraAngle.x = camCurrentY;
+            camRotationY.transform.rotation = Quaternion.Euler(cameraAngle);
+            transform.position = followTarget.transform.position;
         }
     }
 }

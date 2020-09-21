@@ -2,7 +2,6 @@
 
 public class ActivateOnKeypress : MonoBehaviour
 {
-    public KeyCode ActivationKey = KeyCode.LeftControl;
     public int PriorityBoostAmount = 10;
     public GameObject Reticle;
 
@@ -18,7 +17,7 @@ public class ActivateOnKeypress : MonoBehaviour
     {
         if (vcam != null)
         {
-            if (Input.GetKey(ActivationKey))
+            if (Input.GetButton("Fire2"))
             {
                 if (!boosted)
                 {

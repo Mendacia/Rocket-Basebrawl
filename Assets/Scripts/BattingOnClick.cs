@@ -64,6 +64,6 @@ public class BattingOnClick : MonoBehaviour
 
     void RotatePlane()
     {
-        batPlane.eulerAngles += new Vector3(0, 0, -Input.GetAxis("Mouse X") * 5);
+        //batPlane.eulerAngles += new Vector3(0, 0, -Input.GetAxis("Mouse X") * 5);
     }
 }
