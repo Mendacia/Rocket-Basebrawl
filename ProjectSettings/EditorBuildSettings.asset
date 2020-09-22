@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/MainMenu.unity
+    guid: 010a42af1b1d5bd4a9d2beba688aa482
+  - enabled: 1
+    path: Assets/Scenes/LiamBasebrawlTestingZone.unity
+    guid: 5d929cedf5a1d1345b863822e892bb06
   m_configObjects: {}
