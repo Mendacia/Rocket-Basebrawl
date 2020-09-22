@@ -652,7 +652,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 10
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 841109160}
   m_Lens:
@@ -1130,9 +1130,9 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_XDamping: 0.2
-  m_YDamping: 0.2
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.33440018
   m_ScreenY: 0.3129505
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.27222517
   m_ScreenY: 0.49245596
-  m_CameraDistance: 7
+  m_CameraDistance: 12
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0.000000027939677
   m_DeadZoneDepth: 0
@@ -3240,7 +3240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810917942}
   m_LocalRotation: {x: 0.22858356, y: -0.66914093, z: 0.22858353, w: 0.669141}
-  m_LocalPosition: {x: 22.546726, y: 7.099295, z: -13.342655}
+  m_LocalPosition: {x: 23.234005, y: 10.147865, z: -17.305786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 392125119}
@@ -3282,7 +3282,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   m_MinimumDistanceFromTarget: 9
-  m_AvoidObstacles: 1
+  m_AvoidObstacles: 0
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.1
@@ -3309,7 +3309,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 9
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 841109160}
   m_Lens:
@@ -3586,7 +3586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8036274384537104775
 Transform:
   m_ObjectHideFlags: 0
