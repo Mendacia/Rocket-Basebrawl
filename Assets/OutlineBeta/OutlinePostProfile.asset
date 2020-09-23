@@ -38,13 +38,13 @@ MonoBehaviour:
     value: {r: 0, g: 0, b: 0, a: 1}
   depthThreshold:
     overrideState: 1
-    value: 0.35
+    value: 0.45
   depthNormalThreshold:
     overrideState: 1
-    value: 0.5
+    value: 1
   depthNormalThresholdScale:
     overrideState: 1
-    value: 5
+    value: 45
   normalThreshold:
     overrideState: 1
     value: 0.4
