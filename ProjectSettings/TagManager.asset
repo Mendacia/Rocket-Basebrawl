@@ -7,7 +7,8 @@ TagManager:
   - Ground
   - Pitcher
   - Ball
-  - Fielder
+  - Detector
+  - BallHit
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Ball
   - BallDetector
-  - 
+  - Pitcher
   - 
   - 
   - 

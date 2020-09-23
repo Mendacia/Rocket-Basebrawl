@@ -7,6 +7,9 @@ public class BattingOnClick : MonoBehaviour
     public float speed;
     Transform ball;
     BallBehavior ballScr;
+    public Transform camT;
+
+    public Transform batPlane;
 
     private void Start()
     {
@@ -21,19 +24,24 @@ public class BattingOnClick : MonoBehaviour
         {
             HitBall();
         }
+
+        RotatePlane();
     }
 
     void HitBall()
     {
         ballScr = ball.GetComponent<BallBehavior>();
         //playAnimation
-        if (/*Detector.isHittable == true*/ ballScr.isHittable == true)
+        if (ballScr.isHittable == true)
         {
             var body = ball.GetComponent<Rigidbody>();
-            Vector3 camForward = Camera.main.transform.rotation * transform.right;
-            body.velocity = camForward * speed;
+            Vector3 camForward = camT.rotation * transform.forward;
+            body.velocity = camForward * speed * 100 * Time.deltaTime;
+            body.velocity += new Vector3(0f, 1f * 10, 0f);
             body.useGravity = true;
             ballScr.isHittable = false;
+            Detector.ballCols.Remove(ball);
+            //AddScore OR AddScore on enemy hit. Depending on what we doing.
         }
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)
@@ -52,5 +60,10 @@ public class BattingOnClick : MonoBehaviour
             }
         }
         return bestTarget;
+    }
+
+    void RotatePlane()
+    {
+        //batPlane.eulerAngles += new Vector3(0, 0, -Input.GetAxis("Mouse X") * 5);
     }
 }
