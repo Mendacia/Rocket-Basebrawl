@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class godsMixtape : MonoBehaviour
 {
     [SerializeField] private AudioSource theCamera;
     [SerializeField] private List<AudioClip> theMixtape;
+    [SerializeField] private Text uISongNameText;
     private AudioClip currentSong;
     private int selectedSongInt = 0;
 
@@ -15,6 +17,7 @@ public class godsMixtape : MonoBehaviour
         currentSong = theMixtape[selectedSongInt = Random.Range(0, theMixtape.Count)];
         theCamera.clip = currentSong;
         theCamera.Play(0);
+        uISongNameText.text = ("Playing: " + theMixtape[selectedSongInt].name);
     }
 
     private void Update()
@@ -31,6 +34,7 @@ public class godsMixtape : MonoBehaviour
             currentSong = theMixtape[selectedSongInt];
             theCamera.clip = currentSong;
             theCamera.Play(0);
+            uISongNameText.text = ("Playing: " + theMixtape[selectedSongInt].name);
         }
     }
 }
