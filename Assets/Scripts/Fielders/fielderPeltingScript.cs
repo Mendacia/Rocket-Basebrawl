@@ -7,6 +7,8 @@ public class fielderPeltingScript : MonoBehaviour
     public List<Transform> fieldingTeam;
     public GameObject ball;
     [SerializeField] private Transform player = null;
+    [SerializeField] private KeyCode devkeyToStartPelting = KeyCode.P;
+    [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
     private bool canThrow = false;
@@ -19,7 +21,6 @@ public class fielderPeltingScript : MonoBehaviour
         {
             fieldingTeam.Add(child);
         }
-        StartCoroutine(ThrowDelay());
     }
 
     private void Update()
@@ -34,6 +35,16 @@ public class fielderPeltingScript : MonoBehaviour
         {
             ReadyThrow();
         }
+
+        if (Input.GetKeyDown(devkeyToStartPelting))
+        {
+            startPeltingLoop();
+        }
+    }
+
+    public void startPeltingLoop()
+    {
+        StartCoroutine(ThrowDelay());
     }
 
     IEnumerator ThrowDelay()
