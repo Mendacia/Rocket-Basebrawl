@@ -19,7 +19,7 @@ public class TimeSlow : MonoBehaviour
     {
         if (Input.GetButton("Fire2"))
         {
-            Time.timeScale = 0.4f;
+            Time.timeScale = 0.5f;
             timeSlowed = true;
             Camera.main.fieldOfView = 30;
             ballPlane.SetActive(true);
@@ -33,11 +33,11 @@ public class TimeSlow : MonoBehaviour
         else if (Input.GetButtonUp("Fire2"))
         {
             Camera.main.transform.position = cameraNeutral.position;
+            Time.timeScale = 1;
         }
 
         else
         {
-            Time.timeScale = 1;
             timeSlowed = false;
             Camera.main.fieldOfView = 60;
             ballPlane.SetActive(false);
