@@ -6,8 +6,10 @@ public class BattingOnClick : MonoBehaviour
 {
     public float speed;
     Transform ball;
-    /*BallBehavior*/fielderPeltingBallBehaviour ballScr;
+    fielderPeltingBallBehaviour ballScr;
     public Transform camT;
+    private Animator anim;
+    public GameObject animReference;
 
     public Transform batPlane;
 
@@ -15,6 +17,7 @@ public class BattingOnClick : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        anim = animReference.gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -30,8 +33,9 @@ public class BattingOnClick : MonoBehaviour
 
     void HitBall()
     {
-        ballScr = ball.GetComponent</*BallBehavior*/fielderPeltingBallBehaviour>();
+        ballScr = ball.GetComponent<fielderPeltingBallBehaviour>();
         //playAnimation
+        anim.Play("Swinging");
         if (ballScr.isHittable == true)
         {
             var body = ball.GetComponent<Rigidbody>();
