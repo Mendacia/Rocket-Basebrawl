@@ -6,7 +6,7 @@ public class BattingOnClick : MonoBehaviour
 {
     public float speed;
     Transform ball;
-    BallBehavior ballScr;
+    /*BallBehavior*/fielderPeltingBallBehaviour ballScr;
     public Transform camT;
 
     public Transform batPlane;
@@ -30,7 +30,7 @@ public class BattingOnClick : MonoBehaviour
 
     void HitBall()
     {
-        ballScr = ball.GetComponent<BallBehavior>();
+        ballScr = ball.GetComponent</*BallBehavior*/fielderPeltingBallBehaviour>();
         //playAnimation
         if (ballScr.isHittable == true)
         {
