@@ -11,6 +11,8 @@ public class BattingOnClick : MonoBehaviour
     private Animator anim;
     public GameObject animReference;
 
+    public static bool tempAnimCheck = false;
+
     public Transform batPlane;
 
     private void Start()
@@ -22,6 +24,12 @@ public class BattingOnClick : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            anim.Play("Swinging");
+            tempAnimCheck = true;
+            StartCoroutine(TempWaitFor());
+        }
         ball = GetClosestBall(Detector.ballCols, this.transform);
         if (Input.GetButtonDown("Fire1") && ball != null)
         {
@@ -31,6 +39,12 @@ public class BattingOnClick : MonoBehaviour
         RotatePlane();
     }
 
+    IEnumerator TempWaitFor()
+    {
+        yield return new WaitForSeconds(1);
+        tempAnimCheck = false;
+    }
+
     void HitBall()
     {
         ballScr = ball.GetComponent<fielderPeltingBallBehaviour>();
@@ -38,6 +52,7 @@ public class BattingOnClick : MonoBehaviour
         anim.Play("Swinging");
         if (ballScr.isHittable == true)
         {
+            tempAnimCheck = true;
             var body = ball.GetComponent<Rigidbody>();
             Vector3 camForward = camT.rotation * transform.forward;
             body.velocity = camForward * speed * 100 * Time.deltaTime;
@@ -46,6 +61,7 @@ public class BattingOnClick : MonoBehaviour
             ballScr.isHittable = false;
             Detector.ballCols.Remove(ball);
             //AddScore OR AddScore on enemy hit. Depending on what we doing.
+            StartCoroutine(TempWaitFor());
         }
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)
