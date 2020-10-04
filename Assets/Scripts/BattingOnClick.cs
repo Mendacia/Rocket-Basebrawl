@@ -55,8 +55,8 @@ public class BattingOnClick : MonoBehaviour
             tempAnimCheck = true;
             var body = ball.GetComponent<Rigidbody>();
             Vector3 camForward = camT.rotation * transform.forward;
-            body.velocity = camForward * speed * 100 * Time.deltaTime;
-            body.velocity += new Vector3(0f, 1f * 10, 0f);
+            body.velocity = camForward * speed * 150 * Time.deltaTime;
+            body.velocity += new Vector3(0f, 3f, 0f);
             body.useGravity = true;
             ballScr.isHittable = false;
             Detector.ballCols.Remove(ball);
