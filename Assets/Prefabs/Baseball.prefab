@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4140123018966200840}
   - component: {fileID: 7431241586426812800}
   - component: {fileID: 3144523688145474924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Baseball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballSpeed: 50
+  pingSpeed: 30
   fielder: {fileID: 0}
   isHittable: 1
