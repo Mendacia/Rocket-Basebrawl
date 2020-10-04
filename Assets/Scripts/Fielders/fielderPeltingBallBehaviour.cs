@@ -15,6 +15,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "BallHit")
@@ -25,5 +26,21 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
             isHittable = false;
             Detector.ballCols.Remove(this.gameObject.transform);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 0)
+        {
+            StartCoroutine(DestroyBall());
+        }
+    }
+
+    IEnumerator DestroyBall()
+    {
+        yield return new WaitForSeconds(5f);
+        var ball = this.gameObject;
+        Detector.ballCols.Remove(ball.transform);
+        Destroy(ball);
     }
 }
