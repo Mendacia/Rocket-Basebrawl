@@ -6,7 +6,10 @@ public class fielderPeltingScript : MonoBehaviour
 {
     public List<Transform> fieldingTeam;
     public GameObject ball;
+    [Header("These MUST be set in editor for game to work")]
+    [SerializeField] private LayerMask fielderLayerMask = 0;
     [SerializeField] private Transform player = null;
+    [Header("Dev Controls")]
     [SerializeField] private KeyCode devkeyToStartPelting = KeyCode.P;
     [SerializeField] private KeyCode comedy = KeyCode.L;
     [Header("These Wait Times are in seconds")]
@@ -93,8 +96,15 @@ public class fielderPeltingScript : MonoBehaviour
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
             foreach (Transform fielder in chosenFielders)
             {
-                GameObject myBall = Instantiate(ball, fielder.position + fielder.transform.forward * 1, fielder.rotation);
-                myBall.GetComponent<fielderPeltingBallBehaviour>().fielder = fielder;
+                RaycastHit fielderRaycastHit;
+                var chosenFieldersRaycast = Physics.Raycast(fielder.position, ((player.position + Random.insideUnitSphere * 3) - fielder.position).normalized, out fielderRaycastHit, 1000, fielderLayerMask);
+                Debug.DrawLine(fielder.position, fielderRaycastHit.point, Color.red, 1000); //Debug Ray, viewable in inspector. Use "comedy" key for testing
+                if (fielderRaycastHit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("Hit the player");
+                }
+                //GameObject myBall = Instantiate(ball, fielder.position + fielder.transform.forward * 1, fielder.rotation);
+                //myBall.GetComponent<fielderPeltingBallBehaviour>().fielder = fielder;
             }
             canThrow = false;
         }
