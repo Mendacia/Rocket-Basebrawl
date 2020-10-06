@@ -31,8 +31,8 @@ public class runningPhaseMovement : MonoBehaviour
         //Taking Inputs
         movementX = Input.GetAxis("Horizontal") * speed;
         movementZ = Input.GetAxis("Vertical") * speed;
-        
-        
+
+        transform.rotation = Quaternion.LookRotation(cameraRotationReferenceY.forward, Vector3.up);
 
         //Character unlock
         if (Input.GetButtonDown("Fire1")){
@@ -59,7 +59,7 @@ public class runningPhaseMovement : MonoBehaviour
                     anim.Play("Batting Idle");
                 }
 
-                transform.rotation = Quaternion.LookRotation(cameraRotationReferenceY.forward, Vector3.up);
+                
                 rb.velocity = transform.right * movementX + transform.forward * movementZ;
                 break;
         }
