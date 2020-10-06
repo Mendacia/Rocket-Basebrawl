@@ -18,6 +18,9 @@ public class runningPhaseMovement : MonoBehaviour
     private float movementX = 0;
     private float movementZ = 0;
 
+    //Lock player movement at the start
+    private int playerState = 1;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,20 +32,36 @@ public class runningPhaseMovement : MonoBehaviour
         movementX = Input.GetAxis("Horizontal") * speed;
         movementZ = Input.GetAxis("Vertical") * speed;
         
-        //Temporary Animations
-        if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-        {
-            anim.Play("Running");
-        }
-        else if(BattingOnClick.tempAnimCheck == false)
-        {
-            anim.Play("Batting Idle");
+        
+
+        //Character unlock
+        if (Input.GetButtonDown("Fire1")){
+            playerState = 2;
         }
     }
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.LookRotation(cameraRotationReferenceY.forward, Vector3.up);
-        rb.velocity = transform.right * movementX + transform.forward * movementZ;
+        switch (playerState)
+        {
+            case 1:
+
+                break;
+
+            case 2:
+                //Temporary Animations
+                if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+                {
+                    anim.Play("Running");
+                }
+                else if (BattingOnClick.tempAnimCheck == false)
+                {
+                    anim.Play("Batting Idle");
+                }
+
+                transform.rotation = Quaternion.LookRotation(cameraRotationReferenceY.forward, Vector3.up);
+                rb.velocity = transform.right * movementX + transform.forward * movementZ;
+                break;
+        }
     }
 }
