@@ -28,6 +28,8 @@ public class runningPhaseMovement : MonoBehaviour
         //Taking Inputs
         movementX = Input.GetAxis("Horizontal") * speed;
         movementZ = Input.GetAxis("Vertical") * speed;
+        
+        //Temporary Animations
         if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             anim.Play("Running");
