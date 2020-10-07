@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 public class runningPhaseMovement : MonoBehaviour
 {
@@ -34,10 +35,12 @@ public class runningPhaseMovement : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(cameraRotationReferenceY.forward, Vector3.up);
 
-        //Character unlock
-        if (Input.GetButtonDown("Fire1")){
-            playerState = 2;
-        }
+        
+    }
+
+    public void ActivatePlayer()
+    {
+        playerState = 2;
     }
 
     private void FixedUpdate()
@@ -59,7 +62,9 @@ public class runningPhaseMovement : MonoBehaviour
                     anim.Play("Batting Idle");
                 }
 
-                
+                //ReadValue<Vector2>()
+
+
                 rb.velocity = transform.right * movementX + transform.forward * movementZ;
                 break;
         }

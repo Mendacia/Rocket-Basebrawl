@@ -8,19 +8,9 @@ public class DeactiveateCamera : MonoBehaviour
     public GameObject startCam;
     public CinemachineDollyCart dolCart;
 
-    // Start is called before the first frame update
-    void Start()
+    public void skipDolly()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.anyKey)
-        {
-            StartCoroutine(dolSpeed());
-        }
+        StartCoroutine(dolSpeed());
     }
     
     public IEnumerator dolSpeed()
