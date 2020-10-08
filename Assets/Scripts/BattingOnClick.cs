@@ -19,7 +19,7 @@ public class BattingOnClick : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         anim = animReference.gameObject.GetComponent<Animator>();
     }
 

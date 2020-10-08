@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem;
 
 public class ActivateOnKeypress : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class ActivateOnKeypress : MonoBehaviour
     Cinemachine.CinemachineVirtualCameraBase vcam;
     bool boosted = false;
 
+    public InputActionReference aim;
+
     void Start()
     {
         vcam = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
@@ -15,17 +19,22 @@ public class ActivateOnKeypress : MonoBehaviour
 
     void Update()
     {
-        if (vcam != null)
+
+    }
+
+    public void aimOn(CallbackContext context)
+    {
+        if (context.performed)
         {
-            if (Input.GetButton("Fire2"))
+            if (!boosted)
             {
-                if (!boosted)
-                {
-                    vcam.Priority += PriorityBoostAmount;
-                    boosted = true;
-                }
+                vcam.Priority += PriorityBoostAmount;
+                boosted = true;
             }
-            else if (boosted)
+        }
+        else if (vcam != null)
+        {
+            if (boosted)
             {
                 vcam.Priority -= PriorityBoostAmount;
                 boosted = false;
