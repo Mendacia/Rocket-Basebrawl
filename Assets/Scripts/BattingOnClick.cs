@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem;
 
 public class BattingOnClick : MonoBehaviour
 {
@@ -16,23 +17,22 @@ public class BattingOnClick : MonoBehaviour
 
     public Transform batPlane;
 
+    private PlayerInputActions inputActions;
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
     private void Start()
     {
         Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
         anim = animReference.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.Play("Swinging");
-            tempAnimCheck = true;
-            StartCoroutine(TempWaitFor());
-        }
         ball = GetClosestBall(Detector.ballCols, this.transform);
-        
 
         RotatePlane();
     }
@@ -60,7 +60,6 @@ public class BattingOnClick : MonoBehaviour
                 body.useGravity = true;
                 ballScr.isHittable = false;
                 Detector.ballCols.Remove(ball);
-                //AddScore OR AddScore on enemy hit. Depending on what we doing.
                 StartCoroutine(TempWaitFor());
             }
         }

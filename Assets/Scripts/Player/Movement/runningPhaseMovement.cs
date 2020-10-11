@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem;
 
 public class runningPhaseMovement : MonoBehaviour
 {
@@ -15,27 +16,26 @@ public class runningPhaseMovement : MonoBehaviour
     private Animator anim;
     public GameObject animReference;
 
-    //Inputs that I need to carry from Update to FixedUpdate
-    private float movementX = 0;
-    private float movementZ = 0;
-
     //Lock player movement at the start
     private int playerState = 1;
+
+    private PlayerInputActions inputActions;
+    private Vector2 movementInput;
+    private Vector3 inputDirection;
+    private Vector3 moveVector;
+    private Quaternion currentRotation;
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+        inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = animReference.gameObject.GetComponent<Animator>();
-    }
-    private void Update()
-    {
-        //Taking Inputs
-        movementX = Input.GetAxis("Horizontal") * speed;
-        movementZ = Input.GetAxis("Vertical") * speed;
-
-        transform.rotation = Quaternion.LookRotation(cameraRotationReferenceY.forward, Vector3.up);
-
-        
+        ActivatePlayer();
     }
 
     public void ActivatePlayer()
@@ -52,21 +52,51 @@ public class runningPhaseMovement : MonoBehaviour
                 break;
 
             case 2:
-                //Temporary Animations
-                if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-                {
-                    anim.Play("Running");
-                }
-                else if (BattingOnClick.tempAnimCheck == false)
-                {
-                    anim.Play("Batting Idle");
-                }
+                float h = movementInput.x;
+                float v = movementInput.y;
 
-                //ReadValue<Vector2>()
+                Vector3 targetInput = new Vector3(h, 0, v);
 
+                inputDirection = Vector3.Lerp(inputDirection, targetInput, Time.deltaTime * 10f);
 
-                rb.velocity = transform.right * movementX + transform.forward * movementZ;
+                Vector3 camForward = Camera.main.transform.forward;
+                Vector3 camRight = Camera.main.transform.right;
+                camForward.y = 0f;
+                camRight.y = 0f;
+
+                Vector3 desiredDirection = camForward * inputDirection.z + camRight * inputDirection.x;
+
+                Move(desiredDirection);
+                Turn(desiredDirection);
+                
                 break;
         }
+    }
+
+    void Move(Vector3 desiredDirection)
+    {
+        moveVector.Set(desiredDirection.x, 0, desiredDirection.z);
+        moveVector = moveVector * speed * Time.deltaTime;
+        transform.position += moveVector;
+    }
+
+    void Turn(Vector3 desiredDirection)
+    {
+        if ((desiredDirection.x > 0.1 || desiredDirection.x < -0.1) || desiredDirection.z > 0.1 || desiredDirection.z < -0.1)
+        {
+            currentRotation = Quaternion.LookRotation(desiredDirection);
+            transform.rotation = currentRotation;
+        }
+        else
+            transform.rotation = currentRotation;
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
 }

@@ -10,16 +10,9 @@ public class ActivateOnKeypress : MonoBehaviour
     Cinemachine.CinemachineVirtualCameraBase vcam;
     bool boosted = false;
 
-    public InputActionReference aim;
-
     void Start()
     {
         vcam = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
-    }
-
-    void Update()
-    {
-
     }
 
     public void aimOn(CallbackContext context)

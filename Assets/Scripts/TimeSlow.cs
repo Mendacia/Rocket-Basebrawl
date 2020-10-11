@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem;
 
 public class TimeSlow : MonoBehaviour
 {
@@ -14,25 +16,21 @@ public class TimeSlow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void TimeScale(CallbackContext context)
     {
-        if (Input.GetButton("Fire2"))
+        if (context.performed)
         {
             Time.timeScale = 0.5f;
             timeSlowed = true;
             Camera.main.fieldOfView = 30;
             ballPlane.SetActive(true);
+            Debug.Log(Time.timeScale);
         }
 
-        else if (Input.GetButtonDown("Fire2"))
-        {
-            
-        }
-
-        else if (Input.GetButtonUp("Fire2"))
+        else if (context.canceled)
         {
             Time.timeScale = 1;
-        }
+        }    
 
         else
         {
