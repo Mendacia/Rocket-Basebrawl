@@ -1,0 +1,44 @@
+{
+    "name": "CMController",
+    "maps": [
+        {
+            "name": "CMControls",
+            "id": "08c4d818-36a9-4668-9269-3f1c04d57084",
+            "actions": [
+                {
+                    "name": "Disable",
+                    "type": "Button",
+                    "id": "be13d1ec-3c80-4815-af53-05e2a86df8fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "243479e9-ad4a-4fca-9c0c-5606ae1c289d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4436ae00-86f5-4f93-a368-5779876c47a4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

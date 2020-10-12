@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 public class fielderPeltingScript : MonoBehaviour
 {
@@ -36,17 +37,17 @@ public class fielderPeltingScript : MonoBehaviour
         {
             ReadyThrow();
         }
+    }
 
-        if (Input.GetKeyDown(devkeyToStartPelting))
-        {
-            startPeltingLoop();
-        }
+    public void Throw(CallbackContext context)
+    {
+        startPeltingLoop();
+    }
 
-        if (Input.GetKeyDown(comedy))
-        {
-            minWaitTime = 0;
-            maxWaitTime = 0;
-        }
+    public void Pelt(CallbackContext context)
+    {
+        minWaitTime = 0;
+        maxWaitTime = 0;
     }
 
     public void startPeltingLoop()
