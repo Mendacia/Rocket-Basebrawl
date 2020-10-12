@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Swing_Mat
+  m_Name: Swing_Mat B
   m_Shader: {fileID: -6465566751694194690, guid: fbe78e101ec2a47428d498bd365c9824,
     type: 3}
   m_ShaderKeywords: 
@@ -21,11 +21,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1F702162:
-        m_Texture: {fileID: 2800000, guid: 2bf06ad913dc73b40990ef9a2e84f980, type: 3}
+        m_Texture: {fileID: 2800000, guid: 517276c6830c88f4fb6d71f06db75b8a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_909A7E5D:
-        m_Texture: {fileID: 2800000, guid: f347930f1a0e6eb448bc8ca82f8560f4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1e4ea9cb66af78e43bea66e2fa537374, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_A4BD4C2B:
@@ -90,7 +90,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_9EFEEE2E: {r: 1, g: 1, b: 1, a: 0}
+    - Color_9EFEEE2E: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
