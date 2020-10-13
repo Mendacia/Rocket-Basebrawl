@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class fielderPeltingScript : MonoBehaviour
 {
-    public List<Transform> fieldingTeam;
-    public GameObject ball;
     [Header("These MUST be set in editor for game to work")]
-    [SerializeField] private LayerMask fielderLayerMask = 0;
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
     [Header("Dev Controls")]
@@ -16,6 +13,9 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
+
+    //I set these automatically please don't try to manipulate these for anything other than visibility
+    public List<Transform> fieldingTeam;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
 
@@ -97,17 +97,10 @@ public class fielderPeltingScript : MonoBehaviour
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
             foreach (Transform fielder in chosenFielders)
             {
-                RaycastHit fielderRaycastHit;
-                var chosenFieldersRaycast = Physics.Raycast(fielder.position, ((player.position + Random.insideUnitSphere * 1.5f) - fielder.position).normalized, out fielderRaycastHit, 1000, fielderLayerMask);
-                //Hee hoo beam time
-                var myBeam = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity);
-                var myBeamScript = myBeam.GetComponent<fielderTargetingLineRenderer>();
-                myBeamScript.fielderPosition = fielder;
-                myBeamScript.fielderRaycastHitPosition = fielderRaycastHit.point;
-                myBeamScript.ArmTheLineRenderer();
-
-                //GameObject myBall = Instantiate(ball, fielder.position + fielder.transform.forward * 1, fielder.rotation);
-                //myBall.GetComponent<fielderPeltingBallBehaviour>().fielder = fielder;
+                var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+                myBeamScript.originPosition = fielder.position;
+                myBeamScript.direction = ((player.position + Random.insideUnitSphere * 1.5f) - fielder.position).normalized;
+                myBeamScript.playerTransform = player.transform;
             }
             canThrow = false;
         }

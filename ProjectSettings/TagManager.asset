@@ -9,6 +9,8 @@ TagManager:
   - Ball
   - Detector
   - BallHit
+  - Fielder
+  - TargetingBeamTag
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Ball
   - BallDetector
   - Pitcher
-  - 
+  - BallHittingLayer
   - 
   - 
   - 
