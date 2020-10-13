@@ -77,7 +77,8 @@ public class runningPhaseMovement : MonoBehaviour
     {
         moveVector.Set(desiredDirection.x, 0, desiredDirection.z);
         moveVector = moveVector * speed * Time.deltaTime;
-        transform.position += moveVector;
+        //transform.position += moveVector;
+        rb.velocity = moveVector * speed * 100 * Time.deltaTime;
     }
 
     void Turn(Vector3 desiredDirection)

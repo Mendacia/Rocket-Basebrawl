@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.InputSystem.InputAction;
+using Cinemachine;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pause;
     public static bool isPaused = false;
 
-    void Update()
+    public CinemachineBrain brain;
+
+    public void PauseGame(CallbackContext context)
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (context.performed)
         {
             if (isPaused == true)
             {
@@ -29,6 +33,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         isPaused = false;
         Cursor.visible = false;
+        brain.enabled = true;
     }
 
     public void Pause()
@@ -37,6 +42,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         isPaused = true;
         Cursor.visible = true;
+        brain.enabled = false;
     }
 
     public void ReturnToTitle()
