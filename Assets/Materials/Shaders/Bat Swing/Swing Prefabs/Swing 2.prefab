@@ -1362,8 +1362,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.7971698, g: 0.92364043, b: 1, a: 0.827451}
-        key1: {r: 0, g: 0.62263966, b: 1, a: 1}
-        key2: {r: 0.8262432, g: 0.8396226, b: 0.38416696, a: 1}
+        key1: {r: 0.90933144, g: 1, b: 0, a: 1}
+        key2: {r: 0.38431373, g: 0.8392157, b: 0.4265586, a: 1}
         key3: {r: 1, g: 1, b: 1, a: 1}
         key4: {r: 1, g: 1, b: 1, a: 0.5529412}
         key5: {r: 1, g: 1, b: 1, a: 0}
@@ -9755,7 +9755,7 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 0
+  m_SortingFudge: 10
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 2
@@ -11135,11 +11135,11 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.7971698, g: 0.92364043, b: 1, a: 0.827451}
-        key1: {r: 1, g: 0.97220707, b: 0.495283, a: 1}
-        key2: {r: 1, g: 0.29116473, b: 0, a: 1}
-        key3: {r: 1, g: 0.52746165, b: 0, a: 1}
-        key4: {r: 1, g: 0.9404986, b: 0, a: 0.5529412}
-        key5: {r: 1, g: 0.5120404, b: 0, a: 0}
+        key1: {r: 0.6962964, g: 1, b: 0.49411762, a: 1}
+        key2: {r: 0.24614811, g: 1, b: 0, a: 1}
+        key3: {r: 0, g: 1, b: 0.5114999, a: 1}
+        key4: {r: 0.28579426, g: 1, b: 0, a: 0.5529412}
+        key5: {r: 0, g: 1, b: 0.45846844, a: 0}
         key6: {r: 1, g: 1, b: 1, a: 0}
         key7: {r: 1, g: 1, b: 1, a: 0}
         ctime0: 0
