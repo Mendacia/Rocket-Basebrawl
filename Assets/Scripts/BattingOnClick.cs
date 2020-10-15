@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem;
 
 public class BattingOnClick : MonoBehaviour
 {
@@ -15,26 +17,22 @@ public class BattingOnClick : MonoBehaviour
 
     public Transform batPlane;
 
+    private PlayerInputActions inputActions;
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
     private void Start()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         anim = animReference.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.Play("Swinging");
-            tempAnimCheck = true;
-            StartCoroutine(TempWaitFor());
-        }
         ball = GetClosestBall(Detector.ballCols, this.transform);
-        if (Input.GetButtonDown("Fire1") && ball != null)
-        {
-            HitBall();
-        }
 
         RotatePlane();
     }
@@ -45,24 +43,27 @@ public class BattingOnClick : MonoBehaviour
         tempAnimCheck = false;
     }
 
-    void HitBall()
+    public void HitBall(CallbackContext context)
     {
-        ballScr = ball.GetComponent<fielderPeltingBallBehaviour>();
-        //playAnimation
-        anim.Play("Swinging");
-        if (ballScr.isHittable == true)
+        if (context.started)
         {
-            tempAnimCheck = true;
-            var body = ball.GetComponent<Rigidbody>();
-            Vector3 camForward = camT.rotation * transform.forward;
-            body.velocity = camForward * speed * 100 * Time.deltaTime;
-            body.velocity += new Vector3(0f, 1f * 10, 0f);
-            body.useGravity = true;
-            ballScr.isHittable = false;
-            Detector.ballCols.Remove(ball);
-            //AddScore OR AddScore on enemy hit. Depending on what we doing.
-            StartCoroutine(TempWaitFor());
+            ballScr = ball.GetComponent<fielderPeltingBallBehaviour>();
+            //playAnimation
+            anim.Play("Swinging");
+            if (ballScr.isHittable == true)
+            {
+                tempAnimCheck = true;
+                var body = ball.GetComponent<Rigidbody>();
+                Vector3 camForward = camT.rotation * transform.forward;
+                body.velocity = camForward * speed * 150 * Time.deltaTime;
+                body.velocity += new Vector3(0f, 3f, 0f);
+                body.useGravity = true;
+                ballScr.isHittable = false;
+                Detector.ballCols.Remove(ball);
+                StartCoroutine(TempWaitFor());
+            }
         }
+        
     }
     Transform GetClosestBall(List<Transform> balls, Transform fromThis)
     {
