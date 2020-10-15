@@ -12,5 +12,6 @@ public class fielderTargetingBallSpawner : MonoBehaviour
         var myBaseballObject = Instantiate(baseballPrefab);
         myBaseballObject.transform.position = myLineRendererScript.originPosition;
         myBaseballObject.transform.LookAt(myLineRendererScript.originPosition + myLineRendererScript.direction);
+        myBaseballObject.transform.position = myBaseballObject.transform.position + new Vector3(0, 0, 1);
     }
 }

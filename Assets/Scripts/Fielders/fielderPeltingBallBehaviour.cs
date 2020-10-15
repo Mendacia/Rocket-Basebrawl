@@ -6,13 +6,25 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 {
     public float ballSpeed, pingSpeed;
     public bool isHittable = true;
+    public bool ballIsActive = true;
 
-    // Update is called once per frame
     void Start()
     {
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
+        StartCoroutine(Expire());
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(ballIsActive == true)
+        {
+            GameObject.Find("God").GetComponent<scoreHolder>().score--;
+            ballIsActive = false;
+        }
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "BallHit")
@@ -23,5 +35,11 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
             isHittable = false;
             Detector.ballCols.Remove(this.gameObject.transform);
         }
+    }
+
+    IEnumerator Expire()
+    {
+        yield return new WaitForSeconds(60);
+        Destroy(gameObject);
     }
 }
