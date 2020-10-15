@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class currentBaseHolder : MonoBehaviour
 {
     [System.NonSerialized]public string currentBase = "Home";
     private bool hasLeftHome = false;
+
+    private void start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     private void Update()
     {
@@ -16,7 +22,7 @@ public class currentBaseHolder : MonoBehaviour
 
         if (currentBase == "Home" && hasLeftHome)
         {
-            hasLeftHome = true;
+            SceneManager.LoadScene("EndingBasebrawlTestingZone");
         }
     }
 }

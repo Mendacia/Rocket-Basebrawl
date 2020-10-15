@@ -19,6 +19,7 @@ public class fielderPeltingScript : MonoBehaviour
     public List<Transform> fieldingTeam;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
+    private bool hasStartedThrowingSequenceAlready = false;
 
     private void Start()
     {
@@ -42,7 +43,7 @@ public class fielderPeltingScript : MonoBehaviour
             ReadyThrow();
         }
     }
-
+    
     public void Throw(CallbackContext context)
     {
         startPeltingLoop();
@@ -56,7 +57,11 @@ public class fielderPeltingScript : MonoBehaviour
 
     public void startPeltingLoop()
     {
-        StartCoroutine(ThrowDelay());
+        if (hasStartedThrowingSequenceAlready == false)
+        {
+            hasStartedThrowingSequenceAlready = true;
+            StartCoroutine(ThrowDelay());
+        }
     }
 
     IEnumerator ThrowDelay()

@@ -19,7 +19,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     {
         if(ballIsActive == true)
         {
-            GameObject.Find("God").GetComponent<scoreHolder>().score--;
+            GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score--;
             ballIsActive = false;
         }
     }

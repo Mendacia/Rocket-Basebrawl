@@ -9,7 +9,7 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
 
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation)
     {
-        GameObject.Find("God").GetComponent<scoreHolder>().score++;
+        GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
         var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();
         var myBaseballObject = Instantiate(baseballPrefab);
         myBaseballObject.GetComponent<fielderPeltingBallBehaviour>().ballIsActive = false;
