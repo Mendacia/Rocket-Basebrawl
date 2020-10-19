@@ -5,21 +5,26 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class fielderPeltingScript : MonoBehaviour
 {
-    public List<Transform> fieldingTeam;
-    public GameObject ball;
+    [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
+    [SerializeField] private GameObject targetingBeamPrefab;
+    [Header("Dev Controls")]
     [SerializeField] private KeyCode devkeyToStartPelting = KeyCode.P;
     [SerializeField] private KeyCode comedy = KeyCode.L;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
+
+    //I set these automatically please don't try to manipulate these for anything other than visibility
+    public List<Transform> fieldingTeam;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
+    private bool hasStartedThrowingSequenceAlready = false;
 
     private void Start()
     {
         //Populate fieldingTeam list with the children of this gameObject
-        foreach (Transform child in transform)
+        foreach (Transform child in gameObject.transform.Find("Team"))
         {
             fieldingTeam.Add(child);
         }
@@ -38,7 +43,7 @@ public class fielderPeltingScript : MonoBehaviour
             ReadyThrow();
         }
     }
-
+    
     public void Throw(CallbackContext context)
     {
         startPeltingLoop();
@@ -52,7 +57,11 @@ public class fielderPeltingScript : MonoBehaviour
 
     public void startPeltingLoop()
     {
-        StartCoroutine(ThrowDelay());
+        if (hasStartedThrowingSequenceAlready == false)
+        {
+            hasStartedThrowingSequenceAlready = true;
+            StartCoroutine(ThrowDelay());
+        }
     }
 
     IEnumerator ThrowDelay()
@@ -94,8 +103,10 @@ public class fielderPeltingScript : MonoBehaviour
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
             foreach (Transform fielder in chosenFielders)
             {
-                GameObject myBall = Instantiate(ball, fielder.position + fielder.transform.forward * 1, fielder.rotation);
-                myBall.GetComponent<fielderPeltingBallBehaviour>().fielder = fielder;
+                var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+                myBeamScript.originPosition = fielder.position;
+                myBeamScript.direction = ((player.position + Random.insideUnitSphere * 1.5f) - fielder.position).normalized;
+                myBeamScript.playerTransform = player.transform;
             }
             canThrow = false;
         }
