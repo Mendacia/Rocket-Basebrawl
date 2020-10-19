@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.InputAction;
 
 public class TempBattingControls : MonoBehaviour
 {
-    [SerializeField] private KeyCode hitKey = KeyCode.Mouse0;
     [SerializeField] private Text devHittingCheckText = null;
     private bool isHitting = false;
     private BoxCollider myCollider = null;
@@ -17,9 +17,9 @@ public class TempBattingControls : MonoBehaviour
         devHittingCheckText.text = ("IDLE");
         isHitting = false;
     }
-    void Update()
+    public void Batting(CallbackContext context)
     {
-        if (Input.GetKeyDown(hitKey) && isHitting == false)
+        if (context.performed && isHitting == false)
         {
             myCollider.enabled = true;
             devHittingCheckText.text = ("HITTING");
@@ -27,6 +27,7 @@ public class TempBattingControls : MonoBehaviour
             StartCoroutine(Cooldown());
         }
     }
+
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(0.5f);
