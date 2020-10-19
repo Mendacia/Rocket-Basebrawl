@@ -38,7 +38,7 @@ public class ActivateOnKeypress : MonoBehaviour
                         boosted = true;
                     }
                 }
-                else if (vcam != null)
+                else if (vcam != null && context.canceled)
                 {
                     if (boosted)
                     {

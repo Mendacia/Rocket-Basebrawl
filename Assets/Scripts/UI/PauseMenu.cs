@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
 
     public CinemachineBrain brain;
+    
 
     public void PauseGame(CallbackContext context)
     {

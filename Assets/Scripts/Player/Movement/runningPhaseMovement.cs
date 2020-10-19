@@ -25,6 +25,9 @@ public class runningPhaseMovement : MonoBehaviour
     private Vector3 moveVector;
     private Quaternion currentRotation;
 
+    //Camera for rotation setting
+    public Transform camRot;
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -68,7 +71,8 @@ public class runningPhaseMovement : MonoBehaviour
 
                 Move(desiredDirection);
                 Turn(desiredDirection);
-                
+                //transform.eulerAngles = new Vector3(0, camRot.eulerAngles.y, 0);
+
                 break;
         }
     }
@@ -77,7 +81,6 @@ public class runningPhaseMovement : MonoBehaviour
     {
         moveVector.Set(desiredDirection.x, 0, desiredDirection.z);
         moveVector = moveVector * speed * Time.deltaTime;
-        //transform.position += moveVector;
         rb.velocity = moveVector * speed * 100 * Time.deltaTime;
     }
 

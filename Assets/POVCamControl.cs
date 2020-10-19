@@ -11,6 +11,7 @@ public class POVCamControl : MonoBehaviour
     public InputActionReference actions;
     private PlayerInputActions inputActions;
     Vector2 camInput;
+    public float sensitivity;
 
     // Start is called before the first frame update
 
@@ -32,8 +33,8 @@ public class POVCamControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        POVCam.m_HorizontalAxis.Value += camInput.x;
-        POVCam.m_VerticalAxis.Value -= camInput.y;
+        POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity * Time.deltaTime;
     }
 
     private void OnEnable()
