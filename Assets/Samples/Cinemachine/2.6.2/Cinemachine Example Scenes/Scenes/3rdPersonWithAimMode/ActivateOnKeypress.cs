@@ -17,23 +17,38 @@ public class ActivateOnKeypress : MonoBehaviour
 
     public void aimOn(CallbackContext context)
     {
-        if (context.performed)
-        {
-            if (!boosted)
-            {
-                vcam.Priority += PriorityBoostAmount;
-                boosted = true;
-            }
+        int camState = 1;
+
+        if(DeactiveateCamera.dollyActive == false) {
+            camState = 2;
         }
-        else if (vcam != null)
+
+        switch (camState)
         {
-            if (boosted)
-            {
-                vcam.Priority -= PriorityBoostAmount;
-                boosted = false;
-            }
+            case 1:
+
+                break;
+
+            case 2:
+                if (context.performed)
+                {
+                    if (!boosted)
+                    {
+                        vcam.Priority += PriorityBoostAmount;
+                        boosted = true;
+                    }
+                }
+                else if (vcam != null)
+                {
+                    if (boosted)
+                    {
+                        vcam.Priority -= PriorityBoostAmount;
+                        boosted = false;
+                    }
+                }
+                if (Reticle != null)
+                    Reticle.SetActive(boosted);
+                break;
         }
-        if (Reticle != null)
-            Reticle.SetActive(boosted);
     }
 }
