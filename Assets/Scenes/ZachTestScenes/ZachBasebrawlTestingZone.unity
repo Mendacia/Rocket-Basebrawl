@@ -870,6 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
+  sensitivity: 100
 --- !u!1 &216416355
 GameObject:
   m_ObjectHideFlags: 0
@@ -6350,6 +6351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
+  sensitivity: 100
 --- !u!1 &2059558451
 GameObject:
   m_ObjectHideFlags: 3
