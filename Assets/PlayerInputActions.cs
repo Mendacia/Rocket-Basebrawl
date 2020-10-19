@@ -40,7 +40,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""85d64e14-d375-4499-a81c-8a3be6ffd372"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Aim"",
@@ -502,7 +502,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Submit"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""8a11c934-f0c8-4c98-973c-bcb96d271b73"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -510,7 +510,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Cancel"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""0df3c87f-7660-43ff-bb9f-e834db66cdc1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

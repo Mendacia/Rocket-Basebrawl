@@ -8,11 +8,7 @@ public class currentBaseHolder : MonoBehaviour
     [System.NonSerialized]public string currentBase = "Home";
     private bool hasLeftHome = false;
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
+    
     private void Update()
     {
         if (currentBase != "Home" && hasLeftHome == false)

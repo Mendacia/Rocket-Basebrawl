@@ -22,8 +22,7 @@ public class TimeSlow : MonoBehaviour
         {
             Time.timeScale = 0.5f;
             timeSlowed = true;
-            Camera.main.fieldOfView = 30;
-            ballPlane.SetActive(true);
+            //ballPlane.SetActive(true);
             Debug.Log(Time.timeScale);
         }
 
@@ -35,8 +34,7 @@ public class TimeSlow : MonoBehaviour
         else
         {
             timeSlowed = false;
-            Camera.main.fieldOfView = 60;
-            ballPlane.SetActive(false);
+            //ballPlane.SetActive(false);
         }
     }
 }

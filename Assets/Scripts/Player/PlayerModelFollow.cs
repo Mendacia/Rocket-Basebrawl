@@ -7,12 +7,6 @@ public class PlayerModelFollow : MonoBehaviour
     public Transform player;
     public Transform camRot;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.position = player.position;
