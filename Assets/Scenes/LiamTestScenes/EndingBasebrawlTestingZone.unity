@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 1127108225}
   - component: {fileID: 1127108227}
   - component: {fileID: 1127108226}
+  - component: {fileID: 1127108228}
   m_Layer: 5
   m_Name: EndText
   m_TagString: Untagged
@@ -446,6 +447,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127108224}
   m_CullTransparentMesh: 0
+--- !u!114 &1127108228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127108224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ba9c71ce358014db4a692cd42310f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayText:
+  - Unfortunately, as the cheetah went to finish his run, the fool accidentally tripped
+    on the home base and threw his spotted face into the infernal engine of his own
+    bat.
+  - You died, I decided. Because there is no more game for you to experience, I have
+    removed you from the world. Have a nice day.
+  - Woah! That's a really bad score!
 --- !u!1 &1324962016
 GameObject:
   m_ObjectHideFlags: 0
