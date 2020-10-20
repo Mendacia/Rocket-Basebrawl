@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Ledger
   m_EditorClassIdentifier: 
   OutstandingTasks:
-  - Title: Just some notes about UI anchors
-    CreationDate: 22/09/2020 | 9:04 a.m.
+  - Title: Fielder Targeting Range
+    CreationDate: 21/10/2020 | 10:27 a.m.
     CompletionDate: 
     HasDetails: 1
-    Details: New Game X 0.05 | 0.3 --> X 0.2 | 0.45
+    Details: " - Find the next base and the player's position and throw between them\n
+      - Then Weight the area immediately close to the player a little higher\n -
+      Send Information to the fielderPeltingScript's beam generator"
     IsCompleted: 0
     IsDeferred: 0
     IsColored: 1
-    DrawColor: {r: 0.7490196, g: 1, b: 1, a: 1}
+    DrawColor: {r: 0, g: 1, b: 0.99030876, a: 1}
   CompletedTasks:
   - Title: Need timer on bunny throwing script
     CreationDate: 17/09/2020 | 9:58 a.m.
