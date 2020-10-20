@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 204804981}
   - component: {fileID: 204804983}
   - component: {fileID: 204804984}
+  - component: {fileID: 204804985}
   m_Layer: 0
   m_Name: CM 3rdPerson Normal
   m_TagString: Untagged
@@ -651,11 +652,11 @@ MonoBehaviour:
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.01
+  m_MinimumDistanceFromTarget: 0.1
   m_AvoidObstacles: 1
-  m_DistanceLimit: 0
+  m_DistanceLimit: 0.5
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
+  m_CameraRadius: 0.5
   m_Strategy: 1
   m_MaximumEffort: 4
   m_SmoothingTime: 0
@@ -680,7 +681,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 0
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 234638612}
   m_Follow: {fileID: 234638612}
   m_Lens:
     FieldOfView: 40
@@ -726,6 +727,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
   sensitivity: 100
+--- !u!114 &204804985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204804979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &216416355
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +853,7 @@ GameObject:
   - component: {fileID: 234638614}
   - component: {fileID: 234638613}
   - component: {fileID: 234638618}
+  - component: {fileID: 234638619}
   m_Layer: 0
   m_Name: Temporary Player
   m_TagString: Player
@@ -1099,6 +1113,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 453430476}
+--- !u!114 &234638619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234638611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f2ce5a44063824da94d8abef970454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camShake: {fileID: 204804985}
 --- !u!1 &308675383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,8 +1774,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles:
@@ -4339,6 +4366,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4890736849378409820, guid: c34c39a9e5bada64496e0d38628bac87,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4890736849794147265, guid: c34c39a9e5bada64496e0d38628bac87,
         type: 3}
       propertyPath: m_Name
@@ -4558,6 +4590,7 @@ GameObject:
   - component: {fileID: 1651198561}
   - component: {fileID: 1651198560}
   - component: {fileID: 1651198558}
+  - component: {fileID: 1651198559}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -4601,7 +4634,7 @@ MonoBehaviour:
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: -70
+    m_MinValue: -7
     m_MaxValue: 70
     m_Wrap: 0
     m_Recentering:
@@ -4641,6 +4674,23 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_ApplyBeforeBody: 0
+--- !u!114 &1651198559
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651198556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 90a11b0bd26895e4ab6d8538b8d1e699, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: -993.4313, y: -735.20654, z: -546.86304}
 --- !u!114 &1651198560
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -5279,6 +5329,7 @@ GameObject:
   - component: {fileID: 2032834594}
   - component: {fileID: 2032834597}
   - component: {fileID: 2032834598}
+  - component: {fileID: 2032834599}
   m_Layer: 0
   m_Name: CM 3rd Person Aim
   m_TagString: Untagged
@@ -5337,9 +5388,9 @@ MonoBehaviour:
     m_Bits: 0
   m_MinimumDistanceFromTarget: 0.01
   m_AvoidObstacles: 1
-  m_DistanceLimit: 0
+  m_DistanceLimit: 0.5
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
+  m_CameraRadius: 0.5
   m_Strategy: 1
   m_MaximumEffort: 4
   m_SmoothingTime: 0
@@ -5364,7 +5415,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 9
   m_StandbyUpdate: 0
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 234638612}
   m_Follow: {fileID: 234638612}
   m_Lens:
     FieldOfView: 20
@@ -5410,6 +5461,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
   sensitivity: 100
+--- !u!114 &2032834599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032834592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059558451
 GameObject:
   m_ObjectHideFlags: 3
@@ -5423,6 +5486,7 @@ GameObject:
   - component: {fileID: 2059558455}
   - component: {fileID: 2059558454}
   - component: {fileID: 2059558453}
+  - component: {fileID: 2059558457}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -5466,7 +5530,7 @@ MonoBehaviour:
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: -70
+    m_MinValue: -15
     m_MaxValue: 70
     m_Wrap: 0
     m_Recentering:
@@ -5573,6 +5637,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2059558457
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059558451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 90a11b0bd26895e4ab6d8538b8d1e699, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &2067784288
 PrefabInstance:
   m_ObjectHideFlags: 0
