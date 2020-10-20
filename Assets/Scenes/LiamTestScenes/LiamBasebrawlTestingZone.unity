@@ -534,6 +534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 157959961}
+  - component: {fileID: 157959962}
   m_Layer: 0
   m_Name: Bases
   m_TagString: Untagged
@@ -556,10 +557,28 @@ Transform:
   - {fileID: 485506592}
   - {fileID: 1667473482}
   - {fileID: 1423628097}
-  - {fileID: 926485868}
   m_Father: {fileID: 1436010123}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &157959962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157959960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef52aaba0476ae74ca5e82be3fee3852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bases: []
+  currentBase: 0
+  nextBase: 0
+  playerPosition: {fileID: 269823737}
+  uIBaseText: {fileID: 125609384}
+  rangeAllocationScript: {fileID: 0}
+  distanceFromBaseRequiredToProgress: 5
 --- !u!1 &164344886
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,10 +791,8 @@ GameObject:
   - component: {fileID: 190353912}
   - component: {fileID: 190353911}
   - component: {fileID: 190353910}
-  - component: {fileID: 190353913}
-  - component: {fileID: 190353914}
   m_Layer: 0
-  m_Name: BaseHome
+  m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -857,35 +874,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190353908}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &190353913
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190353908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
-  m_Center: {x: 0, y: 15, z: 0}
---- !u!114 &190353914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190353908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b3bf19ebe7bf74a932c26ccf969707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GOD: {fileID: 367425942}
-  uiBaseText: {fileID: 125609384}
-  PreviousBase: Base3
-  thisBase: Home
 --- !u!1 &269823736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,18 +1583,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365404700}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &367425942 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 672805361882806308, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
-    type: 3}
-  m_PrefabInstance: {fileID: 672805361579114930}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6313a0a5b500c254e81d267e775bf2c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &411089511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,10 +1803,8 @@ GameObject:
   - component: {fileID: 485506595}
   - component: {fileID: 485506594}
   - component: {fileID: 485506593}
-  - component: {fileID: 485506596}
-  - component: {fileID: 485506597}
   m_Layer: 0
-  m_Name: BaseOne
+  m_Name: Base1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1912,35 +1886,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485506591}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &485506596
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485506591}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
-  m_Center: {x: 0, y: 15, z: 0}
---- !u!114 &485506597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485506591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b3bf19ebe7bf74a932c26ccf969707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GOD: {fileID: 367425942}
-  uiBaseText: {fileID: 125609384}
-  PreviousBase: Home
-  thisBase: Base1
 --- !u!1001 &491456124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2908,10 +2853,10 @@ Transform:
   m_GameObject: {fileID: 926485867}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.13598207, y: 0.5, z: 0.13598207}
-  m_LocalScale: {x: 0.0076923072, y: 0.2, z: 0.0076923072}
+  m_LocalScale: {x: 0.007692307, y: 0.2, z: 0.007692307}
   m_Children: []
-  m_Father: {fileID: 157959961}
-  m_RootOrder: 4
+  m_Father: {fileID: 1436010123}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!65 &926485869
 BoxCollider:
@@ -4159,10 +4104,8 @@ GameObject:
   - component: {fileID: 1423628100}
   - component: {fileID: 1423628099}
   - component: {fileID: 1423628098}
-  - component: {fileID: 1423628101}
-  - component: {fileID: 1423628102}
   m_Layer: 0
-  m_Name: BaseThree
+  m_Name: Base3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4244,35 +4187,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423628096}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1423628101
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423628096}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
-  m_Center: {x: 0, y: 15, z: 0}
---- !u!114 &1423628102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423628096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b3bf19ebe7bf74a932c26ccf969707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GOD: {fileID: 367425942}
-  uiBaseText: {fileID: 125609384}
-  PreviousBase: Base2
-  thisBase: Base3
 --- !u!1 &1436010119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4367,6 +4281,7 @@ Transform:
   m_Children:
   - {fileID: 157959961}
   - {fileID: 1941524937}
+  - {fileID: 926485868}
   m_Father: {fileID: 811947005}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
@@ -4809,10 +4724,8 @@ GameObject:
   - component: {fileID: 1667473485}
   - component: {fileID: 1667473484}
   - component: {fileID: 1667473483}
-  - component: {fileID: 1667473486}
-  - component: {fileID: 1667473487}
   m_Layer: 0
-  m_Name: BaseTwo
+  m_Name: Base2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4894,35 +4807,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667473481}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1667473486
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667473481}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
-  m_Center: {x: 0, y: 15, z: 0}
---- !u!114 &1667473487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667473481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b3bf19ebe7bf74a932c26ccf969707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GOD: {fileID: 367425942}
-  uiBaseText: {fileID: 125609384}
-  PreviousBase: Base1
-  thisBase: Base2
 --- !u!1 &1695224237
 GameObject:
   m_ObjectHideFlags: 0
@@ -79194,6 +79078,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4890736849378409820, guid: c34c39a9e5bada64496e0d38628bac87,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4890736849794147265, guid: c34c39a9e5bada64496e0d38628bac87,
         type: 3}
       propertyPath: m_Name
