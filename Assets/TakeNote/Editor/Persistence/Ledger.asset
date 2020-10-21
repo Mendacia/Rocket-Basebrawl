@@ -17,13 +17,22 @@ MonoBehaviour:
     CreationDate: 21/10/2020 | 10:27 a.m.
     CompletionDate: 
     HasDetails: 1
-    Details: " - Find the next base and the player's position and throw between them\n
-      - Then Weight the area immediately close to the player a little higher\n -
-      Send Information to the fielderPeltingScript's beam generator"
+    Details: " - Find the next base and the player's position and throw between them\n-
+      Then Weight the area immediately close to the player a little higher\n - Send
+      Information to the fielderPeltingScript's beam generator"
     IsCompleted: 0
     IsDeferred: 0
     IsColored: 1
     DrawColor: {r: 0, g: 1, b: 0.99030876, a: 1}
+  - Title: Fielder Targeting Range Logistics
+    CreationDate: 10/21/2020 | 8:23 PM
+    CompletionDate: 
+    HasDetails: 0
+    Details: 
+    IsCompleted: 0
+    IsDeferred: 0
+    IsColored: 1
+    DrawColor: {r: 0, g: 0.745283, b: 0.73943776, a: 1}
   CompletedTasks:
   - Title: Need timer on bunny throwing script
     CreationDate: 17/09/2020 | 9:58 a.m.

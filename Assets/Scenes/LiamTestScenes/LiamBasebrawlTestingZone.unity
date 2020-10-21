@@ -596,6 +596,7 @@ MonoBehaviour:
   playerPosition: {fileID: 269823737}
   targetingMinimumY: 0.5
   targetingMaximumY: 3
+  extraBallSphereRadius: 0
 --- !u!1 &164344886
 GameObject:
   m_ObjectHideFlags: 0
@@ -54543,6 +54544,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 269823737}
+    - target: {fileID: 3273796570018407200, guid: 6102d04f1ca49e44b8771502b172c93c,
+        type: 3}
+      propertyPath: rangeAllocationScript
+      value: 
+      objectReference: {fileID: 157959963}
+    - target: {fileID: 3273796570018407200, guid: 6102d04f1ca49e44b8771502b172c93c,
+        type: 3}
+      propertyPath: minWaitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273796570018407200, guid: 6102d04f1ca49e44b8771502b172c93c,
+        type: 3}
+      propertyPath: maxWaitTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3273796570018407201, guid: 6102d04f1ca49e44b8771502b172c93c,
         type: 3}
       propertyPath: m_LocalPosition.x

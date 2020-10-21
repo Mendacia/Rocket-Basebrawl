@@ -10,7 +10,10 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
     [Header("Minimum and Maximum 'Y' Values for targeting")]
     [SerializeField] private float targetingMinimumY;
     [SerializeField] private float targetingMaximumY;
-    [System.NonSerialized] public int recievedChosenFielderCount;
+    [Header("This is the distance the extra ball will be from the first")]
+    [SerializeField] private float extraBallSphereRadius;
+    [System.NonSerialized] public Vector3 finalTargetPosition;
+    [System.NonSerialized] public bool firstFielder = true;
     private Transform recievedNextBase = null;
 
     public void RangeAllocatorNextBaseUpdater(int sentNextBase)
@@ -29,10 +32,17 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
 
     public void GiveTheFielderATarget()
     {
-        //Alright so I know this one line looks intimidating, but it's just randomizing the position of:
-        //X and Z between the player position and the next base
-        //Y between the maximum and minimum "Y" values set in inspector.
-        var fielderTarget = new Vector3(Random.Range(recievedNextBase.position.x, playerPosition.position.x), Random.Range(targetingMinimumY, targetingMaximumY), Random.Range(recievedNextBase.position.z, playerPosition.position.z));
-        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = fielderTarget;
+        //This is voodoo magic and I don't really know how MULTIPLYING Vector3s works, but, it does
+        if (firstFielder == true)
+        {
+            var multiplierHolder = (recievedNextBase.position - playerPosition.position);
+            var fielderTarget = (playerPosition.position + Random.value * multiplierHolder);
+            fielderTarget.y = (Random.Range(targetingMinimumY, targetingMaximumY));
+            finalTargetPosition = fielderTarget;
+        }
+        else
+        {
+            finalTargetPosition = ((finalTargetPosition + Random.insideUnitSphere * extraBallSphereRadius));
+        }
     }
 }

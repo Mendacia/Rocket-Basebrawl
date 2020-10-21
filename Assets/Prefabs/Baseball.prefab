@@ -95,7 +95,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8581812953805991084}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -131,6 +131,7 @@ MonoBehaviour:
   ballSpeed: 2000
   pingSpeed: 30
   isHittable: 1
+  ballIsActive: 1
 --- !u!198 &5845543877041761063
 ParticleSystem:
   m_ObjectHideFlags: 0

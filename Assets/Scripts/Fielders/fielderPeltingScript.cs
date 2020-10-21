@@ -8,9 +8,7 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
-    [Header("Dev Controls")]
-    [SerializeField] private KeyCode devkeyToStartPelting = KeyCode.P;
-    [SerializeField] private KeyCode comedy = KeyCode.L;
+    [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
@@ -98,6 +96,7 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
                 numberOfBallsToThrow--;
+                rangeAllocationScript.firstFielder = true;
             }
 
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
@@ -105,7 +104,9 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
                 myBeamScript.originPosition = fielder.position;
-                myBeamScript.direction = ((player.position + Random.insideUnitSphere * 1.5f) - fielder.position).normalized;
+                rangeAllocationScript.GiveTheFielderATarget();
+                myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
+                rangeAllocationScript.firstFielder = false;
                 myBeamScript.playerTransform = player.transform;
             }
             canThrow = false;
