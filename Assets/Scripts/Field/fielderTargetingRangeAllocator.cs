@@ -7,24 +7,32 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
     [Header("Plug everything in please and thanks")]
     [SerializeField] private baseManager baseManagerScript;
     [SerializeField] private Transform playerPosition = null;
+    [Header("Minimum and Maximum 'Y' Values for targeting")]
+    [SerializeField] private float targetingMinimumY;
+    [SerializeField] private float targetingMaximumY;
+    [System.NonSerialized] public int recievedChosenFielderCount;
     private Transform recievedNextBase = null;
 
-    public void RangeAllocatorNextBaseUpdater()
+    public void RangeAllocatorNextBaseUpdater(int sentNextBase)
     {
-        recievedNextBase = baseManagerScript.bases[baseManagerScript.nextBase];
+        recievedNextBase = baseManagerScript.bases[sentNextBase];
+        Debug.Log(sentNextBase);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.B))
+        {
+            GiveTheFielderATarget();
+        }
     }
 
     public void GiveTheFielderATarget()
     {
-        var nextBaseX = recievedNextBase.position.x;
-        var nextBaseZ = recievedNextBase.position.z;
-        var playerPosX = playerPosition.position.x;
-        var playerPosZ = playerPosition.position.z;
-
-        var finalX = Random.Range(nextBaseX, playerPosX);
-        var finalY = Random.Range(0.2f,3);
-        var finalZ = Random.Range(nextBaseZ, playerPosZ);
-
-        var fielderTarget = new Vector3(finalX, finalY, finalZ);
+        //Alright so I know this one line looks intimidating, but it's just randomizing the position of:
+        //X and Z between the player position and the next base
+        //Y between the maximum and minimum "Y" values set in inspector.
+        var fielderTarget = new Vector3(Random.Range(recievedNextBase.position.x, playerPosition.position.x), Random.Range(targetingMinimumY, targetingMaximumY), Random.Range(recievedNextBase.position.z, playerPosition.position.z));
+        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = fielderTarget;
     }
 }

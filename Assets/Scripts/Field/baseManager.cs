@@ -29,27 +29,40 @@ public class baseManager : MonoBehaviour
 
         //Sets initial base to home
         currentBase = 0;
+        nextBase = 1;
+        rangeAllocationScript.RangeAllocatorNextBaseUpdater(nextBase);
     }
 
     private void Update()
     {
         //Updates the current base if the player is within the distanceFromBaseRequiredToProgress
-        if(currentBase != (bases.Count -1))
+        if(nextBase != (bases.Count - 1) && nextBase != 0)
         {
-            if (Vector3.Distance(playerPosition.position, bases[(nextBase = currentBase + 1)].position) < distanceFromBaseRequiredToProgress)
+            if (Vector3.Distance(playerPosition.position, bases[(currentBase + 1)].position) < distanceFromBaseRequiredToProgress)
             {
-                currentBase = nextBase;
-                rangeAllocationScript.RangeAllocatorNextBaseUpdater();
+                currentBase++;
+                nextBase++;
                 hasLeftHome = true;
+                rangeAllocationScript.RangeAllocatorNextBaseUpdater(nextBase);
             }
         }
         //This is here because it covers an error where if this was an "or" in the above "if" then the next base would be higher than the index of bases, causing an error.
+        else if (nextBase == (bases.Count - 1))
+        {
+            if (Vector3.Distance(playerPosition.position, bases[bases.Count - 1].position) < distanceFromBaseRequiredToProgress)
+            {
+                currentBase++;
+                nextBase = 0;
+                rangeAllocationScript.RangeAllocatorNextBaseUpdater(nextBase);
+            }
+        }
         else
         {
-            if (currentBase == (bases.Count - 1) && Vector3.Distance(playerPosition.position, bases[nextBase = 0].position) < distanceFromBaseRequiredToProgress)
+            if (Vector3.Distance(playerPosition.position, bases[0].position) < distanceFromBaseRequiredToProgress)
             {
-                currentBase = nextBase;
-                rangeAllocationScript.RangeAllocatorNextBaseUpdater();
+                currentBase = 0;
+                nextBase++;
+                rangeAllocationScript.RangeAllocatorNextBaseUpdater(nextBase);
             }
         }
 
@@ -60,5 +73,6 @@ public class baseManager : MonoBehaviour
         }
 
         uIBaseText.text = bases[currentBase].name;
+        //This used to be in the if statements, but I got really tired of it not working, so it's here now. equations in "if" statements go through when you close the 'if'.
     }
 }
