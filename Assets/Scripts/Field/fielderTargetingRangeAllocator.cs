@@ -36,7 +36,7 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
         if (firstFielder == true)
         {
             var multiplierHolder = (recievedNextBase.position - playerPosition.position);
-            var fielderTarget = (playerPosition.position + Random.value * multiplierHolder);
+            var fielderTarget = (playerPosition.position + (Random.value / 3) * multiplierHolder);
             fielderTarget.y = (Random.Range(targetingMinimumY, targetingMaximumY));
             finalTargetPosition = fielderTarget;
         }
