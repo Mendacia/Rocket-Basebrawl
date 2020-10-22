@@ -17,6 +17,7 @@ public class DeactiveateCamera : MonoBehaviour
         StartCoroutine(dolSpeed());
     }
     
+    //Setting speed instead of immediately turning off the camera to correctly orientate the player
     public IEnumerator dolSpeed()
     {
         dolCart.m_Speed = 10000;

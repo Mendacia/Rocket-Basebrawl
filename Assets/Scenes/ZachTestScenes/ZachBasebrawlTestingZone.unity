@@ -933,6 +933,7 @@ MonoBehaviour:
   speed: 30
   cameraRotationReferenceY: {fileID: 453430473}
   animReference: {fileID: 626848481}
+  playerState: 1
   camRot: {fileID: 453430473}
 --- !u!54 &234638617
 Rigidbody:
@@ -1108,6 +1109,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7b2a7ca7-9623-4789-b95a-af6e29bf53cd
     m_ActionName: UI/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 234638616}
+        m_TargetAssemblyTypeName: runningPhaseMovement, Assembly-CSharp
+        m_MethodName: ActivatePlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 48ba0541-50af-4dba-a714-098de4837343
+    m_ActionName: Player/Enable Player[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1126,6 +1143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camShake: {fileID: 204804985}
+  camShakeAim: {fileID: 2032834599}
 --- !u!1 &308675383
 GameObject:
   m_ObjectHideFlags: 0
@@ -4686,7 +4704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 90a11b0bd26895e4ab6d8538b8d1e699, type: 2}
+  m_NoiseProfile: {fileID: 11400000, guid: c8d646ff34b8800438364419f8c18539, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 0
   m_FrequencyGain: 0
@@ -5330,6 +5348,7 @@ GameObject:
   - component: {fileID: 2032834597}
   - component: {fileID: 2032834598}
   - component: {fileID: 2032834599}
+  - component: {fileID: 2032834600}
   m_Layer: 0
   m_Name: CM 3rd Person Aim
   m_TagString: Untagged
@@ -5454,7 +5473,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032834592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ede09258bbc22845ac55094e98be90d, type: 3}
   m_Name: 
@@ -5473,6 +5492,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2032834600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032834592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b8179cab1a05445b60588de93f5f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
+  sensitivity: 100
 --- !u!1 &2059558451
 GameObject:
   m_ObjectHideFlags: 3

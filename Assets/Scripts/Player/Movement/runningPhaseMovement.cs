@@ -10,20 +10,24 @@ public class runningPhaseMovement : MonoBehaviour
     [SerializeField] private float speed = 1;
     [Header ("Plug the root camera object in here")]
     [SerializeField] private Transform cameraRotationReferenceY = null;
-    private Rigidbody rb;
+    
 
     //Animation
     private Animator anim;
     public GameObject animReference;
 
     //Lock player movement at the start
-    private int playerState = 1;
+    public int playerState = 1;
+    //Score Reference
+    GameObject scoreHolder;
 
+    //Input System Movements
     private PlayerInputActions inputActions;
     private Vector2 movementInput;
     private Vector3 inputDirection;
     private Vector3 moveVector;
     private Quaternion currentRotation;
+    private Rigidbody rb;
 
     //Camera for rotation setting
     public Transform camRot;
@@ -32,28 +36,42 @@ public class runningPhaseMovement : MonoBehaviour
     {
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
+
+        scoreHolder = GameObject.Find("Scoreholder");
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = animReference.gameObject.GetComponent<Animator>();
-        ActivatePlayer();
     }
 
-    public void ActivatePlayer()
+    public void ActivatePlayer(CallbackContext callbackContext)
     {
-        playerState = 2;
+        if (callbackContext.performed && DeactiveateCamera.dollyActive == false)
+        {
+            StartCoroutine(StateActivation());
+        }
+    }
+
+    IEnumerator StateActivation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if(scoreHolder.GetComponent<scoreHolder>().score >= 1)
+        {
+            playerState = 2;
+        }
     }
 
     private void FixedUpdate()
     {
         switch (playerState)
         {
+            //No input, aiming only
             case 1:
-
+                
                 break;
-
+            //Full movement
             case 2:
                 float h = movementInput.x;
                 float v = movementInput.y;
@@ -95,6 +113,7 @@ public class runningPhaseMovement : MonoBehaviour
             transform.rotation = currentRotation;
     }
 
+    //Enables NewInputSystem Inputs
     private void OnEnable()
     {
         inputActions.Enable();

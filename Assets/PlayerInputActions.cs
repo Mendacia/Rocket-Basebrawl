@@ -65,6 +65,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Enable Player"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""48ba0541-50af-4dba-a714-098de4837343"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -485,6 +493,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9190c483-462a-4791-bcb2-be1f0230de02"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Enable Player"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1030,6 +1049,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_DevThrow = m_Player.FindAction("DevThrow", throwIfNotFound: true);
         m_Player_DevPelt = m_Player.FindAction("DevPelt", throwIfNotFound: true);
+        m_Player_EnablePlayer = m_Player.FindAction("Enable Player", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1098,6 +1118,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_DevThrow;
     private readonly InputAction m_Player_DevPelt;
+    private readonly InputAction m_Player_EnablePlayer;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1108,6 +1129,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @DevThrow => m_Wrapper.m_Player_DevThrow;
         public InputAction @DevPelt => m_Wrapper.m_Player_DevPelt;
+        public InputAction @EnablePlayer => m_Wrapper.m_Player_EnablePlayer;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1135,6 +1157,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @DevPelt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevPelt;
                 @DevPelt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevPelt;
                 @DevPelt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevPelt;
+                @EnablePlayer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePlayer;
+                @EnablePlayer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePlayer;
+                @EnablePlayer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePlayer;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1157,6 +1182,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @DevPelt.started += instance.OnDevPelt;
                 @DevPelt.performed += instance.OnDevPelt;
                 @DevPelt.canceled += instance.OnDevPelt;
+                @EnablePlayer.started += instance.OnEnablePlayer;
+                @EnablePlayer.performed += instance.OnEnablePlayer;
+                @EnablePlayer.canceled += instance.OnEnablePlayer;
             }
         }
     }
@@ -1327,6 +1355,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnDevThrow(InputAction.CallbackContext context);
         void OnDevPelt(InputAction.CallbackContext context);
+        void OnEnablePlayer(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

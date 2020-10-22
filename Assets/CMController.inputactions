@@ -17,8 +17,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "243479e9-ad4a-4fca-9c0c-5606ae1c289d",
-                    "path": "<Mouse>/leftButton",
+                    "id": "4436ae00-86f5-4f93-a368-5779876c47a4",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -28,8 +28,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4436ae00-86f5-4f93-a368-5779876c47a4",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "4a9902bc-5821-49c6-b7a9-fef2a46650e9",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
