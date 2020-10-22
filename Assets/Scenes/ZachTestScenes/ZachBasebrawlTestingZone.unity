@@ -850,7 +850,6 @@ GameObject:
   - component: {fileID: 234638617}
   - component: {fileID: 234638616}
   - component: {fileID: 234638615}
-  - component: {fileID: 234638614}
   - component: {fileID: 234638613}
   - component: {fileID: 234638618}
   - component: {fileID: 234638619}
@@ -888,22 +887,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPlane: {fileID: 1271386310}
---- !u!114 &234638614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234638611}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b7d8417c5e5dd4c9ff7ec35551dcfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 150
-  camT: {fileID: 167374099}
-  animReference: {fileID: 626848481}
-  batPlane: {fileID: 1271386311}
 --- !u!136 &234638615
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1535,7 +1518,6 @@ GameObject:
   - component: {fileID: 453430478}
   - component: {fileID: 453430479}
   - component: {fileID: 453430480}
-  - component: {fileID: 453430481}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1848,21 +1830,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &453430481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453430472}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerIndex: -1
-  XYAxis: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
-  ZAxis: {fileID: 0}
 --- !u!1 &458672828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3497,7 +3464,7 @@ Transform:
   m_GameObject: {fileID: 1271386310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.039999727, y: 0.14999998, z: 3.5400033}
-  m_LocalScale: {x: 4.68217, y: 0.053748388, z: 6.6178026}
+  m_LocalScale: {x: 4.68217, y: 0.02293605, z: 6.6178026}
   m_Children: []
   m_Father: {fileID: 787108033}
   m_RootOrder: 1
@@ -4668,7 +4635,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_HorizontalAxis:
-    Value: -42.234127
+    Value: 0
     m_SpeedMode: 1
     m_MaxSpeed: 0.75
     m_AccelTime: 0.2
@@ -4729,8 +4696,8 @@ MonoBehaviour:
   m_YDamping: 0
   m_ZDamping: 0
   m_TargetMovementOnly: 1
-  m_ScreenX: 0.33440018
-  m_ScreenY: 0.45
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_CameraDistance: 14
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -4738,7 +4705,7 @@ MonoBehaviour:
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.3672515
   m_SoftZoneHeight: 0.4778598
-  m_BiasX: -0.00000008114963
+  m_BiasX: -0.00000016229926
   m_BiasY: 0
   m_CenterOnActivate: 0
   m_GroupFramingMode: 2
@@ -5346,7 +5313,6 @@ GameObject:
   - component: {fileID: 2032834595}
   - component: {fileID: 2032834594}
   - component: {fileID: 2032834597}
-  - component: {fileID: 2032834598}
   - component: {fileID: 2032834599}
   - component: {fileID: 2032834600}
   m_Layer: 0
@@ -5466,20 +5432,6 @@ MonoBehaviour:
   PlayerIndex: -1
   XYAxis: {fileID: 0}
   ZAxis: {fileID: 0}
---- !u!114 &2032834598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032834592}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ede09258bbc22845ac55094e98be90d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
-  sensitivity: 100
 --- !u!114 &2032834599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5938,6 +5890,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7b2a7ca7-9623-4789-b95a-af6e29bf53cd
     m_ActionName: UI/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 48ba0541-50af-4dba-a714-098de4837343
+    m_ActionName: Player/Enable Player[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI

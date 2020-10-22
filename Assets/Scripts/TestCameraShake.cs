@@ -23,8 +23,8 @@ public class TestCameraShake : MonoBehaviour
 
     IEnumerator TurnShakeOnAndOff()
     {
-        camShake.Noise(0.75f, 6);
-        camShakeAim.Noise(0.75f, 6);
+        camShake.Noise(0.9f, 3);
+        camShakeAim.Noise(0.9f, 3);
         yield return new WaitForSeconds(0.15f);
         camShake.Noise(0, 0);
         camShakeAim.Noise(0, 0);

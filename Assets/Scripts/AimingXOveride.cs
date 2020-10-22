@@ -30,10 +30,9 @@ public class AimingXOveride : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity * Time.deltaTime;
+        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 3 * Time.deltaTime;
     }
 
     private void OnEnable()

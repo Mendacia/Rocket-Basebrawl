@@ -30,11 +30,10 @@ public class POVCamControl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
-        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity * Time.deltaTime;
+        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 3 * Time.deltaTime;
     }
 
     private void OnEnable()

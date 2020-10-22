@@ -36,6 +36,28 @@
                     "action": "Disable",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "519bae46-7467-4c6a-ac49-caa4e0ed221f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a5f0a4f-c10d-4c5d-a22c-2fc1da07705c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

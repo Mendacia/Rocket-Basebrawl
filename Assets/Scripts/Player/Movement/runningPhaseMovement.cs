@@ -43,12 +43,13 @@ public class runningPhaseMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         anim = animReference.gameObject.GetComponent<Animator>();
     }
 
     public void ActivatePlayer(CallbackContext callbackContext)
     {
-        if (callbackContext.performed && DeactiveateCamera.dollyActive == false)
+        if (callbackContext.performed && DeactiveateCamera.dollyActive == false && playerState == 1)
         {
             StartCoroutine(StateActivation());
         }
@@ -56,11 +57,14 @@ public class runningPhaseMovement : MonoBehaviour
 
     IEnumerator StateActivation()
     {
-        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 0.3f;
+        yield return new WaitForSeconds(0.2f);
         if(scoreHolder.GetComponent<scoreHolder>().score >= 1)
         {
             playerState = 2;
+            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
         }
+        Time.timeScale = 1;
     }
 
     private void FixedUpdate()
@@ -69,7 +73,7 @@ public class runningPhaseMovement : MonoBehaviour
         {
             //No input, aiming only
             case 1:
-                
+
                 break;
             //Full movement
             case 2:
@@ -89,7 +93,6 @@ public class runningPhaseMovement : MonoBehaviour
 
                 Move(desiredDirection);
                 Turn(desiredDirection);
-                //transform.eulerAngles = new Vector3(0, camRot.eulerAngles.y, 0);
 
                 break;
         }
