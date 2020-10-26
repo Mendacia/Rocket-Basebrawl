@@ -13,6 +13,8 @@ public class POVCamControl : MonoBehaviour
     Vector2 camInput;
     public float sensitivity;
 
+    [SerializeField] private bool useX = true;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -32,7 +34,11 @@ public class POVCamControl : MonoBehaviour
 
     void Update()
     {
-        POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+        if (useX == true)
+        {
+            POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+        }
+        
         POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 3 * Time.deltaTime;
     }
 
