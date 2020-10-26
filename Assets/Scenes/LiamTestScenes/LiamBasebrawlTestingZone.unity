@@ -2186,7 +2186,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.4741e-41, z: 0, w: -9.3125}
+  m_BoundingSphereOverride: {x: 8.04e-43, y: 9.4e-44, z: 0, w: -0.000000014685305}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4185,8 +4185,8 @@ MonoBehaviour:
   targetingBeamPrefab: {fileID: 3623002623490018393, guid: 07b0e174ba10aaa47b636082b7f828b0,
     type: 3}
   rangeAllocationScript: {fileID: 157959963}
-  minWaitTime: 0
-  maxWaitTime: 0
+  minWaitTime: 2
+  maxWaitTime: 2
   fieldingTeam: []
 --- !u!4 &1399274991
 Transform:

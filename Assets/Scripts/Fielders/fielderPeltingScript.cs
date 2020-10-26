@@ -15,6 +15,7 @@ public class fielderPeltingScript : MonoBehaviour
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
+    [System.NonSerialized] public int battingBallCount;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
     private bool hasStartedThrowingSequenceAlready = false;
@@ -69,6 +70,24 @@ public class fielderPeltingScript : MonoBehaviour
         StartCoroutine(ThrowDelay());
     }
 
+    private void battingPhaseThrow()
+    {
+        battingBallCount++;
+        if (battingBallCount < 4)
+        {
+            var thePitcher = fieldingTeam[0];
+            var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+            myBeamScript.direction = ((player.position + new Vector3(0, 0, 1)) - thePitcher.position).normalized;
+            myBeamScript.playerTransform = player.transform;
+        }
+        else
+        {
+            //player.die();
+        }
+    }
+
+
+
     private void ReadyThrow()
     {
         int numberOfBallsToThrow;
@@ -78,17 +97,18 @@ public class fielderPeltingScript : MonoBehaviour
 
             //Block to choose how many balls to throw
             var throwCountValue = Random.Range(0, 9);
-            if(throwCountValue == 8)
+            
+            switch (throwCountValue)
             {
-                numberOfBallsToThrow = 2;
-            }
-            else if(throwCountValue == 9)
-            {
-                numberOfBallsToThrow = 3;
-            }
-            else
-            {
-                numberOfBallsToThrow = 1;
+                case 9:
+                    numberOfBallsToThrow = 3;
+                    break;
+                case 8:
+                    numberOfBallsToThrow = 2;
+                    break;
+                default:
+                    numberOfBallsToThrow = 1;
+                    break;
             }
 
             //The variable "numberOfBallsToThrow" is now holding how many balls the fielders will throw, we now need to find who will throw them
