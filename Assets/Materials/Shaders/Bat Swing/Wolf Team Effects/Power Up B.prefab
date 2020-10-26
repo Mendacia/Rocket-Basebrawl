@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7354465519357097624}
   m_Layer: 0
-  m_Name: Wolf Anime Power
+  m_Name: Power Up B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.046190023, b: 1, a: 0.9137255}
+      maxColor: {r: 0, g: 1, b: 0.8565588, a: 0.9137255}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4801,7 +4801,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3e8553f7cdab7e4f9c2a9c0a8b1e30f, type: 2}
+  - {fileID: 2100000, guid: c374745e0af4b424a961571902eaf5a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5068,8 +5068,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0, g: 0.047058824, b: 1, a: 0.39215687}
-      maxColor: {r: 1, g: 0.74509805, b: 0, a: 0.39215687}
+      minColor: {r: 0, g: 1, b: 0.85882354, a: 0.39215687}
+      maxColor: {r: 0.105882354, g: 1, b: 0, a: 0.39215687}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9880,8 +9880,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0, g: 0.11449838, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.74650204, b: 0, a: 1}
+      minColor: {r: 0, g: 1, b: 0.85882354, a: 1}
+      maxColor: {r: 0.105882354, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14692,8 +14692,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.74509805, b: 0, a: 1}
-      maxColor: {r: 0, g: 0.046749115, b: 1, a: 1}
+      minColor: {r: 0.105882354, g: 1, b: 0, a: 1}
+      maxColor: {r: 0, g: 1, b: 0.85882354, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19505,7 +19505,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.88187444, b: 0, a: 0.62352943}
+      maxColor: {r: 0.10506439, g: 1, b: 0, a: 0.62352943}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
