@@ -17,7 +17,7 @@ public class runningPhaseMovement : MonoBehaviour
     public GameObject animReference;
 
     //Lock player movement at the start
-    public int playerState = 1;
+    public static int playerState = 1;
     //Score Reference
     GameObject scoreHolder;
 
@@ -42,13 +42,16 @@ public class runningPhaseMovement : MonoBehaviour
 
     private void Start()
     {
+        //Freeze player to avoid balls hitting player off base
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         anim = animReference.gameObject.GetComponent<Animator>();
+        //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
     }
 
     public void ActivatePlayer(CallbackContext callbackContext)
     {
+        //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
         if (callbackContext.performed && DeactiveateCamera.dollyActive == false && playerState == 1)
         {
             StartCoroutine(StateActivation());
@@ -58,9 +61,10 @@ public class runningPhaseMovement : MonoBehaviour
     IEnumerator StateActivation()
     {
         Time.timeScale = 0.3f;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.25f);
         if(scoreHolder.GetComponent<scoreHolder>().score >= 1)
         {
+            //Sets playerState to movement and unlocks the rigidbodies
             playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
         }

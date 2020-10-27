@@ -8,9 +8,6 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
-    [Header("Dev Controls")]
-    [SerializeField] private KeyCode devkeyToStartPelting = KeyCode.P;
-    [SerializeField] private KeyCode comedy = KeyCode.L;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
@@ -46,13 +43,19 @@ public class fielderPeltingScript : MonoBehaviour
     
     public void Throw(CallbackContext context)
     {
-        startPeltingLoop();
+        if (context.performed)
+        {
+            startPeltingLoop();
+        }
     }
 
     public void Pelt(CallbackContext context)
     {
-        minWaitTime = 0;
-        maxWaitTime = 0;
+        if (context.performed)
+        {
+            minWaitTime = 0;
+            maxWaitTime = 0;
+        }
     }
 
     public void startPeltingLoop()

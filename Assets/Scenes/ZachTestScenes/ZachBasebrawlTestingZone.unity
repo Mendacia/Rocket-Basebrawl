@@ -3903,8 +3903,6 @@ MonoBehaviour:
   player: {fileID: 234638612}
   targetingBeamPrefab: {fileID: 3623002623490018393, guid: 07b0e174ba10aaa47b636082b7f828b0,
     type: 3}
-  devkeyToStartPelting: 112
-  comedy: 108
   minWaitTime: 1
   maxWaitTime: 2
   fieldingTeam: []
@@ -4179,6 +4177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCam: {fileID: 1486861977}
   dolCart: {fileID: 740791510}
+  playerRotation: {fileID: 787108033}
 --- !u!114 &1486861979
 MonoBehaviour:
   m_ObjectHideFlags: 0
