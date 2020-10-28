@@ -2260,7 +2260,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1573118622}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: uIManager, Assembly-CSharp
         m_MethodName: ToggleNewGame
         m_Mode: 1
         m_Arguments:
