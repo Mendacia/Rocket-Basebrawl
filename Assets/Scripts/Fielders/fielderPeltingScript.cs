@@ -14,7 +14,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private float maxWaitTime = 6f;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
-    public List<Transform> fieldingTeam;
+    [System.NonSerialized] public List<Transform> fieldingTeam;
     [System.NonSerialized] public int battingBallCount;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
@@ -77,12 +77,12 @@ public class fielderPeltingScript : MonoBehaviour
         {
             var thePitcher = fieldingTeam[0];
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-            myBeamScript.direction = ((player.position + new Vector3(0, 0, 1)) - thePitcher.position).normalized;
+            myBeamScript.direction = ((player.position + (Random.insideUnitSphere * 0.5f)) + new Vector3(0, 0, 1) - thePitcher.position).normalized;
             myBeamScript.playerTransform = player.transform;
         }
         else
         {
-            //player.die();
+            //commit die.
         }
     }
 
