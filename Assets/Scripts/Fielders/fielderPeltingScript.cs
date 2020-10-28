@@ -45,13 +45,19 @@ public class fielderPeltingScript : MonoBehaviour
     
     public void Throw(CallbackContext context)
     {
-        startPeltingLoop();
+        if (context.performed)
+        {
+            startPeltingLoop();
+        }
     }
 
     public void Pelt(CallbackContext context)
     {
-        minWaitTime = 0;
-        maxWaitTime = 0;
+        if (context.performed)
+        {
+            minWaitTime = 0;
+            maxWaitTime = 0;
+        }
     }
 
     public void startPeltingLoop()

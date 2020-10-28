@@ -17,7 +17,29 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "243479e9-ad4a-4fca-9c0c-5606ae1c289d",
+                    "id": "4436ae00-86f5-4f93-a368-5779876c47a4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a9902bc-5821-49c6-b7a9-fef2a46650e9",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "519bae46-7467-4c6a-ac49-caa4e0ed221f",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -28,8 +50,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4436ae00-86f5-4f93-a368-5779876c47a4",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "9a5f0a4f-c10d-4c5d-a22c-2fc1da07705c",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

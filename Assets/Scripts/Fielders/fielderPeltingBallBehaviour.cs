@@ -17,7 +17,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(ballIsActive == true)
+        if(ballIsActive == true && runningPhaseMovement.playerState == 2)
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score--;
             ballIsActive = false;

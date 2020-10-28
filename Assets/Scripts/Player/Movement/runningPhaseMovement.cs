@@ -10,20 +10,22 @@ public class runningPhaseMovement : MonoBehaviour
     [SerializeField] private float speed = 1;
     [Header ("Plug the root camera object in here")]
     [SerializeField] private Transform cameraRotationReferenceY = null;
-    private Rigidbody rb;
+    
 
     //Animation
     private Animator anim;
     public GameObject animReference;
 
     //Lock player movement at the start
-    private int playerState = 1;
+    public static int playerState = 1;
 
+    //Input System Movements
     private PlayerInputActions inputActions;
     private Vector2 movementInput;
     private Vector3 inputDirection;
     private Vector3 moveVector;
     private Quaternion currentRotation;
+    private Rigidbody rb;
 
     //Camera for rotation setting
     public Transform camRot;
@@ -38,22 +40,18 @@ public class runningPhaseMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = animReference.gameObject.GetComponent<Animator>();
-        ActivatePlayer();
-    }
-
-    public void ActivatePlayer()
-    {
-        playerState = 2;
+        //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
     }
 
     private void FixedUpdate()
     {
         switch (playerState)
         {
+            //No input, aiming only
             case 1:
 
                 break;
-
+            //Full movement
             case 2:
                 float h = movementInput.x;
                 float v = movementInput.y;
@@ -71,7 +69,6 @@ public class runningPhaseMovement : MonoBehaviour
 
                 Move(desiredDirection);
                 Turn(desiredDirection);
-                //transform.eulerAngles = new Vector3(0, camRot.eulerAngles.y, 0);
 
                 break;
         }
@@ -95,6 +92,7 @@ public class runningPhaseMovement : MonoBehaviour
             transform.rotation = currentRotation;
     }
 
+    //Enables NewInputSystem Inputs
     private void OnEnable()
     {
         inputActions.Enable();

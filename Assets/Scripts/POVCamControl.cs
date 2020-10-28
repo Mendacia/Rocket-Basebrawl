@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(CinemachineVirtualCamera))]
 public class POVCamControl : MonoBehaviour
@@ -13,12 +14,14 @@ public class POVCamControl : MonoBehaviour
     Vector2 camInput;
     public float sensitivity;
 
+    [SerializeField] private bool useX = true;
+
     // Start is called before the first frame update
 
     private void Awake()
     {
         inputActions = new PlayerInputActions();
-        inputActions.Player.Look.performed += context => camInput = context.ReadValue<Vector2>();
+        inputActions.Player.Look.performed += context => GetValue(context);
     }
 
     void Start()
@@ -30,11 +33,25 @@ public class POVCamControl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
-        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity * Time.deltaTime;
+        if (useX == true)
+        {
+            POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+        }
+        
+        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 2.5f * Time.deltaTime;
+        camInput = Vector2.zero;
+    }
+
+    private void GetValue(CallbackContext context)
+    {
+        var value = context.ReadValue<Vector2>();
+        if (value != Vector2.zero)
+        {
+            camInput.x = value.x;
+            camInput.y = value.y;
+        }
     }
 
     private void OnEnable()

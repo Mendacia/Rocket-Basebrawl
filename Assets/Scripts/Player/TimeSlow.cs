@@ -10,33 +10,60 @@ public class TimeSlow : MonoBehaviour
     public static bool timeSlowed;
     public GameObject ballPlane;
 
+    private PlayerInputActions inputActions;
+    Vector2 lookInput;
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+        inputActions.Player.Look.performed += context => lookInput = context.ReadValue<Vector2>();
+    }
+
     void Start()
     {
         Time.timeScale = 1;
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        RotatePlane();
+    }
+
     public void TimeScale(CallbackContext context)
     {
         if (context.performed)
         {
             Time.timeScale = 0.5f;
             timeSlowed = true;
-            Camera.main.fieldOfView = 30;
             ballPlane.SetActive(true);
-            Debug.Log(Time.timeScale);
         }
 
         else if (context.canceled)
         {
             Time.timeScale = 1;
+            timeSlowed = false;
+            ballPlane.SetActive(false);
         }    
 
         else
         {
             timeSlowed = false;
-            Camera.main.fieldOfView = 60;
             ballPlane.SetActive(false);
         }
+    }
+
+    void RotatePlane()
+    {
+        ballPlane.transform.eulerAngles += new Vector3(0, 0, -lookInput.x);
+    }
+
+    //Enables NewInputSystem Inputs
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
 }
