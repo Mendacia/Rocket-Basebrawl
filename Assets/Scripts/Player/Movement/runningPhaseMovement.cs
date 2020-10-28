@@ -18,8 +18,6 @@ public class runningPhaseMovement : MonoBehaviour
 
     //Lock player movement at the start
     public static int playerState = 1;
-    //Score Reference
-    GameObject scoreHolder;
 
     //Input System Movements
     private PlayerInputActions inputActions;
@@ -36,15 +34,11 @@ public class runningPhaseMovement : MonoBehaviour
     {
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
-
-        scoreHolder = GameObject.Find("Scoreholder");
     }
 
     private void Start()
     {
-        //Freeze player to avoid balls hitting player off base
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeAll;
         anim = animReference.gameObject.GetComponent<Animator>();
         //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
     }

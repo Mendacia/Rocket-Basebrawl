@@ -24,7 +24,13 @@ public class ActivatePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(scoreHolder.GetComponent<scoreHolder>().score >= 1)
+        {
+            runningPhaseMovement.playerState = 2;
+            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
+            //inputActions.Player.EnablePlayer.Disable();
+            this.GetComponent<ActivatePlayer>().enabled = false;
+        }
     }
 
     public void PlayerActivation(CallbackContext callbackContext)
@@ -40,13 +46,13 @@ public class ActivatePlayer : MonoBehaviour
     {
         Time.timeScale = 0.3f;
         yield return new WaitForSeconds(0.25f);
-        if (scoreHolder.GetComponent<scoreHolder>().score >= 1)
+        /*if (scoreHolder.GetComponent<scoreHolder>().score >= 1)
         {
             //Sets playerState to movement and unlocks the rigidbodies
             runningPhaseMovement.playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
             inputActions.Player.EnablePlayer.Disable();
-        }
+        }*/
         Time.timeScale = 1;
     }
     private void OnEnable()
