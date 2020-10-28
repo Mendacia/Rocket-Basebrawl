@@ -53,6 +53,8 @@ public class ActivatePlayer : MonoBehaviour
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
             inputActions.Player.EnablePlayer.Disable();
         }*/
+
+        //First ball hit effects here
         Time.timeScale = 1;
     }
     private void OnEnable()
