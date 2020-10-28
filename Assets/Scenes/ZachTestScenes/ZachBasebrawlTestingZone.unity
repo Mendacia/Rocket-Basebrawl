@@ -943,6 +943,7 @@ GameObject:
   - component: {fileID: 234638613}
   - component: {fileID: 234638618}
   - component: {fileID: 234638619}
+  - component: {fileID: 234638614}
   m_Layer: 0
   m_Name: Temporary Player
   m_TagString: Player
@@ -977,6 +978,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPlane: {fileID: 1271386310}
+--- !u!114 &234638614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234638611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff0a74f69281314b912a2f895ced2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &234638615
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1006,7 +1019,6 @@ MonoBehaviour:
   speed: 30
   cameraRotationReferenceY: {fileID: 453430473}
   animReference: {fileID: 626848481}
-  playerState: 1
   camRot: {fileID: 453430473}
 --- !u!54 &234638617
 Rigidbody:
@@ -1184,9 +1196,9 @@ MonoBehaviour:
     m_ActionName: UI/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 234638616}
-        m_TargetAssemblyTypeName: runningPhaseMovement, Assembly-CSharp
-        m_MethodName: ActivatePlayer
+      - m_Target: {fileID: 234638614}
+        m_TargetAssemblyTypeName: ActivatePlayer, Assembly-CSharp
+        m_MethodName: PlayerActivation
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
