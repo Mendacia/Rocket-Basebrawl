@@ -67,6 +67,7 @@ public class runningPhaseMovement : MonoBehaviour
             //Sets playerState to movement and unlocks the rigidbodies
             playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
+            inputActions.Player.EnablePlayer.Disable();
         }
         Time.timeScale = 1;
     }

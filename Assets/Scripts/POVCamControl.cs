@@ -40,7 +40,7 @@ public class POVCamControl : MonoBehaviour
             POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
         }
         
-        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 3 * Time.deltaTime;
+        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 2.5f * Time.deltaTime;
         camInput = Vector2.zero;
     }
 
