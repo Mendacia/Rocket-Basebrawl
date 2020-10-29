@@ -9,16 +9,21 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
+    [SerializeField] private Transform pitchingPhaseTarget = null;
+    [SerializeField] private scoreHolder scoreHolderObject;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
-    [System.NonSerialized] public List<Transform> fieldingTeam;
+    public List<Transform> fieldingTeam;
     [System.NonSerialized] public int battingBallCount;
     private bool canThrow = false;
     private bool hasReadiedAThrow = false;
     private bool hasStartedThrowingSequenceAlready = false;
+    private bool hasStartedPitchingSequenceAlready = false;
+
+    private int iterator = 0;
 
     private void Start()
     {
@@ -27,6 +32,7 @@ public class fielderPeltingScript : MonoBehaviour
         {
             fieldingTeam.Add(child);
         }
+        //StartCoroutine(BattingPhaseTimer());
     }
 
     private void Update()
@@ -40,6 +46,12 @@ public class fielderPeltingScript : MonoBehaviour
         if (canThrow == true)
         {
             ReadyThrow();
+        }
+
+        if(DeactiveateCamera.dollyActive == false && !hasStartedPitchingSequenceAlready)
+        {
+            hasStartedPitchingSequenceAlready = true;
+            StartCoroutine(BattingPhaseTimer());
         }
     }
     
@@ -76,15 +88,17 @@ public class fielderPeltingScript : MonoBehaviour
         StartCoroutine(ThrowDelay());
     }
 
-    private void battingPhaseThrow()
+    public void battingPhaseThrow()
     {
         battingBallCount++;
         if (battingBallCount < 4)
         {
             var thePitcher = fieldingTeam[0];
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-            myBeamScript.direction = ((player.position + (Random.insideUnitSphere * 0.5f)) + new Vector3(0, 0, 1) - thePitcher.position).normalized;
+            myBeamScript.originPosition = thePitcher.position;
             myBeamScript.playerTransform = player.transform;
+            myBeamScript.direction = ((pitchingPhaseTarget.position + (Random.insideUnitSphere)) - thePitcher.position).normalized;
+           
         }
         else
         {
@@ -92,7 +106,25 @@ public class fielderPeltingScript : MonoBehaviour
         }
     }
 
-
+    public IEnumerator BattingPhaseTimer()
+    {
+        yield return new WaitForSeconds(3);
+        iterator++;
+        Debug.Log(iterator);
+        if (iterator >= 4)
+        {
+            //if they havent hit the ball, then kill them
+        }
+        else if(scoreHolderObject.score >= 1)
+        {
+            //Break the coroutine
+        }
+        else
+        {
+            battingPhaseThrow();
+            StartCoroutine(BattingPhaseTimer());
+        }
+    }
 
     private void ReadyThrow()
     {

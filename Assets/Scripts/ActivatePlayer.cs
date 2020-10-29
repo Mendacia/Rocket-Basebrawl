@@ -7,12 +7,13 @@ public class ActivatePlayer : MonoBehaviour
 {
     private Rigidbody rb;
     //Score Reference
-    GameObject scoreHolder;
     private PlayerInputActions inputActions;
+
+    [SerializeField] private fielderPeltingScript fielderMain = null;
+    [SerializeField] private scoreHolder scoreHolderObject;
     private void Awake()
     {
         inputActions = new PlayerInputActions();
-        scoreHolder = GameObject.Find("Scoreholder");
     }
 
     void Start()
@@ -21,14 +22,16 @@ public class ActivatePlayer : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(scoreHolder.GetComponent<scoreHolder>().score >= 1)
+        //Yes this is fine to have in update, the script deactivates itself anyway
+
+        if(scoreHolderObject.score >= 1)
         {
             runningPhaseMovement.playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
+            fielderMain.startPeltingLoop();
             this.GetComponent<ActivatePlayer>().enabled = false;
         }
     }
@@ -38,23 +41,14 @@ public class ActivatePlayer : MonoBehaviour
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
         if (callbackContext.performed && DeactiveateCamera.dollyActive == false && runningPhaseMovement.playerState == 1)
         {
-            StartCoroutine(StateActivation());
+            StartCoroutine(TimeSlowOnHit());
         }
     }
 
-    IEnumerator StateActivation()
+    IEnumerator TimeSlowOnHit()
     {
         Time.timeScale = 0.3f;
         yield return new WaitForSeconds(0.25f);
-        /*if (scoreHolder.GetComponent<scoreHolder>().score >= 1)
-        {
-            //Sets playerState to movement and unlocks the rigidbodies
-            runningPhaseMovement.playerState = 2;
-            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
-            inputActions.Player.EnablePlayer.Disable();
-        }*/
-
-        //First ball hit effects here
         Time.timeScale = 1;
     }
     private void OnEnable()
