@@ -7,6 +7,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class TempBattingControls : MonoBehaviour
 {
     [SerializeField] private Text devHittingCheckText = null;
+    [SerializeField] private Animator playerAnimator = null;
     private bool isHitting = false;
     private BoxCollider myCollider = null;
 
@@ -24,6 +25,7 @@ public class TempBattingControls : MonoBehaviour
             myCollider.enabled = true;
             devHittingCheckText.text = ("HITTING");
             isHitting = true;
+            playerAnimator.SetTrigger("heHit");
             StartCoroutine(Cooldown());
         }
     }

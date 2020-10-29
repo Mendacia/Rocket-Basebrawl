@@ -8,13 +8,8 @@ public class runningPhaseMovement : MonoBehaviour
 {
     [Header("Player Speed")]
     [SerializeField] private float speed = 1;
-    [Header ("Plug the root camera object in here")]
-    [SerializeField] private Transform cameraRotationReferenceY = null;
-    
-
-    //Animation
-    private Animator anim;
-    public GameObject animReference;
+    [Header("Please put the animator from CheetahIdle here")]
+    [SerializeField] private Animator playerAnimator;
 
     //Lock player movement at the start
     public static int playerState = 1;
@@ -39,8 +34,19 @@ public class runningPhaseMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        anim = animReference.gameObject.GetComponent<Animator>();
         //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+    }
+
+    private void Update()
+    {
+        if(rb.velocity.magnitude > 0)
+        {
+            playerAnimator.SetBool("heMoving", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("heMoving", false);
+        }
     }
 
     private void FixedUpdate()
