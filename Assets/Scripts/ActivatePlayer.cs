@@ -47,9 +47,12 @@ public class ActivatePlayer : MonoBehaviour
 
     IEnumerator TimeSlowOnHit()
     {
-        Time.timeScale = 0.3f;
-        yield return new WaitForSeconds(0.25f);
-        Time.timeScale = 1;
+        if (PauseMenu.isPaused == false)
+        {
+            Time.timeScale = 0.3f;
+            yield return new WaitForSeconds(0.25f);
+            Time.timeScale = 1;
+        }
     }
     private void OnEnable()
     {

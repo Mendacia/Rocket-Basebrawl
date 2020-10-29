@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.SceneManagement;
 
 public class fielderPeltingScript : MonoBehaviour
 {
@@ -114,6 +115,7 @@ public class fielderPeltingScript : MonoBehaviour
         if (iterator >= 4)
         {
             //if they havent hit the ball, then kill them
+            SceneManager.LoadScene(0);
         }
         else if(scoreHolderObject.score >= 1)
         {
