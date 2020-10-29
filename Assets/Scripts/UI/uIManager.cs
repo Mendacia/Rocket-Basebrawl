@@ -19,22 +19,47 @@ public class uIManager : MonoBehaviour
     public void ToggleRoot()
     {
         rootMenu.SetActive(!rootMenu.gameObject.activeSelf);
+        rootButton.Select();
     }
+
 
     public void ToggleNewGame()
     {
-        newGameMenu.SetActive(!rootMenu.gameObject.activeSelf);
+        newGameMenu.SetActive(!newGameMenu.gameObject.activeSelf);
+        newGameButton.Select();
     }
 
     public void ToggleContinue()
     {
         continueMenu.SetActive(!continueMenu.gameObject.activeSelf);
+        continueButton.Select();
     }
 
     IEnumerator RootSelectButton()
     {
-        yield return null;
+        /*yield return null;
         rootSystem.SetSelectedGameObject(null);
-        rootSystem.SetSelectedGameObject(continueButton.gameObject);
+        new WaitForSeconds(1f);
+        rootSystem.SetSelectedGameObject(rootButton.gameObject);*/
+        yield return new WaitForSeconds(1f);
+        //rootButton.Select();
+    }
+    IEnumerator NewGameSelectButton()
+    {
+        /*yield return null;
+        rootSystem.SetSelectedGameObject(null);
+        new WaitForSeconds(1f);
+        rootSystem.SetSelectedGameObject(newGameButton.gameObject);*/
+        yield return new WaitForSeconds(1f);
+        //newGameButton.Select();
+    }
+    IEnumerator ContinueSelectButton()
+    {
+        /*yield return null;
+        rootSystem.SetSelectedGameObject(null);
+        new WaitForSeconds(1f);
+        rootSystem.SetSelectedGameObject(continueButton.gameObject);*/
+        yield return new WaitForSeconds(1f);
+        //continueButton.Select();
     }
 }

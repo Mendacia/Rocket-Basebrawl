@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b28cdb16c0c924e8d776072f0fe88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: LiamBasebrawlTestingZone
+  sceneToLoad: ZachBasebrawlTestingZone
 --- !u!1 &94530743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,8 +2260,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1573118622}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleRoot
+        m_TargetAssemblyTypeName: uIManager, Assembly-CSharp
+        m_MethodName: ToggleNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2272,8 +2272,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1573118622}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleNewGame
+        m_TargetAssemblyTypeName: uIManager, Assembly-CSharp
+        m_MethodName: ToggleRoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2431,7 +2431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -182.19, y: 90.2}
+  m_AnchoredPosition: {x: -182.18945, y: 90.2}
   m_SizeDelta: {x: 968, y: 59}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1427377153
@@ -2579,6 +2579,9 @@ MonoBehaviour:
   rootMenu: {fileID: 286767708}
   newGameMenu: {fileID: 1197533274}
   continueMenu: {fileID: 923320081}
+  rootSystem: {fileID: 480335571}
+  newGameSystem: {fileID: 1733685720}
+  continueSystem: {fileID: 913469832}
   rootButton: {fileID: 1984098058}
   newGameButton: {fileID: 13072232}
   continueButton: {fileID: 1725355105}
@@ -3358,8 +3361,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1573118622}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleRoot
+        m_TargetAssemblyTypeName: uIManager, Assembly-CSharp
+        m_MethodName: ToggleContinue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3370,8 +3373,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1573118622}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleContinue
+        m_TargetAssemblyTypeName: uIManager, Assembly-CSharp
+        m_MethodName: ToggleRoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

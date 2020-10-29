@@ -10,6 +10,7 @@ public class DeactiveateCamera : MonoBehaviour
     public GameObject startCam;
     public CinemachineDollyCart dolCart;
     public Transform playerRotation;
+    public GameObject pressToStartText;
 
     public static bool dollyActive = true;
 
@@ -24,8 +25,8 @@ public class DeactiveateCamera : MonoBehaviour
         dolCart.m_Speed = 10000;
         yield return new WaitForSeconds(0.5f);
         dollyActive = false;
+        pressToStartText.SetActive(false);
+        Debug.Log(dollyActive);
         startCam.SetActive(false);
-        //yield return new WaitForSeconds(0.5f);
-        //playerRotation.rotation = Quaternion.Euler(0, -90, 0);
     }
 }
