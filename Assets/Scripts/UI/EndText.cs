@@ -5,11 +5,27 @@ using UnityEngine.UI;
 
 public class EndText : MonoBehaviour
 {
-    [SerializeField] private List<string> displayText;
+    [SerializeField] private List<string> positiveText;
+    [SerializeField] private List<string> negativeText;
+    private scoreHolder scoreHolderScript;
     private Text myText;
     void Start()
     {
         myText = gameObject.GetComponent<Text>();
-        myText.text =  displayText[Random.Range(0, displayText.Count)];
+        scoreHolderScript = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+
+        if(scoreHolderScript.score == 0)
+        {
+
+        }
+        else if (scoreHolderScript.score > 0)
+        {
+            myText.text = positiveText[Random.Range(0, positiveText.Count)];
+        }
+        else
+        {
+            myText.text = negativeText[Random.Range(0, negativeText.Count)];
+        }
+        
     }
 }

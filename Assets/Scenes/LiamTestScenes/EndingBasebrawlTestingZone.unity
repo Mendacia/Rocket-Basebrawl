@@ -459,13 +459,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ba9c71ce358014db4a692cd42310f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayText:
+  positiveText:
+  - 
+  - 
+  - 
+  - 
+  - 
+  negativeText:
   - Unfortunately, as the cheetah went to finish his run, the fool accidentally tripped
     on the home base and threw his spotted face into the infernal engine of his own
     bat.
-  - You died, I decided. Because there is no more game for you to experience, I have
-    removed you from the world. Have a nice day.
-  - Woah! That's a really bad score!
+  - Oh.
+  - It seemed as though, without knowing it, the cheetah fractured their entire spine
+    while making that last swing. Tragic.
+  - About four seconds after the end of the game, the cheetah ran into a vat of baseballs,
+    which caused them to be launched into space.
+  - You know that feeling when you're really excited to eat your favorite food but
+    then you drop your plate? That's how the cheetah feels, except physically, they
+    dropped to the ground in agony after losing.
 --- !u!1 &1324962016
 GameObject:
   m_ObjectHideFlags: 0
