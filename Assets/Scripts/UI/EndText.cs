@@ -16,11 +16,15 @@ public class EndText : MonoBehaviour
 
         if(scoreHolderScript.score == 0)
         {
-
+            myText.text = ("Stop trying to break the game. You got 0 points. It's a draw.");
         }
-        else if (scoreHolderScript.score > 0)
+        else if (scoreHolderScript.score > 0 && scoreHolderScript.score != 69)
         {
             myText.text = positiveText[Random.Range(0, positiveText.Count)];
+        }
+        else if (scoreHolderScript.score == 69)
+        {
+            myText.text = ("Nice");
         }
         else
         {

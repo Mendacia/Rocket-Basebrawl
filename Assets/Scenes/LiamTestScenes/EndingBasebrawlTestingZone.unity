@@ -460,11 +460,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positiveText:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Congratulations! You won!
+  - Most prodigious effort my dude!
+  - YO!!!! YOU ACTUALLY HIT THE BALL SOME TIMES!!!!!
+  - Pogchamp!
+  - Now this, is Basebrawlling!
   negativeText:
   - Unfortunately, as the cheetah went to finish his run, the fool accidentally tripped
     on the home base and threw his spotted face into the infernal engine of his own
