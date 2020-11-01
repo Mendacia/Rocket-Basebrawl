@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         isPaused = false;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         brain.enabled = true;
     }
 
@@ -43,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         isPaused = true;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         brain.enabled = false;
     }
 
