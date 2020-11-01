@@ -26,7 +26,6 @@ public class DeactiveateCamera : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         dollyActive = false;
         pressToStartText.SetActive(false);
-        Debug.Log(dollyActive);
         startCam.SetActive(false);
     }
 }

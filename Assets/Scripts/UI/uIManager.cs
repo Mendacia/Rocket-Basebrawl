@@ -16,6 +16,12 @@ public class uIManager : MonoBehaviour
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueButton;
 
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void ToggleRoot()
     {
         rootMenu.SetActive(!rootMenu.gameObject.activeSelf);
