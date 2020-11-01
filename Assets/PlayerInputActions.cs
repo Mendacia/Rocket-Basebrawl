@@ -49,30 +49,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.01,pressPoint=0.01)""
-                },
-                {
-                    ""name"": ""DevThrow"",
-                    ""type"": ""Button"",
-                    ""id"": ""0bb646ba-92c4-4431-b988-301056e346d2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""DevPelt"",
-                    ""type"": ""Button"",
-                    ""id"": ""47dfcdb3-0dea-4fa7-ae3e-955592f03ff7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Enable Player"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""48ba0541-50af-4dba-a714-098de4837343"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -232,50 +208,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""07d892db-a581-4f96-b7b8-5c217d7c227b"",
-                    ""path"": ""<DualShockGamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevThrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6d924112-119b-45b5-b28d-3e7c07d92240"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevThrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fe622e8c-ed77-48ad-8360-6581be6f3974"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevThrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bf2fa62a-f9e3-4649-b2ec-b56326363baf"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevPelt"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
@@ -394,39 +326,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9190c483-462a-4791-bcb2-be1f0230de02"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Enable Player"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""39adfbdd-067d-4696-b32e-d3cacd894464"",
-                    ""path"": ""<DualShockGamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Enable Player"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cfb63e57-e2f0-4520-8a6b-c7bb260af317"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Enable Player"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -799,9 +698,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
-        m_Player_DevThrow = m_Player.FindAction("DevThrow", throwIfNotFound: true);
-        m_Player_DevPelt = m_Player.FindAction("DevPelt", throwIfNotFound: true);
-        m_Player_EnablePlayer = m_Player.FindAction("Enable Player", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -868,9 +764,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Aim;
-    private readonly InputAction m_Player_DevThrow;
-    private readonly InputAction m_Player_DevPelt;
-    private readonly InputAction m_Player_EnablePlayer;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -879,9 +772,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
-        public InputAction @DevThrow => m_Wrapper.m_Player_DevThrow;
-        public InputAction @DevPelt => m_Wrapper.m_Player_DevPelt;
-        public InputAction @EnablePlayer => m_Wrapper.m_Player_EnablePlayer;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -903,15 +793,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @DevThrow.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevThrow;
-                @DevThrow.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevThrow;
-                @DevThrow.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevThrow;
-                @DevPelt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevPelt;
-                @DevPelt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevPelt;
-                @DevPelt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevPelt;
-                @EnablePlayer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePlayer;
-                @EnablePlayer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePlayer;
-                @EnablePlayer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnablePlayer;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -928,15 +809,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
-                @DevThrow.started += instance.OnDevThrow;
-                @DevThrow.performed += instance.OnDevThrow;
-                @DevThrow.canceled += instance.OnDevThrow;
-                @DevPelt.started += instance.OnDevPelt;
-                @DevPelt.performed += instance.OnDevPelt;
-                @DevPelt.canceled += instance.OnDevPelt;
-                @EnablePlayer.started += instance.OnEnablePlayer;
-                @EnablePlayer.performed += instance.OnEnablePlayer;
-                @EnablePlayer.canceled += instance.OnEnablePlayer;
             }
         }
     }
@@ -1060,9 +932,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
-        void OnDevThrow(InputAction.CallbackContext context);
-        void OnDevPelt(InputAction.CallbackContext context);
-        void OnEnablePlayer(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

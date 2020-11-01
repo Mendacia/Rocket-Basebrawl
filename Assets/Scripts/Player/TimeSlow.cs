@@ -31,14 +31,14 @@ public class TimeSlow : MonoBehaviour
 
     public void TimeScale(CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !PauseMenu.isPaused)
         {
             Time.timeScale = 0.5f;
             timeSlowed = true;
             ballPlane.SetActive(true);
         }
 
-        else if (context.canceled)
+        else if (context.canceled && !PauseMenu.isPaused)
         {
             Time.timeScale = 1;
             timeSlowed = false;
@@ -54,7 +54,10 @@ public class TimeSlow : MonoBehaviour
 
     void RotatePlane()
     {
-        ballPlane.transform.eulerAngles += new Vector3(0, 0, -lookInput.x);
+        if (!PauseMenu.isPaused)
+        {
+            ballPlane.transform.eulerAngles += new Vector3(0, 0, -lookInput.x);
+        }
     }
 
     //Enables NewInputSystem Inputs

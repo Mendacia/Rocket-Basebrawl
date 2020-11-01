@@ -12,7 +12,7 @@ public class runningPhaseMovement : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
 
     //Lock player movement at the start
-    public static int playerState = 1;
+    public static int playerState = 0;
 
     //Input System Movements
     private PlayerInputActions inputActions;

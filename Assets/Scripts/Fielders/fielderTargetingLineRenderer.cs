@@ -17,6 +17,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [System.NonSerialized] public Vector3 originPosition = Vector3.zero;
     [System.NonSerialized] public Transform playerTransform = null;
 
+    [SerializeField] private GameObject emptyMarker;
+
     private void Update()
     {
         var startPoint = originPosition;
@@ -46,6 +48,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         targetingBeam.SetPositions(positions.ToArray());
         oSprite.transform.position = endPoint;
         xSprite.transform.position = endPoint;
+        //Instantiate(emptyMarker, endPoint, Quaternion.identity);
         //Start shrinking that beam
         targetingBeam.startWidth = beamWidth;
         targetingBeam.endWidth = beamWidth;

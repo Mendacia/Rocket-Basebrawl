@@ -6,6 +6,7 @@ public class fielderTargetingBallSpawner : MonoBehaviour
 {
     [Header("Make sure this is actually set up on the prefab")]
     [SerializeField] private GameObject baseballPrefab = null;
+
     public void SpawnTheBaseballPrefabAndThrowItAtTheTarget()
     {
         var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();
