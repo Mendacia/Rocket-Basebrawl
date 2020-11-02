@@ -49,30 +49,12 @@ public class fielderPeltingScript : MonoBehaviour
             ReadyThrow();
         }
 
-        if(DeactiveateCamera.dollyActive == false && !hasStartedPitchingSequenceAlready)
+        if(runningPhaseMovement.playerState == 1 && !hasStartedPitchingSequenceAlready)
         {
             hasStartedPitchingSequenceAlready = true;
             StartCoroutine(BattingPhaseTimer());
         }
     }
-    
-    public void Throw(CallbackContext context)
-    {
-        if (context.performed)
-        {
-            startPeltingLoop();
-        }
-    }
-
-    public void Pelt(CallbackContext context)
-    {
-        if (context.performed)
-        {
-            minWaitTime = 0;
-            maxWaitTime = 0;
-        }
-    }
-
     public void startPeltingLoop()
     {
         if (hasStartedThrowingSequenceAlready == false)

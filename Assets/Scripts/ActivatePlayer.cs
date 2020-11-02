@@ -38,8 +38,14 @@ public class ActivatePlayer : MonoBehaviour
 
     public void PlayerActivation(CallbackContext callbackContext)
     {
+        //Accepts players first input, enabling the scene
+        if(callbackContext.performed && runningPhaseMovement.playerState == 0)
+        {
+            runningPhaseMovement.playerState = 1;
+        }
+
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && DeactiveateCamera.dollyActive == false && runningPhaseMovement.playerState == 1)
+        if (callbackContext.performed && runningPhaseMovement.playerState == 1)
         {
             StartCoroutine(TimeSlowOnHit());
         }

@@ -19,6 +19,7 @@ public class Detector : MonoBehaviour
         {
             Transform ballT = other.GetComponent<Transform>();
             ballCols.Add(ballT);
+            Debug.Log("This is still running");
         }
     }
 

@@ -7,18 +7,28 @@ public class ActivateOnKeypress : MonoBehaviour
     public int PriorityBoostAmount = 10;
     public GameObject Reticle;
 
+    [SerializeField] private bool usingDolly = false;
+    private int camState;
+
     Cinemachine.CinemachineVirtualCameraBase vcam;
     bool boosted = false;
 
     void Start()
     {
+        if (usingDolly)
+        {
+            camState = 1;
+        }
+        else
+        {
+            camState = 2;
+        }
+
         vcam = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
     }
 
     public void aimOn(CallbackContext context)
     {
-        int camState = 1;
-
         if(DeactiveateCamera.dollyActive == false) {
             camState = 2;
         }
@@ -30,7 +40,7 @@ public class ActivateOnKeypress : MonoBehaviour
                 break;
 
             case 2:
-                if (context.performed)
+                if (context.performed && !PauseMenu.isPaused)
                 {
                     if (!boosted)
                     {
