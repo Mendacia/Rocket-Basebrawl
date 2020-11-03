@@ -51,6 +51,12 @@ public class fielderPeltingScript : MonoBehaviour
             ReadyThrow();
         }
 
+        if(scoreHolderObject.score >= 1 && !gameStarted)
+        {
+            playerStateReference.playerState = 2;
+            gameStarted = true;
+        }
+
         if(playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
         {
             hasStartedPitchingSequenceAlready = true;
@@ -105,7 +111,6 @@ public class fielderPeltingScript : MonoBehaviour
         {
             //Break the coroutine
             startPeltingLoop();
-            gameStarted = true;
         }
         else
         {

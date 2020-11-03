@@ -9,7 +9,6 @@ public class ActivatePlayer : MonoBehaviour
     //Score Reference
     private PlayerInputActions inputActions;
 
-    [SerializeField] private scoreHolder scoreHolderObject;
     [SerializeField] private bool isFrozen = false;
 
     [SerializeField] private runningPhaseMovement playerStateReference = null;
@@ -31,7 +30,7 @@ public class ActivatePlayer : MonoBehaviour
     {
         //Yes this is fine to have in update, the script deactivates itself anyway
 
-        if(scoreHolderObject.score >= 1)
+        if(playerStateReference.playerState == 2)
         {
             playerStateReference.playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
