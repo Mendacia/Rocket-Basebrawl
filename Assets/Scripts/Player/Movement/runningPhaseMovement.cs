@@ -24,11 +24,9 @@ public class runningPhaseMovement : MonoBehaviour
     private Quaternion currentRotation;
     [SerializeField] private Rigidbody rb;
 
-    //Camera for rotation setting
-    public Transform camRot;
-
     private void Awake()
     {
+        //On awake grabs the InputSystem and assigns the variavle movementInput to the Move field
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
     }
