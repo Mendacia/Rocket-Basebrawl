@@ -12,6 +12,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private scoreHolder scoreHolderObject;
+    [SerializeField] private runningPhaseMovement playerStateReference = null;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
@@ -25,6 +26,7 @@ public class fielderPeltingScript : MonoBehaviour
     private bool hasStartedPitchingSequenceAlready = false;
 
     private int iterator = 0;
+    public static bool gameStarted = false;
 
     private void Start()
     {
@@ -49,7 +51,7 @@ public class fielderPeltingScript : MonoBehaviour
             ReadyThrow();
         }
 
-        if(runningPhaseMovement.playerState == 1 && !hasStartedPitchingSequenceAlready)
+        if(playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
         {
             hasStartedPitchingSequenceAlready = true;
             StartCoroutine(BattingPhaseTimer());
@@ -102,6 +104,8 @@ public class fielderPeltingScript : MonoBehaviour
         else if(scoreHolderObject.score >= 1)
         {
             //Break the coroutine
+            startPeltingLoop();
+            gameStarted = true;
         }
         else
         {

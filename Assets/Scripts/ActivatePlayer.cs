@@ -9,8 +9,10 @@ public class ActivatePlayer : MonoBehaviour
     //Score Reference
     private PlayerInputActions inputActions;
 
-    [SerializeField] private fielderPeltingScript fielderMain = null;
     [SerializeField] private scoreHolder scoreHolderObject;
+    [SerializeField] private bool isFrozen = false;
+
+    [SerializeField] private runningPhaseMovement playerStateReference = null;
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -19,7 +21,10 @@ public class ActivatePlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        if (isFrozen)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     void Update()
@@ -28,10 +33,10 @@ public class ActivatePlayer : MonoBehaviour
 
         if(scoreHolderObject.score >= 1)
         {
-            runningPhaseMovement.playerState = 2;
+            playerStateReference.playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
-            fielderMain.startPeltingLoop();
+            //fielderMain.startPeltingLoop();
             this.GetComponent<ActivatePlayer>().enabled = false;
         }
     }
@@ -39,13 +44,13 @@ public class ActivatePlayer : MonoBehaviour
     public void PlayerActivation(CallbackContext callbackContext)
     {
         //Accepts players first input, enabling the scene
-        if(callbackContext.performed && runningPhaseMovement.playerState == 0)
+        if(callbackContext.performed && playerStateReference.playerState == 0)
         {
-            runningPhaseMovement.playerState = 1;
+            playerStateReference.playerState = 1;
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && runningPhaseMovement.playerState == 1)
+        if (callbackContext.performed && playerStateReference.playerState == 1)
         {
             StartCoroutine(TimeSlowOnHit());
         }

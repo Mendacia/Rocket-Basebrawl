@@ -8,19 +8,21 @@ public class runningPhaseMovement : MonoBehaviour
 {
     [Header("Player Speed")]
     [SerializeField] private float speed = 1;
+    //Lock player movement at the start
+    [Header("Player State")]
+    public int playerState = 0;
+
     [Header("Please put the animator from CheetahIdle here")]
     [SerializeField] private Animator playerAnimator;
 
-    //Lock player movement at the start
-    public static int playerState = 0;
-
+    
     //Input System Movements
     private PlayerInputActions inputActions;
     private Vector2 movementInput;
     private Vector3 inputDirection;
     private Vector3 moveVector;
     private Quaternion currentRotation;
-    private Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
 
     //Camera for rotation setting
     public Transform camRot;
@@ -33,7 +35,6 @@ public class runningPhaseMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
     }
 
