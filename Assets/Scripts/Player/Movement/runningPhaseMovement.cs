@@ -38,13 +38,14 @@ public class runningPhaseMovement : MonoBehaviour
 
     private void Update()
     {
-        if(rb.velocity.magnitude > 0)
+        if(rb.velocity.magnitude <= 0.01f)
         {
-            playerAnimator.SetBool("heMoving", true);
+            rb.velocity = Vector3.zero;
+            playerAnimator.SetBool("heMoving", false);
         }
         else
         {
-            playerAnimator.SetBool("heMoving", false);
+            playerAnimator.SetBool("heMoving", true);
         }
     }
 

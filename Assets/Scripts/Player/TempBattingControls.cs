@@ -6,7 +6,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class TempBattingControls : MonoBehaviour
 {
-    [SerializeField] private Text devHittingCheckText = null;
+    //[SerializeField] private Text devHittingCheckText = null;
     [SerializeField] private Animator playerAnimator = null;
     private bool isHitting = false;
     private BoxCollider myCollider = null;
@@ -15,7 +15,7 @@ public class TempBattingControls : MonoBehaviour
     {
         myCollider = gameObject.GetComponent<BoxCollider>();
         myCollider.enabled = false;
-        devHittingCheckText.text = ("IDLE");
+        //devHittingCheckText.text = ("IDLE");
         isHitting = false;
     }
     public void Batting(CallbackContext context)
@@ -23,7 +23,7 @@ public class TempBattingControls : MonoBehaviour
         if (context.performed && isHitting == false)
         {
             myCollider.enabled = true;
-            devHittingCheckText.text = ("HITTING");
+            //devHittingCheckText.text = ("HITTING");
             isHitting = true;
             playerAnimator.SetTrigger("heHit");
             StartCoroutine(Cooldown());
@@ -34,7 +34,7 @@ public class TempBattingControls : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         myCollider.enabled = false;
-        devHittingCheckText.text = ("IDLE");
+        //devHittingCheckText.text = ("IDLE");
         isHitting = false;
     }
 }
