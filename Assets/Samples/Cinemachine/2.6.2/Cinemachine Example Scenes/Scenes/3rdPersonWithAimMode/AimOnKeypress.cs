@@ -2,7 +2,7 @@
 using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.InputSystem;
 
-public class ActivateOnKeypress : MonoBehaviour
+public class AimOnKeypress : MonoBehaviour
 {
     public int PriorityBoostAmount = 10;
     public GameObject Reticle;

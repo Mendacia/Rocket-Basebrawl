@@ -4712,6 +4712,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4602505410395359555, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: playerStateReference
+      value: 
+      objectReference: {fileID: 279898533}
     - target: {fileID: 4602505410515377350, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: m_Name
@@ -4770,6 +4775,31 @@ PrefabInstance:
     - target: {fileID: 4602505410515377351, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602505410715153945, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_HorizontalAxis.m_InvertInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602505411578914845, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: playerStateReference
+      value: 
+      objectReference: {fileID: 279898533}
+    - target: {fileID: 4602505411578914915, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_IgnoreTag
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602505411578914915, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_DistanceLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4602505411578914915, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_OptimalTargetDistance
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
