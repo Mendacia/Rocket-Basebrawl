@@ -8,7 +8,7 @@ public class TimeSlow : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool timeSlowed;
-    public GameObject ballPlane;
+    public GameObject aimingBox;
 
     private PlayerInputActions inputActions;
     Vector2 lookInput;
@@ -35,20 +35,20 @@ public class TimeSlow : MonoBehaviour
         {
             Time.timeScale = 0.5f;
             timeSlowed = true;
-            ballPlane.SetActive(true);
+            aimingBox.SetActive(true);
         }
 
         else if (context.canceled && !PauseMenu.isPaused)
         {
             Time.timeScale = 1;
             timeSlowed = false;
-            ballPlane.SetActive(false);
+            aimingBox.SetActive(false);
         }    
 
         else
         {
             timeSlowed = false;
-            ballPlane.SetActive(false);
+            aimingBox.SetActive(false);
         }
     }
 
@@ -56,7 +56,7 @@ public class TimeSlow : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            ballPlane.transform.eulerAngles += new Vector3(0, 0, -lookInput.x);
+            aimingBox.transform.eulerAngles += new Vector3(0, 0, -lookInput.x);
         }
     }
 
