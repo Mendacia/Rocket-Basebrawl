@@ -22,9 +22,6 @@ public class runningPhaseMovement : MonoBehaviour
     private Quaternion currentRotation;
     private Rigidbody rb;
 
-    //Camera for rotation setting
-    public Transform camRot;
-
     private void Awake()
     {
         inputActions = new PlayerInputActions();
