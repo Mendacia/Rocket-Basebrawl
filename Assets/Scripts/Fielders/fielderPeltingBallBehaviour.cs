@@ -8,6 +8,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     public bool isHittable = true;
     public bool ballIsActive = true;
 
+
     void Start()
     {
         var body = GetComponent<Rigidbody>();
@@ -17,7 +18,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(ballIsActive == true && runningPhaseMovement.playerState == 2)
+        if(ballIsActive == true && fielderPeltingScript.gameStarted == true)
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score--;
             ballIsActive = false;

@@ -8,41 +8,45 @@ public class runningPhaseMovement : MonoBehaviour
 {
     [Header("Player Speed")]
     [SerializeField] private float speed = 1;
+    //Lock player movement at the start
+    [Header("Player State")]
+    public int playerState = 0;
+
     [Header("Please put the animator from CheetahIdle here")]
     [SerializeField] private Animator playerAnimator;
 
-    //Lock player movement at the start
-    public static int playerState = 0;
-
+    
     //Input System Movements
     private PlayerInputActions inputActions;
     private Vector2 movementInput;
     private Vector3 inputDirection;
     private Vector3 moveVector;
     private Quaternion currentRotation;
-    private Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float magnitudeStopFloat;
 
     private void Awake()
     {
+        //On awake grabs the InputSystem and assigns the variavle movementInput to the Move field
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
     }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
     }
 
     private void Update()
     {
-        if(rb.velocity.magnitude > 0)
+        if(rb.velocity.magnitude <= magnitudeStopFloat)
         {
-            playerAnimator.SetBool("heMoving", true);
+            rb.velocity = Vector3.zero;
+            playerAnimator.SetBool("heMoving", false);
         }
         else
         {
-            playerAnimator.SetBool("heMoving", false);
+            playerAnimator.SetBool("heMoving", true);
         }
     }
 
