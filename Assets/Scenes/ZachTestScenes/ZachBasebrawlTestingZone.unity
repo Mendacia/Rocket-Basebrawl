@@ -4729,6 +4729,11 @@ PrefabInstance:
       propertyPath: devHittingCheckText
       value: 
       objectReference: {fileID: 325241755}
+    - target: {fileID: 4602505410495289095, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: magnitudeStopFloat
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4602505410515377350, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: m_Name

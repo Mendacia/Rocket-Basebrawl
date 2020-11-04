@@ -23,6 +23,7 @@ public class runningPhaseMovement : MonoBehaviour
     private Vector3 moveVector;
     private Quaternion currentRotation;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private float magnitudeStopFloat;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class runningPhaseMovement : MonoBehaviour
 
     private void Update()
     {
-        if(rb.velocity.magnitude <= 0.01f)
+        if(rb.velocity.magnitude <= magnitudeStopFloat)
         {
             rb.velocity = Vector3.zero;
             playerAnimator.SetBool("heMoving", false);
