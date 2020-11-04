@@ -10,7 +10,7 @@ public class runningPhaseMovement : MonoBehaviour
     [SerializeField] private float speed = 1;
     //Lock player movement at the start
     [Header("Player State")]
-    public int playerState = 0;
+    public int playerState = 2;
 
     [Header("Please put the animator from CheetahIdle here")]
     [SerializeField] private Animator playerAnimator;
@@ -22,8 +22,10 @@ public class runningPhaseMovement : MonoBehaviour
     private Vector3 inputDirection;
     private Vector3 moveVector;
     private Quaternion currentRotation;
+
+    [Header("Rigidbody Variables")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float magnitudeStopFloat;
+    [SerializeField] private float magnitudeStopFloat = 15;
 
     private void Awake()
     {

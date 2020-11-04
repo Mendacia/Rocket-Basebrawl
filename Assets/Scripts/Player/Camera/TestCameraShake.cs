@@ -7,6 +7,8 @@ public class TestCameraShake : MonoBehaviour
     public CinemachineCameraShake camShake;
     public CinemachineCameraShake camShakeAim;
 
+    [SerializeField] private float frequency, amplitude, waitTime;
+
     public void StartShake()
     {
         camShake.Noise(0.75f, 6);
@@ -23,9 +25,9 @@ public class TestCameraShake : MonoBehaviour
 
     IEnumerator TurnShakeOnAndOff()
     {
-        camShake.Noise(0.9f, 3);
-        camShakeAim.Noise(0.9f, 3);
-        yield return new WaitForSeconds(0.15f);
+        camShake.Noise(frequency, amplitude);
+        camShakeAim.Noise(frequency, amplitude);
+        yield return new WaitForSeconds(waitTime);
         camShake.Noise(0, 0);
         camShakeAim.Noise(0, 0);
     }

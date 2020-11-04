@@ -57,7 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273d35933e9e51240bc2f4b114ea288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devHittingCheckText: {fileID: 0}
   playerAnimator: {fileID: 4602505410117496041}
 --- !u!1 &4602505409915141739
 GameObject:
@@ -2224,6 +2223,7 @@ MonoBehaviour:
   playerState: 0
   playerAnimator: {fileID: 4602505410117496041}
   rb: {fileID: 4602505410495289092}
+  magnitudeStopFloat: 15
 --- !u!136 &4602505411365239625
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a43c6ceae46f94da978d6380ab09f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPlane: {fileID: 4602505411342372352}
+  aimingBox: {fileID: 4602505411342372352}
 --- !u!114 &4602505411365239627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2408,6 +2408,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camShake: {fileID: 4602505410840718811}
   camShakeAim: {fileID: 4602505411158271621}
+  frequency: 0.8
+  amplitude: 3
+  waitTime: 0.1
 --- !u!114 &4602505411365239621
 MonoBehaviour:
   m_ObjectHideFlags: 0
