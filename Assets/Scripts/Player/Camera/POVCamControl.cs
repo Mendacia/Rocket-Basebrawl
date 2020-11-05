@@ -12,9 +12,10 @@ public class POVCamControl : MonoBehaviour
     public InputActionReference actions;
     private PlayerInputActions inputActions;
     Vector2 camInput;
-    public float sensitivity;
+    public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
+    [SerializeField] private runningPhaseMovement playerStateReference;
 
     // Start is called before the first frame update
 
@@ -35,13 +36,16 @@ public class POVCamControl : MonoBehaviour
 
     void Update()
     {
-        if (useX == true)
+        if (playerStateReference.playerState > 0)
         {
-            POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+            if (useX == true)
+            {
+                POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+            }
+
+            POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 2.5f * Time.deltaTime;
+            camInput = Vector2.zero;
         }
-        
-        POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 2.5f * Time.deltaTime;
-        camInput = Vector2.zero;
     }
 
     private void GetValue(CallbackContext context)
