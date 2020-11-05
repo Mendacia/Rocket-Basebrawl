@@ -11,7 +11,12 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
 
     public CinemachineBrain brain;
-    
+
+    private void Awake()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
 
     public void PauseGame(CallbackContext context)
     {
