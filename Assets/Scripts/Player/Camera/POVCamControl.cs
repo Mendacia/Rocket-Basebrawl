@@ -12,7 +12,7 @@ public class POVCamControl : MonoBehaviour
     public InputActionReference actions;
     private PlayerInputActions inputActions;
     Vector2 camInput;
-    public float sensitivity;
+    public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
     [SerializeField] private runningPhaseMovement playerStateReference;

@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
-  sensitivity: 100
+  sensitivity: 50
   useX: 1
   playerStateReference: {fileID: 4602505410495289095}
 --- !u!114 &4602505410840718811
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
-  sensitivity: 100
+  sensitivity: 50
   useX: 0
   playerStateReference: {fileID: 4602505410495289095}
 --- !u!1 &4602505411619704497
@@ -3405,7 +3405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4602505410810753974}
-  camRot: {fileID: 4602505410653106795}
+  camRot: {fileID: 4602505410810753974}
 --- !u!1 &4602505411830164672
 GameObject:
   m_ObjectHideFlags: 0
