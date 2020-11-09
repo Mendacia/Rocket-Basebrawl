@@ -612,7 +612,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4602505410770665122}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780376379}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f6fd22dcbc643040b7ab4512c184b31, type: 3}
@@ -1334,7 +1334,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 3e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3787,25 +3787,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 478354119}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1780376379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4602505411365239620, guid: 740722ad61eae844bb953050ceb3df68,
-    type: 3}
-  m_PrefabInstance: {fileID: 4602505410770665122}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1780376386
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780376379}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.481842, y: 2.481842, z: 2.481842}
-  m_Center: {x: -0.740921, y: 0, z: 0}
 --- !u!1 &1793494116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,11 +3976,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4602505410395359613, guid: 740722ad61eae844bb953050ceb3df68,
-        type: 3}
-      propertyPath: m_TagString
-      value: CineNormal
-      objectReference: {fileID: 0}
     - target: {fileID: 4602505410515377350, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: m_Name
@@ -4059,26 +4035,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4602505410709722982, guid: 740722ad61eae844bb953050ceb3df68,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4602505411365239626, guid: 740722ad61eae844bb953050ceb3df68,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4602505411578914844, guid: 740722ad61eae844bb953050ceb3df68,
-        type: 3}
-      propertyPath: m_TagString
-      value: CineAim
-      objectReference: {fileID: 0}
-    - target: {fileID: 4602505411703614394, guid: 740722ad61eae844bb953050ceb3df68,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740722ad61eae844bb953050ceb3df68, type: 3}
