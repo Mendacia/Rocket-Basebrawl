@@ -21,14 +21,6 @@ public class DeactiveateCamera : MonoBehaviour
 
     public void skipDolly()
     {
-        StartCoroutine(dolSpeed());
-    }
-    
-    //Setting speed instead of immediately turning off the camera to correctly orientate the player
-    public IEnumerator dolSpeed()
-    {
-        dolCart.m_Speed = 10000;
-        yield return new WaitForSeconds(0.5f);
         dollyActive = false;
         pressToStartText.SetActive(false);
         startCam.SetActive(false);
