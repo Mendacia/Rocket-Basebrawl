@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5845543877041761063}
   - component: {fileID: 4742140118619279990}
   - component: {fileID: 2226758409661513095}
+  - component: {fileID: 4113989864361360937}
   m_Layer: 8
   m_Name: Baseball
   m_TagString: Ball
@@ -5019,3 +5020,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &4113989864361360937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8581812953805991084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f2ce5a44063824da94d8abef970454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camShake: {fileID: 0}
+  camShakeAim: {fileID: 0}
+  frequency: 0.8
+  amplitude: 3
+  waitTime: 0.1

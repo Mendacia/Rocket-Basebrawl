@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4602505409895005334}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.2000017, y: 0, z: -0.049999714}
+  m_LocalPosition: {x: -1.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4602505410323557987}
@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.4487205, y: 4.118471, z: 3.8722396}
-  m_Center: {x: -2.72436, y: 0.449852, z: 1.7106469}
+  m_Size: {x: 6.5, y: 4, z: 4}
+  m_Center: {x: -2.5, y: 0.5, z: 1.75}
 --- !u!114 &4602505409895005335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +411,7 @@ GameObject:
   - component: {fileID: 4602505410117496046}
   - component: {fileID: 4602505410117496041}
   - component: {fileID: 991007309}
+  - component: {fileID: 1621741486}
   m_Layer: 0
   m_Name: Cheetah Idle
   m_TagString: Untagged
@@ -468,6 +469,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerModel: {fileID: 4602505410117496046}
   rotationReference: {fileID: 4602505410810753974}
+--- !u!114 &1621741486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602505410117496040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558823f3d00618049b17fcdddfc1828b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vcam: {fileID: 4602505410395359558}
+  playerModel: {fileID: 4602505410666337086}
 --- !u!1 &4602505410168902032
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +808,7 @@ GameObject:
   - component: {fileID: 4602505410840718808}
   m_Layer: 0
   m_Name: CM 3rdPerson Normal
-  m_TagString: Untagged
+  m_TagString: CineNormal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -875,7 +890,7 @@ MonoBehaviour:
   m_Strategy: 1
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0
+  m_Damping: 1
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!114 &4602505410395359552
@@ -1318,50 +1333,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.05364862, y: -0.20747486, z: -0.036489964}
     m_Extent: {x: 0.5519365, y: 1.1289021, z: 1.221139}
   m_DirtyAABB: 0
---- !u!1 &4602505410709722982
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4602505410709722983}
-  - component: {fileID: 4602505410709722980}
-  m_Layer: 0
-  m_Name: BallCollision
-  m_TagString: BallHit
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4602505410709722983
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602505410709722982}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.13000011}
-  m_LocalScale: {x: 1.2658, y: 2.0357, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4602505410323557987}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4602505410709722980
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602505410709722982}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4602505410715153946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,8 +1396,8 @@ MonoBehaviour:
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
   m_XDamping: 0
-  m_YDamping: 0
-  m_ZDamping: 0
+  m_YDamping: 1
+  m_ZDamping: 0.5
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -2184,8 +2155,8 @@ GameObject:
   - component: {fileID: 4602505411365239625}
   - component: {fileID: 4602505411365239624}
   - component: {fileID: 4602505411365239627}
-  - component: {fileID: 4602505411365239626}
   - component: {fileID: 4602505411365239621}
+  - component: {fileID: 1780376386}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -2222,7 +2193,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &4602505410495289095
 MonoBehaviour:
@@ -2241,6 +2212,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 4602505410117496041}
   rb: {fileID: 4602505410495289092}
   magnitudeStopFloat: 15
+  gravityMultiplier: 100
 --- !u!136 &4602505411365239625
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2411,23 +2383,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4602505410653106798}
---- !u!114 &4602505411365239626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602505411365239620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f2ce5a44063824da94d8abef970454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camShake: {fileID: 4602505410840718811}
-  camShakeAim: {fileID: 4602505411158271621}
-  frequency: 0.8
-  amplitude: 3
-  waitTime: 0.1
 --- !u!114 &4602505411365239621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2442,6 +2397,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFrozen: 1
   playerStateReference: {fileID: 4602505410495289095}
+--- !u!65 &1780376386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602505411365239620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5008183, y: 3.5008183, z: 3.5008183}
+  m_Center: {x: -1.2504091, y: 0, z: 0}
 --- !u!1 &4602505411371977953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,7 +2613,7 @@ GameObject:
   - component: {fileID: 4602505411578914845}
   m_Layer: 0
   m_Name: CM 3rd Person Aim
-  m_TagString: Untagged
+  m_TagString: CineAim
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3336,7 +3304,7 @@ GameObject:
   - component: {fileID: 4602505411703614395}
   m_Layer: 0
   m_Name: Player Empty
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3354,7 +3322,6 @@ Transform:
   m_Children:
   - {fileID: 4602505411342372356}
   - {fileID: 4602505409895005333}
-  - {fileID: 4602505410709722983}
   m_Father: {fileID: 4602505411018698527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

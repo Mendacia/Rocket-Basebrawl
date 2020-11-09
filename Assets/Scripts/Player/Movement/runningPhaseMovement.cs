@@ -24,7 +24,7 @@ public class runningPhaseMovement : MonoBehaviour
     private Quaternion currentRotation;
 
     [Header("Rigidbody Variables")]
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 15;
     [SerializeField] private float gravityMultiplier = 100;
 

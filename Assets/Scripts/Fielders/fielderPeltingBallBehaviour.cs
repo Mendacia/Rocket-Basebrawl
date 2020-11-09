@@ -25,8 +25,8 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    //Not being used - Delete?
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "BallHit")
         {
@@ -36,7 +36,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
             isHittable = false;
             Detector.ballCols.Remove(this.gameObject.transform);
         }
-    }
+    }*/
 
     IEnumerator Expire()
     {

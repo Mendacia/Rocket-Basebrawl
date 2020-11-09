@@ -25,7 +25,6 @@ public class ActivatePlayer : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-
     void Update()
     {
         //Yes this is fine to have in update, the script deactivates itself anyway
@@ -49,7 +48,7 @@ public class ActivatePlayer : MonoBehaviour
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && playerStateReference.playerState == 1)
+        if (callbackContext.performed && playerStateReference.playerState == 1 && !DeactiveateCamera.dollyActive)
         {
             StartCoroutine(TimeSlowOnHit());
         }

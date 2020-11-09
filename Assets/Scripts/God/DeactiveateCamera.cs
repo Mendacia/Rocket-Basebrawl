@@ -12,7 +12,12 @@ public class DeactiveateCamera : MonoBehaviour
     public Transform playerRotation;
     public GameObject pressToStartText;
 
-    public static bool dollyActive = true;
+    public static bool dollyActive = false;
+
+    private void Awake()
+    {
+        dollyActive = true;
+    }
 
     public void skipDolly()
     {

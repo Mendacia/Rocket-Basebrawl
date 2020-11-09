@@ -7,19 +7,25 @@ public class TestCameraShake : MonoBehaviour
     public CinemachineCameraShake camShake;
     public CinemachineCameraShake camShakeAim;
 
-    [SerializeField] private float frequency = 0, amplitude = 0, waitTime = 0;
+    [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
+    GameObject player;
 
-    public void StartShake()
+    private void Start()
     {
-        camShake.Noise(0.75f, 6);
-        camShakeAim.Noise(0.75f, 6);
+        GameObject camShakeMaster = GameObject.FindGameObjectWithTag("CineNormal");
+        camShake = camShakeMaster.GetComponent<CinemachineCameraShake>();
+        GameObject camShakeAimMaster = GameObject.FindGameObjectWithTag("CineAim");
+        camShakeAim = camShakeAimMaster.GetComponent<CinemachineCameraShake>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.tag == "Ball")
+        if (collider == player.GetComponent<BoxCollider>())
         {
             StartCoroutine(TurnShakeOnAndOff());
+            Debug.Log("Collision");
         }
     }
 
