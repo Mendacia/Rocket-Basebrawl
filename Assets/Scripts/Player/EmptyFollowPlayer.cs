@@ -5,9 +5,9 @@ using UnityEngine;
 public class EmptyFollowPlayer : MonoBehaviour
 {
     [Header("This should be the Player Controller")]
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform player = null;
     [Header("This should be the Main Camera")]
-    [SerializeField] private Transform cameraRotation;
+    [SerializeField] private Transform cameraRotation = null;
 
     void Update()
     {

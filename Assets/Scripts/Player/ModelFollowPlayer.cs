@@ -5,9 +5,9 @@ using UnityEngine;
 public class ModelFollowPlayer : MonoBehaviour
 {
     [Header("This should be the model")]
-    [SerializeField] private Transform playerModel;
+    [SerializeField] private Transform playerModel = null;
     [Header("This should be the player")]
-    [SerializeField] private Transform rotationReference;
+    [SerializeField] private Transform rotationReference = null;
 
     void Update()
     {

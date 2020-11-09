@@ -26,10 +26,11 @@ public class runningPhaseMovement : MonoBehaviour
     [Header("Rigidbody Variables")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float magnitudeStopFloat = 15;
+    [SerializeField] private float gravityMultiplier = 100;
 
     private void Awake()
     {
-        //On awake grabs the InputSystem and assigns the variavle movementInput to the Move field
+        //On awake grabs the InputSystem and assigns the variable movementInput to the Move field
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
     }
@@ -64,6 +65,9 @@ public class runningPhaseMovement : MonoBehaviour
             case 2:
                 float h = movementInput.x;
                 float v = movementInput.y;
+
+                //Enhances the Gravity for the player alone
+                rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
 
                 Vector3 targetInput = new Vector3(h, 0, v);
 

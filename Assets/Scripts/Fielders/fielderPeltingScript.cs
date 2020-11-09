@@ -102,16 +102,18 @@ public class fielderPeltingScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         iterator++;
         Debug.Log(iterator);
-        if (iterator >= 4)
+        if (scoreHolderObject.score >= 1)
+        {
+            //Start the main game and stop this coroutine
+            startPeltingLoop();
+            StopCoroutine(BattingPhaseTimer());
+        }
+        else if (iterator >= 4)
         {
             //if they havent hit the ball, then kill them
             SceneManager.LoadScene(0);
         }
-        else if(scoreHolderObject.score >= 1)
-        {
-            //Break the coroutine
-            startPeltingLoop();
-        }
+        
         else
         {
             battingPhaseThrow();

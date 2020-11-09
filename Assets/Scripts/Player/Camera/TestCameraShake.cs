@@ -7,7 +7,7 @@ public class TestCameraShake : MonoBehaviour
     public CinemachineCameraShake camShake;
     public CinemachineCameraShake camShakeAim;
 
-    [SerializeField] private float frequency, amplitude, waitTime;
+    [SerializeField] private float frequency = 0, amplitude = 0, waitTime = 0;
 
     public void StartShake()
     {

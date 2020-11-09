@@ -33,7 +33,7 @@ public class ActivatePlayer : MonoBehaviour
         if(playerStateReference.playerState == 2)
         {
             playerStateReference.playerState = 2;
-            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
+            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionY & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
             //fielderMain.startPeltingLoop();
             this.GetComponent<ActivatePlayer>().enabled = false;
