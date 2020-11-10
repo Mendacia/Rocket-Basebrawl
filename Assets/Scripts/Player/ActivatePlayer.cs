@@ -9,9 +9,6 @@ public class ActivatePlayer : MonoBehaviour
     //Score Reference
     private PlayerInputActions inputActions;
 
-    [Header("Tick this if the player needs to be locked in place on Start")]
-    [SerializeField] private bool isFrozen = false;
-
     [Header("Put the Player Controller here")]
     [SerializeField] private runningPhaseMovement playerStateReference = null;
     private void Awake()
@@ -22,10 +19,6 @@ public class ActivatePlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if (isFrozen)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
     }
     void Update()
     {

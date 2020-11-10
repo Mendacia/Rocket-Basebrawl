@@ -28,14 +28,20 @@ public class fielderPeltingScript : MonoBehaviour
     private int iterator = 0;
     public static bool gameStarted = false;
 
+    private void Awake()
+    {
+        playerStateReference.playerState = 0;
+        playerStateReference.isFrozen = true;
+    }
+
     private void Start()
     {
+        
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
             fieldingTeam.Add(child);
         }
-        //StartCoroutine(BattingPhaseTimer());
     }
 
     private void Update()

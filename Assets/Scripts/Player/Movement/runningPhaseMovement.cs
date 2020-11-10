@@ -19,14 +19,16 @@ public class runningPhaseMovement : MonoBehaviour
     //Input System Movements
     private PlayerInputActions inputActions;
     private Vector2 movementInput;
-    private Vector3 inputDirection;
-    private Vector3 moveVector;
+    private Vector3 inputDirection, moveVector;
     private Quaternion currentRotation;
 
     [Header("Rigidbody Variables")]
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 15;
+    [Header("Standalone Player Gravity")]
     [SerializeField] private float gravityMultiplier = 100;
+    [Header("Tick this if the player needs to be locked in place on Start")]
+    public bool isFrozen = false;
 
     private void Awake()
     {
@@ -38,6 +40,10 @@ public class runningPhaseMovement : MonoBehaviour
     private void Start()
     {
         //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+        if (isFrozen == true)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     private void Update()
