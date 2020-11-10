@@ -101,7 +101,6 @@ public class fielderPeltingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         iterator++;
-        Debug.Log(iterator);
         if (scoreHolderObject.score >= 1)
         {
             //Start the main game and stop this coroutine
