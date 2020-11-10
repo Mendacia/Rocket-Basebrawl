@@ -971,14 +971,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 672805361882806314, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
         type: 3}
-      propertyPath: uISongNameText
-      value: 
-      objectReference: {fileID: 460797865}
-    - target: {fileID: 672805361882806314, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
-        type: 3}
       propertyPath: theCamera
       value: 
       objectReference: {fileID: 453430477}
+    - target: {fileID: 672805361882806314, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
+        type: 3}
+      propertyPath: uISongNameText
+      value: 
+      objectReference: {fileID: 460797865}
+    - target: {fileID: 2800479163843518223, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
+        type: 3}
+      propertyPath: playerStateReference
+      value: 
+      objectReference: {fileID: 279898533}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d, type: 3}
 --- !u!114 &453430474 stripped
@@ -3976,6 +3981,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: magnitudeStopFloat
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: topSpeed
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 6652822153336975102, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: m_LocalPosition.x

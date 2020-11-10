@@ -12,7 +12,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private scoreHolder scoreHolderObject;
-    [SerializeField] private runningPhaseMovement playerStateReference = null;
+    [SerializeField] private playerControls playerStateReference = null;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
@@ -27,12 +27,6 @@ public class fielderPeltingScript : MonoBehaviour
 
     private int iterator = 0;
     public static bool gameStarted = false;
-
-    private void Awake()
-    {
-        playerStateReference.playerState = 0;
-        playerStateReference.isFrozen = true;
-    }
 
     private void Start()
     {

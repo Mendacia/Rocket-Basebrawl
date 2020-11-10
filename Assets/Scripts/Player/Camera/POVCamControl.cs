@@ -15,7 +15,7 @@ public class POVCamControl : MonoBehaviour
     public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
-    [SerializeField] private runningPhaseMovement playerStateReference;
+    [SerializeField] private playerControls playerStateReference;
 
     // Start is called before the first frame update
 

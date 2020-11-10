@@ -10,7 +10,7 @@ public class ActivatePlayer : MonoBehaviour
     private PlayerInputActions inputActions;
 
     [Header("Put the Player Controller here")]
-    [SerializeField] private runningPhaseMovement playerStateReference = null;
+    [SerializeField] private playerControls playerStateReference = null;
     private void Awake()
     {
         inputActions = new PlayerInputActions();

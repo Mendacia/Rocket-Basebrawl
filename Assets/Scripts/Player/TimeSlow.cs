@@ -45,11 +45,11 @@ public class TimeSlow : MonoBehaviour
             aimingBox.SetActive(false);
         }    
 
-        else
+        /*else
         {
             timeSlowed = false;
             aimingBox.SetActive(false);
-        }
+        }*/
     }
 
     void RotatePlane()

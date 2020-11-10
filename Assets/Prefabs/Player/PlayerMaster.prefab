@@ -3142,11 +3142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  baseSpeed: 30
+  topSpeed: 45
   playerState: 2
   playerAnimator: {fileID: 6652822154003291856}
   rb: {fileID: 6652822153287198013}
-  magnitudeStopFloat: 15
+  magnitudeStopFloat: 10
   gravityMultiplier: 100
+  isFrozen: 0
 --- !u!114 &6652822154835790193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3172,7 +3175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff0a74f69281314b912a2f895ced2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFrozen: 0
   playerStateReference: {fileID: 6652822153287198014}
 --- !u!1 &6652822154838719964
 GameObject:
