@@ -12,6 +12,11 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     [SerializeField] private playerControls playerStateReference = null;
     [Header("Put the Opponent Team here!")]
     [SerializeField] private fielderPeltingScript fielderReference = null;
+    [Header("Put the Pitching Phase Target here!")]
+    [SerializeField] private GameObject pitchingPhaseTarget = null;
+    [Header("Put the base number here!")]
+    [SerializeField] private int pitchingNumber = 1;
+    public static int currentPitchingNumber = 1;
 
     private bool pitchingStarted = false;
 
@@ -30,7 +35,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && pitchingStarted == false)
+        if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber)
         {
             pitchingStarted = true;
             fielderPeltingScript.gameStarted = false;
@@ -47,8 +52,10 @@ public class CinemachineLookAtPitcher : MonoBehaviour
         player.GetComponent<ActivatePlayer>().enabled = true;
         yield return new WaitForSeconds(1);
         player.transform.position = basePosition;
+        pitchingPhaseTarget.transform.position = basePosition + new Vector3(0, 1.68f, 0.5f);
         yield return new WaitForSeconds(2);
         cineMachineBaseCam.SetActive(false);
         StartCoroutine(fielderReference.BattingPhaseTimer());
+        currentPitchingNumber++;
     }
 }

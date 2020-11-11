@@ -101,6 +101,7 @@ public class fielderPeltingScript : MonoBehaviour
             //gameStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
             startPeltingLoop();
             iterator = 0;
+            battingBallCount = 0;
             playerStateReference.playerState = 2;
             //Do some shit to tell the player they can go
             StopCoroutine(BattingPhaseTimer());
