@@ -64,7 +64,6 @@ public class playerControls : MonoBehaviour
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {
             speed = speed + 0.05f;
-            Debug.Log(speed);
         }
     }
 

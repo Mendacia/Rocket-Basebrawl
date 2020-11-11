@@ -46,6 +46,11 @@ public class POVCamControl : MonoBehaviour
             POVCam.m_VerticalAxis.Value -= camInput.y * (sensitivity / 2) / 2.5f * Time.deltaTime;
             camInput = Vector2.zero;
         }
+        if(playerStateReference.playerState == 2)
+        {
+            var vcam = GetComponent<CinemachineVirtualCamera>();
+            vcam.m_Transitions.m_InheritPosition = true;
+        }
     }
 
     private void GetValue(CallbackContext context)

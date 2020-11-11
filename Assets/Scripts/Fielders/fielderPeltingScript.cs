@@ -20,9 +20,9 @@ public class fielderPeltingScript : MonoBehaviour
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
     [System.NonSerialized] public int battingBallCount;
-    private bool canThrow = false;
+    public bool canThrow = false;
     private bool hasReadiedAThrow = false;
-    private bool hasStartedThrowingSequenceAlready = false;
+    public bool hasStartedThrowingSequenceAlready = false;
     private bool hasStartedPitchingSequenceAlready = false;
 
     private int iterator = 0;
@@ -46,18 +46,12 @@ public class fielderPeltingScript : MonoBehaviour
             fielder.LookAt(player);
         }
 
-        if (canThrow == true)
+        if (canThrow && gameStarted)
         {
             ReadyThrow();
         }
 
-        if(scoreHolderObject.score >= 1 && !gameStarted)
-        {
-            playerStateReference.playerState = 2;
-            gameStarted = true;
-        }
-
-        if(playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
+        if (playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
         {
             hasStartedPitchingSequenceAlready = true;
             StartCoroutine(BattingPhaseTimer());
@@ -72,7 +66,7 @@ public class fielderPeltingScript : MonoBehaviour
         }
     }
 
-    IEnumerator ThrowDelay()
+    public IEnumerator ThrowDelay()
     {
         yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
         canThrow = true;
@@ -101,10 +95,14 @@ public class fielderPeltingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         iterator++;
-        if (scoreHolderObject.score >= 1)
+        Debug.Log(iterator);
+        if (gameStarted == true)
         {
-            //Start the main game and stop this coroutine
+            //gameStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
             startPeltingLoop();
+            iterator = 0;
+            playerStateReference.playerState = 2;
+            //Do some shit to tell the player they can go
             StopCoroutine(BattingPhaseTimer());
         }
         else if (iterator >= 4)
