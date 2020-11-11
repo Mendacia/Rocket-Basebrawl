@@ -1555,6 +1555,8 @@ MonoBehaviour:
   player: {fileID: 798308122}
   playerStateReference: {fileID: 279898533}
   fielderReference: {fileID: 1399274990}
+  pitchingPhaseTarget: {fileID: 1471202109}
+  pitchingNumber: 1
 --- !u!1 &613147797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,6 +3348,8 @@ MonoBehaviour:
   player: {fileID: 798308122}
   playerStateReference: {fileID: 279898533}
   fielderReference: {fileID: 1399274990}
+  pitchingPhaseTarget: {fileID: 1471202109}
+  pitchingNumber: 3
 --- !u!1 &1436010119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3465,7 +3469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471202109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06346512, y: 1.62, z: 0.68}
+  m_LocalPosition: {x: 0, y: 1.62, z: 0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4329,6 +4333,8 @@ MonoBehaviour:
   player: {fileID: 798308122}
   playerStateReference: {fileID: 279898533}
   fielderReference: {fileID: 1399274990}
+  pitchingPhaseTarget: {fileID: 1471202109}
+  pitchingNumber: 2
 --- !u!1 &1695224237
 GameObject:
   m_ObjectHideFlags: 0
