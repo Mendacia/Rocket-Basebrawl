@@ -16,6 +16,10 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
+    [Header("Variables to tell player when they can move")]
+    [SerializeField] private GameObject goText = null;
+    [Header("Make game hard")]
+    public bool makeGameHard = false;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
@@ -93,9 +97,8 @@ public class fielderPeltingScript : MonoBehaviour
 
     public IEnumerator BattingPhaseTimer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         iterator++;
-        Debug.Log(iterator);
         if (gameStarted == true)
         {
             //gameStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
@@ -104,6 +107,7 @@ public class fielderPeltingScript : MonoBehaviour
             battingBallCount = 0;
             playerStateReference.playerState = 2;
             //Do some shit to tell the player they can go
+            StartCoroutine(TellPlayerTheyCanGo());
             StopCoroutine(BattingPhaseTimer());
         }
         else if (iterator >= 4)
@@ -117,6 +121,14 @@ public class fielderPeltingScript : MonoBehaviour
             battingPhaseThrow();
             StartCoroutine(BattingPhaseTimer());
         }
+    }
+
+    private IEnumerator TellPlayerTheyCanGo()
+    {
+        goText.SetActive(true);
+        //Play audio clip of whistle or something
+        yield return new WaitForSeconds(0.75f);
+        goText.SetActive(false);
     }
 
     private void ReadyThrow()

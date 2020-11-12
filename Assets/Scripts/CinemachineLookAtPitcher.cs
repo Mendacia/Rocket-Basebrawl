@@ -7,6 +7,8 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject cineMachineBaseCam = null;
+    [Header("Put the Main Camera here!")]
+    [SerializeField] private Transform cameraRotation;
     [Header("Put Player Controller here!")]
     [SerializeField] private GameObject player = null;
     [SerializeField] private playerControls playerStateReference = null;
@@ -27,12 +29,6 @@ public class CinemachineLookAtPitcher : MonoBehaviour
         basePosition = this.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber)
@@ -44,15 +40,29 @@ public class CinemachineLookAtPitcher : MonoBehaviour
         }
     }
 
+    //This is a bunch of BS settings
+
     private IEnumerator StartPitchingPhase()
     {
+        //Resets game variables back to beginning
+        //Setting these first 2 lines to false makes the game get harder as you clear each base!
+        if (fielderReference.makeGameHard)
+        {
+            fielderReference.hasStartedThrowingSequenceAlready = false;
+            fielderReference.canThrow = false;
+        }
         playerStateReference.playerState = 1;
+        var rb = player.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionX & RigidbodyConstraints.FreezePositionZ & RigidbodyConstraints.FreezeRotationY;
         StopCoroutine(fielderReference.ThrowDelay());
         cineMachineBaseCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
+        //Wait a second so that the player can't see the players position and rotation being corrected
         yield return new WaitForSeconds(1);
         player.transform.position = basePosition;
+        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
         pitchingPhaseTarget.transform.position = basePosition + new Vector3(0, 1.68f, 0.5f);
+        //Reset camera back to the player, start pitching and increase the base variable
         yield return new WaitForSeconds(2);
         cineMachineBaseCam.SetActive(false);
         StartCoroutine(fielderReference.BattingPhaseTimer());

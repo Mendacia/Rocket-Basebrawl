@@ -73,7 +73,7 @@ public class playerControls : MonoBehaviour
         {
             //No input, aiming only
             case 1:
-
+                
                 break;
             //Full movement
             case 2:
