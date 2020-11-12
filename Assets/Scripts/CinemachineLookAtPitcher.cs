@@ -22,6 +22,11 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 
     private Vector3 basePosition;
 
+    private void Awake()
+    {
+        currentPitchingNumber = 1;
+    }
+
     void Start()
     {
         basePosition = this.transform.position;

@@ -32,6 +32,11 @@ public class fielderPeltingScript : MonoBehaviour
     private int iterator = 0;
     public static bool gameStarted = false;
 
+    private void Awake()
+    {
+        gameStarted = false;
+    }
+
     private void Start()
     {
         

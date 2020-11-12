@@ -8,6 +8,8 @@ public class LoadingScreenControls : MonoBehaviour
     [SerializeField] private bool notFirstScene = true;
     private void Awake()
     {
+        Time.timeScale = 1;
+
         anim = gameObject.GetComponent<Animator>();
         if (notFirstScene)
         {
