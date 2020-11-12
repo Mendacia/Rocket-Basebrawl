@@ -18,8 +18,7 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
 
     public void RangeAllocatorNextBaseUpdater(int sentNextBase)
     {
-        recievedNextBase = baseManagerScript.bases[sentNextBase];
-        Debug.Log(sentNextBase);
+        recievedNextBase = baseManagerScript.GetBases()[sentNextBase];
     }
 
     private void Update()
@@ -32,7 +31,6 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
 
     public void GiveTheFielderATarget()
     {
-        //This is voodoo magic and I don't really know how MULTIPLYING Vector3s works, but, it does
         if (firstFielder == true)
         {
             var multiplierHolder = (recievedNextBase.position - playerPosition.position);
