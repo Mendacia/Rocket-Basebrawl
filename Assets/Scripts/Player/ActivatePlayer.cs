@@ -9,9 +9,8 @@ public class ActivatePlayer : MonoBehaviour
     //Score Reference
     private PlayerInputActions inputActions;
 
-    [SerializeField] private bool isFrozen = false;
-
-    [SerializeField] private runningPhaseMovement playerStateReference = null;
+    [Header("Put the Player Controller here")]
+    [SerializeField] private playerControls playerStateReference = null;
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -20,12 +19,7 @@ public class ActivatePlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if (isFrozen)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
     }
-
     void Update()
     {
         //Yes this is fine to have in update, the script deactivates itself anyway
@@ -33,7 +27,7 @@ public class ActivatePlayer : MonoBehaviour
         if(playerStateReference.playerState == 2)
         {
             playerStateReference.playerState = 2;
-            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
+            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionY & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
             //fielderMain.startPeltingLoop();
             this.GetComponent<ActivatePlayer>().enabled = false;
@@ -49,7 +43,7 @@ public class ActivatePlayer : MonoBehaviour
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && playerStateReference.playerState == 1)
+        if (callbackContext.performed && playerStateReference.playerState == 1 && !DeactiveateCamera.dollyActive)
         {
             StartCoroutine(TimeSlowOnHit());
         }

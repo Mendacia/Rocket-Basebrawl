@@ -11,6 +11,8 @@ TagManager:
   - BallHit
   - Fielder
   - TargetingBeamTag
+  - CineNormal
+  - CineAim
   layers:
   - Default
   - TransparentFX

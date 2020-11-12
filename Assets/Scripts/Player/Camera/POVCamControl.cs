@@ -15,7 +15,7 @@ public class POVCamControl : MonoBehaviour
     public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
-    [SerializeField] private runningPhaseMovement playerStateReference;
+    [SerializeField] private playerControls playerStateReference;
 
     // Start is called before the first frame update
 
@@ -34,17 +34,22 @@ public class POVCamControl : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (playerStateReference.playerState > 0)
         {
             if (useX == true)
             {
-                POVCam.m_HorizontalAxis.Value += camInput.x * sensitivity * Time.deltaTime;
+                POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 2) * Time.deltaTime;
             }
 
-            POVCam.m_VerticalAxis.Value -= camInput.y * sensitivity / 2.5f * Time.deltaTime;
+            POVCam.m_VerticalAxis.Value -= camInput.y * (sensitivity / 2) / 2.5f * Time.deltaTime;
             camInput = Vector2.zero;
+        }
+        if(playerStateReference.playerState == 2)
+        {
+            var vcam = GetComponent<CinemachineVirtualCamera>();
+            vcam.m_Transitions.m_InheritPosition = true;
         }
     }
 

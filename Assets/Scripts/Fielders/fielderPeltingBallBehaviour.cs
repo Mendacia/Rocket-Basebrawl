@@ -8,9 +8,12 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     public bool isHittable = true;
     public bool ballIsActive = true;
 
+    private scoreHolder scoreHolderReference;
 
     void Start()
     {
+        scoreHolderReference = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
         StartCoroutine(Expire());
@@ -20,13 +23,13 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     {
         if(ballIsActive == true && fielderPeltingScript.gameStarted == true)
         {
-            GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score--;
+            scoreHolderReference.score--;
             ballIsActive = false;
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    //Not being used - Delete?
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "BallHit")
         {
@@ -36,7 +39,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
             isHittable = false;
             Detector.ballCols.Remove(this.gameObject.transform);
         }
-    }
+    }*/
 
     IEnumerator Expire()
     {

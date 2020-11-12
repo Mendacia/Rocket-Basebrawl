@@ -12,30 +12,39 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private scoreHolder scoreHolderObject;
-    [SerializeField] private runningPhaseMovement playerStateReference = null;
+    [SerializeField] private playerControls playerStateReference = null;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
+    [Header("Variables to tell player when they can move")]
+    [SerializeField] private GameObject goText = null;
+    [Header("Make game hard")]
+    public bool makeGameHard = false;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
     [System.NonSerialized] public int battingBallCount;
-    private bool canThrow = false;
+    public bool canThrow = false;
     private bool hasReadiedAThrow = false;
-    private bool hasStartedThrowingSequenceAlready = false;
+    public bool hasStartedThrowingSequenceAlready = false;
     private bool hasStartedPitchingSequenceAlready = false;
 
     private int iterator = 0;
     public static bool gameStarted = false;
 
+    private void Awake()
+    {
+        gameStarted = false;
+    }
+
     private void Start()
     {
+        
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
             fieldingTeam.Add(child);
         }
-        //StartCoroutine(BattingPhaseTimer());
     }
 
     private void Update()
@@ -46,18 +55,12 @@ public class fielderPeltingScript : MonoBehaviour
             fielder.LookAt(player);
         }
 
-        if (canThrow == true)
+        if (canThrow && gameStarted)
         {
             ReadyThrow();
         }
 
-        if(scoreHolderObject.score >= 1 && !gameStarted)
-        {
-            playerStateReference.playerState = 2;
-            gameStarted = true;
-        }
-
-        if(playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
+        if (playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
         {
             hasStartedPitchingSequenceAlready = true;
             StartCoroutine(BattingPhaseTimer());
@@ -72,7 +75,7 @@ public class fielderPeltingScript : MonoBehaviour
         }
     }
 
-    IEnumerator ThrowDelay()
+    public IEnumerator ThrowDelay()
     {
         yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
         canThrow = true;
@@ -99,24 +102,38 @@ public class fielderPeltingScript : MonoBehaviour
 
     public IEnumerator BattingPhaseTimer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         iterator++;
-        Debug.Log(iterator);
-        if (iterator >= 4)
+        if (gameStarted == true)
+        {
+            //gameStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
+            startPeltingLoop();
+            iterator = 0;
+            battingBallCount = 0;
+            playerStateReference.playerState = 2;
+            //Do some shit to tell the player they can go
+            StartCoroutine(TellPlayerTheyCanGo());
+            StopCoroutine(BattingPhaseTimer());
+        }
+        else if (iterator >= 4)
         {
             //if they havent hit the ball, then kill them
             SceneManager.LoadScene(0);
         }
-        else if(scoreHolderObject.score >= 1)
-        {
-            //Break the coroutine
-            startPeltingLoop();
-        }
+        
         else
         {
             battingPhaseThrow();
             StartCoroutine(BattingPhaseTimer());
         }
+    }
+
+    private IEnumerator TellPlayerTheyCanGo()
+    {
+        goText.SetActive(true);
+        //Play audio clip of whistle or something
+        yield return new WaitForSeconds(0.75f);
+        goText.SetActive(false);
     }
 
     private void ReadyThrow()

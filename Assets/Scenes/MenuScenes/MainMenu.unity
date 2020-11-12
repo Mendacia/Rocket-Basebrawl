@@ -156,7 +156,7 @@ RectTransform:
   m_Children:
   - {fileID: 1013663171}
   m_Father: {fileID: 1197533275}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b28cdb16c0c924e8d776072f0fe88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingUI: {fileID: 711563955}
   sceneToLoad: ZachBasebrawlTestingZone
 --- !u!1 &94530743
 GameObject:
@@ -361,7 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b28cdb16c0c924e8d776072f0fe88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Change This In Editor
+  loadingUI: {fileID: 0}
+  sceneToLoad: 
 --- !u!1 &122327614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1221,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2105034921651515535, guid: 72949d7a47d059646b8b6ecf85aea805,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2105034921651515536, guid: 72949d7a47d059646b8b6ecf85aea805,
         type: 3}
       propertyPath: notFirstScene
@@ -1456,6 +1463,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701742582}
   m_CullTransparentMesh: 0
+--- !u!114 &711563955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2105034921651515536, guid: 72949d7a47d059646b8b6ecf85aea805,
+    type: 3}
+  m_PrefabInstance: {fileID: 681622366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f4f85519031724a803e5e17ed595d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &742553110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,15 +1861,15 @@ RectTransform:
   m_GameObject: {fileID: 1014003197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 21.669374, y: 1, z: 1}
+  m_LocalScale: {x: 36.043392, y: 1.6633333, z: 1.6633333}
   m_Children:
   - {fileID: 1817291718}
-  m_Father: {fileID: 1197533275}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -91}
+  m_AnchoredPosition: {x: 26.634563, y: 173.20941}
   m_SizeDelta: {x: 607, y: 65}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1014003199
@@ -2214,7 +2233,6 @@ RectTransform:
   - {fileID: 1733685718}
   - {fileID: 319600440}
   - {fileID: 1096732512}
-  - {fileID: 1014003198}
   - {fileID: 13072231}
   - {fileID: 1289516675}
   m_Father: {fileID: 1111101699}
@@ -2333,7 +2351,7 @@ RectTransform:
   m_Children:
   - {fileID: 1655518018}
   m_Father: {fileID: 1197533275}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3109,6 +3127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b28cdb16c0c924e8d776072f0fe88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingUI: {fileID: 711563955}
   sceneToLoad: LiamWackoTestingZone
 --- !u!114 &1725355105
 MonoBehaviour:

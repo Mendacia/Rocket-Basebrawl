@@ -4,10 +4,12 @@ using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.InputSystem;
 
-public class runningPhaseMovement : MonoBehaviour
+public class playerControls : MonoBehaviour
 {
     [Header("Player Speed")]
-    [SerializeField] private float speed = 1;
+    [SerializeField] private float speed = 30;
+    [SerializeField] private float baseSpeed = 30;
+    [SerializeField] private float topSpeed = 45;
     //Lock player movement at the start
     [Header("Player State")]
     public int playerState = 2;
@@ -19,24 +21,32 @@ public class runningPhaseMovement : MonoBehaviour
     //Input System Movements
     private PlayerInputActions inputActions;
     private Vector2 movementInput;
-    private Vector3 inputDirection;
-    private Vector3 moveVector;
+    private Vector3 inputDirection, moveVector;
     private Quaternion currentRotation;
 
     [Header("Rigidbody Variables")]
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private float magnitudeStopFloat = 15;
+    [SerializeField] private Rigidbody rb = null;
+    [SerializeField] private float magnitudeStopFloat = 10;
+    [Header("Standalone Player Gravity")]
+    [SerializeField] private float gravityMultiplier = 100;
+    [Header("Tick this if the player needs to be locked in place on Start")]
+    public bool isFrozen = false;
 
     private void Awake()
     {
-        //On awake grabs the InputSystem and assigns the variavle movementInput to the Move field
+        //On awake grabs the InputSystem and assigns the variable movementInput to the Move field
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
     }
 
     private void Start()
     {
+        speed = baseSpeed;
         //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+        if (isFrozen == true)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     private void Update()
@@ -44,11 +54,16 @@ public class runningPhaseMovement : MonoBehaviour
         if(rb.velocity.magnitude <= magnitudeStopFloat)
         {
             rb.velocity = Vector3.zero;
+            speed = baseSpeed;
             playerAnimator.SetBool("heMoving", false);
         }
         else
         {
             playerAnimator.SetBool("heMoving", true);
+        }
+        if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
+        {
+            speed = speed + 0.05f;
         }
     }
 
@@ -58,12 +73,15 @@ public class runningPhaseMovement : MonoBehaviour
         {
             //No input, aiming only
             case 1:
-
+                
                 break;
             //Full movement
             case 2:
                 float h = movementInput.x;
                 float v = movementInput.y;
+
+                //Enhances the Gravity for the player alone
+                rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
 
                 Vector3 targetInput = new Vector3(h, 0, v);
 
@@ -86,8 +104,8 @@ public class runningPhaseMovement : MonoBehaviour
     void Move(Vector3 desiredDirection)
     {
         moveVector.Set(desiredDirection.x, 0, desiredDirection.z);
-        moveVector = moveVector * speed * Time.deltaTime;
-        rb.velocity = moveVector * speed * 100 * Time.deltaTime;
+        moveVector += moveVector * speed / 5 * Time.deltaTime;
+        rb.velocity = moveVector * speed * 50 * Time.deltaTime;
     }
 
     void Turn(Vector3 desiredDirection)

@@ -10,7 +10,16 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation)
     {
         //Don't worry about these causing lag, it only runs when the player hits a ball, it shouldn't be that taxing.
-        GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+        if (fielderPeltingScript.gameStarted == false)
+        {
+            GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+            fielderPeltingScript.gameStarted = true;
+        }
+        else
+        {
+            GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+        }
+        
         var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();
 
         //Following this is just making sure the ball goes in the right direction
