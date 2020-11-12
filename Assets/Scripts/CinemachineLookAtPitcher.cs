@@ -7,8 +7,6 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject cineMachineBaseCam = null;
-    [Header("Put the Main Camera here!")]
-    [SerializeField] private Transform cameraRotation;
     [Header("Put Player Controller here!")]
     [SerializeField] private GameObject player = null;
     [SerializeField] private playerControls playerStateReference = null;
@@ -45,21 +43,21 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     private IEnumerator StartPitchingPhase()
     {
         //Resets game variables back to beginning
-        //Setting these first 2 lines to false makes the game get harder as you clear each base!
         if (fielderReference.makeGameHard)
         {
+            //Setting these lines to false makes the game get harder as you clear each base!
             fielderReference.hasStartedThrowingSequenceAlready = false;
             fielderReference.canThrow = false;
         }
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionX & RigidbodyConstraints.FreezePositionZ & RigidbodyConstraints.FreezeRotationY;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         StopCoroutine(fielderReference.ThrowDelay());
         cineMachineBaseCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
         yield return new WaitForSeconds(1);
-        player.transform.position = basePosition;
+        player.transform.position = basePosition + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
         pitchingPhaseTarget.transform.position = basePosition + new Vector3(0, 1.68f, 0.5f);
         //Reset camera back to the player, start pitching and increase the base variable
