@@ -8,21 +8,22 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private LineRenderer targetingBeam = null;
     [Header("Testing this for colour changes")]
     [SerializeField] private Color lineRendererColour;
+    [SerializeField] private Color lineRendererColourEXPlusUltra;
     [SerializeField] private LayerMask hitterLayerMask;
     [SerializeField] private LayerMask physicsLayerMask;
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
+    [SerializeField] private Gradient myGradient = new Gradient();
     private float beamWidth = 1f;
     [System.NonSerialized] public Vector3 direction = Vector3.zero;
     [System.NonSerialized] public Vector3 originPosition = Vector3.zero;
     [System.NonSerialized] public Transform playerTransform = null;
 
-    [SerializeField] private GameObject emptyMarker;
-
     private void Update()
     {
         var startPoint = originPosition;
         var midPoint = originPosition;
+        var midPointTwo = originPosition;
         var endPoint = originPosition;
         var inHitterRadius = false;
         //Get new hitter raycast hit
@@ -34,6 +35,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         //Get new physics raycast hit
         if (Physics.Raycast(originPosition, direction, out var physicsRaycastHit, 1000, physicsLayerMask))
         {
+            midPoint = startPoint + direction * Vector3.Distance(startPoint, playerTransform.position);
+            midPointTwo = startPoint + (direction * 1.01f) * Vector3.Distance(startPoint, playerTransform.position);
             endPoint = physicsRaycastHit.point;
         }
 
@@ -43,11 +46,13 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         //Theoretically, go start-mid, then mid-end with 2 line renderers
 
         positions.Add(startPoint);
-        positions.Add(endPoint = startPoint + direction * Vector3.Distance(startPoint, playerTransform.position));
+        positions.Add(midPoint);
+        positions.Add(midPointTwo);
+        positions.Add(endPoint);
         targetingBeam.positionCount = positions.Count;
         targetingBeam.SetPositions(positions.ToArray());
-        oSprite.transform.position = endPoint;
-        xSprite.transform.position = endPoint;
+        oSprite.transform.position = midPoint;
+        xSprite.transform.position = midPoint;
         //Instantiate(emptyMarker, endPoint, Quaternion.identity);
         //Start shrinking that beam
         targetingBeam.startWidth = beamWidth;
@@ -57,7 +62,14 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         {
             beamWidth = beamWidth - 1f *Time.deltaTime;
             oSprite.transform.localScale = new Vector3(beamWidth, beamWidth, beamWidth);
-            targetingBeam.SetColors(lineRendererColour, lineRendererColour);
+            //Store this to make code easier to read
+            var midDistance = Vector3.Distance(startPoint, midPoint) / Vector3.Distance(startPoint, endPoint);
+            //Gradients are awful. Basically, LineRendererColour is the animated colour and EXPlusUltra is effectively just black. floats after are just % through the total line renderer
+            myGradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(lineRendererColour, 0.0f), new GradientColorKey(lineRendererColour, midDistance), new GradientColorKey(lineRendererColourEXPlusUltra, (midDistance * 1.01f)), new GradientColorKey(lineRendererColourEXPlusUltra, 1) },
+                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f)}
+                );
+            targetingBeam.colorGradient = myGradient;
         }
         else
         {

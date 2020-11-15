@@ -15,7 +15,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private Transform playerPosition = null;
     [SerializeField] private Text uIBaseText = null;
     [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript = null;
-    [SerializeField] private NewSuperBasebrawlTargetingUDeluxe testingAllocationScript = null;
+    [SerializeField] private fielderProgressionBasedAccuracyScript testingAllocationScript = null;
     [Header("This is 5 by default")]
     [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
     private bool hasLeftHome = false;

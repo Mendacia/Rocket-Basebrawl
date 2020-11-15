@@ -9,7 +9,7 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
-    [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
+    [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private scoreHolder scoreHolderObject;
     [SerializeField] private playerControls playerStateReference = null;
@@ -20,6 +20,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private GameObject goText = null;
     [Header("Make game hard")]
     public bool makeGameHard = false;
+    private bool firstFielder = true;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
@@ -164,7 +165,7 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
                 numberOfBallsToThrow--;
-                rangeAllocationScript.firstFielder = true;
+                firstFielder = true;
             }
 
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
@@ -172,9 +173,9 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
                 myBeamScript.originPosition = fielder.position;
-                rangeAllocationScript.GiveTheFielderATarget();
+                rangeAllocationScript.GiveTheFielderATarget(firstFielder);
                 myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
-                rangeAllocationScript.firstFielder = false;
+                firstFielder = false;
                 myBeamScript.playerTransform = player.transform;
             }
             canThrow = false;
