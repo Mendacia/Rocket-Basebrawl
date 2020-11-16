@@ -6,7 +6,6 @@ using static UnityEngine.InputSystem.InputAction;
 public class ActivatePlayer : MonoBehaviour
 {
     private Rigidbody rb;
-    //Score Reference
     private PlayerInputActions inputActions;
 
     [Header("Put the Player Controller here")]
@@ -43,7 +42,7 @@ public class ActivatePlayer : MonoBehaviour
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && playerStateReference.playerState == 1 && !DeactiveateCamera.dollyActive)
+        if (callbackContext.performed && playerStateReference.playerState == 1)
         {
             StartCoroutine(TimeSlowOnHit());
         }

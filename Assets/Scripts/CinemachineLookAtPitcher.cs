@@ -48,16 +48,10 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     private IEnumerator StartPitchingPhase()
     {
         //Resets game variables back to beginning
-        if (fielderReference.makeGameHard)
-        {
-            //Setting these lines to false makes the game get harder as you clear each base!
-            fielderReference.hasStartedThrowingSequenceAlready = false;
-            fielderReference.canThrow = false;
-        }
+        fielderReference.hasStartedThrowingSequenceAlready = false;
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        StopCoroutine(fielderReference.ThrowDelay());
         cineMachineBaseCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
@@ -67,6 +61,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
         pitchingPhaseTarget.transform.position = basePosition + new Vector3(0, 1.68f, 0.5f);
         //Reset camera back to the player, start pitching and increase the base variable
         yield return new WaitForSeconds(2);
+        fielderReference.canThrow = false; //Set canThrow here so that it's guaranteed to not conflict with the coroutine before it stops
         cineMachineBaseCam.SetActive(false);
         StartCoroutine(fielderReference.BattingPhaseTimer());
         currentPitchingNumber++;

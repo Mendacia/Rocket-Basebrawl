@@ -79,7 +79,11 @@ public class fielderPeltingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
         canThrow = true;
-        StartCoroutine(ThrowDelay());
+        Debug.Log("This hasn't stopped");
+        if (gameStarted)
+        {
+            StartCoroutine(ThrowDelay());
+        }
     }
 
     public void battingPhaseThrow()
@@ -100,6 +104,7 @@ public class fielderPeltingScript : MonoBehaviour
         }
     }
 
+    //Start of the game/Pitching phase
     public IEnumerator BattingPhaseTimer()
     {
         yield return new WaitForSeconds(2);
@@ -127,7 +132,7 @@ public class fielderPeltingScript : MonoBehaviour
             StartCoroutine(BattingPhaseTimer());
         }
     }
-
+    //Comment to tell you that this is the coroutine that turns on the text that tells the player that they can go
     private IEnumerator TellPlayerTheyCanGo()
     {
         goText.SetActive(true);
