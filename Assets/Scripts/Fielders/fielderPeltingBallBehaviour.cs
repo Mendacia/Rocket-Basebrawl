@@ -21,7 +21,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(ballIsActive == true && fielderPeltingScript.gameStarted == true)
+        if(ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
         {
             scoreHolderReference.score--;
             ballIsActive = false;

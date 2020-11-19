@@ -17,12 +17,10 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation)
     {
         //Don't worry about these causing lag, it only runs when the player hits a ball, it shouldn't be that taxing.
-        if (fielderPeltingScript.gameStarted == false)
+        if (fielderPeltingScript.pitchingLoopStarted == false)
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
-            effectHolder.TimeSlowVoid();
-            //effectHolder.CameraShakeOnVoid();
-            fielderPeltingScript.gameStarted = true;
+            fielderPeltingScript.pitchingLoopStarted = true;
         }
         else
         {

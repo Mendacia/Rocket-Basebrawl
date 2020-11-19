@@ -37,7 +37,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
         if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber)
         {
             pitchingStarted = true;
-            fielderPeltingScript.gameStarted = false;
+            fielderPeltingScript.pitchingLoopStarted = false;
 
             StartCoroutine(StartPitchingPhase());
         }

@@ -33,11 +33,11 @@ public class fielderPeltingScript : MonoBehaviour
     private bool hasStartedPitchingSequenceAlready = false;
 
     private int iterator = 0;
-    public static bool gameStarted = false;
+    public static bool pitchingLoopStarted = false;
 
     private void Awake()
     {
-        gameStarted = false;
+        pitchingLoopStarted = false;
     }
 
     private void Start()
@@ -58,7 +58,7 @@ public class fielderPeltingScript : MonoBehaviour
             fielder.LookAt(player);
         }
 
-        if (canThrow && gameStarted)
+        if (canThrow && pitchingLoopStarted)
         {
             ReadyThrow();
         }
@@ -82,7 +82,7 @@ public class fielderPeltingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
         canThrow = true;
-        if (gameStarted)
+        if (pitchingLoopStarted)
         {
             StartCoroutine(ThrowDelay());
         }
@@ -111,9 +111,9 @@ public class fielderPeltingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         iterator++;
-        if (gameStarted == true)
+        if (pitchingLoopStarted == true)
         {
-            //gameStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
+            //pitchingLoopStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
             startPeltingLoop();
             Time.timeScale = 1;
             iterator = 0;

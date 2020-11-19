@@ -60,7 +60,6 @@ public class ActivatePlayer : MonoBehaviour
         {
             Time.timeScale = 0.3f;
             yield return new WaitForSeconds(0.25f);
-            Debug.Log("This is working");
             Time.timeScale = 1;
         }
     }
