@@ -10,6 +10,12 @@ public class ActivatePlayer : MonoBehaviour
 
     [Header("Put the Player Controller here")]
     [SerializeField] private playerControls playerStateReference = null;
+
+    [Header("Cinemachine Variables")]
+    [SerializeField] private CinemachineCameraShake camShake;
+    [SerializeField] private CinemachineCameraShake camShakeAim;
+    [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -42,7 +48,7 @@ public class ActivatePlayer : MonoBehaviour
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && playerStateReference.playerState == 1)
+        if (callbackContext.performed && playerStateReference.playerState == 1 && !DeactiveateCamera.dollyActive)
         {
             StartCoroutine(TimeSlowOnHit());
         }
@@ -54,8 +60,17 @@ public class ActivatePlayer : MonoBehaviour
         {
             Time.timeScale = 0.3f;
             yield return new WaitForSeconds(0.25f);
+            Debug.Log("This is working");
             Time.timeScale = 1;
         }
+    }
+    IEnumerator TurnShakeOnAndOff()
+    {
+        camShake.Noise(frequency, amplitude);
+        camShakeAim.Noise(frequency, amplitude);
+        yield return new WaitForSeconds(waitTime);
+        camShake.Noise(0, 0);
+        camShakeAim.Noise(0, 0);
     }
     private void OnEnable()
     {

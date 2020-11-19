@@ -459,6 +459,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110964727}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &140137152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6652822155040658620, guid: 740722ad61eae844bb953050ceb3df68,
+    type: 3}
+  m_PrefabInstance: {fileID: 6652822153012350107}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &157689697
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 157959961}
   - component: {fileID: 157959962}
+  - component: {fileID: 157959963}
   m_Layer: 0
   m_Name: Bases
   m_TagString: Untagged
@@ -590,12 +603,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bases: []
-  currentBase: 0
-  nextBase: 1
   playerPosition: {fileID: 234638612}
   uIBaseText: {fileID: 1167555108}
   rangeAllocationScript: {fileID: 1399274993}
+  testingAllocationScript: {fileID: 157959963}
   distanceFromBaseRequiredToProgress: 5
+  percentageOfRunRemaining: 0
+--- !u!114 &157959963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157959960}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b95409932bec24408351c43e9ab67b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {fileID: 234638612}
+  baseManagerScript: {fileID: 157959962}
+  targetingSphereScale: 1
+  targetingDistanceMaximum: 20
 --- !u!1 &190353908
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +732,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
+  m_Size: {x: 5, y: 30, z: 5}
   m_Center: {x: 0, y: 15, z: 0}
 --- !u!1 &202454485
 GameObject:
@@ -933,6 +962,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6652822153012350107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &255110536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6652822153212436450, guid: 740722ad61eae844bb953050ceb3df68,
+    type: 3}
+  m_PrefabInstance: {fileID: 6652822153012350107}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &279898533 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
@@ -1537,7 +1578,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
+  m_Size: {x: 5, y: 30, z: 5}
   m_Center: {x: 0, y: 15, z: 0}
 --- !u!114 &485506597
 MonoBehaviour:
@@ -1552,7 +1593,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineMachineBaseCam: {fileID: 157689697}
-  cameraRotation: {fileID: 0}
   player: {fileID: 798308122}
   playerStateReference: {fileID: 279898533}
   fielderReference: {fileID: 1399274990}
@@ -2515,6 +2555,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017134154}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1028040671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 672805361882806311, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 451964743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028040675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028040671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c969d2d05efe72644a884a698f0f80c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1047779740
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,7 +3246,7 @@ MonoBehaviour:
   minWaitTime: 1
   maxWaitTime: 2
   goText: {fileID: 1494803694}
-  makeGameHard: 0
+  makeGameHard: 1
   fieldingTeam: []
   canThrow: 0
   hasStartedThrowingSequenceAlready: 0
@@ -3333,7 +3391,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
+  m_Size: {x: 5, y: 30, z: 5}
   m_Center: {x: 0, y: 15, z: 0}
 --- !u!114 &1423628102
 MonoBehaviour:
@@ -3348,7 +3406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineMachineBaseCam: {fileID: 613147797}
-  cameraRotation: {fileID: 0}
   player: {fileID: 798308122}
   playerStateReference: {fileID: 279898533}
   fielderReference: {fileID: 1399274990}
@@ -3718,7 +3775,7 @@ GameObject:
   - component: {fileID: 1494803696}
   - component: {fileID: 1494803695}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasThatHoldsTextThatTellsThePlayerTheyCanGo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4497,7 +4554,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 30, z: 3}
+  m_Size: {x: 5, y: 30, z: 5}
   m_Center: {x: 0, y: 15, z: 0}
 --- !u!114 &1667473487
 MonoBehaviour:
@@ -4512,7 +4569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineMachineBaseCam: {fileID: 205352051}
-  cameraRotation: {fileID: 0}
   player: {fileID: 798308122}
   playerStateReference: {fileID: 279898533}
   fielderReference: {fileID: 1399274990}
@@ -4714,6 +4770,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 478354119}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1757929026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757929028}
+  - component: {fileID: 1757929027}
+  m_Layer: 0
+  m_Name: BaseballEffectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1757929027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757929026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeac7def01749c644a6d3e80e3eb9b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camShake: {fileID: 255110536}
+  camShakeAim: {fileID: 140137152}
+  frequency: 0.8
+  amplitude: 3
+  waitTime: 0.1
+  slowedTime: 0.3
+  waitTimeSlow: 0.25
+--- !u!4 &1757929028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757929026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793494116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,10 +5151,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790204, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: camShakeAim
+      value: 
+      objectReference: {fileID: 140137152}
+    - target: {fileID: 6652822154835790204, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: camShake
+      value: 
+      objectReference: {fileID: 255110536}
     - target: {fileID: 6652822155040658617, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: PriorityBoostAmount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173373054183313787, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.2139726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173373054183313787, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.2139726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173373054183313787, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 5.2139726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173373054183313787, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740722ad61eae844bb953050ceb3df68, type: 3}

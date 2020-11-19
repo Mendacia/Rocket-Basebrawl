@@ -13,11 +13,14 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private scoreHolder scoreHolderObject;
     [SerializeField] private playerControls playerStateReference = null;
+
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
+
     [Header("Variables to tell player when they can move")]
     [SerializeField] private GameObject goText = null;
+
     [Header("Make game hard")]
     public bool makeGameHard = false;
 
@@ -79,7 +82,6 @@ public class fielderPeltingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
         canThrow = true;
-        Debug.Log("This hasn't stopped");
         if (gameStarted)
         {
             StartCoroutine(ThrowDelay());
@@ -113,6 +115,7 @@ public class fielderPeltingScript : MonoBehaviour
         {
             //gameStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
             startPeltingLoop();
+            Time.timeScale = 1;
             iterator = 0;
             battingBallCount = 0;
             playerStateReference.playerState = 2;
@@ -137,7 +140,7 @@ public class fielderPeltingScript : MonoBehaviour
     {
         goText.SetActive(true);
         //Play audio clip of whistle or something
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.3f);
         goText.SetActive(false);
     }
 
