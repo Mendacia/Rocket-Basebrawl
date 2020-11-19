@@ -48,9 +48,15 @@ public class POVCamControl : MonoBehaviour
         }
         if(playerStateReference.playerState == 2)
         {
-            var vcam = GetComponent<CinemachineVirtualCamera>();
-            vcam.m_Transitions.m_InheritPosition = true;
+            StartCoroutine(WaitToInheritPosition());
         }
+    }
+
+    IEnumerator WaitToInheritPosition()
+    {
+        yield return new WaitForSeconds(4f);
+        var vcam = GetComponent<CinemachineVirtualCamera>();
+        vcam.m_Transitions.m_InheritPosition = true;
     }
 
     private void GetValue(CallbackContext context)

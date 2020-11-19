@@ -31,6 +31,7 @@ public class playerControls : MonoBehaviour
     [SerializeField] private float gravityMultiplier = 100;
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
+    bool isGrounded = false;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class playerControls : MonoBehaviour
 
     private void Update()
     {
-        if(rb.velocity.magnitude <= magnitudeStopFloat)
+        if (rb.velocity.magnitude <= magnitudeStopFloat)
         {
             rb.velocity = Vector3.zero;
             speed = baseSpeed;
@@ -98,6 +99,24 @@ public class playerControls : MonoBehaviour
                 Turn(desiredDirection);
 
                 break;
+        }
+    }
+
+    public void Jump(CallbackContext context)
+    {
+        if(context.performed && !isGrounded)
+        {
+            isGrounded = true;
+            rb.AddForce(new Vector3(0, 5000, 0), ForceMode.Impulse);
+            Debug.Log("Jump");
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 13 /*Ground*/)
+        {
+            isGrounded = false;
         }
     }
 

@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 110964731}
   - component: {fileID: 110964730}
   - component: {fileID: 110964729}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PathThreeHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 190353911}
   - component: {fileID: 190353910}
   - component: {fileID: 190353913}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BaseHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 365404704}
   - component: {fileID: 365404703}
   - component: {fileID: 365404702}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PathOneTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 485506593}
   - component: {fileID: 485506596}
   - component: {fileID: 485506597}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BaseOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2170,7 +2170,7 @@ GameObject:
   - component: {fileID: 793863411}
   - component: {fileID: 793863410}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2398,7 +2398,7 @@ GameObject:
   - component: {fileID: 926485871}
   - component: {fileID: 926485870}
   - component: {fileID: 926485869}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BasePitcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2566,7 +2566,7 @@ GameObject:
   - component: {fileID: 1017134158}
   - component: {fileID: 1017134157}
   - component: {fileID: 1017134156}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PathTwoThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3390,7 +3390,7 @@ GameObject:
   - component: {fileID: 1423628098}
   - component: {fileID: 1423628101}
   - component: {fileID: 1423628102}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BaseThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3517,7 +3517,7 @@ GameObject:
   - component: {fileID: 1436010122}
   - component: {fileID: 1436010121}
   - component: {fileID: 1436010120}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4553,7 +4553,7 @@ GameObject:
   - component: {fileID: 1667473483}
   - component: {fileID: 1667473486}
   - component: {fileID: 1667473487}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BaseTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4680,7 +4680,7 @@ GameObject:
   - component: {fileID: 1695224241}
   - component: {fileID: 1695224240}
   - component: {fileID: 1695224239}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PathPitcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5106,7 +5106,7 @@ GameObject:
   - component: {fileID: 2002893403}
   - component: {fileID: 2002893402}
   - component: {fileID: 2002893401}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PathHomeOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5355,6 +5355,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822153723329400, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_CollideAgainst.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154353285722, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_CollideAgainst.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: efdb7027-3535-4f30-b525-abfb3ff5ae85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: Player/Jump[/Keyboard/space]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 279898533}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: playerControls, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822154835790194, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6652822154835790204, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
