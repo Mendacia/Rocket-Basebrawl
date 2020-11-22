@@ -27,11 +27,14 @@ public class playerControls : MonoBehaviour
     [Header("Rigidbody Variables")]
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 10;
-    [Header("Standalone Player Gravity")]
-    [SerializeField] private float gravityMultiplier = 100;
+    [Header("Standalone Player Gravity Variables - Do not set above 10")]
+    [SerializeField] private float gravityMultiplier = 10;
+    [SerializeField] private float jumpMultiplier = 10;
+    [SerializeField] private float jumpWaitTime = 1;
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
-    bool isGrounded = false;
+    private bool isGrounded = true;
+    private bool useGravity;
 
     private void Awake()
     {
@@ -82,7 +85,10 @@ public class playerControls : MonoBehaviour
                 float v = movementInput.y;
 
                 //Enhances the Gravity for the player alone
-                rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
+                if (useGravity)
+                {
+                    rb.AddForce(Physics.gravity * gravityMultiplier * 10, ForceMode.Acceleration);
+                }
 
                 Vector3 targetInput = new Vector3(h, 0, v);
 
@@ -104,19 +110,27 @@ public class playerControls : MonoBehaviour
 
     public void Jump(CallbackContext context)
     {
-        if(context.performed && !isGrounded)
+        if(context.performed && isGrounded)
         {
-            isGrounded = true;
-            rb.AddForce(new Vector3(0, 5000, 0), ForceMode.Impulse);
-            Debug.Log("Jump");
+            isGrounded = false;
+            StartCoroutine(JumpController());
         }
+    }
+
+    IEnumerator JumpController()
+    {
+        rb.AddForce(new Vector3(0, jumpMultiplier * 500, 0), ForceMode.Impulse);
+        Debug.Log("Jump");
+        useGravity = false;
+        yield return new WaitForSeconds(jumpWaitTime);
+        useGravity = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == 13 /*Ground*/)
         {
-            isGrounded = false;
+            isGrounded = true;
         }
     }
 

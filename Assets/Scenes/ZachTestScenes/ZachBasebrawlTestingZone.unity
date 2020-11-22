@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
+  m_FollowOffset: {x: 2, y: 0, z: 0}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4943,6 +4943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcam: {fileID: 1819241081}
   cameraRoot: {fileID: 1819241080}
+  waitTime: 1
 --- !u!4 &1778669959
 Transform:
   m_ObjectHideFlags: 0
@@ -5026,7 +5027,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 15
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 1
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
@@ -5295,6 +5296,21 @@ PrefabInstance:
         type: 3}
       propertyPath: topSpeed
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: jumpMultiplier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: gravityMultiplier
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: jumpWaitTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6652822153336975102, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
