@@ -6,6 +6,7 @@ public class fielderProgressionBasedAccuracyScript : MonoBehaviour
 {
     [SerializeField] private Transform playerPosition = null;
     [SerializeField] private baseManager baseManagerScript = null;
+    [SerializeField] private aimModeSnapping snappingScript = null;
     [SerializeField] private float targetingSphereScale = 1f;
     [SerializeField] private float targetingDistanceMaximum = 20f;
     [SerializeField] private float secondBallRadius = 2f;
@@ -44,16 +45,12 @@ public class fielderProgressionBasedAccuracyScript : MonoBehaviour
         gameObject.transform.localScale = new Vector3 (baseManagerScript.percentageOfRunRemaining * targetingSphereScale, baseManagerScript.percentageOfRunRemaining * targetingSphereScale, baseManagerScript.percentageOfRunRemaining * targetingSphereScale);
     }
 
-    public void GiveTheFielderATarget(bool isFirstFielder)
+    public void GiveTheFielderATarget(bool isFirstFielder, Vector3 recievedFielder)
     {
-        if (isFirstFielder)
         {
-            finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * baseManagerScript.percentageOfRunRemaining * targetingSphereScale));
+            finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (baseManagerScript.percentageOfRunRemaining * targetingSphereScale) / 2));
             finalTargetPosition.y = 1f;
-        }
-        else
-        {
-            finalTargetPosition = finalTargetPosition + Random.insideUnitSphere * secondBallRadius;
+            snappingScript.assignTargetFromNearestFielderTargetToPlayer(finalTargetPosition, recievedFielder);
         }
     }
 }

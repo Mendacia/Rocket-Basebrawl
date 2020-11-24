@@ -7,6 +7,7 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
     [Header("Plug everything in please and thanks")]
     [SerializeField] private baseManager baseManagerScript;
     [SerializeField] private Transform playerPosition = null;
+    [SerializeField] private aimModeSnapping snappingScript = null;
     [Header("Minimum and Maximum 'Y' Values for targeting")]
     [SerializeField] private float targetingMinimumY;
     [SerializeField] private float targetingMaximumY;
@@ -37,6 +38,7 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
             var fielderTarget = (playerPosition.position + (Random.value / 3) * multiplierHolder);
             fielderTarget.y = (Random.Range(targetingMinimumY, targetingMaximumY));
             finalTargetPosition = fielderTarget;
+            
         }
         else
         {

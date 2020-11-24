@@ -14,7 +14,6 @@ public class baseManager : MonoBehaviour
     [Header("Set these to their respective objects please and thank you")]
     [SerializeField] private Transform playerPosition = null;
     [SerializeField] private Text uIBaseText = null;
-    [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript = null;
     [SerializeField] private fielderProgressionBasedAccuracyScript testingAllocationScript = null;
     [Header("This is 5 by default")]
     [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
@@ -41,7 +40,6 @@ public class baseManager : MonoBehaviour
         //Sets initial base to home
         currentBase = 0;
         nextBase = 1;
-        rangeAllocationScript.RangeAllocatorNextBaseUpdater(nextBase);
         testingAllocationScript.NewTargetingNextBaseUpdater(nextBase);
 
         //This populates the list for distance between bases
@@ -102,7 +100,6 @@ public class baseManager : MonoBehaviour
                 nextBase++;
             }
         }
-        rangeAllocationScript.RangeAllocatorNextBaseUpdater(nextBase);
         testingAllocationScript.NewTargetingNextBaseUpdater(nextBase);
 
         //Loads scene on return to home, replace this later

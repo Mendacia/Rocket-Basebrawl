@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.SceneManagement;
 
 public class fielderPeltingScript : MonoBehaviour
@@ -11,7 +10,6 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
-    [SerializeField] private scoreHolder scoreHolderObject;
     [SerializeField] private playerControls playerStateReference = null;
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
@@ -24,6 +22,7 @@ public class fielderPeltingScript : MonoBehaviour
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
+    private fielderWhacked fielderWhackingScript;
     [System.NonSerialized] public int battingBallCount;
     public bool canThrow = false;
     private bool hasReadiedAThrow = false;
@@ -40,11 +39,12 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void Start()
     {
-        
+        fielderWhackingScript = gameObject.GetComponent<fielderWhacked>();
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
-            fieldingTeam.Add(child);
+            fieldingTeam.Add(child.transform);
+            fielderWhackingScript.givetheFielderToFielderWhackedScript(child.gameObject);
         }
     }
 
@@ -173,7 +173,7 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
                 myBeamScript.originPosition = fielder.position;
-                rangeAllocationScript.GiveTheFielderATarget(firstFielder);
+                rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder.position);
                 myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
                 firstFielder = false;
                 myBeamScript.playerTransform = player.transform;
