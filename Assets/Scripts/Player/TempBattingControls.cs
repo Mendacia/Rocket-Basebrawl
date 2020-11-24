@@ -10,6 +10,7 @@ public class TempBattingControls : MonoBehaviour
     [SerializeField] private Animator playerAnimator = null;
     private bool isHitting = false;
     private BoxCollider myCollider = null;
+    [SerializeField] private GameObject particleMaster = null;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class TempBattingControls : MonoBehaviour
             //devHittingCheckText.text = ("HITTING");
             isHitting = true;
             playerAnimator.SetTrigger("heHit");
+            particleMaster.SetActive(true);
             StartCoroutine(Cooldown());
         }
     }
@@ -36,5 +38,6 @@ public class TempBattingControls : MonoBehaviour
         myCollider.enabled = false;
         //devHittingCheckText.text = ("IDLE");
         isHitting = false;
+        particleMaster.SetActive(false);
     }
 }

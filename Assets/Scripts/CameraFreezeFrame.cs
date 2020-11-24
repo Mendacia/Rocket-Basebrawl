@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeCameraLookAt : MonoBehaviour
+public class CameraFreezeFrame : MonoBehaviour
 {
     [SerializeField] private Cinemachine.CinemachineVirtualCamera vcam = null;
     [SerializeField] private GameObject cameraRoot = null;
     [SerializeField] private float waitTime = 1;
 
     private bool sequenceStarted = false;
+    private bool firstBallHit = false;
 
     void Update()
     {
@@ -21,15 +22,25 @@ public class ChangeCameraLookAt : MonoBehaviour
 
     IEnumerator cameraSequence()
     {
-        cameraRoot.SetActive(true);
-        vcam.LookAt = GameObject.Find("Baseball(Clone)").transform;
-        vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
-        yield return new WaitForSeconds(0.1f);
-        Time.timeScale = 0;
+        if (!firstBallHit)
+        {
+            cameraRoot.SetActive(true);
+            vcam.LookAt = GameObject.Find("Baseball(Clone)").transform;
+            vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
+            yield return new WaitForSeconds(0.1f);
+            Time.timeScale = 0;
+            firstBallHit = true;
+        }
         yield return StartCoroutine(WaitForRealSeconds(waitTime));
-        Time.timeScale = 1;
-        cameraRoot.SetActive(false);
-        this.gameObject.SetActive(false);
+        if (PauseMenu.isPaused == false)
+        {
+            Time.timeScale = 1;
+            cameraRoot.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
+        else {
+            StartCoroutine(cameraSequence());
+        }
     }
 
     IEnumerator WaitForRealSeconds(float seconds)

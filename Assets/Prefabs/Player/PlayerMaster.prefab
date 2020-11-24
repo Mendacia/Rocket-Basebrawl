@@ -891,7 +891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6652822153723329348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06346512, y: 3.99, z: -11.849095}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6652822153137194018}
@@ -927,7 +927,7 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 0
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
@@ -1778,7 +1778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6652822154353285669}
   m_LocalRotation: {x: 0.22858356, y: -0.66914093, z: 0.22858353, w: 0.669141}
-  m_LocalPosition: {x: 6.8115616, y: 11.837533, z: -4.1890316}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6652822154579360908}
@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
@@ -1863,7 +1863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fce4bd108661c4d9740aea3bc971ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PriorityBoostAmount: 10
+  PriorityBoostAmount: 2
   Reticle: {fileID: 6652822154579360904}
   usingDolly: 0
 --- !u!114 &6652822154353285723
@@ -2984,7 +2984,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 3.5, z: 3.5}
+  m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6652822154835790194
 MonoBehaviour:
@@ -3124,6 +3124,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7b2a7ca7-9623-4789-b95a-af6e29bf53cd
     m_ActionName: UI/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6652822153287198014}
+        m_TargetAssemblyTypeName: playerControls, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: efdb7027-3535-4f30-b525-abfb3ff5ae85
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3141,14 +3157,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6fd22dcbc643040b7ab4512c184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  baseSpeed: 30
+  speed: 25
+  baseSpeed: 25
   topSpeed: 45
   playerState: 2
   playerAnimator: {fileID: 6652822154003291856}
   rb: {fileID: 6652822153287198013}
   magnitudeStopFloat: 10
-  gravityMultiplier: 100
+  gravityMultiplier: 10
+  jumpMultiplier: 8
+  jumpWaitTime: 0.2
   isFrozen: 0
 --- !u!114 &6652822154835790193
 MonoBehaviour:
@@ -3176,6 +3194,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStateReference: {fileID: 6652822153287198014}
+  camShake: {fileID: 6652822153212436450}
+  camShakeAim: {fileID: 6652822155040658620}
+  frequency: 0.8
+  amplitude: 3
+  waitTime: 0.1
 --- !u!1 &6652822154838719964
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TestCameraShake : MonoBehaviour
 {
@@ -35,7 +36,15 @@ public class TestCameraShake : MonoBehaviour
     {
         camShake.Noise(frequency, amplitude);
         camShakeAim.Noise(frequency, amplitude);
+        if(Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
+        }
         yield return new WaitForSeconds(waitTime);
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         camShake.Noise(0, 0);
         camShakeAim.Noise(0, 0);
     }

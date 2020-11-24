@@ -15,7 +15,7 @@ public class playerControls : MonoBehaviour
     public int playerState = 2;
 
     [Header("Please put the animator from CheetahIdle here")]
-    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator playerAnimator = null;
 
     
     //Input System Movements
@@ -27,14 +27,17 @@ public class playerControls : MonoBehaviour
     [Header("Rigidbody Variables")]
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 10;
-    [Header("Standalone Player Gravity Variables - Do not set above 10")]
+
+    [Header("Standalone Player Gravity Variables - Do not set Gravity above 10")]
     [SerializeField] private float gravityMultiplier = 10;
     [SerializeField] private float jumpMultiplier = 10;
     [SerializeField] private float jumpWaitTime = 1;
+
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
+
     private bool isGrounded = true;
-    private bool useGravity;
+    private bool useGravity = true;
 
     private void Awake()
     {
@@ -67,7 +70,7 @@ public class playerControls : MonoBehaviour
         }
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {
-            speed = speed + 0.05f;
+            speed = speed + 0.1f;
         }
     }
 
