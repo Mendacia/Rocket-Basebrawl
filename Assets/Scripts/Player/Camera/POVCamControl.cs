@@ -32,6 +32,7 @@ public class POVCamControl : MonoBehaviour
         {
             POVCam = vcam.GetCinemachineComponent<CinemachinePOV>();
         }
+        vcam.m_Transitions.m_InheritPosition = false;
     }
 
     void FixedUpdate()

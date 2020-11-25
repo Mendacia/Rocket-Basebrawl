@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class BaseballEffectHolder : MonoBehaviour
 {
     [Header("Cinemachine Variables")]
+    [SerializeField] private CinemachineVirtualCamera vcam = null;
     [SerializeField] private CinemachineCameraShake camShake;
     [SerializeField] private CinemachineCameraShake camShakeAim;
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
@@ -19,31 +21,44 @@ public class BaseballEffectHolder : MonoBehaviour
     //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
 
-
+    //This is in update to smoothly and consistently change the collider radius size when in post processing time
     private void Update()
     {
         if (inPPTime && ppCol.radius > 0)
         {
             ppCol.radius = ppCol.radius - 0.3f;
         }
+        if (inPPTime && vcam.m_Lens.FieldOfView < 55)
+        {
+            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
+        }
+        if (!inPPTime && ppCol.radius < 20)
+        {
+            ppCol.radius = ppCol.radius + 0.6f;
+        }
+        if (!inPPTime && vcam.m_Lens.FieldOfView > 40)
+        {
+            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView - 2f;
+        }
     }
-
+    //Camera Shake
     public void CameraShakeOnVoid()
     {
         StartCoroutine(TurnShakeOnAndOff());
     }
-
+    //Time Slow
     public void TimeSlowVoid()
     {
         StartCoroutine(TimeSlowOnHit());
     }
 
+    //Post Processing
     public void OnHitTurnOnPP()
     {
         StartCoroutine(PostProcessingOnBallHit());
-        //StartCoroutine(TickDownThePPTime());
     }
 
+    //Camera shake
     IEnumerator TurnShakeOnAndOff()
     {
         camShake.Noise(frequency, amplitude);
@@ -53,6 +68,8 @@ public class BaseballEffectHolder : MonoBehaviour
         camShakeAim.Noise(0, 0);
     }
 
+
+    //Time Slow
     IEnumerator TimeSlowOnHit()
     {
         if (PauseMenu.isPaused == false)
@@ -63,7 +80,8 @@ public class BaseballEffectHolder : MonoBehaviour
             Debug.Log("This went off");
         }
     }
-
+    //Sets the 2 post processing objects to active and waits for a set time to turn them off
+    //Resets the collider radius and post processing bool
     IEnumerator PostProcessingOnBallHit()
     {
         postProcessingMaster.SetActive(true);
@@ -82,17 +100,8 @@ public class BaseballEffectHolder : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         postProcessingMaster.SetActive(false);
         postProcessingSub.SetActive(false);
-        ppCol.radius = 20;
+        //ppCol.radius = 20;
+        //vcam.m_Lens.FieldOfView = 40;
         inPPTime = false;
-    }
-
-    IEnumerator TickDownThePPTime()
-    {
-        if(ppTime > 0)
-        {
-            ppTime = ppTime - 0.5f;
-        }
-        yield return new WaitForSeconds(1);
-        StartCoroutine(TickDownThePPTime());
     }
 }
