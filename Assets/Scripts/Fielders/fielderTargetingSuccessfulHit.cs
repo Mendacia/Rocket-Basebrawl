@@ -21,10 +21,18 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
             fielderPeltingScript.pitchingLoopStarted = true;
+            //effectHolder.inPPTime = true;
+            //effectHolder.OnHitTurnOnPP();
         }
         else
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+            if (!effectHolder.inPPTime)
+            {
+                effectHolder.inPPTime = true;
+                effectHolder.OnHitTurnOnPP();
+            }
+            effectHolder.ppTime = effectHolder.ppTime + 1.5f;
         }
         
         var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();

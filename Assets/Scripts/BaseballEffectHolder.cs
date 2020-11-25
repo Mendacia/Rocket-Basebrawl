@@ -9,12 +9,23 @@ public class BaseballEffectHolder : MonoBehaviour
     [SerializeField] private CinemachineCameraShake camShakeAim;
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
-    private void Start()
+    [Header("Post Processing")]
+    [SerializeField] private GameObject postProcessingMaster = null;
+    [SerializeField] private GameObject postProcessingSub = null;
+    [SerializeField] private SphereCollider ppCol = null;
+    public float ppTime = 0;
+    public bool inPPTime = false;
+
+    //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
+    //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
+
+
+    private void Update()
     {
-        /*GameObject camShakeMaster = GameObject.FindGameObjectWithTag("CineNormal");
-        camShake = camShakeMaster.GetComponent<CinemachineCameraShake>();
-        GameObject camShakeAimMaster = GameObject.FindGameObjectWithTag("CineAim");
-        camShakeAim = camShakeAimMaster.GetComponent<CinemachineCameraShake>();*/
+        if (inPPTime && ppCol.radius > 0)
+        {
+            ppCol.radius = ppCol.radius - 0.3f;
+        }
     }
 
     public void CameraShakeOnVoid()
@@ -25,6 +36,12 @@ public class BaseballEffectHolder : MonoBehaviour
     public void TimeSlowVoid()
     {
         StartCoroutine(TimeSlowOnHit());
+    }
+
+    public void OnHitTurnOnPP()
+    {
+        StartCoroutine(PostProcessingOnBallHit());
+        //StartCoroutine(TickDownThePPTime());
     }
 
     IEnumerator TurnShakeOnAndOff()
@@ -45,5 +62,37 @@ public class BaseballEffectHolder : MonoBehaviour
             Time.timeScale = 1;
             Debug.Log("This went off");
         }
+    }
+
+    IEnumerator PostProcessingOnBallHit()
+    {
+        postProcessingMaster.SetActive(true);
+        postProcessingSub.SetActive(true);
+        /*yield return new WaitForSeconds(1.5f + ppTime);
+        Debug.Log(ppTime);
+        if(ppTime <= 0)
+        {
+            postProcessingMaster.SetActive(false);
+            inPPTime = false;
+        }
+        if(inPPTime == true)
+        {
+            StartCoroutine(PostProcessingOnBallHit());
+        }*/
+        yield return new WaitForSeconds(0.4f);
+        postProcessingMaster.SetActive(false);
+        postProcessingSub.SetActive(false);
+        ppCol.radius = 20;
+        inPPTime = false;
+    }
+
+    IEnumerator TickDownThePPTime()
+    {
+        if(ppTime > 0)
+        {
+            ppTime = ppTime - 0.5f;
+        }
+        yield return new WaitForSeconds(1);
+        StartCoroutine(TickDownThePPTime());
     }
 }
