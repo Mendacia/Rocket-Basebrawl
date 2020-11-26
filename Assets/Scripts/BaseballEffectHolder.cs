@@ -20,7 +20,6 @@ public class BaseballEffectHolder : MonoBehaviour
 
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
-    [SerializeField] private Transform playerTransform = null;
 
     //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
@@ -62,9 +61,9 @@ public class BaseballEffectHolder : MonoBehaviour
         StartCoroutine(PostProcessingOnBallHit());
     }
 
-    public void PlayHitEffect(Transform ballTransform)
+    public void PlayHitEffect(Vector3 ballTransform)
     {
-        Instantiate(onHitEffect, playerTransform);
+        Instantiate(onHitEffect, ballTransform, Quaternion.identity);
     }
 
     //Camera shake

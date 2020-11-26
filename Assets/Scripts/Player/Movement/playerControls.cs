@@ -29,8 +29,11 @@ public class playerControls : MonoBehaviour
     [SerializeField] private float magnitudeStopFloat = 10;
 
     [Header("Standalone Player Gravity Variables - Do not set Gravity above 10")]
+    [Range(0, 10)]
     [SerializeField] private float gravityMultiplier = 10;
+    [Range(0, 10)]
     [SerializeField] private float jumpMultiplier = 10;
+    [Range(0, 1)]
     [SerializeField] private float jumpWaitTime = 1;
 
     [Header("Tick this if the player needs to be locked in place on Start")]

@@ -1194,12 +1194,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365404700}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &384296125 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6652822153935954818, guid: 740722ad61eae844bb953050ceb3df68,
-    type: 3}
-  m_PrefabInstance: {fileID: 6652822153012350107}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &386096274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,7 +1378,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6652822153012350107}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1056347271}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
@@ -2719,6 +2713,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1056347271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6652822154613730056, guid: 740722ad61eae844bb953050ceb3df68,
+    type: 3}
+  m_PrefabInstance: {fileID: 6652822153012350107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1056347278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056347271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962b55fe80820f741b821a83c908dfac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displacementMap: {fileID: 2800000, guid: 7e72c9a71b33e1843bcb6ef35c216b62, type: 3}
+  Shader: {fileID: 4800000, guid: 0c0576d6e420a9743987cb1251f30252, type: 3}
+  intensity: 1
+  flipIntensity: 1
+  colorIntensity: 1
 --- !u!1 &1087471594
 GameObject:
   m_ObjectHideFlags: 0
@@ -4403,6 +4420,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: In game UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4890736849794147265, guid: c34c39a9e5bada64496e0d38628bac87,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4890736849794147293, guid: c34c39a9e5bada64496e0d38628bac87,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5032,7 +5054,6 @@ MonoBehaviour:
   inPPTime: 0
   onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
     type: 3}
-  playerTransform: {fileID: 384296125}
 --- !u!4 &1757929028
 Transform:
   m_ObjectHideFlags: 0

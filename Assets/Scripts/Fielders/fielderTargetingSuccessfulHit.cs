@@ -27,7 +27,7 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         else
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
-            effectHolder.PlayHitEffect(this.transform);
+            
             if (!effectHolder.inPPTime)
             {
                 effectHolder.inPPTime = true;
@@ -42,6 +42,7 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         var myBaseballObject = Instantiate(baseballPrefab);
         myBaseballObject.GetComponent<fielderPeltingBallBehaviour>().ballIsActive = false;
         myBaseballObject.transform.position = midPointLocation;
+        effectHolder.PlayHitEffect(midPointLocation);
         myBaseballObject.transform.LookAt(myLineRendererScript.originPosition - myLineRendererScript.direction); //You could change this LookAt to a position the player is looking at if you want
         myBaseballObject.transform.Rotate((Random.Range(-45, 45)), (Random.Range(-45, 45)), (Random.Range(-45, 45)), Space.Self); //If you do, remove this or change variation or whatever
         myBaseballObject.transform.position = myBaseballObject.transform.position + new Vector3(0, 0, 1);
