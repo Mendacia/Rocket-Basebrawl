@@ -27,6 +27,7 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         else
         {
             GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+            effectHolder.PlayHitEffect(this.transform);
             if (!effectHolder.inPPTime)
             {
                 effectHolder.inPPTime = true;

@@ -7,8 +7,8 @@ public class BaseballEffectHolder : MonoBehaviour
 {
     [Header("Cinemachine Variables")]
     [SerializeField] private CinemachineVirtualCamera vcam = null;
-    [SerializeField] private CinemachineCameraShake camShake;
-    [SerializeField] private CinemachineCameraShake camShakeAim;
+    [SerializeField] private CinemachineCameraShake camShake = null;
+    [SerializeField] private CinemachineCameraShake camShakeAim = null;
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
@@ -18,10 +18,14 @@ public class BaseballEffectHolder : MonoBehaviour
     public float ppTime = 0;
     public bool inPPTime = false;
 
+    [Header("Particles")]
+    [SerializeField] private GameObject onHitEffect = null;
+    [SerializeField] private Transform playerTransform = null;
+
     //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
 
-    //This is in update to smoothly and consistently change the collider radius size when in post processing time
+    //This is in update to smoothly and consistently change the collider radius size and camera FOV when in post processing time
     private void Update()
     {
         if (inPPTime && ppCol.radius > 0)
@@ -30,7 +34,7 @@ public class BaseballEffectHolder : MonoBehaviour
         }
         if (inPPTime && vcam.m_Lens.FieldOfView < 55)
         {
-            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
+            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 0.75f;
         }
         if (!inPPTime && ppCol.radius < 20)
         {
@@ -38,7 +42,7 @@ public class BaseballEffectHolder : MonoBehaviour
         }
         if (!inPPTime && vcam.m_Lens.FieldOfView > 40)
         {
-            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView - 2f;
+            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView - 1f;
         }
     }
     //Camera Shake
@@ -56,6 +60,11 @@ public class BaseballEffectHolder : MonoBehaviour
     public void OnHitTurnOnPP()
     {
         StartCoroutine(PostProcessingOnBallHit());
+    }
+
+    public void PlayHitEffect(Transform ballTransform)
+    {
+        Instantiate(onHitEffect, playerTransform);
     }
 
     //Camera shake

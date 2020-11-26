@@ -1194,6 +1194,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365404700}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &384296125 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652822153935954818, guid: 740722ad61eae844bb953050ceb3df68,
+    type: 3}
+  m_PrefabInstance: {fileID: 6652822153012350107}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &386096274
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,6 +5030,9 @@ MonoBehaviour:
   ppCol: {fileID: 1391112374}
   ppTime: 0
   inPPTime: 0
+  onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
+    type: 3}
+  playerTransform: {fileID: 384296125}
 --- !u!4 &1757929028
 Transform:
   m_ObjectHideFlags: 0
