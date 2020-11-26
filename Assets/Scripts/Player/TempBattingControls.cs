@@ -44,7 +44,7 @@ public class TempBattingControls : MonoBehaviour
     {
         if(other.gameObject.tag == "Fielder")
         {
-            fielderWhackingScript.findFielder(other.gameObject);
+            fielderWhackingScript.findFielder(other.transform);
         }
     }
 }

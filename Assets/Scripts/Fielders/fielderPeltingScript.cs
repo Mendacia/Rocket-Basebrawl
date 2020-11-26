@@ -22,7 +22,6 @@ public class fielderPeltingScript : MonoBehaviour
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
-    private fielderWhacked fielderWhackingScript;
     [System.NonSerialized] public int battingBallCount;
     public bool canThrow = false;
     private bool hasReadiedAThrow = false;
@@ -39,12 +38,10 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void Start()
     {
-        fielderWhackingScript = gameObject.GetComponent<fielderWhacked>();
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
             fieldingTeam.Add(child.transform);
-            fielderWhackingScript.givetheFielderToFielderWhackedScript(child.gameObject);
         }
     }
 
