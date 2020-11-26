@@ -5,6 +5,8 @@ using UnityEngine;
 public class fielderWhacked : MonoBehaviour
 {
     private fielderPeltingScript peltingScript;
+    [SerializeField] private GameObject ragdoll;
+    [SerializeField] private float hitStrength = 1;
 
     private void Start()
     {
@@ -14,9 +16,12 @@ public class fielderWhacked : MonoBehaviour
     {
         if (peltingScript.fieldingTeam.Contains(recievedFielder))
         {
+            var realHitStrength = hitStrength * 10000;
             Debug.Log("Yeet");
             peltingScript.fieldingTeam.Remove(recievedFielder);
-            recievedFielder.GetComponent<Rigidbody>().AddForce(Random.Range(-4000, 4000), 4000, Random.Range(-4000, 4000));
+            var myRagdoll = Instantiate(ragdoll, recievedFielder.position, Quaternion.identity);
+            Destroy(recievedFielder.gameObject);
+            myRagdoll.GetComponentInChildren<Rigidbody>().AddForce(Random.Range(-realHitStrength, realHitStrength), realHitStrength, Random.Range(-realHitStrength, realHitStrength));
         }
     }
 }
