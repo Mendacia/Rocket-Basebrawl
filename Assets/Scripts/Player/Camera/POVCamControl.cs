@@ -12,10 +12,11 @@ public class POVCamControl : MonoBehaviour
     public InputActionReference actions;
     private PlayerInputActions inputActions;
     Vector2 camInput;
+    [Range(0, 100)]
     public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
-    [SerializeField] private playerControls playerStateReference;
+    [SerializeField] private playerControls playerStateReference = null;
 
     // Start is called before the first frame update
 
