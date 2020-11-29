@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.SceneManagement;
 
 public class fielderPeltingScript : MonoBehaviour
@@ -9,9 +8,8 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
-    [SerializeField] private fielderTargetingRangeAllocator rangeAllocationScript;
+    [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
-    [SerializeField] private scoreHolder scoreHolderObject;
     [SerializeField] private playerControls playerStateReference = null;
 
     [Header("These Wait Times are in seconds")]
@@ -23,9 +21,11 @@ public class fielderPeltingScript : MonoBehaviour
 
     [Header("Make game hard")]
     public bool makeGameHard = false;
+    private bool firstFielder = true;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
     public List<Transform> fieldingTeam;
+    private fielderWhacked fielderWhackingScript;
     [System.NonSerialized] public int battingBallCount;
     public bool canThrow = false;
     private bool hasReadiedAThrow = false;
@@ -42,11 +42,12 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void Start()
     {
-        
+        fielderWhackingScript = gameObject.GetComponent<fielderWhacked>();
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
-            fieldingTeam.Add(child);
+            fieldingTeam.Add(child.transform);
+            fielderWhackingScript.givetheFielderToFielderWhackedScript(child.gameObject);
         }
     }
 
@@ -172,7 +173,7 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
                 numberOfBallsToThrow--;
-                rangeAllocationScript.firstFielder = true;
+                firstFielder = true;
             }
 
             //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
@@ -180,9 +181,9 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
                 myBeamScript.originPosition = fielder.position;
-                rangeAllocationScript.GiveTheFielderATarget();
+                rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder.position);
                 myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
-                rangeAllocationScript.firstFielder = false;
+                firstFielder = false;
                 myBeamScript.playerTransform = player.transform;
             }
             canThrow = false;

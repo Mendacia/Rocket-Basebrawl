@@ -8,6 +8,8 @@ public class TempBattingControls : MonoBehaviour
 {
     //[SerializeField] private Text devHittingCheckText = null;
     [SerializeField] private Animator playerAnimator = null;
+    [SerializeField] private fielderWhacked fielderWhackingScript = null;
+    [SerializeField] private LayerMask fielderLayerMask = 0;
     private bool isHitting = false;
     private BoxCollider myCollider = null;
     [SerializeField] private GameObject particleMaster = null;
@@ -39,5 +41,13 @@ public class TempBattingControls : MonoBehaviour
         //devHittingCheckText.text = ("IDLE");
         isHitting = false;
         particleMaster.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Fielder")
+        {
+            fielderWhackingScript.findFielder(other.gameObject);
+        }
     }
 }

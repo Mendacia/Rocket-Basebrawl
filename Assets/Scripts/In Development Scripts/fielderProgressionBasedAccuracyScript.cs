@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewSuperBasebrawlTargetingUDeluxe : MonoBehaviour
+public class fielderProgressionBasedAccuracyScript : MonoBehaviour
 {
     [SerializeField] private Transform playerPosition = null;
     [SerializeField] private baseManager baseManagerScript = null;
+    [SerializeField] private aimModeSnapping snappingScript = null;
     [SerializeField] private float targetingSphereScale = 1f;
     [SerializeField] private float targetingDistanceMaximum = 20f;
+    [SerializeField] private float secondBallRadius = 2f;
     private Transform recievedNextBase = null;
-    private Vector3 finalTargetPosition = Vector3.zero;
+    public Vector3 finalTargetPosition = Vector3.zero;
     private int nextBaseInt = 0;
 
     public void NewTargetingNextBaseUpdater(int sentNextBase)
@@ -20,13 +22,6 @@ public class NewSuperBasebrawlTargetingUDeluxe : MonoBehaviour
 
     void Update()
     {
-        /*var multiplierHolder = (recievedNextBase.position - playerPosition.position);
-        var fielderTarget = (playerPosition.position + 0.3f * multiplierHolder);
-        fielderTarget.y = 1;
-        finalTargetPosition = fielderTarget;
-
-        transform.position = finalTargetPosition;*/
-
         var targetingDistanceUpdated = (targetingDistanceMaximum * baseManagerScript.percentageOfRunRemaining);
         gameObject.transform.position = playerPosition.position;
         transform.LookAt(recievedNextBase);
@@ -48,5 +43,14 @@ public class NewSuperBasebrawlTargetingUDeluxe : MonoBehaviour
 
         //Updates the size of the targeting sphere
         gameObject.transform.localScale = new Vector3 (baseManagerScript.percentageOfRunRemaining * targetingSphereScale, baseManagerScript.percentageOfRunRemaining * targetingSphereScale, baseManagerScript.percentageOfRunRemaining * targetingSphereScale);
+    }
+
+    public void GiveTheFielderATarget(bool isFirstFielder, Vector3 recievedFielder)
+    {
+        {
+            finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (baseManagerScript.percentageOfRunRemaining * targetingSphereScale) / 2));
+            finalTargetPosition.y = 1f;
+            snappingScript.assignTargetFromNearestFielderTargetToPlayer(finalTargetPosition, recievedFielder);
+        }
     }
 }
