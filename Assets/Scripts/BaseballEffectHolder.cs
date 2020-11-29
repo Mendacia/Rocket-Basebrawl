@@ -31,7 +31,7 @@ public class BaseballEffectHolder : MonoBehaviour
     private void Start()
     {
         //volume = baseEffectHolder.GetComponent<VolumeComponent>();
-        volume.sharedProfile = volume.GetComponent<VolumeProfile>();
+        //volume.sharedProfile = volume.GetComponent<VolumeProfile>();
     }
 
     private void FixedUpdate()
