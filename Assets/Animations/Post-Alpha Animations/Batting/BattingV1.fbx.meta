@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 9c42be7f4f249244d94a9ab688620508
+guid: d47098757d6c66249a5013e49c70b3f2
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cheetah Main Batting HitFreeze V1
+    second: Cheetah Main Batting V1
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah Main Batting HitFreeze V1
+      name: Cheetah Main Batting V1
       takeName: Take 001
       internalID: 0
-      firstFrame: 35
-      lastFrame: 65
+      firstFrame: 1
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -62,7 +62,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
