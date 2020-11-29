@@ -126,7 +126,6 @@ public class playerControls : MonoBehaviour
     IEnumerator JumpController()
     {
         rb.AddForce(new Vector3(0, jumpMultiplier * 500, 0), ForceMode.Impulse);
-        Debug.Log("Jump");
         useGravity = false;
         yield return new WaitForSeconds(jumpWaitTime);
         useGravity = true;

@@ -8,7 +8,7 @@ public class HideCharacerModel : MonoBehaviour
     [Header("Put in CM 3rd Person Normal")]
     [SerializeField] private CinemachineVirtualCamera vcam = null;
     [Header("Put in the Child object with the Mesh Renderer")]
-    [SerializeField] private Renderer playerModel;
+    [SerializeField] private Renderer playerModel = null;
     CinemachinePOV POVCam;
 
     void Start()

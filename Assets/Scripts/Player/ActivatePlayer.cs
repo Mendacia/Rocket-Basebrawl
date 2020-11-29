@@ -12,8 +12,8 @@ public class ActivatePlayer : MonoBehaviour
     [SerializeField] private playerControls playerStateReference = null;
 
     [Header("Cinemachine Variables")]
-    [SerializeField] private CinemachineCameraShake camShake;
-    [SerializeField] private CinemachineCameraShake camShakeAim;
+    [SerializeField] private CinemachineCameraShake camShake = null;
+    [SerializeField] private CinemachineCameraShake camShakeAim = null;
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     private void Awake()

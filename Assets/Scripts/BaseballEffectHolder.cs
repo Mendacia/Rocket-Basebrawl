@@ -13,6 +13,7 @@ public class BaseballEffectHolder : MonoBehaviour
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
+    [SerializeField] private GameObject baseEffectHolder = null;
     [SerializeField] private GameObject postProcessingMaster = null;
     [SerializeField] private GameObject postProcessingSub = null;
     [SerializeField] private SphereCollider ppCol = null;
@@ -25,6 +26,13 @@ public class BaseballEffectHolder : MonoBehaviour
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
 
     //This is in update to smoothly and consistently change the collider radius size and camera FOV when in post processing time
+    [SerializeField] private Volume volume = null;
+
+    private void Start()
+    {
+        //volume = baseEffectHolder.GetComponent<VolumeComponent>();
+        volume.sharedProfile = volume.GetComponent<VolumeProfile>();
+    }
 
     private void FixedUpdate()
     {
@@ -52,6 +60,8 @@ public class BaseballEffectHolder : MonoBehaviour
         {
             postProcessingMaster.SetActive(false);
         }
+
+        
     }
     //Camera Shake
     public void CameraShakeOnVoid()

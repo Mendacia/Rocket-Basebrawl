@@ -29,7 +29,7 @@ public class TestCameraShake : MonoBehaviour
             Debug.Log("Collision");
         }
         StartCoroutine(TurnShakeOnAndOff());
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
     }
 
     IEnumerator TurnShakeOnAndOff()
