@@ -133,7 +133,7 @@ public class playerControls : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 13 /*Ground*/)
+        if(collision.gameObject.layer == 14 /*Ground*/)
         {
             isGrounded = true;
         }
