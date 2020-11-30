@@ -15,7 +15,7 @@ public class playerControls : MonoBehaviour
     public int playerState = 2;
 
     [Header("Please put the animator from CheetahIdle here")]
-    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator playerAnimator = null;
 
     
     //Input System Movements
@@ -27,10 +27,20 @@ public class playerControls : MonoBehaviour
     [Header("Rigidbody Variables")]
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 10;
-    [Header("Standalone Player Gravity")]
-    [SerializeField] private float gravityMultiplier = 100;
+
+    [Header("Standalone Player Gravity Variables - Do not set Gravity above 10")]
+    [Range(0, 10)]
+    [SerializeField] private float gravityMultiplier = 10;
+    [Range(0, 10)]
+    [SerializeField] private float jumpMultiplier = 10;
+    [Range(0, 1)]
+    [SerializeField] private float jumpWaitTime = 1;
+
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
+
+    private bool isGrounded = true;
+    private bool useGravity = true;
 
     private void Awake()
     {
@@ -51,7 +61,7 @@ public class playerControls : MonoBehaviour
 
     private void Update()
     {
-        if(rb.velocity.magnitude <= magnitudeStopFloat)
+        if (rb.velocity.magnitude <= magnitudeStopFloat)
         {
             rb.velocity = Vector3.zero;
             speed = baseSpeed;
@@ -63,7 +73,7 @@ public class playerControls : MonoBehaviour
         }
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {
-            speed = speed + 0.05f;
+            speed = speed + 0.1f;
         }
     }
 
@@ -81,7 +91,10 @@ public class playerControls : MonoBehaviour
                 float v = movementInput.y;
 
                 //Enhances the Gravity for the player alone
-                rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
+                if (useGravity)
+                {
+                    rb.AddForce(Physics.gravity * gravityMultiplier * 10, ForceMode.Acceleration);
+                }
 
                 Vector3 targetInput = new Vector3(h, 0, v);
 
@@ -98,6 +111,31 @@ public class playerControls : MonoBehaviour
                 Turn(desiredDirection);
 
                 break;
+        }
+    }
+
+    public void Jump(CallbackContext context)
+    {
+        if(context.performed && isGrounded)
+        {
+            isGrounded = false;
+            StartCoroutine(JumpController());
+        }
+    }
+
+    IEnumerator JumpController()
+    {
+        rb.AddForce(new Vector3(0, jumpMultiplier * 500, 0), ForceMode.Impulse);
+        useGravity = false;
+        yield return new WaitForSeconds(jumpWaitTime);
+        useGravity = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 14 /*Ground*/)
+        {
+            isGrounded = true;
         }
     }
 

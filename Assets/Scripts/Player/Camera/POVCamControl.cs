@@ -12,10 +12,11 @@ public class POVCamControl : MonoBehaviour
     public InputActionReference actions;
     private PlayerInputActions inputActions;
     Vector2 camInput;
+    [Range(0, 100)]
     public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
-    [SerializeField] private playerControls playerStateReference;
+    [SerializeField] private playerControls playerStateReference = null;
 
     // Start is called before the first frame update
 
@@ -32,6 +33,7 @@ public class POVCamControl : MonoBehaviour
         {
             POVCam = vcam.GetCinemachineComponent<CinemachinePOV>();
         }
+        vcam.m_Transitions.m_InheritPosition = false;
     }
 
     void FixedUpdate()
@@ -48,9 +50,15 @@ public class POVCamControl : MonoBehaviour
         }
         if(playerStateReference.playerState == 2)
         {
-            var vcam = GetComponent<CinemachineVirtualCamera>();
-            vcam.m_Transitions.m_InheritPosition = true;
+            StartCoroutine(WaitToInheritPosition());
         }
+    }
+
+    IEnumerator WaitToInheritPosition()
+    {
+        yield return new WaitForSeconds(4f);
+        var vcam = GetComponent<CinemachineVirtualCamera>();
+        vcam.m_Transitions.m_InheritPosition = true;
     }
 
     private void GetValue(CallbackContext context)

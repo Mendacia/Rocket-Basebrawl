@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FreezePlayerAtStart : MonoBehaviour
 {
-    [SerializeField] private playerControls playerStateReference;
+    [SerializeField] private playerControls playerStateReference = null;
 
     private void Awake()
     {

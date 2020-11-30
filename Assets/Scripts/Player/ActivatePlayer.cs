@@ -6,11 +6,16 @@ using static UnityEngine.InputSystem.InputAction;
 public class ActivatePlayer : MonoBehaviour
 {
     private Rigidbody rb;
-    //Score Reference
     private PlayerInputActions inputActions;
 
     [Header("Put the Player Controller here")]
     [SerializeField] private playerControls playerStateReference = null;
+
+    [Header("Cinemachine Variables")]
+    [SerializeField] private CinemachineCameraShake camShake = null;
+    [SerializeField] private CinemachineCameraShake camShakeAim = null;
+    [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -57,6 +62,14 @@ public class ActivatePlayer : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             Time.timeScale = 1;
         }
+    }
+    IEnumerator TurnShakeOnAndOff()
+    {
+        camShake.Noise(frequency, amplitude);
+        camShakeAim.Noise(frequency, amplitude);
+        yield return new WaitForSeconds(waitTime);
+        camShake.Noise(0, 0);
+        camShakeAim.Noise(0, 0);
     }
     private void OnEnable()
     {

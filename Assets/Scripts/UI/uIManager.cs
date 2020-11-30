@@ -6,15 +6,12 @@ using UnityEngine.EventSystems;
 
 public class uIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject rootMenu;
-    [SerializeField] private GameObject newGameMenu;
-    [SerializeField] private GameObject continueMenu;
-    [SerializeField] private EventSystem rootSystem;
-    [SerializeField] private EventSystem newGameSystem;
-    [SerializeField] private EventSystem continueSystem;
-    [SerializeField] private Button rootButton;
-    [SerializeField] private Button newGameButton;
-    [SerializeField] private Button continueButton;
+    [SerializeField] private GameObject rootMenu = null;
+    [SerializeField] private GameObject newGameMenu = null;
+    [SerializeField] private GameObject continueMenu = null;
+    [SerializeField] private Button rootButton = null;
+    [SerializeField] private Button newGameButton = null;
+    [SerializeField] private Button continueButton = null;
 
     void Start()
     {
@@ -28,7 +25,6 @@ public class uIManager : MonoBehaviour
         rootButton.Select();
     }
 
-
     public void ToggleNewGame()
     {
         newGameMenu.SetActive(!newGameMenu.gameObject.activeSelf);
@@ -39,33 +35,5 @@ public class uIManager : MonoBehaviour
     {
         continueMenu.SetActive(!continueMenu.gameObject.activeSelf);
         continueButton.Select();
-    }
-
-    IEnumerator RootSelectButton()
-    {
-        /*yield return null;
-        rootSystem.SetSelectedGameObject(null);
-        new WaitForSeconds(1f);
-        rootSystem.SetSelectedGameObject(rootButton.gameObject);*/
-        yield return new WaitForSeconds(1f);
-        //rootButton.Select();
-    }
-    IEnumerator NewGameSelectButton()
-    {
-        /*yield return null;
-        rootSystem.SetSelectedGameObject(null);
-        new WaitForSeconds(1f);
-        rootSystem.SetSelectedGameObject(newGameButton.gameObject);*/
-        yield return new WaitForSeconds(1f);
-        //newGameButton.Select();
-    }
-    IEnumerator ContinueSelectButton()
-    {
-        /*yield return null;
-        rootSystem.SetSelectedGameObject(null);
-        new WaitForSeconds(1f);
-        rootSystem.SetSelectedGameObject(continueButton.gameObject);*/
-        yield return new WaitForSeconds(1f);
-        //continueButton.Select();
     }
 }
