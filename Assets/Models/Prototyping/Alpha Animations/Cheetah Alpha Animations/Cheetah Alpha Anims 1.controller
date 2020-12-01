@@ -88,7 +88,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Batting Alpha
-  m_Speed: 8
+  m_Speed: 9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7803558047647256751}
@@ -126,9 +126,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.09209275
+  m_TransitionDuration: 0.20664823
   m_TransitionOffset: 0
-  m_ExitTime: 0.9465103
+  m_ExitTime: 0.83481425
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -229,7 +229,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Running Alpha
-  m_Speed: 9
+  m_Speed: 12
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6378605737544013755}
@@ -243,7 +243,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 78b6670871707d941b5889687616c784,
+  m_Motion: {fileID: 1827226128182048838, guid: 7c017b140ea974a4f832e70c318d148b,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -292,7 +292,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.19202459
+  m_TransitionDuration: 0.1501106
   m_TransitionOffset: 0
   m_ExitTime: 0.9495798
   m_HasExitTime: 0
