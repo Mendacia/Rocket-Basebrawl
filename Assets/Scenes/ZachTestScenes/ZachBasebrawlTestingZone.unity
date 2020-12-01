@@ -3463,7 +3463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3226aa5ca5b8c9249859e83d404105d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldingTeam: []
+  ragdoll: {fileID: 8902833058278786760, guid: 64b492f1349f6134d8b783e57f23c8c9, type: 3}
+  hitStrength: 1
 --- !u!1 &1423628096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5079,7 +5080,8 @@ MonoBehaviour:
   postProcessingMaster: {fileID: 1705239518}
   postProcessingSub: {fileID: 1391112373}
   postProcessingCollider: {fileID: 1391112374}
-  volume: {fileID: 1478567594}
+  dirtTexture: {fileID: 2800000, guid: 0b343b179d2251243a8bbed3fe8e2773, type: 3}
+  devTexture: {fileID: 2800000, guid: 1ceb7a8db2799734a999cd37973bdd43, type: 3}
   ppTime: 0
   inPPTime: 0
   onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
@@ -5532,5 +5534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 6652822153889582766, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: fielderWhackingScript
+      value: 
+      objectReference: {fileID: 1399274995}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740722ad61eae844bb953050ceb3df68, type: 3}
