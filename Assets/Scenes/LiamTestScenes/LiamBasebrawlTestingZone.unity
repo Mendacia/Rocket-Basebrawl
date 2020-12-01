@@ -1421,7 +1421,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.881e-41, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 2.9567e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2842,7 +2842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3226aa5ca5b8c9249859e83d404105d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldingTeam: []
+  ragdoll: {fileID: 8902833058278786760, guid: 64b492f1349f6134d8b783e57f23c8c9, type: 3}
+  hitStrength: 1
 --- !u!82 &1400709822 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6652822153464922198, guid: 740722ad61eae844bb953050ceb3df68,

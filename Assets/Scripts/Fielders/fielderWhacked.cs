@@ -5,27 +5,23 @@ using UnityEngine;
 public class fielderWhacked : MonoBehaviour
 {
     private fielderPeltingScript peltingScript;
-    [SerializeField] private List<GameObject> fieldingTeam;
-
-    //This should run before start, Unity works how I think it does, which, it most certainly doesn't
-    public void givetheFielderToFielderWhackedScript(GameObject receivedFielder)
-    {
-        fieldingTeam.Add(receivedFielder);
-    }
+    [SerializeField] private GameObject ragdoll;
+    [SerializeField] private float hitStrength = 1;
 
     private void Start()
     {
         peltingScript = gameObject.GetComponent<fielderPeltingScript>();
     }
-
-    public void findFielder(GameObject recievedFielder)
+    public void findFielder(Transform recievedFielder)
     {
-        if (fieldingTeam.Contains(recievedFielder))
+        if (peltingScript.fieldingTeam.Contains(recievedFielder))
         {
+            var realHitStrength = hitStrength * 10000;
             Debug.Log("Yeet");
-            fieldingTeam.Remove(recievedFielder);
-            peltingScript.fieldingTeam.Remove(recievedFielder.transform);
-            recievedFielder.GetComponent<Rigidbody>().AddForce(0, 4000, 0);
+            peltingScript.fieldingTeam.Remove(recievedFielder);
+            var myRagdoll = Instantiate(ragdoll, recievedFielder.position, Quaternion.identity);
+            Destroy(recievedFielder.gameObject);
+            myRagdoll.GetComponentInChildren<Rigidbody>().AddForce(Random.Range(-realHitStrength, realHitStrength), realHitStrength, Random.Range(-realHitStrength, realHitStrength));
         }
     }
 }

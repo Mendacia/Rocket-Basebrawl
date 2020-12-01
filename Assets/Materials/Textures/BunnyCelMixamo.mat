@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BunnyBeta_Cel
+  m_Name: BunnyCelMixamo
   m_Shader: {fileID: -6465566751694194690, guid: 6604ff8d2b41dd4438bb8b44ed3f9c9a,
     type: 3}
   m_ShaderKeywords: 
