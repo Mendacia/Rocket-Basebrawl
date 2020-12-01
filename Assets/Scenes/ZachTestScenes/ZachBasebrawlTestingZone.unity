@@ -5076,15 +5076,14 @@ MonoBehaviour:
   frequency: 0.8
   amplitude: 3
   waitTime: 0.1
-  baseEffectHolder: {fileID: 1757929026}
   postProcessingMaster: {fileID: 1705239518}
   postProcessingSub: {fileID: 1391112373}
-  ppCol: {fileID: 1391112374}
+  postProcessingCollider: {fileID: 1391112374}
+  volume: {fileID: 1478567594}
   ppTime: 0
   inPPTime: 0
   onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
     type: 3}
-  volume: {fileID: 1478567594}
 --- !u!4 &1757929028
 Transform:
   m_ObjectHideFlags: 0

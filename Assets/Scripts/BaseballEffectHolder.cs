@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+//using UnityEngine.Rendering.PostProcessing;
 using Cinemachine;
 
 public class BaseballEffectHolder : MonoBehaviour
@@ -13,12 +15,14 @@ public class BaseballEffectHolder : MonoBehaviour
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
-    [SerializeField] private GameObject baseEffectHolder = null;
     [SerializeField] private GameObject postProcessingMaster = null;
     [SerializeField] private GameObject postProcessingSub = null;
-    [SerializeField] private SphereCollider ppCol = null;
+    [SerializeField] private SphereCollider postProcessingCollider = null;
+    private Volume volume = null;
+    Bloom bloomLayer = null;
     public float ppTime = 0;
     public bool inPPTime = false;
+
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
 
@@ -26,33 +30,32 @@ public class BaseballEffectHolder : MonoBehaviour
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
 
     //This is in update to smoothly and consistently change the collider radius size and camera FOV when in post processing time
-    [SerializeField] private Volume volume = null;
-
+    
     private void Start()
     {
-        //volume = baseEffectHolder.GetComponent<VolumeComponent>();
-        //volume.sharedProfile = volume.GetComponent<VolumeProfile>();
+        volume = postProcessingMaster.GetComponent<Volume>();
+        volume.sharedProfile.TryGet<Bloom>(out bloomLayer);
     }
 
     private void FixedUpdate()
     {
-        if (inPPTime && ppCol.radius > 0)
+        if (inPPTime && postProcessingCollider.radius > 0)
         {
-            ppCol.radius = ppCol.radius - 0.5f;
+            postProcessingCollider.radius = postProcessingCollider.radius - 0.5f;
         }
         if (inPPTime && vcam.m_Lens.FieldOfView < 55)
         {
             vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
         }
-        if (!inPPTime && ppCol.radius < 20)
+        if (!inPPTime && postProcessingCollider.radius < 20)
         {
-            ppCol.radius = ppCol.radius + 0.8f;
+            postProcessingCollider.radius = postProcessingCollider.radius + 0.8f;
         }
         if (!inPPTime && vcam.m_Lens.FieldOfView > 40)
         {
             vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView - 1.5f;
         }
-        if (!inPPTime && ppCol.radius >= 20)
+        if (!inPPTime && postProcessingCollider.radius >= 20)
         {
             postProcessingSub.SetActive(false);
         }
@@ -113,6 +116,7 @@ public class BaseballEffectHolder : MonoBehaviour
     {
         postProcessingMaster.SetActive(true);
         postProcessingSub.SetActive(true);
+        bloomLayer.dirtIntensity.value = 1000000;
         /*yield return new WaitForSeconds(1.5f + ppTime);
         Debug.Log(ppTime);
         if(ppTime <= 0)
@@ -129,6 +133,7 @@ public class BaseballEffectHolder : MonoBehaviour
         //postProcessingSub.SetActive(false);
         //ppCol.radius = 20;
         //vcam.m_Lens.FieldOfView = 40;
+        bloomLayer.dirtIntensity.value = 0;
         inPPTime = false;
     }
 }
