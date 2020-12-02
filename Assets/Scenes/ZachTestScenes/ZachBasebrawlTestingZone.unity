@@ -1952,7 +1952,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7.1e-43, y: 9.4e-44, z: 0, w: -0.0000000270242}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2777,6 +2777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   field: {fileID: 1436010119}
   woodyMat: {fileID: 2100000, guid: 965120b845133e44eb7b8a3ea44c258e, type: 2}
+  baseEffect: {fileID: 1757929027}
 --- !u!114 &1028040675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5754,7 +5755,7 @@ PrefabInstance:
     - target: {fileID: 6652822153287198014, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}
       propertyPath: jumpForceTickDown
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6652822153336975102, guid: 740722ad61eae844bb953050ceb3df68,
         type: 3}

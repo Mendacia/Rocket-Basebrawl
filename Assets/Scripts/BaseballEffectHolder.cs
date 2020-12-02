@@ -39,13 +39,13 @@ public class BaseballEffectHolder : MonoBehaviour
         bloomLayer.dirtTexture.value = dirtTexture;
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
             ChangeDirtTexture();
         }
-    }
+    }*/
 
     //This is in FixedUpdate to smoothly and consistently change the collider radius size and camera FOV when in post processing time
     private void FixedUpdate()
