@@ -31,8 +31,6 @@ public class BaseballEffectHolder : MonoBehaviour
     //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
 
-    //This is in update to smoothly and consistently change the collider radius size and camera FOV when in post processing time
-    
     //GetComponent is needed to grab the PostProcessing data at start
     private void Start()
     {
@@ -49,6 +47,7 @@ public class BaseballEffectHolder : MonoBehaviour
         }
     }
 
+    //This is in FixedUpdate to smoothly and consistently change the collider radius size and camera FOV when in post processing time
     private void FixedUpdate()
     {
         //Makes the sphere collider smaller on ball hit to create the effect
@@ -81,8 +80,6 @@ public class BaseballEffectHolder : MonoBehaviour
         {
             postProcessingMaster.SetActive(false);
         }
-
-        
     }
     //Camera Shake
     public void CameraShakeOnVoid()
@@ -106,11 +103,17 @@ public class BaseballEffectHolder : MonoBehaviour
         Instantiate(onHitEffect, ballTransform, Quaternion.identity);
     }
 
-    //Change Dirt Texture Image
+    //Change Dirt Texture Image by setting the value of the Bloom Dirt Texture to a preset Texture in the editor
     public void ChangeDirtTexture()
     {
-        //string devTexture = Application.dataPath + "/Materials/UI Sprites/Wood(y) Texture.png";
-        bloomLayer.dirtTexture.value = devTexture;
+        if(bloomLayer.dirtTexture.value == dirtTexture)
+        {
+            bloomLayer.dirtTexture.value = devTexture;
+        }
+        else
+        {
+            bloomLayer.dirtTexture.value = dirtTexture;
+        }
     }
 
     //Camera shake
