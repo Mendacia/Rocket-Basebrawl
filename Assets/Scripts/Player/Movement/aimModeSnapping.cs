@@ -9,7 +9,7 @@ public class aimModeSnapping : MonoBehaviour
     [SerializeField] private float lerpDistance = 0.8f;
     [SerializeField] private bool timeDriven = true;
     [SerializeField] private float distanceFromTargetPlayerShouldSnapTo = 1;
-    private Vector3 fielderPosition;
+    [System.NonSerialized] public Transform fielderPosition;
 
     private bool hasATargetAlready = false;
 
@@ -17,11 +17,11 @@ public class aimModeSnapping : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            lerpPlayerToTheAssignedTarget();
+            //lerpPlayerToTheAssignedTarget();
         }
     }
 
-    public void assignTargetFromNearestFielderTargetToPlayer(Vector3 recievedTarget, Vector3 recievedPitcher)
+    public void assignTargetFromNearestFielderTargetToPlayer(Vector3 recievedTarget, Transform recievedPitcher)
     {
         var direction = recievedTarget - player.position;
         direction = new Vector3(direction.x, recievedTarget.y, direction.z);
@@ -30,12 +30,12 @@ public class aimModeSnapping : MonoBehaviour
         hasATargetAlready = true;
     }
 
-    public void lerpPlayerToTheAssignedTarget()
+    /*public void lerpPlayerToTheAssignedTarget()
     {
         if (hasATargetAlready)
         {
-            player.position = Vector3.Lerp(player.position, finalTarget, lerpDistance * (timeDriven ? Time.deltaTime : 1));
+            //player.position = Vector3.Lerp(player.position, finalTarget, lerpDistance * (timeDriven ? Time.deltaTime : 1));
             //Need to look at fielderPosition, which, I don't know enough about cinemachine or our implementation of it to do.
         }
-    }
+    }*/
 }

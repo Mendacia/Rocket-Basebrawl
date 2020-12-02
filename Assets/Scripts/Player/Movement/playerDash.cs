@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 public class playerDash : MonoBehaviour
 {
     private Rigidbody playerRigidbody = null;
+    [SerializeField] private playerControls playerCont;
+    private bool canDash = true;
+    [SerializeField] private float dashSpeed = 100;
+    [SerializeField] private float dashDuration = 0.1f;
+    [SerializeField] private float dashCooldown = 0.5f;
 
     public Vector3 recievedVector(Vector3 myVector)
     {
@@ -16,15 +22,26 @@ public class playerDash : MonoBehaviour
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody>();
     }
-    private void Update()
+    
+    public void PushThePlayerForwardRealHard(CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (context.performed)
         {
-            PushThePlayerForwardRealHard();
+            //playerRigidbody.AddForce(Vector3.forward * 100000);
+            if (canDash)
+            {
+                canDash = false;
+                StartCoroutine(Dash());
+            }
         }
     }
-    public void PushThePlayerForwardRealHard()
+
+    IEnumerator Dash()
     {
-        playerRigidbody.AddForce(Vector3.forward * 100000);
+        playerCont.speed = dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        playerCont.speed = playerCont.topSpeed;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }

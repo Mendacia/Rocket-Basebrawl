@@ -45,7 +45,7 @@ public class fielderProgressionBasedAccuracyScript : MonoBehaviour
         gameObject.transform.localScale = new Vector3 (baseManagerScript.percentageOfRunRemaining * targetingSphereScale, baseManagerScript.percentageOfRunRemaining * targetingSphereScale, baseManagerScript.percentageOfRunRemaining * targetingSphereScale);
     }
 
-    public void GiveTheFielderATarget(bool isFirstFielder, Vector3 recievedFielder)
+    public void GiveTheFielderATarget(bool isFirstFielder, Transform recievedFielder)
     {
         {
             finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (baseManagerScript.percentageOfRunRemaining * targetingSphereScale) / 2));
