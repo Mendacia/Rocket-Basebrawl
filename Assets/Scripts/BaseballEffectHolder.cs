@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using Cinemachine;
 
 public class BaseballEffectHolder : MonoBehaviour
@@ -13,55 +14,72 @@ public class BaseballEffectHolder : MonoBehaviour
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
-    [SerializeField] private GameObject baseEffectHolder = null;
     [SerializeField] private GameObject postProcessingMaster = null;
     [SerializeField] private GameObject postProcessingSub = null;
-    [SerializeField] private SphereCollider ppCol = null;
+    [SerializeField] private SphereCollider postProcessingCollider = null;
+    [SerializeField] private Texture dirtTexture = null;
+    [SerializeField] private Texture devTexture = null;
+    
+    private Volume volume = null;
+    Bloom bloomLayer = null;
     public float ppTime = 0;
     public bool inPPTime = false;
+
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
 
     //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
     //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
 
-    //This is in update to smoothly and consistently change the collider radius size and camera FOV when in post processing time
-    [SerializeField] private Volume volume = null;
-
+    //GetComponent is needed to grab the PostProcessing data at start
     private void Start()
     {
-        //volume = baseEffectHolder.GetComponent<VolumeComponent>();
-        volume.sharedProfile = volume.GetComponent<VolumeProfile>();
+        volume = postProcessingMaster.GetComponent<Volume>();
+        volume.sharedProfile.TryGet<Bloom>(out bloomLayer);
+        bloomLayer.dirtTexture.value = dirtTexture;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ChangeDirtTexture();
+        }
+    }
+
+    //This is in FixedUpdate to smoothly and consistently change the collider radius size and camera FOV when in post processing time
     private void FixedUpdate()
     {
-        if (inPPTime && ppCol.radius > 0)
+        //Makes the sphere collider smaller on ball hit to create the effect
+        if (inPPTime && postProcessingCollider.radius > 0)
         {
-            ppCol.radius = ppCol.radius - 0.5f;
+            postProcessingCollider.radius = postProcessingCollider.radius - 0.5f;
         }
+        //Zooms out the FOV of the camera on ball hit
         if (inPPTime && vcam.m_Lens.FieldOfView < 55)
         {
             vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
         }
-        if (!inPPTime && ppCol.radius < 20)
+        //Makes the sphere collider bigger to reset it
+        if (!inPPTime && postProcessingCollider.radius < 20)
         {
-            ppCol.radius = ppCol.radius + 0.8f;
+            postProcessingCollider.radius = postProcessingCollider.radius + 0.8f;
         }
+        //Resets the camera back to default FOV
         if (!inPPTime && vcam.m_Lens.FieldOfView > 40)
         {
             vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView - 1.5f;
         }
-        if (!inPPTime && ppCol.radius >= 20)
+        //Turns off the local player effect
+        if (!inPPTime && postProcessingCollider.radius >= 20)
         {
             postProcessingSub.SetActive(false);
         }
+        //Turns off the global effect
         if(!inPPTime && vcam.m_Lens.FieldOfView >= 40)
         {
             postProcessingMaster.SetActive(false);
         }
-
-        
     }
     //Camera Shake
     public void CameraShakeOnVoid()
@@ -83,6 +101,19 @@ public class BaseballEffectHolder : MonoBehaviour
     public void PlayHitEffect(Vector3 ballTransform)
     {
         Instantiate(onHitEffect, ballTransform, Quaternion.identity);
+    }
+
+    //Change Dirt Texture Image by setting the value of the Bloom Dirt Texture to a preset Texture in the editor
+    public void ChangeDirtTexture()
+    {
+        if(bloomLayer.dirtTexture.value == dirtTexture)
+        {
+            bloomLayer.dirtTexture.value = devTexture;
+        }
+        else
+        {
+            bloomLayer.dirtTexture.value = dirtTexture;
+        }
     }
 
     //Camera shake
@@ -113,6 +144,7 @@ public class BaseballEffectHolder : MonoBehaviour
     {
         postProcessingMaster.SetActive(true);
         postProcessingSub.SetActive(true);
+        bloomLayer.dirtIntensity.value = 1000000;
         /*yield return new WaitForSeconds(1.5f + ppTime);
         Debug.Log(ppTime);
         if(ppTime <= 0)
@@ -125,10 +157,7 @@ public class BaseballEffectHolder : MonoBehaviour
             StartCoroutine(PostProcessingOnBallHit());
         }*/
         yield return new WaitForSeconds(0.4f);
-        //postProcessingMaster.SetActive(false);
-        //postProcessingSub.SetActive(false);
-        //ppCol.radius = 20;
-        //vcam.m_Lens.FieldOfView = 40;
+        bloomLayer.dirtIntensity.value = 0;
         inPPTime = false;
     }
 }

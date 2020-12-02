@@ -564,7 +564,6 @@ GameObject:
   m_Component:
   - component: {fileID: 157959961}
   - component: {fileID: 157959962}
-  - component: {fileID: 157959963}
   m_Layer: 0
   m_Name: Bases
   m_TagString: Untagged
@@ -605,26 +604,9 @@ MonoBehaviour:
   bases: []
   playerPosition: {fileID: 234638612}
   uIBaseText: {fileID: 1167555108}
-  rangeAllocationScript: {fileID: 1399274993}
-  testingAllocationScript: {fileID: 157959963}
+  testingAllocationScript: {fileID: 763004674}
   distanceFromBaseRequiredToProgress: 5
   percentageOfRunRemaining: 0
---- !u!114 &157959963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157959960}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b95409932bec24408351c43e9ab67b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPosition: {fileID: 234638612}
-  baseManagerScript: {fileID: 157959962}
-  targetingSphereScale: 1
-  targetingDistanceMaximum: 20
 --- !u!1 &190353908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,6 +2052,56 @@ PrefabInstance:
       objectReference: {fileID: 453430474}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c11f1b289353e504cafe2adc4cc7b2c7, type: 3}
+--- !u!1 &763004673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763004675}
+  - component: {fileID: 763004674}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &763004674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763004673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b95409932bec24408351c43e9ab67b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {fileID: 234638612}
+  baseManagerScript: {fileID: 157959962}
+  snappingScript: {fileID: 1399274994}
+  targetingSphereScale: 1
+  targetingDistanceMaximum: 20
+  secondBallRadius: 2
+  finalTargetPosition: {x: 0, y: 0, z: 0}
+--- !u!4 &763004675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763004673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.91082, y: 37.04166, z: -26.653265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784205517
 GameObject:
   m_ObjectHideFlags: 3
@@ -3335,6 +3367,8 @@ GameObject:
   - component: {fileID: 1399274991}
   - component: {fileID: 1399274990}
   - component: {fileID: 1399274993}
+  - component: {fileID: 1399274994}
+  - component: {fileID: 1399274995}
   m_Layer: 0
   m_Name: BunnyTeam
   m_TagString: Untagged
@@ -3357,9 +3391,8 @@ MonoBehaviour:
   player: {fileID: 234638612}
   targetingBeamPrefab: {fileID: 3623002623490018393, guid: 07b0e174ba10aaa47b636082b7f828b0,
     type: 3}
-  rangeAllocationScript: {fileID: 1399274993}
+  rangeAllocationScript: {fileID: 763004674}
   pitchingPhaseTarget: {fileID: 1471202110}
-  scoreHolderObject: {fileID: 1595733757}
   playerStateReference: {fileID: 279898533}
   minWaitTime: 1
   maxWaitTime: 2
@@ -3397,9 +3430,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseManagerScript: {fileID: 157959962}
   playerPosition: {fileID: 234638612}
+  snappingScript: {fileID: 1399274994}
   targetingMinimumY: 0.3
   targetingMaximumY: 1.3
   extraBallSphereRadius: 0
+--- !u!114 &1399274994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399274989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f422dff720e3f42aa50b590bb823f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 234638612}
+  finalTarget: {x: 0, y: 0, z: 0}
+  lerpDistance: 0.8
+  timeDriven: 1
+  distanceFromTargetPlayerShouldSnapTo: 1
+--- !u!114 &1399274995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399274989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3226aa5ca5b8c9249859e83d404105d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 8902833058278786760, guid: 64b492f1349f6134d8b783e57f23c8c9, type: 3}
+  hitStrength: 1
 --- !u!1 &1423628096
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,18 +4574,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34c39a9e5bada64496e0d38628bac87, type: 3}
---- !u!114 &1595733757 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6588156215019818124, guid: 2b2ffce2727d0a64c9129460ae0d6655,
-    type: 3}
-  m_PrefabInstance: {fileID: 1265671341}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71dffaf50ae431f4c8c0a071e1955e7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1613866817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4951,7 +5004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1705239519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5024,15 +5077,15 @@ MonoBehaviour:
   frequency: 0.8
   amplitude: 3
   waitTime: 0.1
-  baseEffectHolder: {fileID: 1757929026}
   postProcessingMaster: {fileID: 1705239518}
   postProcessingSub: {fileID: 1391112373}
-  ppCol: {fileID: 1391112374}
+  postProcessingCollider: {fileID: 1391112374}
+  dirtTexture: {fileID: 2800000, guid: 0b343b179d2251243a8bbed3fe8e2773, type: 3}
+  devTexture: {fileID: 2800000, guid: 1ceb7a8db2799734a999cd37973bdd43, type: 3}
   ppTime: 0
   inPPTime: 0
   onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
     type: 3}
-  volume: {fileID: 1478567594}
 --- !u!4 &1757929028
 Transform:
   m_ObjectHideFlags: 0
@@ -5481,5 +5534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 6652822153889582766, guid: 740722ad61eae844bb953050ceb3df68,
+        type: 3}
+      propertyPath: fielderWhackingScript
+      value: 
+      objectReference: {fileID: 1399274995}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740722ad61eae844bb953050ceb3df68, type: 3}

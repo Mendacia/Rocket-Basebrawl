@@ -26,7 +26,6 @@ public class TestCameraShake : MonoBehaviour
         if (collider == player.GetComponent<BoxCollider>())
         {
             StartCoroutine(TurnShakeOnAndOff());
-            Debug.Log("Collision");
         }
         StartCoroutine(TurnShakeOnAndOff());
         //Debug.Log("Collision");

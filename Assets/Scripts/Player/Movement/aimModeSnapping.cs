@@ -35,7 +35,7 @@ public class aimModeSnapping : MonoBehaviour
         if (hasATargetAlready)
         {
             player.position = Vector3.Lerp(player.position, finalTarget, lerpDistance * (timeDriven ? Time.deltaTime : 1));
-            //lookAt fielderPosition;
+            //Need to look at fielderPosition, which, I don't know enough about cinemachine or our implementation of it to do.
         }
     }
 }

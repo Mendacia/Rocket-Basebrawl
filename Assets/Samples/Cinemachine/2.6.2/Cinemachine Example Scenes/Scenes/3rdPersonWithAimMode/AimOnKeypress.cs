@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,7 @@ public class AimOnKeypress : MonoBehaviour
     private int camState;
 
     Cinemachine.CinemachineVirtualCameraBase vcam;
-    bool boosted = false;
+    public bool boosted = false;
 
     void Start()
     {
@@ -60,5 +61,23 @@ public class AimOnKeypress : MonoBehaviour
                     Reticle.SetActive(boosted);
                 break;
         }
+    }
+
+    Transform GetClosestFielder(List<Transform> fielders, Transform fromThis)
+    {
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = fromThis.position;
+        foreach (Transform potentialTarget in fielders)
+        {
+            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                bestTarget = potentialTarget;
+            }
+        }
+        return bestTarget;
     }
 }
