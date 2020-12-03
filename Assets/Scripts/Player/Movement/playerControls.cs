@@ -28,22 +28,17 @@ public class playerControls : MonoBehaviour
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 10;
 
-    [Header("Standalone Player Gravity Variables - Do not set Gravity above 10")]
+    [Header("Jump Variables")]
     [Range(0, 10)]
     [SerializeField] private float gravityMultiplier = 10;
-    [Range(0, 10)]
-    [SerializeField] private float jumpMultiplier = 10;
-    [Range(0, 1)]
-    [SerializeField] private float jumpWaitTime = 1;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float jumpForceTickDown;
+    [SerializeField] private float jumpForce = 50;
+    [SerializeField] private float jumpForceTickDown = 2;
     private float currentJumpForce = 0;
 
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
 
     private bool isGrounded = true;
-    private bool useGravity = true;
 
     private void Awake()
     {

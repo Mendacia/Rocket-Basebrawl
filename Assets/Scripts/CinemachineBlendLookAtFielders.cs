@@ -15,11 +15,10 @@ public class CinemachineBlendLookAtFielders : MonoBehaviour
     {
         fielderLocation = snapping.fielderPosition;
 
-        if(aiming.boosted == true && fielderLocation != null)
+        if (aiming.boosted == true && fielderLocation != null)
         {
             vcamMaster.SetActive(true);
             vcam.LookAt = fielderLocation;
-            Debug.Log("Hey I'm doing a thing!");
         }
         else
         {

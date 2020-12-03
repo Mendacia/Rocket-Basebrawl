@@ -7,6 +7,8 @@ using Cinemachine;
 
 public class BaseballEffectHolder : MonoBehaviour
 {
+    [SerializeField] private scoreHolder scoreHold;
+
     [Header("Cinemachine Variables")]
     [SerializeField] private CinemachineVirtualCamera vcam = null;
     [SerializeField] private CinemachineCameraShake camShake = null;
@@ -16,12 +18,16 @@ public class BaseballEffectHolder : MonoBehaviour
     [Header("Post Processing")]
     [SerializeField] private GameObject postProcessingMaster = null;
     [SerializeField] private GameObject postProcessingSub = null;
+    [SerializeField] private GameObject vignetteMaster = null;
     [SerializeField] private SphereCollider postProcessingCollider = null;
     [SerializeField] private Texture dirtTexture = null;
     [SerializeField] private Texture devTexture = null;
     
     private Volume volume = null;
     Bloom bloomLayer = null;
+    private Volume vignetteVolume = null;
+    Vignette vignetteLayer = null;
+    private float vignetteValue = 0;
     public float ppTime = 0;
     public bool inPPTime = false;
 
@@ -34,9 +40,12 @@ public class BaseballEffectHolder : MonoBehaviour
     //GetComponent is needed to grab the PostProcessing data at start
     private void Start()
     {
+        vignetteValue = 0;
         volume = postProcessingMaster.GetComponent<Volume>();
         volume.sharedProfile.TryGet<Bloom>(out bloomLayer);
         bloomLayer.dirtTexture.value = dirtTexture;
+        vignetteVolume = vignetteMaster.GetComponent<Volume>();
+        vignetteVolume.sharedProfile.TryGet<Vignette>(out vignetteLayer);
     }
 
     /*private void Update()
@@ -80,6 +89,24 @@ public class BaseballEffectHolder : MonoBehaviour
         {
             postProcessingMaster.SetActive(false);
         }
+
+        
+        //Update Vignette with score
+        if(scoreHold.score < 0)
+        {
+            vignetteValue = vignetteValue + 0.001f;
+        }
+        else if(scoreHold.score > 1)
+        {
+            vignetteValue = vignetteValue - 0.3f;
+            if(vignetteValue < 0)
+            {
+                vignetteValue = 0;
+            }
+        }
+
+        vignetteLayer.intensity.value = vignetteValue;
+
     }
     //Camera Shake
     public void CameraShakeOnVoid()

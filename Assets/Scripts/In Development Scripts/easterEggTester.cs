@@ -5,8 +5,10 @@ using UnityEngine;
 public class easterEggTester : MonoBehaviour
 {
     [SerializeField] private GameObject field = null;
+    [SerializeField] private Material fieldMat = null;
     [SerializeField] private Material woodyMat = null;
     [SerializeField] private BaseballEffectHolder baseEffect = null;
+    private bool isWoodied = false;
     private enum easterEggState
     {
         NA,
@@ -88,7 +90,16 @@ public class easterEggTester : MonoBehaviour
 
                 break;
             case easterEggState.Y:
-                field.GetComponent<MeshRenderer>().material = woodyMat;
+                if (!isWoodied)
+                {
+                    isWoodied = true;
+                    field.GetComponent<MeshRenderer>().material = woodyMat;
+                }
+                else
+                {
+                    isWoodied = false;
+                    field.GetComponent<MeshRenderer>().material = fieldMat;
+                }
                 baseEffect.ChangeDirtTexture();
                 currentEggState = easterEggState.NA;
                 break;
