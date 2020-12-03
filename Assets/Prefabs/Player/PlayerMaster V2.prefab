@@ -715,7 +715,7 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 1
+    m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -1400,6 +1400,7 @@ GameObject:
   - component: {fileID: 5690458437959482043}
   - component: {fileID: 5690458437627713268}
   - component: {fileID: 5690458437627713273}
+  - component: {fileID: 1801740439}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -1621,6 +1622,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: efdb7027-3535-4f30-b525-abfb3ff5ae85
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1801740439}
+        m_TargetAssemblyTypeName: playerDash, Assembly-CSharp
+        m_MethodName: PushThePlayerForwardRealHard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6041d3b0-c361-4cdf-8dd1-1817036ac362
+    m_ActionName: Player/Dash[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1638,7 +1655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6fd22dcbc643040b7ab4512c184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
   baseSpeed: 25
   topSpeed: 45
   playerState: 1
@@ -1646,8 +1662,8 @@ MonoBehaviour:
   rb: {fileID: 5690458437959482040}
   magnitudeStopFloat: 10
   gravityMultiplier: 10
-  jumpMultiplier: 8
-  jumpWaitTime: 0.2
+  jumpForce: 50
+  jumpForceTickDown: 2
   isFrozen: 0
 --- !u!114 &5690458437627713268
 MonoBehaviour:
@@ -1680,6 +1696,22 @@ MonoBehaviour:
   frequency: 0.8
   amplitude: 3
   waitTime: 0.1
+--- !u!114 &1801740439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690458437627713272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49a732492908e04d9d13f13b0c64a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCont: {fileID: 5690458437959482043}
+  dashSpeed: 100
+  dashDuration: 0.1
+  dashCooldown: 0.5
 --- !u!1 &5690458437648933820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,7 +2192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5690458437901971835}
   m_Layer: 0
-  m_Name: PlayerMaster 1
+  m_Name: PlayerMaster V2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3192,7 +3224,7 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 1
+    m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
