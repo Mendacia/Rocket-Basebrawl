@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 78b6670871707d941b5889687616c784
+guid: 88fec56631286394e9e58349f8f5cab4
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cheetah Running V1
+    second: Cheetah Rare Idle V1
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,10 +35,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah Running V1
+      name: Cheetah Rare Idle V1
       takeName: Take 001
       internalID: 0
-      firstFrame: 1
+      firstFrame: 2
       lastFrame: 300
       wrapMode: 0
       orientationOffsetY: 0
@@ -62,7 +62,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 2
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -122,11 +122,12 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ed215862e27576e408022b109cf25989,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 
