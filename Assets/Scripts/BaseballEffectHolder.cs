@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 public class BaseballEffectHolder : MonoBehaviour
@@ -27,9 +28,12 @@ public class BaseballEffectHolder : MonoBehaviour
     Bloom bloomLayer = null;
     private Volume vignetteVolume = null;
     Vignette vignetteLayer = null;
-    private float vignetteValue = 0;
+    [System.NonSerialized] public float vignetteValue = 0;
     public float ppTime = 0;
     public bool inPPTime = false;
+
+    [SerializeField] private GameObject ragdoll;
+    [SerializeField] private GameObject player;
 
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
@@ -107,6 +111,11 @@ public class BaseballEffectHolder : MonoBehaviour
 
         vignetteLayer.intensity.value = vignetteValue;
 
+        if(vignetteLayer.intensity.value == 1)
+        {
+            StartCoroutine(KillPlayer());
+        }
+
     }
     //Camera Shake
     public void CameraShakeOnVoid()
@@ -141,6 +150,15 @@ public class BaseballEffectHolder : MonoBehaviour
         {
             bloomLayer.dirtTexture.value = dirtTexture;
         }
+    }
+
+    //Ragdoll and kill player
+    IEnumerator KillPlayer()
+    {
+        var myRagdoll = Instantiate(ragdoll, player.transform.position, Quaternion.identity);
+        Destroy(player.gameObject);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
     }
 
     //Camera shake
