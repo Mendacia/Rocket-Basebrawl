@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 
-namespace UnityEngine.Rendering.LWRP
+namespace UnityEngine.Rendering.URP
 {
     public class Blit : UnityEngine.Rendering.Universal.ScriptableRendererFeature
     {

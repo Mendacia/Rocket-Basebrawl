@@ -1,4 +1,4 @@
-namespace UnityEngine.Rendering.LWRP
+namespace UnityEngine.Rendering.URP
 {
     /// <summary>
     /// Copy the given color buffer to the given destination color buffer.
@@ -52,11 +52,11 @@ namespace UnityEngine.Rendering.LWRP
         public override void Execute(ScriptableRenderContext context, ref UnityEngine.Rendering.Universal.RenderingData renderingData)
         {
             CommandBuffer cmd = CommandBufferPool.Get(m_ProfilerTag);
-            
+
             RenderTextureDescriptor opaqueDesc = renderingData.cameraData.cameraTargetDescriptor;
             opaqueDesc.depthBufferBits = 0;
 
-            // Can't read and write to same color target, create a temp render target to blit. 
+            // Can't read and write to same color target, create a temp render target to blit.
             if (destination == UnityEngine.Rendering.Universal.RenderTargetHandle.CameraTarget)
             {
                 cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
@@ -67,7 +67,7 @@ namespace UnityEngine.Rendering.LWRP
             {
                 Blit(cmd, source, destination.Identifier(), blitMaterial, blitShaderPassIndex);
             }
-            
+
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
         }
