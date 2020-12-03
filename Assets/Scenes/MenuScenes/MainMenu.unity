@@ -2721,9 +2721,6 @@ MonoBehaviour:
   rootMenu: {fileID: 286767708}
   newGameMenu: {fileID: 1197533274}
   continueMenu: {fileID: 923320081}
-  rootSystem: {fileID: 480335571}
-  newGameSystem: {fileID: 1733685720}
-  continueSystem: {fileID: 913469832}
   rootButton: {fileID: 1984098058}
   newGameButton: {fileID: 13072232}
   continueButton: {fileID: 1725355105}
@@ -3128,7 +3125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingUI: {fileID: 711563955}
-  sceneToLoad: LiamWackoTestingZone
+  sceneToLoad: TempHub
 --- !u!114 &1725355105
 MonoBehaviour:
   m_ObjectHideFlags: 0
