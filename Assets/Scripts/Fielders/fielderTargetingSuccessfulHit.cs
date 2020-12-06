@@ -34,6 +34,7 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
                 effectHolder.OnHitTurnOnPP();
             }
             effectHolder.ppTime = effectHolder.ppTime + 1.5f;
+            effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
         }
         
         var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();

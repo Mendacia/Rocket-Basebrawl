@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold(duration=0.01,pressPoint=0.01)"
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "6041d3b0-c361-4cdf-8dd1-1817036ac362",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.01,pressPoint=0.01)"
                 }
             ],
             "bindings": [
@@ -374,6 +382,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "769a9bbf-7c13-4d01-b8a8-583d38a6a043",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -26,7 +26,7 @@ public class TimeSlow : MonoBehaviour
 
     private void Update()
     {
-        RotatePlane();
+        //RotatePlane();
     }
 
     public void TimeScale(CallbackContext context)
@@ -35,14 +35,14 @@ public class TimeSlow : MonoBehaviour
         {
             Time.timeScale = 0.5f;
             timeSlowed = true;
-            //aimingBox.SetActive(true);
+            aimingBox.SetActive(true);
         }
 
         else if (context.canceled && !PauseMenu.isPaused)
         {
             Time.timeScale = 1;
             timeSlowed = false;
-            //aimingBox.SetActive(false);
+            aimingBox.SetActive(false);
         }    
 
         /*else

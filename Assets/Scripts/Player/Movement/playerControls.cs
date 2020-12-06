@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class playerControls : MonoBehaviour
 {
     [Header("Player Speed")]
-    [SerializeField] private float speed = 30;
+    [System.NonSerialized] public float speed = 30;
     [SerializeField] private float baseSpeed = 30;
-    [SerializeField] private float topSpeed = 45;
+    public float topSpeed = 45;
     //Lock player movement at the start
     [Header("Player State")]
     public int playerState = 2;
@@ -28,19 +28,17 @@ public class playerControls : MonoBehaviour
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float magnitudeStopFloat = 10;
 
-    [Header("Standalone Player Gravity Variables - Do not set Gravity above 10")]
+    [Header("Jump Variables")]
     [Range(0, 10)]
     [SerializeField] private float gravityMultiplier = 10;
-    [Range(0, 10)]
-    [SerializeField] private float jumpMultiplier = 10;
-    [Range(0, 1)]
-    [SerializeField] private float jumpWaitTime = 1;
+    [SerializeField] private float jumpForce = 50;
+    [SerializeField] private float jumpForceTickDown = 2;
+    private float currentJumpForce = 0;
 
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
 
     private bool isGrounded = true;
-    private bool useGravity = true;
 
     private void Awake()
     {
@@ -91,9 +89,11 @@ public class playerControls : MonoBehaviour
                 float v = movementInput.y;
 
                 //Enhances the Gravity for the player alone
-                if (useGravity)
+                rb.AddForce(Physics.gravity * gravityMultiplier * 10, ForceMode.Acceleration);
+                
+                if(currentJumpForce > 0)
                 {
-                    rb.AddForce(Physics.gravity * gravityMultiplier * 10, ForceMode.Acceleration);
+                    currentJumpForce -= jumpForceTickDown;
                 }
 
                 Vector3 targetInput = new Vector3(h, 0, v);
@@ -109,7 +109,7 @@ public class playerControls : MonoBehaviour
 
                 Move(desiredDirection);
                 Turn(desiredDirection);
-
+                rb.velocity = new Vector3(rb.velocity.x, currentJumpForce, rb.velocity.z);
                 break;
         }
     }
@@ -119,16 +119,14 @@ public class playerControls : MonoBehaviour
         if(context.performed && isGrounded)
         {
             isGrounded = false;
-            StartCoroutine(JumpController());
+            Jump();
         }
     }
 
-    IEnumerator JumpController()
+    void Jump()
     {
-        rb.AddForce(new Vector3(0, jumpMultiplier * 500, 0), ForceMode.Impulse);
-        useGravity = false;
-        yield return new WaitForSeconds(jumpWaitTime);
-        useGravity = true;
+        currentJumpForce = jumpForce;
+        
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -178,7 +178,7 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
                 myBeamScript.originPosition = fielder.position;
-                rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder.position);
+                rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder);
                 myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
                 firstFielder = false;
                 myBeamScript.playerTransform = player.transform;
