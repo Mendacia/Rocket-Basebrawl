@@ -6,7 +6,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 {
     [Header("Set this to the prefab that this script is on")]
     [SerializeField] private LineRenderer targetingBeam = null;
-    [Header("Testing this for colour changes")]
+    [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColour;
     [SerializeField] private Color lineRendererColourEXPlusUltra;
     [SerializeField] private LayerMask hitterLayerMask;
@@ -14,10 +14,13 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
+
     private float beamWidth = 1f;
     [System.NonSerialized] public Vector3 direction = Vector3.zero;
     [System.NonSerialized] public Vector3 originPosition = Vector3.zero;
     [System.NonSerialized] public Transform playerTransform = null;
+    [System.NonSerialized] public bool theUIArrowScriptHasTheOsprite = false;
+    private UIArrow uIArrowScript = null;
 
     private void Update()
     {
@@ -76,13 +79,13 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             if (inHitterRadius)
             {
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint);
-                Destroy(gameObject);
             }
             else
             {
                 gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget();
-                Destroy(gameObject);
             }
+            /*uIArrowScript.RemoveThisLinerenderersMidPointFromTheListForUIArrowSoItDoesntHaveABillionTargets(oSprite.transform);*/
+            Destroy(gameObject);
         }
     }
 }
