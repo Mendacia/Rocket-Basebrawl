@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 public class CinemachineLookAtPitcher : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     [SerializeField] private fielderPeltingScript fielderReference = null;
     [Header("Put the Pitching Phase Target here!")]
     [SerializeField] private GameObject pitchingPhaseTarget = null;
+    [Header("Put ScoreHolder here!")]
+    [SerializeField] private scoreHolder scoreReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 1;
     public static int currentPitchingNumber = 1;
@@ -34,7 +35,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber)
+        if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
         {
             pitchingStarted = true;
             fielderPeltingScript.pitchingLoopStarted = false;

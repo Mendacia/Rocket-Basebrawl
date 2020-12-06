@@ -10,13 +10,10 @@ EditorBuildSettings:
     guid: 010a42af1b1d5bd4a9d2beba688aa482
   - enabled: 1
     path: Assets/Scenes/ZachTestScenes/ZachBasebrawlTestingZone.unity
-    guid: 2e12dba21789a8b4184c1e669ca4379f
+    guid: 9c8355645c75231469e3db739cc7aebc
   - enabled: 1
     path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
     guid: cf0894493be020b4b8b21bccd5282151
-  - enabled: 0
-    path: Assets/Scenes/LiamTestScenes/LiamWackoTestingZone.unity
-    guid: 95fdb31adb02eef45af6105407a0c505
   - enabled: 1
     path: Assets/Scenes/Temphub.unity
     guid: 975c42cd723374642a3b07e544ae8d9f

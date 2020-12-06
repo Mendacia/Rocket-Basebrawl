@@ -8,10 +8,12 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     [SerializeField] private GameObject baseballPrefab = null;
 
     private BaseballEffectHolder effectHolder;
+    private scoreHolder scoreHolderReference;
 
     private void Start()
     {
         effectHolder = GameObject.Find("BaseballEffectHolder").GetComponent<BaseballEffectHolder>();
+        scoreHolderReference = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
 
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation)
@@ -19,21 +21,18 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         //Don't worry about these causing lag, it only runs when the player hits a ball, it shouldn't be that taxing.
         if (fielderPeltingScript.pitchingLoopStarted == false)
         {
-            GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+            scoreHolderReference.score++;
+            
             fielderPeltingScript.pitchingLoopStarted = true;
-            //effectHolder.inPPTime = true;
-            //effectHolder.OnHitTurnOnPP();
         }
         else
         {
-            GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score++;
+            scoreHolderReference.score++;
             
             if (!effectHolder.inPPTime)
             {
-                effectHolder.inPPTime = true;
                 effectHolder.OnHitTurnOnPP();
             }
-            effectHolder.ppTime = effectHolder.ppTime + 1.5f;
             effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
         }
         
