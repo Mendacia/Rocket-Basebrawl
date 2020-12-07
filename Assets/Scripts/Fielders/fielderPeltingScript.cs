@@ -20,8 +20,10 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("Variables to tell player when they can move")]
     [SerializeField] private GameObject goText = null;
 
-    [Header("Make game hard")]
-    public bool makeGameHard = false;
+    [Header("Tutorial Variables")]
+    [SerializeField] private GameObject tutorialPopup = null;
+    [SerializeField] private GameObject tutorialButton = null;
+
     private bool firstFielder = true;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
@@ -147,9 +149,12 @@ public class fielderPeltingScript : MonoBehaviour
                 {
                     Time.timeScale = 1;
                     battingBallCount = 0;
-                    playerStateReference.playerState = 2;
                     StartCoroutine(TellPlayerTheyCanGo());
                     StopCoroutine(BattingPhaseTimer());
+                    scoreHolderReference.score = 0;
+                    tutorialButton.SetActive(true);
+                    tutorialPopup.SetActive(true);
+                    Cursor.visible = true;
                 }
                 else
                 {
