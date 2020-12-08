@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TutorialGodScript : MonoBehaviour
 {
@@ -15,15 +14,15 @@ public class TutorialGodScript : MonoBehaviour
 
     [Header("UI Elements")]
     //Images
-    [SerializeField] private Image pitchingPhase = null;
-    [SerializeField] private Image generalControls = null;
-    [SerializeField] private Image battingPhase = null;
+    [SerializeField] private GameObject pitchingPhase = null;
+    [SerializeField] private GameObject generalControls = null;
+    [SerializeField] private GameObject aimingControls = null;
+    [SerializeField] private GameObject battingPhase = null;
     //Buttons
     [SerializeField] private GameObject pitchingButton = null;
     [SerializeField] private GameObject generalButton = null;
+    [SerializeField] private GameObject aimingButton = null;
     [SerializeField] private GameObject battingButton = null;
-    
-    private bool isInBattingPhase = false;
 
 
     private void Awake()
@@ -31,20 +30,6 @@ public class TutorialGodScript : MonoBehaviour
         scoreHold.canScore = false;
         Cursor.visible = true;
     }
-
-    private void Update()
-    {
-        switch (isInBattingPhase)
-        {
-            case true:
-                if(scoreHold.score >= 3)
-                {
-                    //Do next phase
-                }
-                break;
-        }
-    }
-
     //This is a bunch of BS settings
 
     private IEnumerator StartPitchingPhase()
@@ -65,22 +50,38 @@ public class TutorialGodScript : MonoBehaviour
 
     public void StartPitching()
     {
-        pitchingPhase.enabled = false;
+        pitchingPhase.SetActive(false);
         pitchingButton.SetActive(false);
         Cursor.visible = false;
     }
 
     public void StartMovement()
     {
-        generalControls.enabled = false;
+        generalControls.SetActive(false);
         generalButton.SetActive(false);
+        aimingControls.SetActive(true);
+        aimingButton.SetActive(true);
+    }
+
+    public void StartMovement2()
+    {
+        aimingControls.SetActive(false);
+        aimingButton.SetActive(false);
         playerStateReference.playerState = 2;
         Cursor.visible = false;
     }
 
+    public void ShowBattingUI()
+    {
+        battingPhase.SetActive(true);
+        battingButton.SetActive(true);
+        playerStateReference.playerState = 1;
+        Cursor.visible = true;
+    }
+
     public void StartBatting()
     {
-        battingPhase.enabled = false;
+        battingPhase.SetActive(false);
         battingButton.SetActive(false);
         fielderReference.startPeltingLoop();
         playerStateReference.playerState = 2;
