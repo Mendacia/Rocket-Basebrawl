@@ -26,6 +26,9 @@ public class baseManager : MonoBehaviour
     private float remainingDistanceToNextBase = 0f;
     public float percentageOfRunRemaining = 0f;
 
+    [Header("Cinemachine Camera for Home Base")]
+    [SerializeField] private GameObject homeCamera = null;
+
 
     private void Start()
     {
@@ -105,7 +108,8 @@ public class baseManager : MonoBehaviour
         //Loads scene on return to home, replace this later
         if (currentBase == 0 && hasLeftHome)
         {
-            SceneManager.LoadScene("EndingBasebrawlTestingZone");
+            //SceneManager.LoadScene("EndingBasebrawlTestingZone");
+            homeCamera.SetActive(true);
         }
 
         uIBaseText.text = bases[currentBase].name;

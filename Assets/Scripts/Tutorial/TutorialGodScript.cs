@@ -29,6 +29,7 @@ public class TutorialGodScript : MonoBehaviour
     {
         scoreHold.canScore = false;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     //This is a bunch of BS settings
 
