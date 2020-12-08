@@ -1295,6 +1295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 672805361882806314, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
         type: 3}
+      propertyPath: theMixtape.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 672805361882806314, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
+        type: 3}
       propertyPath: theCamera
       value: 
       objectReference: {fileID: 1829683914}
@@ -1303,6 +1308,11 @@ PrefabInstance:
       propertyPath: uISongNameText
       value: 
       objectReference: {fileID: 460797865}
+    - target: {fileID: 672805361882806314, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
+        type: 3}
+      propertyPath: theMixtape.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 91a35bdabd445cd48b412d1f93e32250, type: 3}
     - target: {fileID: 2800479163843518223, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d,
         type: 3}
       propertyPath: playerStateReference
@@ -1808,7 +1818,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.1e-43, y: 9.4e-44, z: 0, w: -0.0000000270242}
+  m_BoundingSphereOverride: {x: 0, y: 1.8811e-41, z: 0, w: 63.25}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3286,7 +3296,7 @@ MonoBehaviour:
   player: {fileID: 1801740438}
   targetingBeamPrefab: {fileID: 3623002623490018393, guid: 07b0e174ba10aaa47b636082b7f828b0,
     type: 3}
-  arrowPrefab: {fileID: 5383170272537653083, guid: 7637ddd32af8b7d41ad8dcc0c79ad06b,
+  arrowPrefab: {fileID: 467032714953259671, guid: ab191eaee86ebf94f99c61837528edaf,
     type: 3}
   arrowFolderOnCanvas: {fileID: 879319807}
   rangeAllocationScript: {fileID: 763004674}
