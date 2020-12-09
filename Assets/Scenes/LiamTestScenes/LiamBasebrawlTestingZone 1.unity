@@ -2604,6 +2604,27 @@ MonoBehaviour:
   fieldMat: {fileID: 2100000, guid: 492bcde6ad4a95542829bfce620b3c05, type: 2}
   woodyMat: {fileID: 2100000, guid: 965120b845133e44eb7b8a3ea44c258e, type: 2}
   baseEffect: {fileID: 1757929027}
+--- !u!114 &1028040673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028040671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d48570025566af4ba54aacddc9ff154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fielderSuccessOdds: 7
+  fielderCritOdds: 1
+  fielderFailureOdds: 2
+  failureMax: 0
+  failureMin: -7
+  successMax: 10
+  successMin: 5
+  critMax: 25
+  critMin: 10
 --- !u!114 &1028040675
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,6 +20,9 @@ public class baseManager : MonoBehaviour
     private bool hasLeftHome = false;
     [Header("This is theoretically how complete the run is")]
     private List<float> distanceBetweenBases = new List<float>();
+
+    private float roundsCompleted = 0;
+
     private float totalDistanceBetweenAllBases = 0f;
     private float remainingDistanceToHomeBaseSansPlayerToNextBase = 0f;
     private float realRemainingDistanceToHomeBase = 0f;
@@ -105,7 +108,8 @@ public class baseManager : MonoBehaviour
         //Loads scene on return to home, replace this later
         if (currentBase == 0 && hasLeftHome)
         {
-            SceneManager.LoadScene("EndingBasebrawlTestingZone");
+            //SceneManager.LoadScene("EndingBasebrawlTestingZone");
+            roundsCompleted++;
         }
 
         uIBaseText.text = bases[currentBase].name;
