@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CinemachineLookAtPitcher : MonoBehaviour
+public class HomeBaseReset : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
-    [SerializeField] private GameObject cineMachineBaseCam = null;
+    [SerializeField] private GameObject homeCam = null;
+    [Header("Put the UI here")]
+    [SerializeField] private GameObject screenUI = null;
     [Header("Put Player Controller here!")]
     [SerializeField] private GameObject player = null;
     [SerializeField] private playerControls playerStateReference = null;
-    [Header("Put the Opponent Team here!")]
-    [SerializeField] private fielderPeltingScript fielderReference = null;
     [Header("Put the Pitching Phase Target here!")]
     [SerializeField] private GameObject pitchingPhaseTarget = null;
+    [Header("Put the Opponent Team here!")]
+    [SerializeField] private fielderPeltingScript fielderReference = null;
     [Header("Put ScoreHolder here!")]
     [SerializeField] private scoreHolder scoreReference = null;
     [Header("Put the base number here!")]
-    [SerializeField] private int pitchingNumber = 1;
-    public static int currentPitchingNumber = 1;
+    [SerializeField] private int pitchingNumber = 4;
 
     private bool pitchingStarted = false;
 
     private Vector3 basePosition;
-
-    private void Awake()
-    {
-        currentPitchingNumber = 1;
-    }
 
     void Start()
     {
@@ -35,44 +31,45 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
+        if (other.gameObject.tag == "Player" && pitchingStarted == false && CinemachineLookAtPitcher.currentPitchingNumber == 4 && CinemachineLookAtPitcher.currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
         {
             pitchingStarted = true;
             fielderPeltingScript.pitchingLoopStarted = false;
 
-            StartCoroutine(StartPitchingPhase());
+            StartCoroutine(ResetHomeBase());
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private IEnumerator ResetHomeBase()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            pitchingStarted = false;
-        }
-    }
-
-    //This is a bunch of BS settings
-
-    private IEnumerator StartPitchingPhase()
-    {
+        homeCam.SetActive(true);
         //Resets game variables back to beginning
+        fielderPeltingScript.pitchingLoopStarted = false;
         fielderReference.hasStartedThrowingSequenceAlready = false;
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        cineMachineBaseCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
         yield return new WaitForSeconds(1);
         player.transform.position = basePosition + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
         pitchingPhaseTarget.transform.position = basePosition + new Vector3(0, 1.68f, 0.5f);
+        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
+        //pitchingPhaseTarget.transform.position = basePosition + new Vector3(0, 1.68f, 0.5f);
         //Reset camera back to the player, start pitching and increase the base variable
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         fielderReference.canThrow = false; //Set canThrow here so that it's guaranteed to not conflict with the coroutine before it stops
-        cineMachineBaseCam.SetActive(false);
+        CinemachineLookAtPitcher.currentPitchingNumber = 1;
+        screenUI.SetActive(true);
+        Cursor.visible = true;
+    }
+    public void RoundRestart()
+    {
+        screenUI.SetActive(false);
+        homeCam.SetActive(false);
         StartCoroutine(fielderReference.BattingPhaseTimer());
-        currentPitchingNumber++;
+        pitchingStarted = false;
+        Cursor.visible = false;
     }
 }
+

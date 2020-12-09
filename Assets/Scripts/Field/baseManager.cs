@@ -26,9 +26,6 @@ public class baseManager : MonoBehaviour
     private float remainingDistanceToNextBase = 0f;
     public float percentageOfRunRemaining = 0f;
 
-    [Header("Cinemachine Camera for Home Base")]
-    [SerializeField] private GameObject homeCamera = null;
-
 
     private void Start()
     {
@@ -109,9 +106,7 @@ public class baseManager : MonoBehaviour
         if (currentBase == 0 && hasLeftHome)
         {
             //SceneManager.LoadScene("EndingBasebrawlTestingZone");
-            homeCamera.SetActive(true);
         }
-
         uIBaseText.text = bases[currentBase].name;
         //This used to be in the if statements, but I got really tired of it not working, so it's here now. equations in "if" statements go through when you close the 'if'.
 
