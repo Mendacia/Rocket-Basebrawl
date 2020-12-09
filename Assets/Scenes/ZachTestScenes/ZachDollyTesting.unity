@@ -654,7 +654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337300067}
   m_LocalRotation: {x: 0.04444853, y: 0.70570844, z: -0.04444854, w: 0.7057083}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 87208792}
@@ -1276,7 +1276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490250641}
   m_LocalRotation: {x: 0.04444853, y: 0.70570844, z: -0.04444854, w: 0.7057083}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15, y: -0.1, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1216365617}
@@ -2155,7 +2155,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
       propertyPath: m_Name
-      value: SPARE SCREEN (1)
+      value: SPARE SCREEN
       objectReference: {fileID: 0}
     - target: {fileID: 3938074542574067711, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
@@ -2720,7 +2720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852177894}
   m_Layer: 0
-  m_Name: Field Master (1)
+  m_Name: Field Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3194,7 +3194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067102855}
   m_LocalRotation: {x: -0, y: 0.38268337, z: -0, w: 0.9238796}
-  m_LocalPosition: {x: 26.89, y: 14.5, z: -26.91}
+  m_LocalPosition: {x: 26.83, y: 14.5, z: -26.97}
   m_LocalScale: {x: 0.8156791, y: 1, z: 1}
   m_Children:
   - {fileID: 337300068}
@@ -4212,7 +4212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394510363}
   m_LocalRotation: {x: -0, y: -0.3826829, z: -0, w: 0.9238798}
-  m_LocalPosition: {x: 24.29, y: 14.5, z: 26.23}
+  m_LocalPosition: {x: 25.23, y: 14.5, z: 25.29}
   m_LocalScale: {x: 0.815679, y: 1, z: 1}
   m_Children:
   - {fileID: 1803907330}
@@ -4507,7 +4507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1466603707}
   m_Layer: 0
-  m_Name: Stadium (1)
+  m_Name: Stadium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6357,7 +6357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077356605}
   m_LocalRotation: {x: -0, y: -0.9238795, z: -0, w: 0.38268346}
-  m_LocalPosition: {x: -27.6, y: 14.5, z: 27.25}
+  m_LocalPosition: {x: -27.16, y: 14.5, z: 27.69}
   m_LocalScale: {x: 1, y: 1, z: 0.8156791}
   m_Children:
   - {fileID: 490250642}

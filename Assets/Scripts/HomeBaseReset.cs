@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HomeBaseReset : MonoBehaviour
 {
@@ -22,10 +23,13 @@ public class HomeBaseReset : MonoBehaviour
 
     private bool pitchingStarted = false;
 
+    [System.NonSerialized] public int roundsRun = 0;
+
     private Vector3 basePosition;
 
     void Start()
     {
+        roundsRun = 0;
         basePosition = this.transform.position;
     }
 
@@ -62,14 +66,22 @@ public class HomeBaseReset : MonoBehaviour
         CinemachineLookAtPitcher.currentPitchingNumber = 1;
         screenUI.SetActive(true);
         Cursor.visible = true;
+        roundsRun++;
     }
     public void RoundRestart()
     {
-        screenUI.SetActive(false);
-        homeCam.SetActive(false);
-        StartCoroutine(fielderReference.BattingPhaseTimer());
-        pitchingStarted = false;
-        Cursor.visible = false;
+        if (roundsRun == 3)
+        {
+            SceneManager.LoadScene("TempHub");
+        }
+        else
+        {
+            screenUI.SetActive(false);
+            homeCam.SetActive(false);
+            StartCoroutine(fielderReference.BattingPhaseTimer());
+            pitchingStarted = false;
+            Cursor.visible = false;
+        }
     }
 }
 
