@@ -22,7 +22,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private float maxWaitTime = 6f;
 
     [Header("Variables to tell player when they can move")]
-    [SerializeField] private GameObject goText = null;
+    //[SerializeField] private GameObject goText = null;
 
     [Header("Tutorial Variables")]
     [SerializeField] private GameObject tutorialPopup = null;
@@ -177,10 +177,10 @@ public class fielderPeltingScript : MonoBehaviour
     //Comment to tell you that this is the coroutine that turns on the text that tells the player that they can go
     private IEnumerator TellPlayerTheyCanGo()
     {
-        goText.SetActive(true);
+        //goText.SetActive(true);
         //Play audio clip of whistle or something
         yield return new WaitForSeconds(0.3f);
-        goText.SetActive(false);
+        //goText.SetActive(false);
     }
 
     private void ReadyThrow()
