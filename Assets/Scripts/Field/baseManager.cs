@@ -112,7 +112,7 @@ public class baseManager : MonoBehaviour
             roundsCompleted++;
         }
 
-        uIBaseText.text = bases[currentBase].name;
+        uIBaseText.text = bases[nextBase].name;
         //This used to be in the if statements, but I got really tired of it not working, so it's here now. equations in "if" statements go through when you close the 'if'.
 
         //realRemainingDistanceToHomeBase totalDistanceBetweenAllBases
