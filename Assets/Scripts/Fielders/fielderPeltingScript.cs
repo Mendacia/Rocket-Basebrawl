@@ -9,6 +9,8 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform arrowFolderOnCanvas;
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private playerControls playerStateReference = null;
@@ -98,6 +100,9 @@ public class fielderPeltingScript : MonoBehaviour
         {
             var thePitcher = fieldingTeam[0];
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+            var myArrow = Instantiate(arrowPrefab);
+            myArrow.transform.SetParent(arrowFolderOnCanvas);
+            myBeamScript.myArrow = myArrow;
             myBeamScript.originPosition = thePitcher.position;
             myBeamScript.playerTransform = player.transform;
             myBeamScript.direction = ((pitchingPhaseTarget.position + (Random.insideUnitSphere)) - thePitcher.position).normalized;
@@ -213,6 +218,9 @@ public class fielderPeltingScript : MonoBehaviour
             foreach (Transform fielder in chosenFielders)
             {
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+                var myArrow = Instantiate(arrowPrefab);
+                myArrow.transform.SetParent(arrowFolderOnCanvas);
+                myBeamScript.myArrow = myArrow;
                 myBeamScript.originPosition = fielder.position;
                 rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder);
                 myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
