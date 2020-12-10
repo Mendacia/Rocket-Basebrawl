@@ -24,6 +24,8 @@ public class HomeBaseReset : MonoBehaviour
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 4;
 
+    [SerializeField] private fielderScoring fielderScript;
+
     private bool pitchingStarted = false;
 
     [System.NonSerialized] public int roundsRun = 0;
@@ -44,6 +46,7 @@ public class HomeBaseReset : MonoBehaviour
             pitchingStarted = true;
             fielderPeltingScript.pitchingLoopStarted = false;
 
+            fielderScript.fielderScoreGenerator();
             StartCoroutine(ResetHomeBase());
         }
     }

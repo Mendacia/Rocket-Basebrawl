@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class fielderScoring : MonoBehaviour
 {
+    [SerializeField] private Text npcScoreUIText;
+
     [Header("Odds ratios for fielder normal success, critical success, and failure")]
     [SerializeField] private int fielderSuccessOdds;
     [SerializeField] private int fielderCritOdds;
@@ -23,14 +26,6 @@ public class fielderScoring : MonoBehaviour
 
     private int fielderFinalScore;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            fielderScoreGenerator();
-        }
-    }
-
 
     public void fielderScoreGenerator()
     {
@@ -40,19 +35,20 @@ public class fielderScoring : MonoBehaviour
         if(myHitNumber < fielderFailureOdds)
         {
             typeOfHit = ("Failure");
-            fielderFinalScore = Random.Range(failureMin, failureMax + 1);
+            fielderFinalScore += Random.Range(failureMin, failureMax + 1);
         }
         else if(myHitNumber >= fielderFailureOdds && myHitNumber < fielderSuccessOdds + fielderFailureOdds)
         {
             typeOfHit = ("Success");
-            fielderFinalScore = Random.Range(successMin, successMax + 1);
+            fielderFinalScore += Random.Range(successMin, successMax + 1);
         }
         else if(myHitNumber >= fielderSuccessOdds + fielderFailureOdds)
         {
             typeOfHit = ("Crit");
-            fielderFinalScore = Random.Range(critMin, critMax + 1);
+            fielderFinalScore += Random.Range(critMin, critMax + 1);
         }
 
+        npcScoreUIText.text = fielderFinalScore.ToString();
         Debug.Log(typeOfHit + (" ") + fielderFinalScore);
     }
 }

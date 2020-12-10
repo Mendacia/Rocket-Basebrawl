@@ -2032,6 +2032,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625962126}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &634548307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8810001419730472467, guid: b2007aab4bbf4ff46bacff8de525f23c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1620867077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &635852051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3480,6 +3492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116495031}
   - component: {fileID: 1116495032}
+  - component: {fileID: 1116495033}
   m_Layer: 0
   m_Name: Bases
   m_TagString: Untagged
@@ -3523,6 +3536,28 @@ MonoBehaviour:
   testingAllocationScript: {fileID: 763004674}
   distanceFromBaseRequiredToProgress: 5
   percentageOfRunRemaining: 0
+--- !u!114 &1116495033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116495030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d48570025566af4ba54aacddc9ff154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcScoreUIText: {fileID: 634548307}
+  fielderSuccessOdds: 7
+  fielderCritOdds: 1
+  fielderFailureOdds: 2
+  failureMax: -4
+  failureMin: 0
+  successMax: 10
+  successMin: 5
+  critMax: 20
+  critMin: 10
 --- !u!1 &1129279247
 GameObject:
   m_ObjectHideFlags: 0
@@ -4625,6 +4660,7 @@ MonoBehaviour:
   fielderReference: {fileID: 1399274990}
   scoreReference: {fileID: 589835095}
   pitchingNumber: 4
+  fielderScript: {fileID: 1116495033}
 --- !u!1 &1466603706
 GameObject:
   m_ObjectHideFlags: 0
