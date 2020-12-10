@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class HomeBaseReset : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject homeCam = null;
+    [SerializeField] private CinemachineDollyCart cart;
+    [SerializeField] private CinemachineVirtualCamera playerVCAM;
     [Header("Put the UI here")]
     [SerializeField] private GameObject screenUI = null;
     [Header("Put Player Controller here!")]
@@ -31,6 +34,7 @@ public class HomeBaseReset : MonoBehaviour
     {
         roundsRun = 0;
         basePosition = this.transform.position;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,6 +71,7 @@ public class HomeBaseReset : MonoBehaviour
         screenUI.SetActive(true);
         Cursor.visible = true;
         roundsRun++;
+        playerVCAM.m_Transitions.m_InheritPosition = false;
     }
     public void RoundRestart()
     {
@@ -81,6 +86,8 @@ public class HomeBaseReset : MonoBehaviour
             StartCoroutine(fielderReference.BattingPhaseTimer());
             pitchingStarted = false;
             Cursor.visible = false;
+            //cart.m_PositionUnits = 0;
+            cart.m_Position = 0;
         }
     }
 }

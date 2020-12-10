@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class fielderPeltingScript : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private playerControls playerStateReference = null;
+    [SerializeField] private CinemachineVirtualCamera playerVCAM;
     [SerializeField] private scoreHolder scoreHolderReference;
 
     [Header("These Wait Times are in seconds")]
@@ -124,6 +126,7 @@ public class fielderPeltingScript : MonoBehaviour
                     iterator = 0;
                     battingBallCount = 0;
                     playerStateReference.playerState = 2;
+                    playerVCAM.m_Transitions.m_InheritPosition = true;
                     //Do some shit to tell the player they can go
                     StartCoroutine(TellPlayerTheyCanGo());
                     StopCoroutine(BattingPhaseTimer());
@@ -152,6 +155,7 @@ public class fielderPeltingScript : MonoBehaviour
                     StartCoroutine(TellPlayerTheyCanGo());
                     StopCoroutine(BattingPhaseTimer());
                     scoreHolderReference.score = 0;
+                    playerVCAM.m_Transitions.m_InheritPosition = false;
                     tutorialButton.SetActive(true);
                     tutorialPopup.SetActive(true);
                     Cursor.visible = true;
