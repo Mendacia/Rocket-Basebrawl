@@ -38,9 +38,6 @@ public class BaseballEffectHolder : MonoBehaviour
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
 
-    //EVERYTHING COMMENTED OUT IS FOR A SYSTEM THAT DEPLETES OVER TIME AND KEEPS
-    //THE PLAYER IN POST PROCESSING MODE LONGER FOR EACH BALL THEY HIT
-
     //GetComponent is needed to grab the PostProcessing data at start
     private void Start()
     {
@@ -51,14 +48,6 @@ public class BaseballEffectHolder : MonoBehaviour
         vignetteVolume = vignetteMaster.GetComponent<Volume>();
         vignetteVolume.sharedProfile.TryGet<Vignette>(out vignetteLayer);
     }
-
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ChangeDirtTexture();
-        }
-    }*/
 
     //This is in FixedUpdate to smoothly and consistently change the collider radius size and camera FOV when in post processing time
     private void FixedUpdate()
@@ -190,17 +179,6 @@ public class BaseballEffectHolder : MonoBehaviour
         postProcessingMaster.SetActive(true);
         postProcessingSub.SetActive(true);
         bloomLayer.dirtIntensity.value = 1000000;
-        /*yield return new WaitForSeconds(1.5f + ppTime);
-        Debug.Log(ppTime);
-        if(ppTime <= 0)
-        {
-            postProcessingMaster.SetActive(false);
-            inPPTime = false;
-        }
-        if(inPPTime == true)
-        {
-            StartCoroutine(PostProcessingOnBallHit());
-        }*/
         yield return new WaitForSeconds(0.4f);
         bloomLayer.dirtIntensity.value = 0;
         inPPTime = false;

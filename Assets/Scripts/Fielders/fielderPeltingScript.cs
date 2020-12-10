@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class fielderPeltingScript : MonoBehaviour
 {
@@ -13,16 +14,20 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private playerControls playerStateReference = null;
+    [SerializeField] private CinemachineVirtualCamera playerVCAM;
+    [SerializeField] private scoreHolder scoreHolderReference;
 
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 3f;
     [SerializeField] private float maxWaitTime = 6f;
 
     [Header("Variables to tell player when they can move")]
-    [SerializeField] private GameObject goText = null;
+    //[SerializeField] private GameObject goText = null;
 
-    [Header("Make game hard")]
-    public bool makeGameHard = false;
+    [Header("Tutorial Variables")]
+    [SerializeField] private GameObject tutorialPopup = null;
+    [SerializeField] private GameObject tutorialButton = null;
+
     private bool firstFielder = true;
 
     //I set these automatically please don't try to manipulate these for anything other than visibility
@@ -112,39 +117,70 @@ public class fielderPeltingScript : MonoBehaviour
     //Start of the game/Pitching phase
     public IEnumerator BattingPhaseTimer()
     {
-        yield return new WaitForSeconds(2);
-        iterator++;
-        if (pitchingLoopStarted == true)
+        switch (scoreHolderReference.canScore)
         {
-            //pitchingLoopStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
-            startPeltingLoop();
-            Time.timeScale = 1;
-            iterator = 0;
-            battingBallCount = 0;
-            playerStateReference.playerState = 2;
-            //Do some shit to tell the player they can go
-            StartCoroutine(TellPlayerTheyCanGo());
-            StopCoroutine(BattingPhaseTimer());
-        }
-        else if (iterator >= 4)
-        {
-            //if they havent hit the ball, then kill them
-            SceneManager.LoadScene(0);
-        }
-        
-        else
-        {
-            battingPhaseThrow();
-            StartCoroutine(BattingPhaseTimer());
+            //Case for the MAIN GAME
+            case true:
+                yield return new WaitForSeconds(2);
+                iterator++;
+                if (pitchingLoopStarted == true)
+                {
+                    //pitchingLoopStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
+                    startPeltingLoop();
+                    Time.timeScale = 1;
+                    iterator = 0;
+                    battingBallCount = 0;
+                    playerStateReference.playerState = 2;
+                    playerVCAM.m_Transitions.m_InheritPosition = true;
+                    //Do some shit to tell the player they can go
+                    StartCoroutine(TellPlayerTheyCanGo());
+                    StopCoroutine(BattingPhaseTimer());
+                }
+                else if (iterator >= 4)
+                {
+                    //if they havent hit the ball, then kill them
+                    SceneManager.LoadScene(0);
+                }
+
+                else
+                {
+                    battingPhaseThrow();
+                    StartCoroutine(BattingPhaseTimer());
+                }
+                break;
+
+
+            //Case for the TUTORIAL
+            case false:
+                yield return new WaitForSeconds(2);
+                if (scoreHolderReference.score >= 3)
+                {
+                    Time.timeScale = 1;
+                    battingBallCount = 0;
+                    StartCoroutine(TellPlayerTheyCanGo());
+                    StopCoroutine(BattingPhaseTimer());
+                    scoreHolderReference.score = 0;
+                    playerVCAM.m_Transitions.m_InheritPosition = false;
+                    tutorialButton.SetActive(true);
+                    tutorialPopup.SetActive(true);
+                    Cursor.visible = true;
+                }
+                else
+                {
+                    battingBallCount = 0;
+                    battingPhaseThrow();
+                    StartCoroutine(BattingPhaseTimer());
+                }
+                break;
         }
     }
     //Comment to tell you that this is the coroutine that turns on the text that tells the player that they can go
     private IEnumerator TellPlayerTheyCanGo()
     {
-        goText.SetActive(true);
+        //goText.SetActive(true);
         //Play audio clip of whistle or something
         yield return new WaitForSeconds(0.3f);
-        goText.SetActive(false);
+        //goText.SetActive(false);
     }
 
     private void ReadyThrow()

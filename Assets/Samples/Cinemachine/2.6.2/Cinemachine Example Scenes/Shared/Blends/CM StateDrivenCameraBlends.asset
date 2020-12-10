@@ -47,7 +47,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   - m_From: CM 3rdPerson Normal
-    m_To: CM StateDrivenCamera1
+    m_To: Base1Cam
     m_Blend:
       m_Style: 1
       m_Time: 0.5
@@ -58,7 +58,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   - m_From: CM 3rdPerson Normal
-    m_To: CM StateDrivenCamera1
+    m_To: Base2Cam
     m_Blend:
       m_Style: 1
       m_Time: 0.5
@@ -69,7 +69,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   - m_From: CM 3rdPerson Normal
-    m_To: CM StateDrivenCamera1
+    m_To: Base3Cam
     m_Blend:
       m_Style: 1
       m_Time: 0.5
@@ -95,6 +95,17 @@ MonoBehaviour:
     m_Blend:
       m_Style: 1
       m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - m_From: CM 3rdPerson Normal
+    m_To: ScreenCam
+    m_Blend:
+      m_Style: 1
+      m_Time: 5
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 672805361882806309}
   - component: {fileID: 672805361882806314}
   - component: {fileID: 2800479163843518223}
+  - component: {fileID: 4190963971683474154}
+  - component: {fileID: 6812242596669285951}
   m_Layer: 0
   m_Name: God
   m_TagString: Untagged
@@ -65,3 +67,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStateReference: {fileID: 0}
+--- !u!114 &4190963971683474154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672805361882806311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fcd60b942a38c4ab67449bf93ed469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 0}
+  fieldMat: {fileID: 2100000, guid: 492bcde6ad4a95542829bfce620b3c05, type: 2}
+  woodyMat: {fileID: 2100000, guid: 965120b845133e44eb7b8a3ea44c258e, type: 2}
+  baseEffect: {fileID: 0}
+--- !u!114 &6812242596669285951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672805361882806311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c969d2d05efe72644a884a698f0f80c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

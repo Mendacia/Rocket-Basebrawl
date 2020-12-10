@@ -26,9 +26,9 @@ public class CameraFreezeFrame : MonoBehaviour
         {
             cameraRoot.SetActive(true);
             vcam.LookAt = GameObject.Find("Baseball(Clone)").transform;
-            vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
+            //vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
             yield return new WaitForSeconds(0.1f);
-            Time.timeScale = 0;
+            Time.timeScale = 0.3f;
             firstBallHit = true;
         }
         yield return StartCoroutine(WaitForRealSeconds(waitTime));
