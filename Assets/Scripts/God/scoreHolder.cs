@@ -13,7 +13,7 @@ public class scoreHolder : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+       // DontDestroyOnLoad(this);
 
         if (scoreStatic == null)
         {

@@ -3979,6 +3979,7 @@ MonoBehaviour:
   rangeAllocationScript: {fileID: 763004674}
   pitchingPhaseTarget: {fileID: 1471202110}
   playerStateReference: {fileID: 1801740431}
+  playerVCAM: {fileID: 280257813}
   scoreHolderReference: {fileID: 589835095}
   minWaitTime: 1
   maxWaitTime: 2
@@ -5174,7 +5175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71be6c454f8d3794f9c46fcf2dfb1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b842dbbd886be8d42af159b99c14ccc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

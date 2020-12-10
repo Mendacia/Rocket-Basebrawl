@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialGodScript : MonoBehaviour
 {
@@ -24,12 +25,18 @@ public class TutorialGodScript : MonoBehaviour
     [SerializeField] private GameObject aimingButton = null;
     [SerializeField] private GameObject battingButton = null;
 
+    private bool isBatting = false;
 
     private void Awake()
     {
         scoreHold.canScore = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void Start()
+    {
+        scoreHold = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
     //This is a bunch of BS settings
 
@@ -86,6 +93,15 @@ public class TutorialGodScript : MonoBehaviour
         battingButton.SetActive(false);
         fielderReference.startPeltingLoop();
         playerStateReference.playerState = 2;
+        isBatting = true;
         Cursor.visible = false;
+    }
+
+    private void Update()
+    {
+        if(scoreHold.score >= 3 && isBatting)
+        {
+            SceneManager.LoadScene("ZachDollyTesting");
+        }
     }
 }

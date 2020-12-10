@@ -77,7 +77,7 @@ public class HomeBaseReset : MonoBehaviour
     {
         if (roundsRun == 3)
         {
-            SceneManager.LoadScene("TempHub");
+            SceneManager.LoadScene("MainMenu");
         }
         else
         {

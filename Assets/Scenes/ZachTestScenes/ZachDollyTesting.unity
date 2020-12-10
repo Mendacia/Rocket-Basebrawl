@@ -2280,7 +2280,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
       propertyPath: m_Name
-      value: SPARE SCREEN
+      value: LEFT SCREEN
       objectReference: {fileID: 0}
     - target: {fileID: 3938074542574067711, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
@@ -5644,7 +5644,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
@@ -5679,7 +5679,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
       propertyPath: m_Name
-      value: SPARE SCREEN (1)
+      value: RIGHT SCREEN
       objectReference: {fileID: 0}
     - target: {fileID: 3938074542574067711, guid: c5670e47c20dadb47b1c4392a0c947bd,
         type: 3}
@@ -6389,7 +6389,7 @@ RectTransform:
   m_Children:
   - {fileID: 1248219551}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
