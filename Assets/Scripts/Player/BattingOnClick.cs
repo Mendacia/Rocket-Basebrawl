@@ -26,7 +26,6 @@ public class BattingOnClick : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
         anim = animReference.gameObject.GetComponent<Animator>();
     }
 

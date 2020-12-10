@@ -6,7 +6,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 {
     [Header("Set this to the prefab that this script is on")]
     [SerializeField] private LineRenderer targetingBeam = null;
-    [Header("Testing this for colour changes")]
+    [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColour;
     [SerializeField] private Color lineRendererColourEXPlusUltra;
     [SerializeField] private LayerMask hitterLayerMask;
@@ -14,10 +14,13 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
+
     private float beamWidth = 1f;
     [System.NonSerialized] public Vector3 direction = Vector3.zero;
     [System.NonSerialized] public Vector3 originPosition = Vector3.zero;
     [System.NonSerialized] public Transform playerTransform = null;
+    [System.NonSerialized] public bool theUIArrowScriptHasTheOsprite = false;
+    [System.NonSerialized] public GameObject myArrow = null;
 
     private void Update()
     {
@@ -53,7 +56,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         targetingBeam.SetPositions(positions.ToArray());
         oSprite.transform.position = midPoint;
         xSprite.transform.position = midPoint;
-        //Instantiate(emptyMarker, endPoint, Quaternion.identity);
+        myArrow.GetComponent<UIArrow>().giveTheUIArrowTheMidPoint(oSprite.transform);
+        myArrow.GetComponent<UIArrow>().myColor = lineRendererColour;
         //Start shrinking that beam
         targetingBeam.startWidth = beamWidth;
         targetingBeam.endWidth = beamWidth;
@@ -76,13 +80,13 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             if (inHitterRadius)
             {
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint);
-                Destroy(gameObject);
             }
             else
             {
                 gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget();
-                Destroy(gameObject);
             }
+            Destroy(myArrow);
+            Destroy(gameObject);
         }
     }
 }

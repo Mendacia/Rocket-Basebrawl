@@ -10,7 +10,6 @@ public class DeactiveateCamera : MonoBehaviour
     public GameObject startCam;
     public CinemachineDollyCart dolCart;
     public Transform playerRotation;
-    public GameObject pressToStartText;
 
     public static bool dollyActive = false;
 
@@ -22,7 +21,6 @@ public class DeactiveateCamera : MonoBehaviour
     public void skipDolly()
     {
         dollyActive = false;
-        pressToStartText.SetActive(false);
         startCam.SetActive(false);
     }
 }

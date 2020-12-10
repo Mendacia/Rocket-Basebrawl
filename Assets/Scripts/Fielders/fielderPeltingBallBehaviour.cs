@@ -21,10 +21,19 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
+        switch (scoreHolderReference.canScore)
         {
-            scoreHolderReference.score--;
-            ballIsActive = false;
+            case true:
+                if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
+                {
+                    scoreHolderReference.score--;
+                    ballIsActive = false;
+                }
+                break;
+
+            case false:
+                
+                break;
         }
     }
 
