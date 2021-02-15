@@ -233,6 +233,12 @@ PrefabInstance:
       propertyPath: m_Lens.NearClipPlane
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 5690458437627713269, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: d0b1e33359f618a4e9c4e3b5226f25aa,
+        type: 2}
     - target: {fileID: 5690458437756777916, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_VerticalAxis.m_MaxValue
@@ -336,7 +342,7 @@ PrefabInstance:
     - target: {fileID: 5690458437959482043, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: hangTime
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5690458438244309925, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
@@ -2320,7 +2326,7 @@ GameObject:
   - component: {fileID: 700771441}
   - component: {fileID: 700771440}
   m_Layer: 0
-  m_Name: EmptyForBallLookAt
+  m_Name: AimMode2ndCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2398,7 +2404,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 10
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -2420,7 +2426,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -6006,7 +6012,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 5
-    NearClipPlane: 0.1
+    NearClipPlane: 0.03
     FarClipPlane: 5000
     Dutch: 0
     LensShift: {x: 0, y: 0}
