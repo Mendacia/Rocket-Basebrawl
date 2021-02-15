@@ -40,7 +40,7 @@ public class TimeSlow : MonoBehaviour
 
         else if (context.canceled && !PauseMenu.isPaused)
         {
-            ///Time.timeScale = 1;
+            //Time.timeScale = 1;
             timeSlowed = false;
             aimingBox.SetActive(false);
         }    

@@ -29,11 +29,8 @@ public class playerControls : MonoBehaviour
     [SerializeField] private float magnitudeStopFloat = 10;
 
     [Header("Jump Variables")]
-    [Range(0, 10)]
-    [SerializeField] private float gravityMultiplier = 10;
     [SerializeField] private float jumpForce = 50;
-    [SerializeField] private float jumpForceTickDown = 2;
-    private float currentJumpForce = 0;
+    [SerializeField] private float hangTime = 0.2f;
 
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
@@ -88,14 +85,6 @@ public class playerControls : MonoBehaviour
                 float h = movementInput.x;
                 float v = movementInput.y;
 
-                //Enhances the Gravity for the player alone
-                rb.AddForce(Physics.gravity * gravityMultiplier * 10, ForceMode.Acceleration);
-                
-                if(currentJumpForce > 0)
-                {
-                    currentJumpForce -= jumpForceTickDown;
-                }
-
                 Vector3 targetInput = new Vector3(h, 0, v);
 
                 inputDirection = Vector3.Lerp(inputDirection, targetInput, Time.deltaTime * 10f);
@@ -109,7 +98,7 @@ public class playerControls : MonoBehaviour
 
                 Move(desiredDirection);
                 Turn(desiredDirection);
-                rb.velocity = new Vector3(rb.velocity.x, currentJumpForce, rb.velocity.z);
+                
                 break;
         }
     }
@@ -119,14 +108,17 @@ public class playerControls : MonoBehaviour
         if(context.performed && isGrounded)
         {
             isGrounded = false;
-            Jump();
+            StartCoroutine(Jump());
         }
     }
 
-    void Jump()
+    IEnumerator Jump()
     {
-        currentJumpForce = jumpForce;
-        
+        Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
+        rb.AddRelativeForce(jump * jumpForce, ForceMode.Impulse);
+        rb.useGravity = false;
+        yield return new WaitForSeconds(hangTime);
+        rb.useGravity = true;
     }
 
     private void OnCollisionEnter(Collision collision)

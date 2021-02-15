@@ -18,8 +18,8 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private scoreHolder scoreHolderReference;
 
     [Header("These Wait Times are in seconds")]
-    [SerializeField] private float minWaitTime = 3f;
-    [SerializeField] private float maxWaitTime = 6f;
+    [SerializeField] private float minWaitTime = 1f;
+    [SerializeField] private float maxWaitTime = 3f;
 
     [Header("Variables to tell player when they can move")]
     //[SerializeField] private GameObject goText = null;
