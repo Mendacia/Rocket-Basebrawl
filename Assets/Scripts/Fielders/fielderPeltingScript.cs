@@ -18,8 +18,8 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private scoreHolder scoreHolderReference;
 
     [Header("These Wait Times are in seconds")]
-    [SerializeField] private float minWaitTime = 3f;
-    [SerializeField] private float maxWaitTime = 6f;
+    [SerializeField] private float minWaitTime = 1f;
+    [SerializeField] private float maxWaitTime = 3f;
 
     [Header("Variables to tell player when they can move")]
     //[SerializeField] private GameObject goText = null;
@@ -130,8 +130,8 @@ public class fielderPeltingScript : MonoBehaviour
                     Time.timeScale = 1;
                     iterator = 0;
                     battingBallCount = 0;
-                    playerStateReference.playerState = 2;
                     playerVCAM.m_Transitions.m_InheritPosition = true;
+                    playerStateReference.playerState = 2;
                     //Do some shit to tell the player they can go
                     StartCoroutine(TellPlayerTheyCanGo());
                     StopCoroutine(BattingPhaseTimer());

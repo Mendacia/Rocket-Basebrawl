@@ -23,6 +23,7 @@ public class HomeBaseReset : MonoBehaviour
     [SerializeField] private scoreHolder scoreReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 4;
+    
 
     [SerializeField] private fielderScoring fielderScript;
 
@@ -74,7 +75,6 @@ public class HomeBaseReset : MonoBehaviour
         screenUI.SetActive(true);
         Cursor.visible = true;
         roundsRun++;
-        playerVCAM.m_Transitions.m_InheritPosition = false;
     }
     public void RoundRestart()
     {
