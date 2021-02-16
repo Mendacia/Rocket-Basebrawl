@@ -16,8 +16,8 @@ MonoBehaviour:
   - m_From: CM Dolly Cam
     m_To: CM 3rdPerson Normal
     m_Blend:
-      m_Style: 0
-      m_Time: 10
+      m_Style: 1
+      m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []

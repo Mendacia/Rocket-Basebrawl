@@ -105,7 +105,7 @@ public class playerControls : MonoBehaviour
 
     public void Jump(CallbackContext context)
     {
-        if(context.performed && isGrounded)
+        if(context.performed && isGrounded && playerState == 2)
         {
             isGrounded = false;
             StartCoroutine(Jump());
@@ -114,9 +114,19 @@ public class playerControls : MonoBehaviour
 
     IEnumerator Jump()
     {
+        /*Vector3 initialPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 newPos = new Vector3(transform.position.x, transform.position.y + jumpForce, transform.position.z);
+        Vector3 jump = Vector3.Lerp(initialPos, newPos, 1.0f);*/
         Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
-        rb.AddRelativeForce(jump * jumpForce, ForceMode.Impulse);
+        //rb.AddForce(jump * jumpForce, ForceMode.Force);
         rb.useGravity = false;
+        for (int t = 0; t < 20; t++)
+        {
+            rb.AddRelativeForce(jump * jumpForce, ForceMode.Force);
+            yield return new WaitForSeconds(0.005f);
+        }
+            //transform.position = jump;
+            
         yield return new WaitForSeconds(hangTime);
         rb.useGravity = true;
     }
