@@ -21,6 +21,7 @@ public class BaseballEffectHolder : MonoBehaviour
     [SerializeField] private GameObject postProcessingSub = null;
     [SerializeField] private GameObject vignetteMaster = null;
     [SerializeField] private SphereCollider postProcessingCollider = null;
+    [SerializeField] private AudioSource musicSource = null;
     [SerializeField] private Texture dirtTexture = null;
     [SerializeField] private Texture devTexture = null;
     
@@ -84,13 +85,66 @@ public class BaseballEffectHolder : MonoBehaviour
         }
 
         
-        //Update Vignette with score
-        if(scoreHold.score < 0)
+        if(scoreHold.score < 0 && scoreHold.score > -10)
         {
-            vignetteValue = vignetteValue + 0.001f;
+            //musicSource.pitch = 0.8f;
+            if(musicSource.pitch < 0.825)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.825)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
         }
-        else if(scoreHold.score > 1)
+        if (scoreHold.score < -10 && scoreHold.score > -20)
         {
+            //musicSource.pitch = 0.5f;
+            if (musicSource.pitch < 0.525)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.525)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
+        }
+        if (scoreHold.score < -20 && scoreHold.score > -30)
+        {
+            //musicSource.pitch = 0.3f;
+            if (musicSource.pitch < 0.325)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.325)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
+        }
+        if (scoreHold.score < -30)
+        {
+            //musicSource.pitch = 0.1f;
+            if (musicSource.pitch < 0.125)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.125)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
+        }
+
+        //Update Vignette with score
+        if (scoreHold.score < 0)
+        {
+            vignetteValue = vignetteValue + 0.0005f;
+        }
+        else if(scoreHold.score >= 1)
+        {
+            if (musicSource.pitch < 1)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
             vignetteValue = vignetteValue - 0.3f;
             if(vignetteValue < 0)
             {
