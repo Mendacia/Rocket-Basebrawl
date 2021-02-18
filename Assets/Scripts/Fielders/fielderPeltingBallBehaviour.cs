@@ -8,11 +8,11 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     public bool isHittable = true;
     public bool ballIsActive = true;
 
-    private scoreHolder scoreHolderReference;
+    private scoreUpdater myScoreUpdater;
 
     void Start()
     {
-        scoreHolderReference = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        myScoreUpdater = GameObject.Find("Scoreholder").GetComponent<scoreUpdater>();
 
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
@@ -21,12 +21,12 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        switch (scoreHolderReference.canScore)
+        switch (myScoreUpdater.canScore)
         {
             case true:
                 if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
                 {
-                    scoreHolderReference.score--;
+                    myScoreUpdater.SubtractFromScore();
                     ballIsActive = false;
                 }
                 break;

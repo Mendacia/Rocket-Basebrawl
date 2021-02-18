@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class scoreHolder : MonoBehaviour
 {
-    [Header("Set this to the UI score display")]
-    [System.NonSerialized] public int score = 0;
+    [System.NonSerialized] public float score = 0;
     [System.NonSerialized] public bool canScore = true;
 
     private static scoreHolder scoreStatic;
@@ -21,7 +20,12 @@ public class scoreHolder : MonoBehaviour
         }
         else
         {
-            Object.Destroy(gameObject);
+            Destroy(gameObject);
         }
+    }
+
+    public void UpdateScore(float recievedScore)
+    {
+        score += recievedScore;
     }
 }

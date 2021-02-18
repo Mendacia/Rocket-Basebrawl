@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingBeam: {fileID: 3623002623490018407}
+  beamSizeDecreaseSpeed: 1
   lineRendererColour: {r: 0, g: 0, b: 0, a: 0}
   lineRendererColourEXPlusUltra: {r: 0, g: 0, b: 0, a: 1}
   hitterLayerMask:

@@ -6,6 +6,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 {
     [Header("Set this to the prefab that this script is on")]
     [SerializeField] private LineRenderer targetingBeam = null;
+    [Header("This is roughly how fast the beam will shrink before the ball fires")]
+    [SerializeField] private float beamSizeDecreaseSpeed = 1f;
     [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColour;
     [SerializeField] private Color lineRendererColourEXPlusUltra;
@@ -28,12 +30,11 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         var midPoint = originPosition;
         var midPointTwo = originPosition;
         var endPoint = originPosition;
-        var inHitterRadius = false;
         //Get new hitter raycast hit
         if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
-            inHitterRadius = true;
+            fire(true, midPoint);
         }
         //Get new physics raycast hit
         if (Physics.Raycast(originPosition, direction, out var physicsRaycastHit, 1000, physicsLayerMask))
@@ -64,7 +65,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 
         if (beamWidth > 0)
         {
-            beamWidth = beamWidth - 1f *Time.deltaTime;
+            beamWidth = beamWidth - beamSizeDecreaseSpeed *Time.deltaTime;
             oSprite.transform.localScale = new Vector3(beamWidth, beamWidth, beamWidth);
             //Store this to make code easier to read
             var midDistance = Vector3.Distance(startPoint, midPoint) / Vector3.Distance(startPoint, endPoint);
@@ -77,16 +78,21 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
         else
         {
-            if (inHitterRadius)
-            {
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint);
-            }
-            else
-            {
-                gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget();
-            }
-            Destroy(myArrow);
-            Destroy(gameObject);
+            fire(false, midPoint);
         }
+    }
+
+    private void fire(bool playerHitTheBall, Vector3 midPoint)
+    {
+        if (playerHitTheBall)
+        {
+            gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint);
+        }
+        else
+        {
+            gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget();
+        }
+        Destroy(myArrow);
+        Destroy(gameObject);
     }
 }

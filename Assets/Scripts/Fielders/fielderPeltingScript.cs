@@ -132,8 +132,6 @@ public class fielderPeltingScript : MonoBehaviour
                     battingBallCount = 0;
                     playerVCAM.m_Transitions.m_InheritPosition = true;
                     playerStateReference.playerState = 2;
-                    //Do some shit to tell the player they can go
-                    StartCoroutine(TellPlayerTheyCanGo());
                     StopCoroutine(BattingPhaseTimer());
                 }
                 else if (iterator >= 4)
@@ -157,7 +155,6 @@ public class fielderPeltingScript : MonoBehaviour
                 {
                     Time.timeScale = 1;
                     battingBallCount = 0;
-                    StartCoroutine(TellPlayerTheyCanGo());
                     StopCoroutine(BattingPhaseTimer());
                     scoreHolderReference.score = 0;
                     playerVCAM.m_Transitions.m_InheritPosition = false;
@@ -174,14 +171,13 @@ public class fielderPeltingScript : MonoBehaviour
                 break;
         }
     }
-    //Comment to tell you that this is the coroutine that turns on the text that tells the player that they can go
-    private IEnumerator TellPlayerTheyCanGo()
-    {
-        //goText.SetActive(true);
-        //Play audio clip of whistle or something
-        yield return new WaitForSeconds(0.3f);
-        //goText.SetActive(false);
-    }
+    
+    /*  Removed code about the Go Text. Unnecessary until we get assets in that actually make use of this.
+        That means we are waiting on:
+            - Actual Go Text
+            - Accompanying Sound Effect
+            - Fielder Animations
+        Along with those we should probably move that function to an entirely new script but we'll cross that bridge later*/
 
     private void ReadyThrow()
     {

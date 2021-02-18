@@ -13,6 +13,7 @@ public class baseManager : MonoBehaviour
     private int nextBase = 1;
     [Header("Set these to their respective objects please and thank you")]
     [SerializeField] private Transform playerPosition = null;
+    [SerializeField] private scoreUpdater myScoreUpdate = null;
     [SerializeField] private Text uIBaseText = null;
     [SerializeField] private fielderProgressionBasedAccuracyScript testingAllocationScript = null;
     [Header("This is 5 by default")]
@@ -79,6 +80,7 @@ public class baseManager : MonoBehaviour
         {
             if (Vector3.Distance(playerPosition.position, bases[(currentBase + 1)].position) < distanceFromBaseRequiredToProgress)
             {
+                myScoreUpdate.BankScore();
                 currentBase++;
                 nextBase++;
                 hasLeftHome = true;
@@ -90,6 +92,7 @@ public class baseManager : MonoBehaviour
         {
             if (Vector3.Distance(playerPosition.position, bases[bases.Count - 1].position) < distanceFromBaseRequiredToProgress)
             {
+                myScoreUpdate.BankScore();
                 currentBase++;
                 nextBase = 0;
                 remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
@@ -99,8 +102,11 @@ public class baseManager : MonoBehaviour
         {
             if (Vector3.Distance(playerPosition.position, bases[0].position) < distanceFromBaseRequiredToProgress)
             {
+                myScoreUpdate.BankScore();
                 currentBase = 0;
                 nextBase++;
+                remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases;
+                remainingDistanceToHomeBaseSansPlayerToNextBase = remainingDistanceToHomeBaseSansPlayerToNextBase - distanceBetweenBases[currentBase];
             }
         }
         testingAllocationScript.NewTargetingNextBaseUpdater(nextBase);
