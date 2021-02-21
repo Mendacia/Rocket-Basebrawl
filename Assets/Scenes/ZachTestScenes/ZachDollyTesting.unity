@@ -229,6 +229,11 @@ PrefabInstance:
       propertyPath: dashCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1345172540964745008, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5690458436767265928, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_BeforeStackBundles.Array.size
@@ -4800,6 +4805,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 451964743}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028040672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028040671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe648199757410a448a7160c02dbb148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1028040673
 MonoBehaviour:
   m_ObjectHideFlags: 0

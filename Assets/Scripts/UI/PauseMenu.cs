@@ -10,8 +10,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject pause;
     public static bool isPaused = false;
 
-    public CinemachineBrain brain;
-
     public void PauseGame(CallbackContext context)
     {
         if (context.performed)
@@ -34,7 +32,6 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-        brain.enabled = true;
     }
 
     public void Pause()
@@ -44,7 +41,6 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        brain.enabled = false;
     }
 
     public void ReturnToTitle()

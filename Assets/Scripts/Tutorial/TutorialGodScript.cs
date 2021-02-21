@@ -24,6 +24,7 @@ public class TutorialGodScript : MonoBehaviour
     [SerializeField] private GameObject generalButton = null;
     [SerializeField] private GameObject aimingButton = null;
     [SerializeField] private GameObject battingButton = null;
+    [SerializeField] private GameObject loadingButton = null;
 
     private bool isBatting = false;
 
@@ -37,6 +38,8 @@ public class TutorialGodScript : MonoBehaviour
     private void Start()
     {
         scoreHold = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     //This is a bunch of BS settings
 
@@ -60,6 +63,7 @@ public class TutorialGodScript : MonoBehaviour
     {
         pitchingPhase.SetActive(false);
         pitchingButton.SetActive(false);
+        Time.timeScale = 1;
         Cursor.visible = false;
     }
 
@@ -67,6 +71,7 @@ public class TutorialGodScript : MonoBehaviour
     {
         generalControls.SetActive(false);
         generalButton.SetActive(false);
+        Time.timeScale = 0;
         aimingControls.SetActive(true);
         aimingButton.SetActive(true);
     }
@@ -76,6 +81,7 @@ public class TutorialGodScript : MonoBehaviour
         aimingControls.SetActive(false);
         aimingButton.SetActive(false);
         playerStateReference.playerState = 2;
+        Time.timeScale = 1;
         Cursor.visible = false;
     }
 
@@ -83,7 +89,7 @@ public class TutorialGodScript : MonoBehaviour
     {
         battingPhase.SetActive(true);
         battingButton.SetActive(true);
-        playerStateReference.playerState = 1;
+        Time.timeScale = 0;
         Cursor.visible = true;
     }
 
@@ -93,15 +99,23 @@ public class TutorialGodScript : MonoBehaviour
         battingButton.SetActive(false);
         fielderReference.startPeltingLoop();
         playerStateReference.playerState = 2;
+        Time.timeScale = 1;
         isBatting = true;
         Cursor.visible = false;
+    }
+
+    public void LoadMainGame()
+    {
+        SceneManager.LoadScene("ZachDollyTesting");
     }
 
     private void Update()
     {
         if(scoreHold.score >= 3 && isBatting)
         {
-            SceneManager.LoadScene("ZachDollyTesting");
+            loadingButton.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.visible = true;
         }
     }
 }
