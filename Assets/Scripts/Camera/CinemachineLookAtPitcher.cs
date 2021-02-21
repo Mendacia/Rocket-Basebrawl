@@ -18,6 +18,8 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 1;
     public static int currentPitchingNumber = 1;
+    [Header("Put Canvas Here!")]
+    [SerializeField] private GameObject baseCanvas = null;
 
     private bool pitchingStarted = false;
 
@@ -40,8 +42,32 @@ public class CinemachineLookAtPitcher : MonoBehaviour
             pitchingStarted = true;
             fielderPeltingScript.pitchingLoopStarted = false;
 
-            StartCoroutine(StartPitchingPhase());
+            baseCanvas.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.visible = true;
         }
+    }
+
+    public void Taunt()
+    {
+        StartCoroutine(StartPitchingPhase());
+        baseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+    }
+    public void Hold()
+    {
+        StartCoroutine(StartPitchingPhase());
+        baseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+    }
+    public void Bank()
+    {
+        StartCoroutine(StartPitchingPhase());
+        baseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
     }
 
     private void OnTriggerExit(Collider other)
