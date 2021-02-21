@@ -14,7 +14,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private playerControls playerStateReference = null;
-    [SerializeField] private CinemachineVirtualCamera playerVCAM;
+    [SerializeField] private CinemachineVirtualCamera playerVCAM = null;
     [SerializeField] private scoreHolder scoreHolderReference;
 
     [Header("These Wait Times are in seconds")]

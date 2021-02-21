@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class TutorialGodScript : MonoBehaviour
 {
     [Header("Put Player Controller here!")]
     [SerializeField] private GameObject player = null;
     [SerializeField] private playerControls playerStateReference = null;
+    [SerializeField] private CinemachineVirtualCamera playerVCAM = null;
+    [SerializeField] private CinemachineVirtualCamera aimVCAM = null;
     [Header("Put ScoreHolder here!")]
     [SerializeField] private scoreHolder scoreHold;
     [Header("Put the Opponent Team here!")]
@@ -64,6 +67,8 @@ public class TutorialGodScript : MonoBehaviour
         pitchingPhase.SetActive(false);
         pitchingButton.SetActive(false);
         Time.timeScale = 1;
+        playerVCAM.m_Transitions.m_InheritPosition = true;
+        aimVCAM.m_Transitions.m_InheritPosition = true;
         Cursor.visible = false;
     }
 
@@ -81,6 +86,8 @@ public class TutorialGodScript : MonoBehaviour
         aimingControls.SetActive(false);
         aimingButton.SetActive(false);
         playerStateReference.playerState = 2;
+        playerVCAM.m_Transitions.m_InheritPosition = true;
+        aimVCAM.m_Transitions.m_InheritPosition = true;
         Time.timeScale = 1;
         Cursor.visible = false;
     }
@@ -99,6 +106,8 @@ public class TutorialGodScript : MonoBehaviour
         battingButton.SetActive(false);
         fielderReference.startPeltingLoop();
         playerStateReference.playerState = 2;
+        playerVCAM.m_Transitions.m_InheritPosition = true;
+        aimVCAM.m_Transitions.m_InheritPosition = true;
         Time.timeScale = 1;
         isBatting = true;
         Cursor.visible = false;
