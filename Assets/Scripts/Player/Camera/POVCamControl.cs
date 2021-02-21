@@ -16,6 +16,7 @@ public class POVCamControl : MonoBehaviour
     public float sensitivity = 50;
 
     [SerializeField] private bool useX = true;
+    [SerializeField] private bool shouldInheritAtStart = false;
     [SerializeField] private playerControls playerStateReference = null;
 
     // Start is called before the first frame update
@@ -33,7 +34,10 @@ public class POVCamControl : MonoBehaviour
         {
             POVCam = vcam.GetCinemachineComponent<CinemachinePOV>();
         }
-        vcam.m_Transitions.m_InheritPosition = false;
+        if (shouldInheritAtStart)
+        {
+            vcam.m_Transitions.m_InheritPosition = true;
+        }
     }
 
     void FixedUpdate()

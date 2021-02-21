@@ -239,10 +239,20 @@ PrefabInstance:
       propertyPath: m_BeforeStackBundles.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5690458436876699041, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: shouldInheritAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5690458436876699100, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_Lens.NearClipPlane
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690458436876699100, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_Transitions.m_InheritPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5690458437627713269, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
@@ -260,6 +270,21 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 5690458437784501890, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690458437784501890, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 1968219379}
+    - target: {fileID: 5690458437784501890, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 178629859}
     - target: {fileID: 5690458437901971834, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_Name
@@ -374,6 +399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Lens.NearClipPlane
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690458438597715197, guid: e7ae1472e0e62394cb491cda78c3863d,
+        type: 3}
+      propertyPath: m_Strategy
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1345172542507977483, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
@@ -805,6 +835,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 567071578}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &178629859
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OutlineFill (Instance)
+  m_Shader: {fileID: 4800000, guid: 4e76d4023d7e0411297c670f878973e2, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _OutlineWidth: 2
+    - _ZTest: 8
+    m_Colors:
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!4 &180603486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4803256113787784250, guid: 358b08eedf8aef24688155550571a924,
@@ -7975,6 +8030,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 567071578}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1968219379
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OutlineMask (Instance)
+  m_Shader: {fileID: 4800000, guid: 341b058cd7dee4f5cba5cc59a513619e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _ZTest: 8
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!4 &1969404183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1401826838451548927, guid: 358b08eedf8aef24688155550571a924,
