@@ -16,19 +16,33 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         myScoreUpdater = GameObject.Find("Scoreholder").GetComponent<scoreUpdater>();
     }
 
-    public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation)
+    public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation, bool sweetSpot)
     {
         //Don't worry about these causing lag, it only runs when the player hits a ball, it shouldn't be that taxing.
         if (fielderPeltingScript.pitchingLoopStarted == false)
         {
-            myScoreUpdater.HitAddToScore();
+            if (sweetSpot)
+            {
+                myScoreUpdater.SweetAddToScore();
+            }
+            else
+            {
+                myScoreUpdater.HitAddToScore();
+            }
             
             fielderPeltingScript.pitchingLoopStarted = true;
         }
         else
         {
-            myScoreUpdater.HitAddToScore();
-            
+            if (sweetSpot)
+            {
+                myScoreUpdater.SweetAddToScore();
+            }
+            else
+            {
+                myScoreUpdater.HitAddToScore();
+            }
+
             if (!effectHolder.inPPTime)
             {
                 effectHolder.OnHitTurnOnPP();

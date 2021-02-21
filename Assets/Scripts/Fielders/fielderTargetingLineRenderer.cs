@@ -23,6 +23,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [System.NonSerialized] public Transform playerTransform = null;
     [System.NonSerialized] public bool theUIArrowScriptHasTheOsprite = false;
     [System.NonSerialized] public GameObject myArrow = null;
+    private bool sweetSpotActive = false;
 
     private void Update()
     {
@@ -48,6 +49,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         var positions = new List<Vector3>();
 
         //Theoretically, go start-mid, then mid-end with 2 line renderers
+        //midPointTwo exists for colouring purposes
 
         positions.Add(startPoint);
         positions.Add(midPoint);
@@ -80,13 +82,18 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         {
             fire(false, midPoint);
         }
+
+        if (beamWidth < 0.1f)
+        {
+            sweetSpotActive = true;
+        }
     }
 
     private void fire(bool playerHitTheBall, Vector3 midPoint)
     {
         if (playerHitTheBall)
         {
-            gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint);
+            gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint, sweetSpotActive);
         }
         else
         {

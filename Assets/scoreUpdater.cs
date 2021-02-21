@@ -15,6 +15,7 @@ public class scoreUpdater : MonoBehaviour
     [Header("Set this to a text object on the UI")]
     [SerializeField] private Text unstableScoreText = null;
     [SerializeField] private Text comboText = null;
+    [SerializeField] private GameObject sweetSpotText = null;
 
     [System.NonSerialized] public bool canScore =true;
     private float comboCount = 0;
@@ -30,17 +31,22 @@ public class scoreUpdater : MonoBehaviour
         unstableScore += (defaultScore + comboCount * hitComboIncrament);
         comboCount++;
         totalUnbankedBalls++;
+        sweetSpotText.SetActive(false);
     }
 
     public void SweetAddToScore()
     {
+        Debug.Log("Fired");
         unstableScore += (defaultScore * 1.25f) + (comboCount * sweetComboIncrament);
         comboCount++;
+        totalUnbankedBalls++;
+        sweetSpotText.SetActive(true);
     }
 
     public void BonkAddToScore()
     {
         unstableScore += (defaultScore / 2) + (comboCount * bonkComboIncrament);
+        sweetSpotText.SetActive(false);
     }
 
     public void SubtractFromScore ()
@@ -48,6 +54,7 @@ public class scoreUpdater : MonoBehaviour
         unstableScore = totalUnbankedBalls * defaultScore;
         myScoreHolder.score -= 1000;
         comboCount = 0;
+        sweetSpotText.SetActive(false);
     }
 
     public void BankScore()
@@ -56,6 +63,7 @@ public class scoreUpdater : MonoBehaviour
         unstableScore = 0;
         comboCount = 0;
         totalUnbankedBalls = 0;
+        sweetSpotText.SetActive(false);
     }
 
     private void Update()
