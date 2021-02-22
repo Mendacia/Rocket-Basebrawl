@@ -1242,18 +1242,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229831711}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &240437382 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5690458437263461177, guid: e7ae1472e0e62394cb491cda78c3863d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2003361924}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &240437386 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5690458437263461180, guid: e7ae1472e0e62394cb491cda78c3863d,
@@ -4368,6 +4356,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 451964743}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028040672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028040671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e63b6553b9ad2c4dab8b022fdfe7c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 1202939304}
 --- !u!114 &1028040673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5028,6 +5029,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180303950}
   m_CullTransparentMesh: 0
+--- !u!114 &1202939304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5690458437764964308, guid: e7ae1472e0e62394cb491cda78c3863d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003361924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1265671341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8384,18 +8397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1862560986 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5690458438151766119, guid: e7ae1472e0e62394cb491cda78c3863d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2003361924}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1862560990 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5690458438597715194, guid: e7ae1472e0e62394cb491cda78c3863d,
@@ -9614,12 +9615,12 @@ PrefabInstance:
         type: 3}
       propertyPath: camShake
       value: 
-      objectReference: {fileID: 1862560986}
+      objectReference: {fileID: 0}
     - target: {fileID: 5848185851605917279, guid: dfadf86ad6dfcd743a5b06b632f84156,
         type: 3}
       propertyPath: camShakeAim
       value: 
-      objectReference: {fileID: 240437382}
+      objectReference: {fileID: 0}
     - target: {fileID: 5848185851605917279, guid: dfadf86ad6dfcd743a5b06b632f84156,
         type: 3}
       propertyPath: postProcessingSub
