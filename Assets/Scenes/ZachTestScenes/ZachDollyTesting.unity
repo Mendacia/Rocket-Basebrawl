@@ -221,14 +221,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
-      propertyPath: dashSpeed
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
-      propertyPath: dashCooldown
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1345172540964745008, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_IsActive
@@ -244,22 +236,6 @@ PrefabInstance:
       propertyPath: shouldInheritAtStart
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5690458436876699100, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Lens.NearClipPlane
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458436876699100, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Transitions.m_InheritPosition
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437627713269, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: d0b1e33359f618a4e9c4e3b5226f25aa,
-        type: 2}
     - target: {fileID: 5690458437627713272, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_IsActive
@@ -269,11 +245,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VerticalAxis.m_MaxValue
       value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437764964306, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5690458437784501890, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
@@ -350,41 +321,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482040, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482040, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482040, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482043, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: baseSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482043, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: topSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482043, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: jumpForce
-      value: 2500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690458437959482043, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: hangTime
-      value: 0.125
-      objectReference: {fileID: 0}
     - target: {fileID: 5690458437959482043, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: hitariAnimator
@@ -440,19 +376,9 @@ PrefabInstance:
       propertyPath: hitariAnimator
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5690458438597715194, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Lens.NearClipPlane
-      value: 0.03
-      objectReference: {fileID: 0}
     - target: {fileID: 5690458438597715197, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_Strategy
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8153753405161869054, guid: e7ae1472e0e62394cb491cda78c3863d,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -7818,7 +7744,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.15287708, y: -0.52447486, z: 0.096367344, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636734, w: 0.83202654}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

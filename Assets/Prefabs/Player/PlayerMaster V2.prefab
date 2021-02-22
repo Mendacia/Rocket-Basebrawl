@@ -218,7 +218,6 @@ GameObject:
   - component: {fileID: 5690458436767265928}
   - component: {fileID: 5690458436767265931}
   - component: {fileID: 5690458436767265930}
-  - component: {fileID: 1345172542507977483}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -263,7 +262,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 5000
   field of view: 40
   orthographic: 0
@@ -479,9 +478,7 @@ MonoBehaviour:
   m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
-  m_BeforeStackBundles:
-  - assemblyQualifiedName: PostProcessOutline, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  m_BeforeStackBundles: []
   m_AfterStackBundles: []
 --- !u!114 &5690458436767265931
 MonoBehaviour:
@@ -495,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 41e52e18f55e7b043b2030c2dd68dfdf, type: 2}
+  sharedProfile: {fileID: 0}
   isGlobal: 1
   blendDistance: 0
   weight: 0.925
@@ -531,23 +528,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1345172542507977483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690458436767265933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962b55fe80820f741b821a83c908dfac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displacementMap: {fileID: 2800000, guid: 7e72c9a71b33e1843bcb6ef35c216b62, type: 3}
-  Shader: {fileID: 4800000, guid: 0c0576d6e420a9743987cb1251f30252, type: 3}
-  intensity: 1
-  flipIntensity: 1
-  colorIntensity: 1
 --- !u!1 &5690458436802159373
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +641,6 @@ GameObject:
   - component: {fileID: 5690458437263461180}
   - component: {fileID: 5690458436876699102}
   - component: {fileID: 5690458436876699041}
-  - component: {fileID: 5690458437263461177}
   - component: {fileID: 5690458437263461174}
   m_Layer: 0
   m_Name: CM 3rd Person Aim
@@ -709,13 +688,13 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 20
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.03
     FarClipPlane: 5000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 0
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -797,19 +776,8 @@ MonoBehaviour:
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
   sensitivity: 50
   useX: 0
+  shouldInheritAtStart: 0
   playerStateReference: {fileID: 5690458437959482043}
---- !u!114 &5690458437263461177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690458436876699040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5690458437263461174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,7 +1363,6 @@ GameObject:
   - component: {fileID: 5690458438147005962}
   - component: {fileID: 5690458437959482040}
   - component: {fileID: 5690458437627713269}
-  - component: {fileID: 8153753405161869054}
   - component: {fileID: 5690458437627713271}
   - component: {fileID: 5690458437959482043}
   - component: {fileID: 5690458437627713268}
@@ -1434,7 +1401,7 @@ Rigidbody:
   m_GameObject: {fileID: 5690458437627713272}
   serializedVersion: 2
   m_Mass: 20
-  m_Drag: 2
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1448,25 +1415,12 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5690458437627713272}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d0b1e33359f618a4e9c4e3b5226f25aa, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &8153753405161869054
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690458437627713272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5690458437627713271
 MonoBehaviour:
@@ -1655,15 +1609,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6fd22dcbc643040b7ab4512c184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 25
-  topSpeed: 45
+  baseSpeed: 20
+  topSpeed: 30
   playerState: 1
   playerAnimator: {fileID: 5690458438300959061}
   rb: {fileID: 5690458437959482040}
   magnitudeStopFloat: 10
-  gravityMultiplier: 10
-  jumpForce: 50
-  jumpForceTickDown: 2
+  jumpForce: 2500
+  hangTime: 0.125
   isFrozen: 0
 --- !u!114 &5690458437627713268
 MonoBehaviour:
@@ -1691,8 +1644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStateReference: {fileID: 5690458437959482043}
-  camShake: {fileID: 5690458438151766119}
-  camShakeAim: {fileID: 5690458437263461177}
+  camShake: {fileID: 0}
+  camShakeAim: {fileID: 0}
   frequency: 0.8
   amplitude: 3
   waitTime: 0.1
@@ -1709,9 +1662,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCont: {fileID: 5690458437959482043}
-  dashSpeed: 100
+  dashSpeed: 75
   dashDuration: 0.1
-  dashCooldown: 0.5
+  dashCooldown: 1
 --- !u!1 &5690458437648933820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5690458437901971834}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -21.57, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5690458438147005962}
@@ -3171,7 +3124,6 @@ GameObject:
   - component: {fileID: 5690458438597715197}
   - component: {fileID: 5690458438597715196}
   - component: {fileID: 5690458438597715199}
-  - component: {fileID: 5690458438151766119}
   - component: {fileID: 5690458438151766116}
   m_Layer: 0
   m_Name: CM 3rdPerson Normal
@@ -3218,7 +3170,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.03
     FarClipPlane: 5000
     Dutch: 0
     LensShift: {x: 0, y: 0}
@@ -3290,19 +3242,8 @@ MonoBehaviour:
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
   sensitivity: 50
   useX: 1
+  shouldInheritAtStart: 0
   playerStateReference: {fileID: 5690458437959482043}
---- !u!114 &5690458438151766119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690458438597715137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e027a3de23346b44baef4d334170f241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5690458438151766116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3803,15 +3744,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 673b9332cef5e284aa3c076f8df8bf5d, type: 3}
---- !u!4 &8422740989633166808 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4186948531225822818, guid: 673b9332cef5e284aa3c076f8df8bf5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5690458436869553082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8422740989633166815 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4186948531225822821, guid: 673b9332cef5e284aa3c076f8df8bf5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5690458436869553082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8422740989633166808 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4186948531225822818, guid: 673b9332cef5e284aa3c076f8df8bf5d,
     type: 3}
   m_PrefabInstance: {fileID: 5690458436869553082}
   m_PrefabAsset: {fileID: 0}
