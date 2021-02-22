@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuScenes/MainMenu.unity
     guid: 010a42af1b1d5bd4a9d2beba688aa482
   - enabled: 1
@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
     guid: cf0894493be020b4b8b21bccd5282151
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Temphub.unity
     guid: 975c42cd723374642a3b07e544ae8d9f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ZachTestScenes/Tutorial.unity
     guid: dbf091ec2d999404b8d2a827c6766cb1
   m_configObjects:

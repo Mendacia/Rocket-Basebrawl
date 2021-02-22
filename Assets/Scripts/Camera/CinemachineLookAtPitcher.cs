@@ -50,6 +50,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
 
     public void Taunt()
     {
+        //Taunt adds to taunt value and changes pithcing values accordingly
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;
@@ -57,6 +58,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     }
     public void Hold()
     {
+        //Hold just doesn't affect the score...
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;
@@ -64,6 +66,7 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     }
     public void Bank()
     {
+        //Bank points, shouldn't require any weird stuff
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;
