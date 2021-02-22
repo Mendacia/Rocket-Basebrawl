@@ -16,7 +16,7 @@ public class playerControls : MonoBehaviour
 
     [Header("Please put the animator from CheetahIdle here")]
     [SerializeField] private Animator playerAnimator = null;
-    [SerializeField] private Animator hitariAnimator = null;
+    //[SerializeField] private Animator hitariAnimator = null;
 
     
     //Input System Movements
@@ -62,12 +62,12 @@ public class playerControls : MonoBehaviour
             rb.velocity = Vector3.zero;
             speed = baseSpeed;
             playerAnimator.SetBool("heMoving", false);
-            hitariAnimator.SetBool("Running", false);
+            //hitariAnimator.SetBool("Running", false);
         }
         else
         {
             playerAnimator.SetBool("heMoving", true);
-            hitariAnimator.SetBool("Running", true);
+            //hitariAnimator.SetBool("Running", true);
         }
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {

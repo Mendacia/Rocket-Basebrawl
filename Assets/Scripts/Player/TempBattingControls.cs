@@ -8,7 +8,7 @@ public class TempBattingControls : MonoBehaviour
 {
     //[SerializeField] private Text devHittingCheckText = null;
     [SerializeField] private Animator playerAnimator = null;
-    [SerializeField] private Animator hitariAnimator = null;
+    //[SerializeField] private Animator hitariAnimator = null;
     [SerializeField] private fielderWhacked fielderWhackingScript = null;
     [SerializeField] private LayerMask fielderLayerMask = 0;
     private bool isHitting = false;
@@ -30,7 +30,7 @@ public class TempBattingControls : MonoBehaviour
             //devHittingCheckText.text = ("HITTING");
             isHitting = true;
             playerAnimator.SetTrigger("heHit");
-            hitariAnimator.SetTrigger("Batting");
+            //hitariAnimator.SetTrigger("Batting");
             particleMaster.SetActive(true);
             StartCoroutine(Cooldown());
         }

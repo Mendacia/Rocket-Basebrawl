@@ -156,7 +156,14 @@ public class BaseballEffectHolder : MonoBehaviour
 
         if(vignetteLayer.intensity.value == 1)
         {
-            StartCoroutine(KillPlayer());
+            //Enter last stand mode
+            //StartCoroutine(KillPlayer());
+            musicSource.pitch = 0.05f;
+            Time.timeScale = 0.8f;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
 
     }
