@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CinemachineLookAtPitcher : MonoBehaviour
+public class OnBaseTriggerEffects : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject cineMachineBaseCam = null;
