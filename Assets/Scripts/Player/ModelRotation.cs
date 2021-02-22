@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ModelRotation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("This should be the model")]
+    [SerializeField] private Transform playerModel = null;
+    [Header("This should be the player")]
+    [SerializeField] private Transform rotationReference = null;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.position = playerModel.position;
+        //Rotates player model in direction of the camera
+        transform.eulerAngles = new Vector3(0, rotationReference.eulerAngles.y, 0);
     }
 }
