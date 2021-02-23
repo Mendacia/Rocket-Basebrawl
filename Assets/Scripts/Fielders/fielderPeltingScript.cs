@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Cinemachine;
 
 public class fielderPeltingScript : MonoBehaviour
@@ -10,6 +11,8 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private Transform player = null;
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private GameObject ballIconPrefab;
+    [SerializeField] private Transform ballIconHolderOnCanvas;
     [SerializeField] private Transform arrowFolderOnCanvas;
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
@@ -21,8 +24,29 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private float minWaitTime = 1f;
     [SerializeField] private float maxWaitTime = 3f;
 
-    [Header("Variables to tell player when they can move")]
-    //[SerializeField] private GameObject goText = null;
+    [Header("Determines how many balls the fielders will throw between this base and the next")]
+    [SerializeField] private int ballsToThrowMinimum = 10;
+    [SerializeField] private int ballsToThrowMaximum = 15;
+    [SerializeField] private int higherTauntBallCountReductionFactor = 3;
+    private int finalBallsToThrow;
+    public enum ballType
+    {
+        STANDARD,
+        ARC,
+        SCATTER,
+        MIXUP
+    }
+    [System.Serializable]public struct ballsOrSomethingIDK
+    {
+        public ballType myType;
+        public int tauntLevel;
+        public float speedMultiplier;
+        public GameObject uIIcon;
+        public bool fired;
+        public Sprite myTexture;
+    }
+
+    public List<ballsOrSomethingIDK> upcomingBallList;
 
     [Header("Tutorial Variables")]
     [SerializeField] private GameObject tutorialPopup = null;
@@ -79,7 +103,55 @@ public class fielderPeltingScript : MonoBehaviour
         if (hasStartedThrowingSequenceAlready == false)
         {
             hasStartedThrowingSequenceAlready = true;
+
+
+            //THIS IS WHERE THE NEW PELTING STARTS.
+            ballListPopulater(0);
+
             StartCoroutine(ThrowDelay());
+        }
+    }
+
+    private void ballListPopulater(int recievedTauntLevel)
+    {
+        int tempBallsToThrow = Random.Range(ballsToThrowMinimum, ballsToThrowMaximum);
+        tempBallsToThrow += (Random.Range(5, 8) * recievedTauntLevel);
+        finalBallsToThrow = tempBallsToThrow -= higherTauntBallCountReductionFactor * recievedTauntLevel;
+        finalBallsToThrow = Mathf.Clamp(finalBallsToThrow, 0, 50);
+
+        //Determines what taunt level the ball will be
+        for (int i=0; i<finalBallsToThrow; i++)
+        {
+            ballsOrSomethingIDK newBall = new ballsOrSomethingIDK();
+
+            int holdThis = Random.Range(0, recievedTauntLevel * 10);
+            if (holdThis < 5)
+            {
+                newBall.tauntLevel = 0;
+            }
+            else if (holdThis >= 5 && holdThis < 15)
+            {
+                newBall.tauntLevel = 1;
+            }
+            else if (holdThis >= 15 && holdThis < 25)
+            {
+                newBall.tauntLevel = 2;
+            }
+            else
+            {
+                newBall.tauntLevel = 3;
+            }
+
+            //Assigns the ball's icon for the UI
+            newBall.myTexture = BallIconHolder.GetIcon(BallResult.UNTHROWN, newBall.tauntLevel);
+
+            //Instantiating the icon to the UI
+            newBall.uIIcon = Instantiate(ballIconPrefab);
+            newBall.uIIcon.transform.SetParent(ballIconHolderOnCanvas);
+            newBall.uIIcon.GetComponent<Image>().sprite = newBall.myTexture;
+
+            //Finally adding the ball to the list
+            upcomingBallList.Add(newBall);
         }
     }
 

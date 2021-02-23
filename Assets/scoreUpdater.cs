@@ -47,6 +47,8 @@ public class scoreUpdater : MonoBehaviour
     {
         unstableScore += (defaultScore / 2) + (comboCount * bonkComboIncrament);
         sweetSpotText.SetActive(false);
+
+        BallIconHolder.GetIcon(BallResult.GOLD, 2);
     }
 
     public void SubtractFromScore ()
