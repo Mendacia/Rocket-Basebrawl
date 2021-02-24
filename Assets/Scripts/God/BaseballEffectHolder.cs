@@ -12,8 +12,6 @@ public class BaseballEffectHolder : MonoBehaviour
 
     [Header("Cinemachine Variables")]
     [SerializeField] private CinemachineVirtualCamera vcam = null;
-    [SerializeField] private CinemachineCameraShake camShake = null;
-    [SerializeField] private CinemachineCameraShake camShakeAim = null;
     [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
@@ -32,9 +30,6 @@ public class BaseballEffectHolder : MonoBehaviour
     [System.NonSerialized] public float vignetteValue = 0;
     public float ppTime = 0;
     public bool inPPTime = false;
-
-    [SerializeField] private GameObject ragdoll;
-    [SerializeField] private GameObject player;
 
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
@@ -61,7 +56,7 @@ public class BaseballEffectHolder : MonoBehaviour
         //Zooms out the FOV of the camera on ball hit
         if (inPPTime && vcam.m_Lens.FieldOfView < 55)
         {
-            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
+            //vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
         }
         //Makes the sphere collider bigger to reset it
         if (!inPPTime && postProcessingCollider.radius < 20)
@@ -137,7 +132,7 @@ public class BaseballEffectHolder : MonoBehaviour
         //Update Vignette with score
         if (scoreHold.score < 0)
         {
-            vignetteValue = vignetteValue + 0.0005f;
+            //vignetteValue = vignetteValue + 0.0005f;
         }
         else if(scoreHold.score >= 1)
         {
@@ -157,7 +152,6 @@ public class BaseballEffectHolder : MonoBehaviour
         if(vignetteLayer.intensity.value == 1)
         {
             //Enter last stand mode
-            //StartCoroutine(KillPlayer());
             musicSource.pitch = 0.05f;
             Time.timeScale = 0.8f;
         }
@@ -166,11 +160,6 @@ public class BaseballEffectHolder : MonoBehaviour
             Time.timeScale = 1;
         }
 
-    }
-    //Camera Shake
-    public void CameraShakeOnVoid()
-    {
-        StartCoroutine(TurnShakeOnAndOff());
     }
     //Time Slow
     public void TimeSlowVoid()
@@ -201,26 +190,6 @@ public class BaseballEffectHolder : MonoBehaviour
             bloomLayer.dirtTexture.value = dirtTexture;
         }
     }
-
-    //Ragdoll and kill player
-    IEnumerator KillPlayer()
-    {
-        var myRagdoll = Instantiate(ragdoll, player.transform.position, Quaternion.identity);
-        Destroy(player.gameObject);
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    //Camera shake
-    IEnumerator TurnShakeOnAndOff()
-    {
-        camShake.Noise(frequency, amplitude);
-        camShakeAim.Noise(frequency, amplitude);
-        yield return new WaitForSeconds(waitTime);
-        camShake.Noise(0, 0);
-        camShakeAim.Noise(0, 0);
-    }
-
 
     //Time Slow
     IEnumerator TimeSlowOnHit()

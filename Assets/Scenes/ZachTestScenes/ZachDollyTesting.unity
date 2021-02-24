@@ -2372,12 +2372,6 @@ PrefabInstance:
       objectReference: {fileID: 1757929027}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cd43f04d1c6c4d4a9b4da454fc4fa2d, type: 3}
---- !u!1 &471616096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5690458438300959060, guid: e7ae1472e0e62394cb491cda78c3863d,
-    type: 3}
-  m_PrefabInstance: {fileID: 52489557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &471616097 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5690458438300959061, guid: e7ae1472e0e62394cb491cda78c3863d,
@@ -5493,20 +5487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e301096e3e9494194259164ba4ba4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1028040674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028040671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13746f4157d1aee45a2cbcb7d471e30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cheetah: {fileID: 471616096}
-  hitari: {fileID: 0}
 --- !u!114 &1028040675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5519,19 +5499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c969d2d05efe72644a884a698f0f80c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1028040676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028040671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e63b6553b9ad2c4dab8b022fdfe7c4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brain: {fileID: 76960569}
 --- !u!4 &1039086850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8757011230347164249, guid: 358b08eedf8aef24688155550571a924,
@@ -8936,8 +8903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreHold: {fileID: 589835095}
   vcam: {fileID: 280257813}
-  camShake: {fileID: 0}
-  camShakeAim: {fileID: 0}
   frequency: 0.8
   amplitude: 3
   waitTime: 0.1
@@ -8950,8 +8915,6 @@ MonoBehaviour:
   devTexture: {fileID: 2800000, guid: 1ceb7a8db2799734a999cd37973bdd43, type: 3}
   ppTime: 0
   inPPTime: 0
-  ragdoll: {fileID: 8902833058278786760, guid: 64b492f1349f6134d8b783e57f23c8c9, type: 3}
-  player: {fileID: 1801740430}
   onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
     type: 3}
 --- !u!4 &1757929028

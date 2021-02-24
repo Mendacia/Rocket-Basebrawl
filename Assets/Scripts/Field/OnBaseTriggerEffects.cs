@@ -93,6 +93,8 @@ public class OnBaseTriggerEffects : MonoBehaviour
         cineMachineBaseCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
+
+        //Add empty list obstructs!!!!!!
         yield return new WaitForSeconds(1);
         player.transform.position = basePosition + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);

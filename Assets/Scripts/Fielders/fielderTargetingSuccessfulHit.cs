@@ -32,6 +32,8 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
             if (!effectHolder.inPPTime)
             {
                 effectHolder.OnHitTurnOnPP();
+                //Enable this line to turn on OnHit effects
+                effectHolder.inPPTime = true;
             }
             effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
         }
