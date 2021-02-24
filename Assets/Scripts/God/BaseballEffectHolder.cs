@@ -12,7 +12,6 @@ public class BaseballEffectHolder : MonoBehaviour
 
     [Header("Cinemachine Variables")]
     [SerializeField] private CinemachineVirtualCamera vcam = null;
-    [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
     [SerializeField] private GameObject postProcessingMaster = null;
@@ -149,17 +148,11 @@ public class BaseballEffectHolder : MonoBehaviour
 
         vignetteLayer.intensity.value = vignetteValue;
 
-        if(vignetteLayer.intensity.value == 1)
+        if (vignetteLayer.intensity.value == 1)
         {
             //Enter last stand mode
             musicSource.pitch = 0.05f;
-            Time.timeScale = 0.8f;
         }
-        else
-        {
-            Time.timeScale = 1;
-        }
-
     }
     //Time Slow
     public void TimeSlowVoid()

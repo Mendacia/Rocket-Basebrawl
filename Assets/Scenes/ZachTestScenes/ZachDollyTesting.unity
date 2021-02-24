@@ -2764,7 +2764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGlobal: 1
-  priority: 2
+  priority: 4
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 9f27b32270249424899eab32be9d1bc3, type: 2}
@@ -7729,7 +7729,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.1528771, y: -0.52447486, z: 0.09636736, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636734, w: 0.83202654}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8903,9 +8903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreHold: {fileID: 589835095}
   vcam: {fileID: 280257813}
-  frequency: 0.8
-  amplitude: 3
-  waitTime: 0.1
   postProcessingMaster: {fileID: 1705239518}
   postProcessingSub: {fileID: 1176014305}
   vignetteMaster: {fileID: 529832803}
