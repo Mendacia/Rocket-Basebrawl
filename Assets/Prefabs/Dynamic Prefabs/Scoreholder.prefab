@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6588156215019818127}
   - component: {fileID: 6588156215019818124}
+  - component: {fileID: 1265671343}
   m_Layer: 0
   m_Name: Scoreholder
   m_TagString: Untagged
@@ -43,3 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dffaf50ae431f4c8c0a071e1955e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1265671343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6588156215019818125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd07608cecbb2584791eb372d2f5210f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peltingScript: {fileID: 0}
+  defaultScore: 1000
+  hitComboIncrament: 200
+  sweetComboIncrament: 450
+  bonkComboIncrament: 750
+  unstableScoreText: {fileID: 0}
+  comboText: {fileID: 0}
+  sweetSpotText: {fileID: 0}
