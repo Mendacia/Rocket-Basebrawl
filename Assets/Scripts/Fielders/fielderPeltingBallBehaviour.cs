@@ -9,10 +9,12 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     public bool ballIsActive = true;
 
     private scoreUpdater myScoreUpdater;
+    private BaseballEffectHolder effectHolder;
 
     void Start()
     {
         myScoreUpdater = GameObject.Find("Scoreholder").GetComponent<scoreUpdater>();
+        effectHolder = GameObject.Find("BaseballEffectHolder").GetComponent<BaseballEffectHolder>();
 
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
@@ -27,6 +29,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
                 if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
                 {
                     myScoreUpdater.SubtractFromScore();
+                    effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
                     ballIsActive = false;
                 }
                 break;

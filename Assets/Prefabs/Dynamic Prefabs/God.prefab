@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 2800479163843518223}
   - component: {fileID: 4190963971683474154}
   - component: {fileID: 6812242596669285951}
+  - component: {fileID: 1028040672}
+  - component: {fileID: 1028040673}
+  - component: {fileID: 1028040675}
   m_Layer: 0
   m_Name: God
   m_TagString: Untagged
@@ -95,3 +98,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c969d2d05efe72644a884a698f0f80c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1028040672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672805361882806311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe648199757410a448a7160c02dbb148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1028040673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672805361882806311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e301096e3e9494194259164ba4ba4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1028040675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672805361882806311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a717854bd53b4df4099b4edb93f47fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Unthrown:
+    Taunt0: {fileID: 21300000, guid: d2b5abb77ad37fc4bb0f0dc62b28c565, type: 3}
+    Taunt1: {fileID: 21300000, guid: 9682b277fc3496e48a43fa4288793b56, type: 3}
+    Taunt2: {fileID: 21300000, guid: 35261a706ed45a24cad7820d425f055e, type: 3}
+    Taunt3: {fileID: 21300000, guid: 075ecc2899ef4514994d3f92411c6c44, type: 3}
+  Silver:
+    Taunt0: {fileID: 21300000, guid: b1ade6b03c8b3544eb5a2ebde3f544f4, type: 3}
+    Taunt1: {fileID: 21300000, guid: aa55376c00bae8e4bab842d708d818e4, type: 3}
+    Taunt2: {fileID: 21300000, guid: 72ed32cc1f6bac545acc7d711ee14616, type: 3}
+    Taunt3: {fileID: 21300000, guid: 67a5f3d678e4e77478e9f691efa163fb, type: 3}
+  Gold:
+    Taunt0: {fileID: 21300000, guid: 1b508888ccdcdca4c99d2be6356565ed, type: 3}
+    Taunt1: {fileID: 21300000, guid: 6e56128177e8e794093a701553b3dfaf, type: 3}
+    Taunt2: {fileID: 21300000, guid: ec179f44e1b59e142a4fe483782b78a6, type: 3}
+    Taunt3: {fileID: 21300000, guid: 71d240894c6d3d5488bbc6df37611211, type: 3}
+  Miss:
+    Taunt0: {fileID: 21300000, guid: a4ee0ff3a1bac6f47badd24a0cb223ef, type: 3}
+    Taunt1: {fileID: 21300000, guid: eace758a75ee47844b5a499092ccfe42, type: 3}
+    Taunt2: {fileID: 21300000, guid: 6049e9105c055cf4a9dcd2a89e780d8e, type: 3}
+    Taunt3: {fileID: 21300000, guid: af79afb0a36c86944b204c18694df320, type: 3}
