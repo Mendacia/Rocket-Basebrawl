@@ -23,7 +23,9 @@ public class HomeBaseReset : MonoBehaviour
     [SerializeField] private scoreHolder scoreReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 4;
-    
+
+    GameObject[] tempIcons;
+
 
     [SerializeField] private fielderScoring fielderScript;
 
@@ -49,6 +51,14 @@ public class HomeBaseReset : MonoBehaviour
 
             fielderScript.fielderScoreGenerator();
             StartCoroutine(ResetHomeBase());
+
+            fielderReference.upcomingBallList.Clear();
+
+            tempIcons = GameObject.FindGameObjectsWithTag("BallIconTag");
+            foreach (GameObject ball in tempIcons)
+            {
+                Destroy(ball);
+            }
         }
     }
 

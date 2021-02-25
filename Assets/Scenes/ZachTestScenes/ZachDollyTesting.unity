@@ -7322,8 +7322,8 @@ MonoBehaviour:
   playerStateReference: {fileID: 1801740431}
   playerVCAM: {fileID: 280257813}
   scoreHolderReference: {fileID: 589835095}
-  minWaitTime: 1
-  maxWaitTime: 1.5
+  minWaitTime: 1.5
+  maxWaitTime: 2
   ballsToThrowMinimum: 10
   ballsToThrowMaximum: 15
   higherTauntBallCountReductionFactor: 3
@@ -7396,7 +7396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 8902833058278786760, guid: 64b492f1349f6134d8b783e57f23c8c9, type: 3}
-  hitStrength: 1
+  hitStrength: 5
 --- !u!1 &1408954231
 GameObject:
   m_ObjectHideFlags: 0
@@ -10762,6 +10762,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622708238067082389, guid: a2aee1f350edf154593eab7695680155,
+        type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622708238067082389, guid: a2aee1f350edf154593eab7695680155,
+        type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622708238067082389, guid: a2aee1f350edf154593eab7695680155,
+        type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784341482604737266, guid: a2aee1f350edf154593eab7695680155,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2aee1f350edf154593eab7695680155, type: 3}
