@@ -12,15 +12,13 @@ public class BaseballEffectHolder : MonoBehaviour
 
     [Header("Cinemachine Variables")]
     [SerializeField] private CinemachineVirtualCamera vcam = null;
-    [SerializeField] private CinemachineCameraShake camShake = null;
-    [SerializeField] private CinemachineCameraShake camShakeAim = null;
-    [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     [Header("Post Processing")]
     [SerializeField] private GameObject postProcessingMaster = null;
     [SerializeField] private GameObject postProcessingSub = null;
     [SerializeField] private GameObject vignetteMaster = null;
     [SerializeField] private SphereCollider postProcessingCollider = null;
+    [SerializeField] private AudioSource musicSource = null;
     [SerializeField] private Texture dirtTexture = null;
     [SerializeField] private Texture devTexture = null;
     
@@ -31,9 +29,6 @@ public class BaseballEffectHolder : MonoBehaviour
     [System.NonSerialized] public float vignetteValue = 0;
     public float ppTime = 0;
     public bool inPPTime = false;
-
-    [SerializeField] private GameObject ragdoll;
-    [SerializeField] private GameObject player;
 
     [Header("Particles")]
     [SerializeField] private GameObject onHitEffect = null;
@@ -60,7 +55,7 @@ public class BaseballEffectHolder : MonoBehaviour
         //Zooms out the FOV of the camera on ball hit
         if (inPPTime && vcam.m_Lens.FieldOfView < 55)
         {
-            vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
+            //vcam.m_Lens.FieldOfView = vcam.m_Lens.FieldOfView + 1f;
         }
         //Makes the sphere collider bigger to reset it
         if (!inPPTime && postProcessingCollider.radius < 20)
@@ -84,13 +79,66 @@ public class BaseballEffectHolder : MonoBehaviour
         }
 
         
-        //Update Vignette with score
-        if(scoreHold.score < 0)
+        if(scoreHold.score < 0 && scoreHold.score > -10)
         {
-            vignetteValue = vignetteValue + 0.001f;
+            //musicSource.pitch = 0.8f;
+            if(musicSource.pitch < 0.825)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.825)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
         }
-        else if(scoreHold.score > 1)
+        if (scoreHold.score < -10 && scoreHold.score > -20)
         {
+            //musicSource.pitch = 0.5f;
+            if (musicSource.pitch < 0.525)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.525)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
+        }
+        if (scoreHold.score < -20 && scoreHold.score > -30)
+        {
+            //musicSource.pitch = 0.3f;
+            if (musicSource.pitch < 0.325)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.325)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
+        }
+        if (scoreHold.score < -30)
+        {
+            //musicSource.pitch = 0.1f;
+            if (musicSource.pitch < 0.125)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
+            if (musicSource.pitch > 0.125)
+            {
+                musicSource.pitch = musicSource.pitch - 0.025f;
+            }
+        }
+
+        //Update Vignette with score
+        if (scoreHold.score < 0)
+        {
+            //vignetteValue = vignetteValue + 0.0005f;
+        }
+        else if(scoreHold.score >= 1)
+        {
+            if (musicSource.pitch < 1)
+            {
+                musicSource.pitch = musicSource.pitch + 0.025f;
+            }
             vignetteValue = vignetteValue - 0.3f;
             if(vignetteValue < 0)
             {
@@ -100,16 +148,11 @@ public class BaseballEffectHolder : MonoBehaviour
 
         vignetteLayer.intensity.value = vignetteValue;
 
-        if(vignetteLayer.intensity.value == 1)
+        if (vignetteLayer.intensity.value == 1)
         {
-            StartCoroutine(KillPlayer());
+            //Enter last stand mode
+            musicSource.pitch = 0.05f;
         }
-
-    }
-    //Camera Shake
-    public void CameraShakeOnVoid()
-    {
-        StartCoroutine(TurnShakeOnAndOff());
     }
     //Time Slow
     public void TimeSlowVoid()
@@ -140,26 +183,6 @@ public class BaseballEffectHolder : MonoBehaviour
             bloomLayer.dirtTexture.value = dirtTexture;
         }
     }
-
-    //Ragdoll and kill player
-    IEnumerator KillPlayer()
-    {
-        var myRagdoll = Instantiate(ragdoll, player.transform.position, Quaternion.identity);
-        Destroy(player.gameObject);
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    //Camera shake
-    IEnumerator TurnShakeOnAndOff()
-    {
-        camShake.Noise(frequency, amplitude);
-        camShakeAim.Noise(frequency, amplitude);
-        yield return new WaitForSeconds(waitTime);
-        camShake.Noise(0, 0);
-        camShakeAim.Noise(0, 0);
-    }
-
 
     //Time Slow
     IEnumerator TimeSlowOnHit()

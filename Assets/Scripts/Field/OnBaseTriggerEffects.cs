@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CinemachineLookAtPitcher : MonoBehaviour
+public class OnBaseTriggerEffects : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject cineMachineBaseCam = null;
@@ -18,6 +18,8 @@ public class CinemachineLookAtPitcher : MonoBehaviour
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 1;
     public static int currentPitchingNumber = 1;
+    [Header("Put Canvas Here!")]
+    [SerializeField] private GameObject baseCanvas = null;
 
     private bool pitchingStarted = false;
 
@@ -40,8 +42,35 @@ public class CinemachineLookAtPitcher : MonoBehaviour
             pitchingStarted = true;
             fielderPeltingScript.pitchingLoopStarted = false;
 
-            StartCoroutine(StartPitchingPhase());
+            baseCanvas.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.visible = true;
         }
+    }
+
+    public void Taunt()
+    {
+        //Taunt adds to taunt value and changes pithcing values accordingly
+        StartCoroutine(StartPitchingPhase());
+        baseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+    }
+    public void Hold()
+    {
+        //Hold just doesn't affect the score...
+        StartCoroutine(StartPitchingPhase());
+        baseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+    }
+    public void Bank()
+    {
+        //Bank points, shouldn't require any weird stuff
+        StartCoroutine(StartPitchingPhase());
+        baseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
     }
 
     private void OnTriggerExit(Collider other)
@@ -64,6 +93,8 @@ public class CinemachineLookAtPitcher : MonoBehaviour
         cineMachineBaseCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
+
+        //Add empty list obstructs!!!!!!
         yield return new WaitForSeconds(1);
         player.transform.position = basePosition + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);

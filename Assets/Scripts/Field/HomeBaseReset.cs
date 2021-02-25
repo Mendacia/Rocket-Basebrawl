@@ -42,7 +42,7 @@ public class HomeBaseReset : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && pitchingStarted == false && CinemachineLookAtPitcher.currentPitchingNumber == 4 && CinemachineLookAtPitcher.currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
+        if (other.gameObject.tag == "Player" && pitchingStarted == false && OnBaseTriggerEffects.currentPitchingNumber == 4 && OnBaseTriggerEffects.currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
         {
             pitchingStarted = true;
             fielderPeltingScript.pitchingLoopStarted = false;
@@ -71,7 +71,7 @@ public class HomeBaseReset : MonoBehaviour
         //Reset camera back to the player, start pitching and increase the base variable
         yield return new WaitForSeconds(4);
         fielderReference.canThrow = false; //Set canThrow here so that it's guaranteed to not conflict with the coroutine before it stops
-        CinemachineLookAtPitcher.currentPitchingNumber = 1;
+        OnBaseTriggerEffects.currentPitchingNumber = 1;
         screenUI.SetActive(true);
         Cursor.visible = true;
         roundsRun++;

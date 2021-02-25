@@ -17,7 +17,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
     [SerializeField] private Transform pitchingPhaseTarget = null;
     [SerializeField] private playerControls playerStateReference = null;
-    [SerializeField] private CinemachineVirtualCamera playerVCAM;
+    [SerializeField] private CinemachineVirtualCamera playerVCAM = null;
     [SerializeField] private scoreHolder scoreHolderReference;
 
     [Header("These Wait Times are in seconds")]
@@ -234,9 +234,11 @@ public class fielderPeltingScript : MonoBehaviour
                     StopCoroutine(BattingPhaseTimer());
                     scoreHolderReference.score = 0;
                     playerVCAM.m_Transitions.m_InheritPosition = false;
+                    playerStateReference.playerState = 0;
                     tutorialButton.SetActive(true);
                     tutorialPopup.SetActive(true);
                     Cursor.visible = true;
+                    Time.timeScale = 0;
                 }
                 else
                 {

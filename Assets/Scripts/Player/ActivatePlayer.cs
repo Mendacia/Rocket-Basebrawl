@@ -11,10 +11,6 @@ public class ActivatePlayer : MonoBehaviour
     [Header("Put the Player Controller here")]
     [SerializeField] private playerControls playerStateReference = null;
 
-    [Header("Cinemachine Variables")]
-    [SerializeField] private CinemachineCameraShake camShake = null;
-    [SerializeField] private CinemachineCameraShake camShakeAim = null;
-    [SerializeField] private float frequency = 0.8f, amplitude = 3f, waitTime = 0.1f;
 
     private void Awake()
     {
@@ -54,23 +50,6 @@ public class ActivatePlayer : MonoBehaviour
         }
     }
 
-    IEnumerator TimeSlowOnHit()
-    {
-        if (PauseMenu.isPaused == false)
-        {
-            Time.timeScale = 0.3f;
-            yield return new WaitForSeconds(0.25f);
-            Time.timeScale = 1;
-        }
-    }
-    IEnumerator TurnShakeOnAndOff()
-    {
-        camShake.Noise(frequency, amplitude);
-        camShakeAim.Noise(frequency, amplitude);
-        yield return new WaitForSeconds(waitTime);
-        camShake.Noise(0, 0);
-        camShakeAim.Noise(0, 0);
-    }
     private void OnEnable()
     {
         inputActions.Enable();
