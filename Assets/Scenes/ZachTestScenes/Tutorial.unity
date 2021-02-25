@@ -345,7 +345,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Space to Jump
+  m_Text: 'WASD to Move
+
+    Space to Jump
 
     Shift to Dash'
 --- !u!222 &37723159
