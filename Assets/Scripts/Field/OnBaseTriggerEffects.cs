@@ -21,6 +21,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     [Header("Put Canvas Here!")]
     [SerializeField] private GameObject baseCanvas = null;
 
+    GameObject[] tempIcons;
     private bool pitchingStarted = false;
 
     private Vector3 basePosition;
@@ -45,6 +46,14 @@ public class OnBaseTriggerEffects : MonoBehaviour
             baseCanvas.SetActive(true);
             Time.timeScale = 0;
             Cursor.visible = true;
+
+            fielderReference.upcomingBallList.Clear();
+
+            tempIcons = GameObject.FindGameObjectsWithTag("BallIconTag");
+            foreach(GameObject ball in tempIcons)
+            {
+                Destroy(ball);
+            }
         }
     }
 
@@ -67,6 +76,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     public void Bank()
     {
         //Bank points, shouldn't require any weird stuff
+        scoreReference.gameObject.GetComponent<scoreUpdater>().BankScore();
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;

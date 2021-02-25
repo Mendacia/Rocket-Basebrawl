@@ -36,7 +36,7 @@ public class fielderPeltingScript : MonoBehaviour
         SCATTER,
         MIXUP
     }
-    [System.Serializable]public struct ballsOrSomethingIDK
+    [System.Serializable] public struct ballsOrSomethingIDK
     {
         public ballType myType;
         public int tauntLevel;
