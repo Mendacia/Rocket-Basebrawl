@@ -23,11 +23,11 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         {
             if (sweetSpot)
             {
-                myScoreUpdater.SweetAddToScore();
+                myScoreUpdater.SweetAddToScore(true);
             }
             else
             {
-                myScoreUpdater.HitAddToScore();
+                myScoreUpdater.HitAddToScore(true);
             }
             
             fielderPeltingScript.pitchingLoopStarted = true;
@@ -36,11 +36,11 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         {
             if (sweetSpot)
             {
-                myScoreUpdater.SweetAddToScore();
+                myScoreUpdater.SweetAddToScore(false);
             }
             else
             {
-                myScoreUpdater.HitAddToScore();
+                myScoreUpdater.HitAddToScore(false);
             }
 
             if (!effectHolder.inPPTime)

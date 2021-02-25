@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class scoreUpdater : MonoBehaviour
 {
     private scoreHolder myScoreHolder;
+    [System.NonSerialized] public int ballIndex;
+    [Header("This needs to be set to the fielding team to manipulate the UI")]
+    [SerializeField] private fielderPeltingScript peltingScript = null;
     [Header("How much a single, no combo ball is worth")]
     [SerializeField] private float defaultScore = 1000;
     [Header("How much each action will increase per hit in combo")]
@@ -26,21 +29,40 @@ public class scoreUpdater : MonoBehaviour
         myScoreHolder = gameObject.GetComponent<scoreHolder>();
     }
 
-    public void HitAddToScore ()
+    public void HitAddToScore(bool pitchingPhase)
     {
+
         unstableScore += (defaultScore + comboCount * hitComboIncrament);
         comboCount++;
         totalUnbankedBalls++;
         sweetSpotText.SetActive(false);
+
+        if (!pitchingPhase)
+        {
+            //Changing Texture
+            var tempBall = peltingScript.upcomingBallList[ballIndex];
+            tempBall.myTexture = BallIconHolder.GetIcon(BallResult.SILVER, peltingScript.upcomingBallList[ballIndex].tauntLevel);
+            tempBall.uIIcon.GetComponent<Image>().sprite = tempBall.myTexture;
+            peltingScript.upcomingBallList[ballIndex] = tempBall;
+        }
     }
 
-    public void SweetAddToScore()
+    public void SweetAddToScore(bool pitchingPhase)
     {
         Debug.Log("Fired");
         unstableScore += (defaultScore * 1.25f) + (comboCount * sweetComboIncrament);
         comboCount++;
         totalUnbankedBalls++;
         sweetSpotText.SetActive(true);
+
+        if (!pitchingPhase)
+        {
+            //Changing Texture
+            var tempBall = peltingScript.upcomingBallList[ballIndex];
+            tempBall.myTexture = BallIconHolder.GetIcon(BallResult.GOLD, peltingScript.upcomingBallList[ballIndex].tauntLevel);
+            tempBall.uIIcon.GetComponent<Image>().sprite = tempBall.myTexture;
+            peltingScript.upcomingBallList[ballIndex] = tempBall;
+        }
     }
 
     public void BonkAddToScore()
@@ -51,12 +73,18 @@ public class scoreUpdater : MonoBehaviour
         BallIconHolder.GetIcon(BallResult.GOLD, 2);
     }
 
-    public void SubtractFromScore ()
+    public void SubtractFromScore()
     {
         unstableScore = totalUnbankedBalls * defaultScore;
         myScoreHolder.score -= 1000;
         comboCount = 0;
         sweetSpotText.SetActive(false);
+
+        
+        var tempBall = peltingScript.upcomingBallList[ballIndex];
+        tempBall.myTexture = BallIconHolder.GetIcon(BallResult.MISS, peltingScript.upcomingBallList[ballIndex].tauntLevel);
+        tempBall.uIIcon.GetComponent<Image>().sprite = tempBall.myTexture;
+        peltingScript.upcomingBallList[ballIndex] = tempBall;
     }
 
     public void BankScore()

@@ -42,9 +42,10 @@ public class fielderPeltingScript : MonoBehaviour
         public int tauntLevel;
         public float speedMultiplier;
         public GameObject uIIcon;
-        public bool fired;
         public Sprite myTexture;
+        public bool fired;
     }
+    private bool actuallyHasBallsReady;
 
     public List<ballsOrSomethingIDK> upcomingBallList;
 
@@ -87,7 +88,7 @@ public class fielderPeltingScript : MonoBehaviour
             fielder.LookAt(player);
         }
 
-        if (canThrow && pitchingLoopStarted)
+        if (canThrow && pitchingLoopStarted && actuallyHasBallsReady)
         {
             ReadyThrow();
         }
@@ -106,7 +107,8 @@ public class fielderPeltingScript : MonoBehaviour
 
 
             //THIS IS WHERE THE NEW PELTING STARTS.
-            ballListPopulater(0);
+            ballListPopulater(3);
+            actuallyHasBallsReady = true;
 
             StartCoroutine(ThrowDelay());
         }
@@ -149,6 +151,8 @@ public class fielderPeltingScript : MonoBehaviour
             newBall.uIIcon = Instantiate(ballIconPrefab);
             newBall.uIIcon.transform.SetParent(ballIconHolderOnCanvas);
             newBall.uIIcon.GetComponent<Image>().sprite = newBall.myTexture;
+            newBall.fired = false;
+            Debug.Log("Fired has been set to false");
 
             //Finally adding the ball to the list
             upcomingBallList.Add(newBall);
@@ -255,47 +259,57 @@ public class fielderPeltingScript : MonoBehaviour
     {
         int numberOfBallsToThrow;
         List<Transform> chosenFielders = new List<Transform>();
+        ballsOrSomethingIDK finalBall;
         if (hasReadiedAThrow == false)
         {
-
-            //Block to choose how many balls to throw
-            var throwCountValue = Random.Range(0, 9);
-            
-            switch (throwCountValue)
+            for (int i =0; i < upcomingBallList.Count; i++)
             {
-                case 9:
-                    numberOfBallsToThrow = 3;
+                Debug.Log("Successfully polled a ball");
+                var testedBall = upcomingBallList[i];
+                if (!testedBall.fired)
+                {
+                    Debug.Log("Fired a ball with itterator at " + i);
+                    finalBall = testedBall;
+                    finalBall.fired = true;
+                    upcomingBallList[i] = finalBall;
+                    scoreHolderReference.gameObject.GetComponent<scoreUpdater>().ballIndex = i;
                     break;
-                case 8:
-                    numberOfBallsToThrow = 2;
-                    break;
-                default:
-                    numberOfBallsToThrow = 1;
-                    break;
+                }
+                else if ( i+1 == upcomingBallList.Count)
+                {
+                    actuallyHasBallsReady = false;
+                }
             }
 
-            //The variable "numberOfBallsToThrow" is now holding how many balls the fielders will throw, we now need to find who will throw them
-            while (numberOfBallsToThrow > 0)
+            if (actuallyHasBallsReady)
             {
-                chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
-                numberOfBallsToThrow--;
-                firstFielder = true;
+                //Block to choose how many balls to throw
+                numberOfBallsToThrow = 1;
+
+                //The variable "numberOfBallsToThrow" is now holding how many balls the fielders will throw, we now need to find who will throw them
+                while (numberOfBallsToThrow > 0)
+                {
+                    chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
+                    numberOfBallsToThrow--;
+                    firstFielder = true;
+                }
+
+                //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
+                foreach (Transform fielder in chosenFielders)
+                {
+                    var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+                    var myArrow = Instantiate(arrowPrefab);
+                    myArrow.transform.SetParent(arrowFolderOnCanvas);
+                    myBeamScript.myArrow = myArrow;
+                    myBeamScript.originPosition = fielder.position;
+                    rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder);
+                    myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
+                    firstFielder = false;
+                    myBeamScript.playerTransform = player.transform;
+                }
+                canThrow = false;
             }
 
-            //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
-            foreach (Transform fielder in chosenFielders)
-            {
-                var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-                var myArrow = Instantiate(arrowPrefab);
-                myArrow.transform.SetParent(arrowFolderOnCanvas);
-                myBeamScript.myArrow = myArrow;
-                myBeamScript.originPosition = fielder.position;
-                rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder);
-                myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
-                firstFielder = false;
-                myBeamScript.playerTransform = player.transform;
-            }
-            canThrow = false;
         }
     }
 }
