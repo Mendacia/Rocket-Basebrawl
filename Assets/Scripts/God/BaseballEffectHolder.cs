@@ -79,7 +79,7 @@ public class BaseballEffectHolder : MonoBehaviour
         }
 
         
-        if(scoreHold.score < 0 && scoreHold.score > -10)
+        if(scoreHold.score < 0 && scoreHold.score > -10000)
         {
             //musicSource.pitch = 0.8f;
             if(musicSource.pitch < 0.825)
@@ -91,7 +91,7 @@ public class BaseballEffectHolder : MonoBehaviour
                 musicSource.pitch = musicSource.pitch - 0.025f;
             }
         }
-        if (scoreHold.score < -10 && scoreHold.score > -20)
+        if (scoreHold.score < -10 && scoreHold.score > -20000)
         {
             //musicSource.pitch = 0.5f;
             if (musicSource.pitch < 0.525)
@@ -103,7 +103,7 @@ public class BaseballEffectHolder : MonoBehaviour
                 musicSource.pitch = musicSource.pitch - 0.025f;
             }
         }
-        if (scoreHold.score < -20 && scoreHold.score > -30)
+        if (scoreHold.score < -20 && scoreHold.score > -30000)
         {
             //musicSource.pitch = 0.3f;
             if (musicSource.pitch < 0.325)
@@ -115,7 +115,7 @@ public class BaseballEffectHolder : MonoBehaviour
                 musicSource.pitch = musicSource.pitch - 0.025f;
             }
         }
-        if (scoreHold.score < -30)
+        if (scoreHold.score < -30000)
         {
             //musicSource.pitch = 0.1f;
             if (musicSource.pitch < 0.125)
