@@ -35,17 +35,17 @@ public class fielderScoring : MonoBehaviour
         if(myHitNumber < fielderFailureOdds)
         {
             typeOfHit = ("Failure");
-            fielderFinalScore += Random.Range(failureMin, failureMax + 1);
+            fielderFinalScore += Random.Range(failureMin, failureMax + 1) * 1000;
         }
         else if(myHitNumber >= fielderFailureOdds && myHitNumber < fielderSuccessOdds + fielderFailureOdds)
         {
             typeOfHit = ("Success");
-            fielderFinalScore += Random.Range(successMin, successMax + 1);
+            fielderFinalScore += Random.Range(successMin, successMax + 1) * 1000;
         }
         else if(myHitNumber >= fielderSuccessOdds + fielderFailureOdds)
         {
             typeOfHit = ("Crit");
-            fielderFinalScore += Random.Range(critMin, critMax + 1);
+            fielderFinalScore += Random.Range(critMin, critMax + 1) * 1000;
         }
 
         npcScoreUIText.text = fielderFinalScore.ToString();

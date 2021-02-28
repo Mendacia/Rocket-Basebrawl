@@ -64,6 +64,7 @@ public class HomeBaseReset : MonoBehaviour
 
     private IEnumerator ResetHomeBase()
     {
+        scoreReference.gameObject.GetComponent<scoreUpdater>().BankScore();
         homeCam.SetActive(true);
         //Resets game variables back to beginning
         fielderPeltingScript.pitchingLoopStarted = false;

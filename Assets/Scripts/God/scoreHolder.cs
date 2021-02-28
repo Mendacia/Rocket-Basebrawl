@@ -8,6 +8,11 @@ public class scoreHolder : MonoBehaviour
     [System.NonSerialized] public float score = 0;
     [System.NonSerialized] public bool canScore = true;
 
+    [System.NonSerialized] public int mySilver;
+    [System.NonSerialized] public int myGold;
+    [System.NonSerialized] public int myMiss;
+    [System.NonSerialized] public int myCombo;
+
     private static scoreHolder scoreStatic;
 
     private void Awake()
@@ -27,5 +32,10 @@ public class scoreHolder : MonoBehaviour
     public void UpdateScore(float recievedScore)
     {
         score += recievedScore;
+    }
+
+    public void StoreVariablesFromGameplay(int silver, int gold, int miss, int combo)
+    {
+
     }
 }

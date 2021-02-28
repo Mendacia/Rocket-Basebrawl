@@ -80,7 +80,6 @@ public class baseManager : MonoBehaviour
         {
             if (Vector3.Distance(playerPosition.position, bases[(currentBase + 1)].position) < distanceFromBaseRequiredToProgress)
             {
-                myScoreUpdate.BankScore();
                 currentBase++;
                 nextBase++;
                 hasLeftHome = true;
@@ -92,7 +91,6 @@ public class baseManager : MonoBehaviour
         {
             if (Vector3.Distance(playerPosition.position, bases[bases.Count - 1].position) < distanceFromBaseRequiredToProgress)
             {
-                myScoreUpdate.BankScore();
                 currentBase++;
                 nextBase = 0;
                 remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
@@ -102,7 +100,6 @@ public class baseManager : MonoBehaviour
         {
             if (Vector3.Distance(playerPosition.position, bases[0].position) < distanceFromBaseRequiredToProgress)
             {
-                myScoreUpdate.BankScore();
                 currentBase = 0;
                 nextBase++;
                 remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases;

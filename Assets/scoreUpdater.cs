@@ -21,9 +21,16 @@ public class scoreUpdater : MonoBehaviour
     [SerializeField] private GameObject sweetSpotText = null;
 
     [System.NonSerialized] public bool canScore =true;
-    private float comboCount = 0;
+    private int comboCount = 0;
     private float totalUnbankedBalls = 0;
     private float unstableScore = 0;
+
+    //This gets sent off to the scoreHolder for use in the end screen
+    private int totalSilver;
+    private int totalGold;
+    private int totalMiss;
+    private int maxCombo;
+
     void Start()
     {
         myScoreHolder = gameObject.GetComponent<scoreHolder>();
@@ -34,7 +41,12 @@ public class scoreUpdater : MonoBehaviour
 
         unstableScore += (defaultScore + comboCount * hitComboIncrament);
         comboCount++;
+        if (comboCount > maxCombo)
+        {
+            maxCombo = comboCount;
+        }
         totalUnbankedBalls++;
+        totalSilver++;
         sweetSpotText.SetActive(false);
 
         if (!pitchingPhase)
@@ -52,7 +64,12 @@ public class scoreUpdater : MonoBehaviour
         Debug.Log("Fired");
         unstableScore += (defaultScore * 1.25f) + (comboCount * sweetComboIncrament);
         comboCount++;
+        if (comboCount > maxCombo)
+        {
+            maxCombo = comboCount;
+        }
         totalUnbankedBalls++;
+        totalGold++;
         sweetSpotText.SetActive(true);
 
         if (!pitchingPhase)
@@ -76,6 +93,7 @@ public class scoreUpdater : MonoBehaviour
         unstableScore = totalUnbankedBalls * defaultScore;
         myScoreHolder.score -= 1000;
         comboCount = 0;
+        totalMiss++;
         sweetSpotText.SetActive(false);
 
         
@@ -94,6 +112,11 @@ public class scoreUpdater : MonoBehaviour
         sweetSpotText.SetActive(false);
     }
 
+    public void SendNumbersOverToTheScoreHolder()
+    {
+        myScoreHolder.StoreVariablesFromGameplay(totalSilver, totalGold, totalMiss, maxCombo);
+    }
+
     private void Update()
     {
         unstableScoreText.text = unstableScore.ToString();
@@ -102,6 +125,8 @@ public class scoreUpdater : MonoBehaviour
             comboText.text = "COMBO " + comboCount.ToString() + "!";
         }
         else
+        {
             comboText.text = "";
+        }
     }
 }

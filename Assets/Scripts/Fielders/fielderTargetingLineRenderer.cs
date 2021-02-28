@@ -7,7 +7,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [Header("Set this to the prefab that this script is on")]
     [SerializeField] private LineRenderer targetingBeam = null;
     [Header("This is roughly how fast the beam will shrink before the ball fires")]
-    [SerializeField] private float beamSizeDecreaseSpeed = 1f;
+    public float beamSizeDecreaseSpeed = 1f;
     [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColour;
     [SerializeField] private Color lineRendererColourEXPlusUltra;

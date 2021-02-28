@@ -60,6 +60,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     public void Taunt()
     {
         //Taunt adds to taunt value and changes pithcing values accordingly
+        fielderReference.fielderTauntLevelIncreaser();
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;
