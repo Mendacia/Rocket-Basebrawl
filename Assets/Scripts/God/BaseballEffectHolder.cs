@@ -78,7 +78,7 @@ public class BaseballEffectHolder : MonoBehaviour
             postProcessingMaster.SetActive(false);
         }
 
-        
+       /* 
         if(scoreHold.score < 0 && scoreHold.score > -10000)
         {
             //musicSource.pitch = 0.8f;
@@ -126,7 +126,7 @@ public class BaseballEffectHolder : MonoBehaviour
             {
                 musicSource.pitch = musicSource.pitch - 0.025f;
             }
-        }
+        }*/
 
         //Update Vignette with score
         if (scoreHold.score < 0)
@@ -135,10 +135,10 @@ public class BaseballEffectHolder : MonoBehaviour
         }
         else if(scoreHold.score >= 1)
         {
-            if (musicSource.pitch < 1)
+            /*if (musicSource.pitch < 1)
             {
                 musicSource.pitch = musicSource.pitch + 0.025f;
-            }
+            }*/
             vignetteValue = vignetteValue - 0.3f;
             if(vignetteValue < 0)
             {
@@ -151,7 +151,7 @@ public class BaseballEffectHolder : MonoBehaviour
         if (vignetteLayer.intensity.value == 1)
         {
             //Enter last stand mode
-            musicSource.pitch = 0.05f;
+            //musicSource.pitch = 0.05f;
         }
     }
     //Time Slow

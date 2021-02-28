@@ -10,6 +10,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private scoreUpdater myScoreUpdater;
     private BaseballEffectHolder effectHolder;
+    private AudioSource pitchChange;
 
     void Start()
     {
@@ -19,6 +20,8 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
         StartCoroutine(Expire());
+
+        pitchChange = Camera.main.GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,6 +33,8 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
                 {
                     myScoreUpdater.SubtractFromScore();
                     effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
+                    pitchChange.pitch = pitchChange.pitch - 0.1f;
+                    
                     ballIsActive = false;
                 }
                 break;
