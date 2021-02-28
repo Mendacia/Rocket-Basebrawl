@@ -19,6 +19,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private playerControls playerStateReference = null;
     [SerializeField] private CinemachineVirtualCamera playerVCAM = null;
     [SerializeField] private scoreHolder scoreHolderReference;
+    [SerializeField] private scoreUpdater scoreUpdaterReference;
 
     [Header("These Wait Times are in seconds")]
     [SerializeField] private float minWaitTime = 1f;
@@ -71,6 +72,7 @@ public class fielderPeltingScript : MonoBehaviour
     private void Awake()
     {
         pitchingLoopStarted = false;
+        scoreHolderReference = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
 
     private void Start()
@@ -235,7 +237,7 @@ public class fielderPeltingScript : MonoBehaviour
             //Case for the TUTORIAL
             case false:
                 yield return new WaitForSeconds(2);
-                if (scoreHolderReference.score >= 3)
+                if (scoreHolderReference.score >= 3000)
                 {
                     Time.timeScale = 1;
                     battingBallCount = 0;
@@ -280,7 +282,7 @@ public class fielderPeltingScript : MonoBehaviour
                     finalBall = testedBall;
                     finalBall.fired = true;
                     upcomingBallList[i] = finalBall;
-                    scoreHolderReference.gameObject.GetComponent<scoreUpdater>().ballIndex = i;
+                    scoreUpdaterReference.gameObject.GetComponent<scoreUpdater>().ballIndex = i;
 
                     ReadyThrowPartTwo(finalBall);
                     break;

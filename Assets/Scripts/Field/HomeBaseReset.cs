@@ -21,6 +21,7 @@ public class HomeBaseReset : MonoBehaviour
     [SerializeField] private fielderPeltingScript fielderReference = null;
     [Header("Put ScoreHolder here!")]
     [SerializeField] private scoreHolder scoreReference = null;
+    [SerializeField] private scoreUpdater scoreUpdaterReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 4;
 
@@ -64,7 +65,7 @@ public class HomeBaseReset : MonoBehaviour
 
     private IEnumerator ResetHomeBase()
     {
-        scoreReference.gameObject.GetComponent<scoreUpdater>().BankScore();
+        scoreUpdaterReference.BankScore();
         fielderReference.fielderTauntLevel = 0;
         homeCam.SetActive(true);
         //Resets game variables back to beginning
@@ -94,7 +95,7 @@ public class HomeBaseReset : MonoBehaviour
         {
             //Slapping this in here for beta instead, while in development this should send to "MainMenu" and not have the extra line.
             //NEVERMIND it DOESN'T WORK because someone decided to FUCK WITH THE SCOREHOLDER without telling me
-            scoreReference.gameObject.GetComponent<scoreUpdater>().SendNumbersOverToTheScoreHolder();
+            scoreUpdaterReference.SendNumbersOverToTheScoreHolder();
             SceneManager.LoadScene("EndingBasebrawlTestingZone");
         }
         else

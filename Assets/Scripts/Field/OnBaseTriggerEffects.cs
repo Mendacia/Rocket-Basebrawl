@@ -15,6 +15,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     [SerializeField] private GameObject pitchingPhaseTarget = null;
     [Header("Put ScoreHolder here!")]
     [SerializeField] private scoreHolder scoreReference = null;
+    [SerializeField] private scoreUpdater scoreUpdaterReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 1;
     public static int currentPitchingNumber = 1;
@@ -77,7 +78,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     public void Bank()
     {
         //Bank points, shouldn't require any weird stuff
-        scoreReference.gameObject.GetComponent<scoreUpdater>().BankScore();
+        scoreUpdaterReference.BankScore();
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;

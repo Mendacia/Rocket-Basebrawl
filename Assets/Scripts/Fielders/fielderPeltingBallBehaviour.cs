@@ -13,7 +13,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     void Start()
     {
-        myScoreUpdater = GameObject.Find("Scoreholder").GetComponent<scoreUpdater>();
+        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
         effectHolder = GameObject.Find("BaseballEffectHolder").GetComponent<BaseballEffectHolder>();
 
         var body = GetComponent<Rigidbody>();
