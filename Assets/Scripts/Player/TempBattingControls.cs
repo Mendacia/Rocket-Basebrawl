@@ -24,7 +24,7 @@ public class TempBattingControls : MonoBehaviour
     }
     public void Batting(CallbackContext context)
     {
-        if (context.performed && isHitting == false)
+        if (context.performed && isHitting == false && PauseMenu.isPaused == false)
         {
             myCollider.enabled = true;
             //devHittingCheckText.text = ("HITTING");
