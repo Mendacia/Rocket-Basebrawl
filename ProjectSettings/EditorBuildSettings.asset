@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScenes/MainMenu.unity
     guid: 010a42af1b1d5bd4a9d2beba688aa482
   - enabled: 1
-    path: Assets/Scenes/LukaTestScenes/LBall V4.unity
+    path: Assets/Scenes/LukaTestScenes/BunnyFieldV1.unity
     guid: 9c8355645c75231469e3db739cc7aebc
   - enabled: 0
     path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
