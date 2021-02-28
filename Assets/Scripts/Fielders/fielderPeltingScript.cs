@@ -30,6 +30,8 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private int ballsToThrowMaximum = 15;
     [SerializeField] private int higherTauntBallCountReductionFactor = 3;
     private int finalBallsToThrow;
+
+
     public enum ballType
     {
         STANDARD,
@@ -326,5 +328,6 @@ public class fielderPeltingScript : MonoBehaviour
             myBeamScript.beamSizeDecreaseSpeed = 1 + (myBall.tauntLevel / 2);
         }
         canThrow = false;
+        Debug.Log("This is the end?");
     }
 }

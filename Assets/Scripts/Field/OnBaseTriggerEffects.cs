@@ -19,6 +19,8 @@ public class OnBaseTriggerEffects : MonoBehaviour
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 1;
     public static int currentPitchingNumber = 1;
+    [Header("Put trigger box collider here!")]
+    [SerializeField] private BoxCollider baseTrigger = null;
     [Header("Put Canvas Here!")]
     [SerializeField] private GameObject baseCanvas = null;
 
@@ -35,6 +37,18 @@ public class OnBaseTriggerEffects : MonoBehaviour
     void Start()
     {
         basePosition = this.transform.position;
+    }
+
+    private void Update()
+    {
+        if (fielderReference.canThrow == true)
+        {
+            baseTrigger.enabled = true;
+        }
+        else
+        {
+            baseTrigger.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
