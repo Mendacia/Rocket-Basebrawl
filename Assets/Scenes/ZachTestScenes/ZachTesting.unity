@@ -221,6 +221,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
+      propertyPath: battingCont
+      value: 
+      objectReference: {fileID: 587815511}
     - target: {fileID: 1345172540964745008, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_IsActive
@@ -1569,7 +1573,6 @@ GameObject:
   - component: {fileID: 373872653}
   - component: {fileID: 373872657}
   - component: {fileID: 373872656}
-  - component: {fileID: 373872655}
   - component: {fileID: 373872654}
   - component: {fileID: 373872658}
   m_Layer: 0
@@ -1604,23 +1607,10 @@ BoxCollider:
   m_GameObject: {fileID: 373872652}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3, y: 30, z: 3}
   m_Center: {x: 0, y: 15, z: 0}
---- !u!65 &373872655
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373872652}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &373872656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1690,6 +1680,7 @@ MonoBehaviour:
   scoreReference: {fileID: 589835095}
   scoreUpdaterReference: {fileID: 1098240544}
   pitchingNumber: 3
+  baseTrigger: {fileID: 373872654}
   baseCanvas: {fileID: 1720287605}
 --- !u!4 &378140181 stripped
 Transform:
@@ -3229,6 +3220,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580874260}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &587815511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5690458438556619051, guid: e7ae1472e0e62394cb491cda78c3863d,
+    type: 3}
+  m_PrefabInstance: {fileID: 52489557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273d35933e9e51240bc2f4b114ea288d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &589835095 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6588156215019818124, guid: 2b2ffce2727d0a64c9129460ae0d6655,
@@ -6869,7 +6872,6 @@ GameObject:
   - component: {fileID: 1300265481}
   - component: {fileID: 1300265485}
   - component: {fileID: 1300265484}
-  - component: {fileID: 1300265483}
   - component: {fileID: 1300265482}
   - component: {fileID: 1300265486}
   m_Layer: 0
@@ -6904,23 +6906,10 @@ BoxCollider:
   m_GameObject: {fileID: 1300265480}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3, y: 30, z: 3}
   m_Center: {x: 0, y: 15, z: 0}
---- !u!65 &1300265483
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300265480}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1300265484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6990,6 +6979,7 @@ MonoBehaviour:
   scoreReference: {fileID: 589835095}
   scoreUpdaterReference: {fileID: 1098240544}
   pitchingNumber: 2
+  baseTrigger: {fileID: 1300265482}
   baseCanvas: {fileID: 998602895}
 --- !u!4 &1303939186 stripped
 Transform:
@@ -7866,7 +7856,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.15287708, y: -0.52447486, z: 0.096367344, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636734, w: 0.83202654}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9158,7 +9148,6 @@ GameObject:
   - component: {fileID: 1779730009}
   - component: {fileID: 1779730013}
   - component: {fileID: 1779730012}
-  - component: {fileID: 1779730011}
   - component: {fileID: 1779730010}
   - component: {fileID: 1779730014}
   m_Layer: 0
@@ -9193,23 +9182,10 @@ BoxCollider:
   m_GameObject: {fileID: 1779730008}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3, y: 30, z: 3}
   m_Center: {x: 0, y: 15, z: 0}
---- !u!65 &1779730011
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779730008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1779730012
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9279,6 +9255,7 @@ MonoBehaviour:
   scoreReference: {fileID: 589835095}
   scoreUpdaterReference: {fileID: 1098240544}
   pitchingNumber: 1
+  baseTrigger: {fileID: 1779730010}
   baseCanvas: {fileID: 764811564}
 --- !u!4 &1790341466 stripped
 Transform:

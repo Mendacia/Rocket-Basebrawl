@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
-public class TempBattingControls : MonoBehaviour
+public class BattingControls : MonoBehaviour
 {
     //[SerializeField] private Text devHittingCheckText = null;
     [SerializeField] private Animator playerAnimator = null;
@@ -30,6 +30,19 @@ public class TempBattingControls : MonoBehaviour
             //devHittingCheckText.text = ("HITTING");
             isHitting = true;
             playerAnimator.SetTrigger("heHit");
+            //hitariAnimator.SetTrigger("Batting");
+            particleMaster.SetActive(true);
+            StartCoroutine(Cooldown());
+        }
+    }
+
+    public void DashBatting()
+    {
+        if (isHitting == false && PauseMenu.isPaused == false)
+        {
+            myCollider.enabled = true;
+            //devHittingCheckText.text = ("HITTING");
+            isHitting = true;
             //hitariAnimator.SetTrigger("Batting");
             particleMaster.SetActive(true);
             StartCoroutine(Cooldown());

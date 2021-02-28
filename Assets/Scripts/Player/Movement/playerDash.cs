@@ -11,6 +11,7 @@ public class playerDash : MonoBehaviour
     [SerializeField] private float dashSpeed = 100;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
+    [SerializeField] private BattingControls battingCont = null;
 
     public Vector3 recievedVector(Vector3 myVector)
     {
@@ -31,6 +32,7 @@ public class playerDash : MonoBehaviour
             if (canDash)
             {
                 canDash = false;
+                battingCont.DashBatting();
                 StartCoroutine(Dash());
             }
         }
