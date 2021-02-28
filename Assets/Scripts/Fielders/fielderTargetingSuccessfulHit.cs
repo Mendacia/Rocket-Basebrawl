@@ -63,10 +63,10 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
                 //Enable this line to turn on OnHit effects
                 effectHolder.inPPTime = true;
             }
-            effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
+            //effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
             if(pitchChange.pitch < 1)
             {
-                pitchChange.pitch = pitchChange.pitch + 0.1f;
+                //pitchChange.pitch = pitchChange.pitch + 0.1f;
             }
         }
         

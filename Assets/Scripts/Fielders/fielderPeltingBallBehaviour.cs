@@ -32,8 +32,8 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
                 if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
                 {
                     myScoreUpdater.SubtractFromScore();
-                    effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
-                    pitchChange.pitch = pitchChange.pitch - 0.1f;
+                    //effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
+                    //pitchChange.pitch = pitchChange.pitch - 0.1f;
                     
                     ballIsActive = false;
                 }
