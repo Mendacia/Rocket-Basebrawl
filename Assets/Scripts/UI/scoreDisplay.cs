@@ -13,6 +13,7 @@ public class scoreDisplay : MonoBehaviour
 
     void Start()
     {
+        //FUCK!!!!!!!!!
         theAllSeeingScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
 

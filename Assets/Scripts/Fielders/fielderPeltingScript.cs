@@ -66,7 +66,7 @@ public class fielderPeltingScript : MonoBehaviour
     private int iterator = 0;
     public static bool pitchingLoopStarted = false;
 
-    private int fielderTauntLevel = 0;
+    public int fielderTauntLevel = 0;
 
     private void Awake()
     {
@@ -267,7 +267,6 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void ReadyThrow()
     {
-        int localTauntLevel;
         ballsOrSomethingIDK finalBall;
         if (hasReadiedAThrow == false)
         {
@@ -283,7 +282,7 @@ public class fielderPeltingScript : MonoBehaviour
                     upcomingBallList[i] = finalBall;
                     scoreHolderReference.gameObject.GetComponent<scoreUpdater>().ballIndex = i;
 
-                    ReadyThrow(finalBall);
+                    ReadyThrowPartTwo(finalBall);
                     break;
                 }
                 else if ( i+1 == upcomingBallList.Count)
@@ -294,7 +293,7 @@ public class fielderPeltingScript : MonoBehaviour
         }
     }
 
-    private void ReadyThrow(ballsOrSomethingIDK myBall)
+    private void ReadyThrowPartTwo(ballsOrSomethingIDK myBall)
     {
         List<Transform> chosenFielders = new List<Transform>();
         int numberOfBallsToThrow;

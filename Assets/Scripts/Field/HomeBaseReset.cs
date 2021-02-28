@@ -65,6 +65,7 @@ public class HomeBaseReset : MonoBehaviour
     private IEnumerator ResetHomeBase()
     {
         scoreReference.gameObject.GetComponent<scoreUpdater>().BankScore();
+        fielderReference.fielderTauntLevel = 0;
         homeCam.SetActive(true);
         //Resets game variables back to beginning
         fielderPeltingScript.pitchingLoopStarted = false;
@@ -91,7 +92,10 @@ public class HomeBaseReset : MonoBehaviour
     {
         if (roundsRun == 3)
         {
-            SceneManager.LoadScene("MainMenu");
+            //Slapping this in here for beta instead, while in development this should send to "MainMenu" and not have the extra line.
+            //NEVERMIND it DOESN'T WORK because someone decided to FUCK WITH THE SCOREHOLDER without telling me
+            scoreReference.gameObject.GetComponent<scoreUpdater>().SendNumbersOverToTheScoreHolder();
+            SceneManager.LoadScene("EndingBasebrawlTestingZone");
         }
         else
         {

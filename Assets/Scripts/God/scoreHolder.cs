@@ -17,7 +17,7 @@ public class scoreHolder : MonoBehaviour
 
     private void Awake()
     {
-       // DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
 
         if (scoreStatic == null)
         {
@@ -36,6 +36,9 @@ public class scoreHolder : MonoBehaviour
 
     public void StoreVariablesFromGameplay(int silver, int gold, int miss, int combo)
     {
-
+        mySilver = silver;
+        myGold = gold;
+        myMiss = miss;
+        myCombo = combo;
     }
 }
