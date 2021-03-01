@@ -15,9 +15,12 @@ public class OnBaseTriggerEffects : MonoBehaviour
     [SerializeField] private GameObject pitchingPhaseTarget = null;
     [Header("Put ScoreHolder here!")]
     [SerializeField] private scoreHolder scoreReference = null;
+    [SerializeField] private scoreUpdater scoreUpdaterReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 1;
     public static int currentPitchingNumber = 1;
+    [Header("Put trigger box collider here!")]
+    [SerializeField] private BoxCollider baseTrigger = null;
     [Header("Put Canvas Here!")]
     [SerializeField] private GameObject baseCanvas = null;
 
@@ -34,6 +37,18 @@ public class OnBaseTriggerEffects : MonoBehaviour
     void Start()
     {
         basePosition = this.transform.position;
+    }
+
+    private void Update()
+    {
+        if (fielderReference.canThrow == true)
+        {
+            baseTrigger.enabled = true;
+        }
+        else
+        {
+            baseTrigger.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,7 +92,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     public void Bank()
     {
         //Bank points, shouldn't require any weird stuff
-        scoreReference.gameObject.GetComponent<scoreUpdater>().BankScore();
+        scoreUpdaterReference.BankScore();
         StartCoroutine(StartPitchingPhase());
         baseCanvas.SetActive(false);
         Time.timeScale = 1;

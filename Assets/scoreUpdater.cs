@@ -33,7 +33,7 @@ public class scoreUpdater : MonoBehaviour
 
     void Start()
     {
-        myScoreHolder = gameObject.GetComponent<scoreHolder>();
+        myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
 
     public void HitAddToScore(bool pitchingPhase)

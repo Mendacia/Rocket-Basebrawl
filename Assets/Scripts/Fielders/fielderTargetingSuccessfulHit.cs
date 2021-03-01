@@ -9,11 +9,15 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
 
     private BaseballEffectHolder effectHolder;
     private scoreUpdater myScoreUpdater;
+    private scoreHolder myScoreHolder;
+    private AudioSource pitchChange;
 
     private void Start()
     {
         effectHolder = GameObject.Find("BaseballEffectHolder").GetComponent<BaseballEffectHolder>();
-        myScoreUpdater = GameObject.Find("Scoreholder").GetComponent<scoreUpdater>();
+        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
+        myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        pitchChange = Camera.main.GetComponent<AudioSource>();
     }
 
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation, bool sweetSpot)
@@ -21,19 +25,29 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         //Don't worry about these causing lag, it only runs when the player hits a ball, it shouldn't be that taxing.
         if (fielderPeltingScript.pitchingLoopStarted == false)
         {
-            if (sweetSpot)
+            if (TutorialGodScript.isTutorial)
+            {
+                myScoreHolder.score = myScoreHolder.score + 1000;
+            }
+
+            if (sweetSpot && !TutorialGodScript.isTutorial)
             {
                 myScoreUpdater.SweetAddToScore(true);
+                fielderPeltingScript.pitchingLoopStarted = true;
             }
-            else
+            else if(!TutorialGodScript.isTutorial)
             {
                 myScoreUpdater.HitAddToScore(true);
+                fielderPeltingScript.pitchingLoopStarted = true;
             }
             
-            fielderPeltingScript.pitchingLoopStarted = true;
         }
         else
         {
+            if (TutorialGodScript.isTutorial)
+            {
+                myScoreHolder.score = myScoreHolder.score + 1000;
+            }
             if (sweetSpot)
             {
                 myScoreUpdater.SweetAddToScore(false);
@@ -49,7 +63,11 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
                 //Enable this line to turn on OnHit effects
                 effectHolder.inPPTime = true;
             }
-            effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
+            //effectHolder.vignetteValue = effectHolder.vignetteValue - 0.08f;
+            if(pitchChange.pitch < 1)
+            {
+                //pitchChange.pitch = pitchChange.pitch + 0.1f;
+            }
         }
         
         var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();

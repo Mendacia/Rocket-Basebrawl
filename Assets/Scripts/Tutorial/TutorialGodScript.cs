@@ -29,10 +29,12 @@ public class TutorialGodScript : MonoBehaviour
     [SerializeField] private GameObject loadingButton = null;
 
     private bool isBatting = false;
+    public static bool isTutorial = true;
 
     private void Awake()
     {
-        scoreHold.canScore = false;
+        isTutorial = true;
+        
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -41,6 +43,7 @@ public class TutorialGodScript : MonoBehaviour
     {
         scoreHold = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
         Time.timeScale = 0;
+        scoreHold.canScore = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
     //This is a bunch of BS settings
@@ -103,6 +106,7 @@ public class TutorialGodScript : MonoBehaviour
         battingButton.SetActive(false);
         fielderReference.startPeltingLoop();
         playerStateReference.playerState = 2;
+        fielderPeltingScript.pitchingLoopStarted = true;
         playerVCAM.m_Transitions.m_InheritPosition = true;
         Time.timeScale = 1;
         isBatting = true;
@@ -111,12 +115,14 @@ public class TutorialGodScript : MonoBehaviour
 
     public void LoadMainGame()
     {
-        SceneManager.LoadScene("ZachDollyTesting");
+        isTutorial = false;
+        scoreHold.canScore = true;
+        SceneManager.LoadScene(1);
     }
 
     private void Update()
     {
-        if(scoreHold.score >= 3 && isBatting)
+        if(scoreHold.score >= 3000 && isBatting)
         {
             loadingButton.SetActive(true);
             Time.timeScale = 0;

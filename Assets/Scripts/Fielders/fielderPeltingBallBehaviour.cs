@@ -10,15 +10,18 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 
     private scoreUpdater myScoreUpdater;
     private BaseballEffectHolder effectHolder;
+    private AudioSource pitchChange;
 
     void Start()
     {
-        myScoreUpdater = GameObject.Find("Scoreholder").GetComponent<scoreUpdater>();
+        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
         effectHolder = GameObject.Find("BaseballEffectHolder").GetComponent<BaseballEffectHolder>();
 
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
         StartCoroutine(Expire());
+
+        pitchChange = Camera.main.GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,7 +32,9 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
                 if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
                 {
                     myScoreUpdater.SubtractFromScore();
-                    effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
+                    //effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
+                    //pitchChange.pitch = pitchChange.pitch - 0.1f;
+                    
                     ballIsActive = false;
                 }
                 break;
