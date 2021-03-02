@@ -8,6 +8,8 @@ public class BattingControls : MonoBehaviour
 {
     //[SerializeField] private Text devHittingCheckText = null;
     [SerializeField] private Animator playerAnimator = null;
+    [SerializeField] private float hitWindow = 0.5f;
+    [SerializeField] private float hitCooldown = 0.5f;
     //[SerializeField] private Animator hitariAnimator = null;
     [SerializeField] private fielderWhacked fielderWhackingScript = null;
     [SerializeField] private LayerMask fielderLayerMask = 0;
@@ -51,11 +53,12 @@ public class BattingControls : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(hitWindow);
         myCollider.enabled = false;
+        particleMaster.SetActive(false);
+        yield return new WaitForSeconds(hitCooldown);
         //devHittingCheckText.text = ("IDLE");
         isHitting = false;
-        particleMaster.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
