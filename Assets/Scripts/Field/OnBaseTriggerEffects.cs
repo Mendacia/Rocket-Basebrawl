@@ -41,14 +41,14 @@ public class OnBaseTriggerEffects : MonoBehaviour
 
     private void Update()
     {
-        if (fielderReference.canThrow == true)
+        /*if (fielderReference.canThrow == true)
         {
             baseTrigger.enabled = true;
         }
         else
         {
             baseTrigger.enabled = false;
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)

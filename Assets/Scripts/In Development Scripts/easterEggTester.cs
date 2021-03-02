@@ -7,7 +7,6 @@ public class easterEggTester : MonoBehaviour
     [SerializeField] private GameObject field = null;
     [SerializeField] private Material fieldMat = null;
     [SerializeField] private Material woodyMat = null;
-    [SerializeField] private BaseballEffectHolder baseEffect = null;
     private bool isWoodied = false;
     private enum easterEggState
     {
@@ -100,7 +99,6 @@ public class easterEggTester : MonoBehaviour
                     isWoodied = false;
                     field.GetComponent<MeshRenderer>().material = fieldMat;
                 }
-                baseEffect.ChangeDirtTexture();
                 currentEggState = easterEggState.NA;
                 break;
         }
