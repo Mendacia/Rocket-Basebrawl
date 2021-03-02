@@ -328,6 +328,5 @@ public class fielderPeltingScript : MonoBehaviour
             myBeamScript.beamSizeDecreaseSpeed = 1 + (myBall.tauntLevel / 2);
         }
         canThrow = false;
-        Debug.Log("This is the end?");
     }
 }

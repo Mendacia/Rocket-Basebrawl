@@ -8,10 +8,12 @@ public class playerDash : MonoBehaviour
     private Rigidbody playerRigidbody = null;
     [SerializeField] private playerControls playerCont;
     private bool canDash = true;
+    public bool isDashing = false;
     [SerializeField] private float dashSpeed = 100;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private BattingControls battingCont = null;
+    [SerializeField] private GameObject dashingEffects = null;
 
     public Vector3 recievedVector(Vector3 myVector)
     {
@@ -32,7 +34,6 @@ public class playerDash : MonoBehaviour
             if (canDash)
             {
                 canDash = false;
-                battingCont.DashBatting();
                 StartCoroutine(Dash());
             }
         }
@@ -40,10 +41,14 @@ public class playerDash : MonoBehaviour
 
     IEnumerator Dash()
     {
+        dashingEffects.SetActive(true);
+        isDashing = true;
         playerCont.speed = dashSpeed;
         yield return new WaitForSeconds(dashDuration);
         playerCont.speed = playerCont.topSpeed;
         yield return new WaitForSeconds(dashCooldown);
+        dashingEffects.SetActive(false);
+        isDashing = false;
         canDash = true;
     }
 }

@@ -33,6 +33,9 @@ public class playerControls : MonoBehaviour
     [SerializeField] private float jumpForce = 50;
     [SerializeField] private float hangTime = 0.2f;
 
+    [Header("Running Effects")]
+    [SerializeField] private GameObject runningEffects = null;
+
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
 
@@ -62,12 +65,18 @@ public class playerControls : MonoBehaviour
             rb.velocity = Vector3.zero;
             speed = baseSpeed;
             playerAnimator.SetBool("heMoving", false);
-            //hitariAnimator.SetBool("Running", false);
+            if (runningEffects.activeSelf == true)
+            {
+                runningEffects.SetActive(false);
+            }
         }
         else
         {
             playerAnimator.SetBool("heMoving", true);
-            //hitariAnimator.SetBool("Running", true);
+            if (runningEffects.activeSelf == false)
+            {
+                runningEffects.SetActive(true);
+            }
         }
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {
