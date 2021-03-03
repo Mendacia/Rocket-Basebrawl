@@ -38,7 +38,7 @@ ModelImporter:
       name: Cheetah Batting Windup
       takeName: Take 001
       internalID: 0
-      firstFrame: 2
+      firstFrame: 63
       lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
