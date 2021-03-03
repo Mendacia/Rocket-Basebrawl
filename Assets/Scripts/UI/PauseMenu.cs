@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else
+            else if(Time.timeScale != 0)
             {
                 Pause();
             }
