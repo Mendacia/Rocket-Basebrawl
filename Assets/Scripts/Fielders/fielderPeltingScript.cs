@@ -9,6 +9,7 @@ public class fielderPeltingScript : MonoBehaviour
 {
     [Header("These MUST be set in editor for game to work")]
     [SerializeField] private Transform player = null;
+    [SerializeField] private GameObject pitchingCam = null;
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private GameObject ballIconPrefab;
@@ -215,6 +216,7 @@ public class fielderPeltingScript : MonoBehaviour
                 {
                     //pitchingLoopStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
                     startPeltingLoop();
+                    pitchingCam.SetActive(false);
                     Time.timeScale = 1;
                     iterator = 0;
                     battingBallCount = 0;

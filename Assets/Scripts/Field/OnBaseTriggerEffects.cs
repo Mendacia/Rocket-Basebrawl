@@ -6,6 +6,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
 {
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject cineMachineBaseCam = null;
+    [SerializeField] private GameObject pitchingCam = null;
     [Header("Put Player Controller here!")]
     [SerializeField] private GameObject player = null;
     [SerializeField] private playerControls playerStateReference = null;
@@ -41,14 +42,18 @@ public class OnBaseTriggerEffects : MonoBehaviour
 
     private void Update()
     {
-        /*if (fielderReference.canThrow == true)
+        if (fielderReference.canThrow == true)
         {
             baseTrigger.enabled = true;
         }
         else
         {
             baseTrigger.enabled = false;
-        }*/
+        }
+        if (fielderPeltingScript.pitchingLoopStarted)
+        {
+            pitchingCam.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -117,6 +122,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         cineMachineBaseCam.SetActive(true);
+        pitchingCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
 

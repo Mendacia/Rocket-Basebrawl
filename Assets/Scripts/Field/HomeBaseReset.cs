@@ -91,7 +91,7 @@ public class HomeBaseReset : MonoBehaviour
     }
     public void RoundRestart()
     {
-        if (roundsRun == 3)
+        if (roundsRun == 1)
         {
             //Slapping this in here for beta instead, while in development this should send to "MainMenu" and not have the extra line.
             //NEVERMIND it DOESN'T WORK because someone decided to FUCK WITH THE SCOREHOLDER without telling me
