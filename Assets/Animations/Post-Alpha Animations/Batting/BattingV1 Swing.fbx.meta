@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: d47098757d6c66249a5013e49c70b3f2
+guid: e01727987f93c7940b377f6356196ef2
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cheetah BattingFull V1
+    second: Cheetah Batting Swing
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah BattingFull V1
+      name: Cheetah Batting Swing
       takeName: Take 001
       internalID: 0
-      firstFrame: 2
-      lastFrame: 300
+      firstFrame: 164
+      lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -62,7 +62,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 2
     isReadable: 0
   meshes:
     lODScreenPercentages: []
