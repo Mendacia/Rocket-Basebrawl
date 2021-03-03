@@ -8,6 +8,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private LineRenderer targetingBeam = null;
     [Header("This is roughly how fast the beam will shrink before the ball fires")]
     public float beamSizeDecreaseSpeed = 1f;
+    [Header("This, in seconds, is how close to the ball firing you have to hit the ball to get gold")]
+    public float goldThreshold = 0.2f;
     [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColour;
     [SerializeField] private Color lineRendererColourEXPlusUltra;
@@ -16,6 +18,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
+    private float currentBeamTime = 0;
 
     private float beamWidth = 1f;
     [System.NonSerialized] public Vector3 direction = Vector3.zero;
@@ -23,7 +26,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [System.NonSerialized] public Transform playerTransform = null;
     [System.NonSerialized] public bool theUIArrowScriptHasTheOsprite = false;
     [System.NonSerialized] public GameObject myArrow = null;
-    private bool sweetSpotActive = false;
+    [System.NonSerialized] public float beamTimeLimit = 1;
+    [System.NonSerialized] public bool sweetSpotActive = false;
 
     private void Update()
     {
@@ -65,28 +69,42 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         targetingBeam.startWidth = beamWidth;
         targetingBeam.endWidth = beamWidth;
 
-        if (beamWidth > 0)
+        ShrinkBeam(midPoint);
+        ColourBeam(startPoint, midPoint, endPoint);
+    }
+
+    public void GildMe()
+    {
+        goldThreshold = beamTimeLimit;
+    }
+
+    private void ShrinkBeam(Vector3 fireAt)
+    {
+        if (currentBeamTime < beamTimeLimit)
         {
-            beamWidth = beamWidth - beamSizeDecreaseSpeed *Time.deltaTime;
+            currentBeamTime = currentBeamTime + 1/beamSizeDecreaseSpeed * Time.deltaTime;
+            beamWidth = 1 - (currentBeamTime / beamTimeLimit);
             oSprite.transform.localScale = new Vector3(beamWidth, beamWidth, beamWidth);
-            //Store this to make code easier to read
-            var midDistance = Vector3.Distance(startPoint, midPoint) / Vector3.Distance(startPoint, endPoint);
-            //Gradients are awful. Basically, LineRendererColour is the animated colour and EXPlusUltra is effectively just black. floats after are just % through the total line renderer
-            myGradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(lineRendererColour, 0.0f), new GradientColorKey(lineRendererColour, midDistance), new GradientColorKey(lineRendererColourEXPlusUltra, (midDistance * 1.01f)), new GradientColorKey(lineRendererColourEXPlusUltra, 1) },
-                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f)}
-                );
-            targetingBeam.colorGradient = myGradient;
+
+            if(currentBeamTime > beamTimeLimit - goldThreshold)
+            {
+                sweetSpotActive = true;
+            }
         }
         else
         {
-            fire(false, midPoint);
+            fire(false, fireAt); 
         }
+    }
 
-        if (beamWidth < 0.1f)
-        {
-            sweetSpotActive = true;
-        }
+    private void ColourBeam(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
+    {
+        var midDistance = Vector3.Distance(recievedStartPoint, recievedMidPoint) / Vector3.Distance(recievedStartPoint, recievedEndPoint);
+        myGradient.SetKeys(
+             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColour, 0.0f), new GradientColorKey(lineRendererColour, midDistance), new GradientColorKey(lineRendererColourEXPlusUltra, (midDistance * 1.01f)), new GradientColorKey(lineRendererColourEXPlusUltra, 1) },
+             /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
+            );
+        targetingBeam.colorGradient = myGradient;
     }
 
     private void fire(bool playerHitTheBall, Vector3 midPoint)

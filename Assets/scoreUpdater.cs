@@ -18,7 +18,6 @@ public class scoreUpdater : MonoBehaviour
     [Header("Set this to a text object on the UI")]
     [SerializeField] private Text unstableScoreText = null;
     [SerializeField] private Text comboText = null;
-    [SerializeField] private GameObject sweetSpotText = null;
 
     [System.NonSerialized] public bool canScore =true;
     private int comboCount = 0;
@@ -47,14 +46,13 @@ public class scoreUpdater : MonoBehaviour
         }
         totalUnbankedBalls++;
         totalSilver++;
-        sweetSpotText.SetActive(false);
 
         if (!pitchingPhase)
         {
             //Changing Texture
             var tempBall = peltingScript.upcomingBallList[ballIndex];
             tempBall.myTexture = BallIconHolder.GetIcon(BallResult.SILVER, peltingScript.upcomingBallList[ballIndex].tauntLevel);
-            tempBall.uIIcon.GetComponent<Image>().sprite = tempBall.myTexture;
+            tempBall.uIIcon.GetComponentInChildren<Image>().sprite = tempBall.myTexture;
             peltingScript.upcomingBallList[ballIndex] = tempBall;
         }
     }
@@ -70,14 +68,13 @@ public class scoreUpdater : MonoBehaviour
         }
         totalUnbankedBalls++;
         totalGold++;
-        sweetSpotText.SetActive(true);
 
         if (!pitchingPhase)
         {
             //Changing Texture
             var tempBall = peltingScript.upcomingBallList[ballIndex];
             tempBall.myTexture = BallIconHolder.GetIcon(BallResult.GOLD, peltingScript.upcomingBallList[ballIndex].tauntLevel);
-            tempBall.uIIcon.GetComponent<Image>().sprite = tempBall.myTexture;
+            tempBall.uIIcon.GetComponentInChildren<Image>().sprite = tempBall.myTexture;
             peltingScript.upcomingBallList[ballIndex] = tempBall;
         }
     }
@@ -85,7 +82,6 @@ public class scoreUpdater : MonoBehaviour
     public void BonkAddToScore()
     {
         unstableScore += (defaultScore / 2) + (comboCount * bonkComboIncrament);
-        sweetSpotText.SetActive(false);
     }
 
     public void SubtractFromScore()
@@ -94,12 +90,11 @@ public class scoreUpdater : MonoBehaviour
         myScoreHolder.score -= 1000;
         comboCount = 0;
         totalMiss++;
-        sweetSpotText.SetActive(false);
 
         
         var tempBall = peltingScript.upcomingBallList[ballIndex];
         tempBall.myTexture = BallIconHolder.GetIcon(BallResult.MISS, peltingScript.upcomingBallList[ballIndex].tauntLevel);
-        tempBall.uIIcon.GetComponent<Image>().sprite = tempBall.myTexture;
+        tempBall.uIIcon.GetComponentInChildren<Image>().sprite = tempBall.myTexture;
         peltingScript.upcomingBallList[ballIndex] = tempBall;
     }
 
@@ -109,7 +104,6 @@ public class scoreUpdater : MonoBehaviour
         unstableScore = 0;
         comboCount = 0;
         totalUnbankedBalls = 0;
-        sweetSpotText.SetActive(false);
     }
 
     public void SendNumbersOverToTheScoreHolder()

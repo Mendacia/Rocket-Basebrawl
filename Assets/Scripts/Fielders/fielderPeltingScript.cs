@@ -32,6 +32,9 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private int higherTauntBallCountReductionFactor = 3;
     private int finalBallsToThrow;
 
+    //Cheats Below
+    [System.NonSerialized] public bool Gilded = false; 
+
 
     public enum ballType
     {
@@ -163,7 +166,7 @@ public class fielderPeltingScript : MonoBehaviour
             //Instantiating the icon to the UI
             newBall.uIIcon = Instantiate(ballIconPrefab);
             newBall.uIIcon.transform.SetParent(ballIconHolderOnCanvas);
-            newBall.uIIcon.GetComponent<Image>().sprite = newBall.myTexture;
+            newBall.uIIcon.GetComponentInChildren<Image>().sprite = newBall.myTexture;
             newBall.fired = false;
             Debug.Log("Fired has been set to false");
 
@@ -195,6 +198,10 @@ public class fielderPeltingScript : MonoBehaviour
             myBeamScript.originPosition = thePitcher.position;
             myBeamScript.playerTransform = player.transform;
             myBeamScript.direction = ((pitchingPhaseTarget.position + (Random.insideUnitSphere)) - thePitcher.position).normalized;
+            if (Gilded)
+            {
+                myBeamScript.sweetSpotActive = true;
+            }
            
         }
         else
@@ -328,6 +335,10 @@ public class fielderPeltingScript : MonoBehaviour
             firstFielder = false;
             myBeamScript.playerTransform = player.transform;
             myBeamScript.beamSizeDecreaseSpeed = 1 + (myBall.tauntLevel / 2);
+            if (Gilded)
+            {
+                myBeamScript.sweetSpotActive = true;
+            }
         }
         canThrow = false;
     }
