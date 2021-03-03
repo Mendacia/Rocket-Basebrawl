@@ -13,13 +13,12 @@ public class scoreDisplay : MonoBehaviour
 
     void Start()
     {
-        //FUCK!!!!!!!!!
         theAllSeeingScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
 
     void Update()
     {
-        gameObject.GetComponent<Text>().text = "Score: " + theAllSeeingScoreHolder.score;
+        gameObject.GetComponent<Text>().text = theAllSeeingScoreHolder.score.ToString();
 
         if (silverText != null)
         {
