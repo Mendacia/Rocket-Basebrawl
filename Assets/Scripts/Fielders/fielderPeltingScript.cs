@@ -1,29 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using Cinemachine;
 
 public class fielderPeltingScript : MonoBehaviour
 {
-    [Header("These MUST be set in editor for game to work")]
-    [SerializeField] private Transform player = null;
+    [Header("Set this prefab up please")]
     [SerializeField] private GameObject targetingBeamPrefab;
-    [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private GameObject ballIconPrefab;
-    [SerializeField] private Transform ballIconHolderOnCanvas;
-    [SerializeField] private Transform arrowFolderOnCanvas;
-    [SerializeField] private fielderProgressionBasedAccuracyScript rangeAllocationScript;
-    [SerializeField] private Transform pitchingPhaseTarget = null;
-    [SerializeField] private playerControls playerStateReference = null;
-    [SerializeField] private CinemachineVirtualCamera playerVCAM = null;
-    [SerializeField] private scoreHolder scoreHolderReference;
-    [SerializeField] private scoreUpdater scoreUpdaterReference;
 
-    [Header("These Wait Times are in seconds")]
-    [SerializeField] private float minWaitTime = 1f;
-    [SerializeField] private float maxWaitTime = 3f;
+    //Things I've already set up:
+    private BallList masterBallList; //This is holy
+    private Transform player;
+    private scoreHolder myScoreHolder;
+    private scoreUpdater myScoreUpdater;
+    private arrowIconManager uIArrowManager;
+    private ballIconManager uIBallManager;
+    private fielderProgressionBasedAccuracyScript rangeAllocationScript;
 
     [Header("Determines how many balls the fielders will throw between this base and the next")]
     [SerializeField] private int ballsToThrowMinimum = 10;
@@ -31,53 +22,39 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private int higherTauntBallCountReductionFactor = 3;
     private int finalBallsToThrow;
 
-    //Cheats Below
-    [System.NonSerialized] public bool Gilded = false; 
+    private List<Transform> fieldingTeam;
+    private int fielderTauntLevel = 0;
 
-
-    public enum ballType
+    //Ball Variables, note that this is not everything, as most is referenced in an external script
+    [System.Serializable] public struct ballStruct
     {
-        STANDARD,
-        ARC,
-        SCATTER,
-        MIXUP
-    }
-    [System.Serializable] public struct ballsOrSomethingIDK
-    {
-        public ballType myType;
-        public int tauntLevel;
-        public float speedMultiplier;
+        public int myIndex;
+        public int myTauntLevel;
         public GameObject uIIcon;
-        public Sprite myTexture;
         public bool fired;
     }
-    private bool actuallyHasBallsReady;
+    public List<ballStruct> upcomingBallList;
 
-    public List<ballsOrSomethingIDK> upcomingBallList;
+    //Cheats Below
+    [System.NonSerialized] public bool Gilded = false;
 
-    [Header("Tutorial Variables")]
-    [SerializeField] private GameObject tutorialPopup = null;
-    [SerializeField] private GameObject tutorialButton = null;
-
-    private bool firstFielder = true;
-
-    //I set these automatically please don't try to manipulate these for anything other than visibility
-    public List<Transform> fieldingTeam;
-    [System.NonSerialized] public int battingBallCount;
-    public bool canThrow = false;
-    private bool hasReadiedAThrow = false;
-    public bool hasStartedThrowingSequenceAlready = false;
-    private bool hasStartedPitchingSequenceAlready = false;
-
-    private int iterator = 0;
-    public static bool pitchingLoopStarted = false;
-
-    public int fielderTauntLevel = 0;
+    /* -----------
+     Code below 
+     ------------*/
 
     private void Awake()
     {
-        pitchingLoopStarted = false;
-        scoreHolderReference = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
+        rangeAllocationScript = GameObject.Find("AccuracyTarget").GetComponent<fielderProgressionBasedAccuracyScript>();
+        masterBallList = GameObject.Find("BallGod").GetComponent<BallList>();
+
+        var uI = GameObject.Find("UI");
+        uIArrowManager = uI.GetComponentInChildren<arrowIconManager>();
+        uIBallManager = uI.GetComponentInChildren<ballIconManager>();
+
+        fieldingTeam = new List<Transform>();
     }
 
     private void Start()
@@ -97,15 +74,9 @@ public class fielderPeltingScript : MonoBehaviour
             fielder.LookAt(player);
         }
 
-        if (canThrow && pitchingLoopStarted && actuallyHasBallsReady)
+        if (/*???????????*/)
         {
             ReadyThrow();
-        }
-
-        if (playerStateReference.playerState == 1 && !hasStartedPitchingSequenceAlready)
-        {
-            hasStartedPitchingSequenceAlready = true;
-            StartCoroutine(BattingPhaseTimer());
         }
     }
 
@@ -116,15 +87,11 @@ public class fielderPeltingScript : MonoBehaviour
 
     public void startPeltingLoop()
     {
-        if (hasStartedThrowingSequenceAlready == false)
+        if (/*The player is in running phase*/)
         {
-            hasStartedThrowingSequenceAlready = true;
-
-
-            //THIS IS WHERE THE NEW PELTING STARTS.
             ballListPopulater(fielderTauntLevel);
-            actuallyHasBallsReady = true;
 
+            //This will make the fielders throw the first ball in their list. This will need to be called elsewhere later.
             StartCoroutine(ThrowDelay());
         }
     }
@@ -139,206 +106,91 @@ public class fielderPeltingScript : MonoBehaviour
         //Determines what taunt level the ball will be
         for (int i=0; i<finalBallsToThrow; i++)
         {
-            ballsOrSomethingIDK newBall = new ballsOrSomethingIDK();
+            ballStruct newBall = new ballStruct();
 
-            int holdThis = Random.Range(0, recievedTauntLevel * 10);
-            if (holdThis < 5)
+            int TauntLevelCalculator = Random.Range(0, recievedTauntLevel * 10);
+            if (TauntLevelCalculator < 5)
             {
-                newBall.tauntLevel = 0;
+                newBall.myTauntLevel = 0;
             }
-            else if (holdThis >= 5 && holdThis < 15)
+            else if (TauntLevelCalculator >= 5 && TauntLevelCalculator < 15)
             {
-                newBall.tauntLevel = 1;
+                newBall.myTauntLevel = 1;
             }
-            else if (holdThis >= 15 && holdThis < 25)
+            else if (TauntLevelCalculator >= 15 && TauntLevelCalculator < 25)
             {
-                newBall.tauntLevel = 2;
+                newBall.myTauntLevel = 2;
             }
             else
             {
-                newBall.tauntLevel = 3;
+                newBall.myTauntLevel = 3;
             }
 
-            //Assigns the ball's icon for the UI
-            newBall.myTexture = BallIconHolder.GetIcon(BallResult.UNTHROWN, newBall.tauntLevel);
-
-            //Instantiating the icon to the UI
-            newBall.uIIcon = Instantiate(ballIconPrefab);
-            newBall.uIIcon.transform.SetParent(ballIconHolderOnCanvas);
-            newBall.uIIcon.GetComponentInChildren<Image>().sprite = newBall.myTexture;
+            //Use the uIBallManager to assign this ball it's image
             newBall.fired = false;
-            Debug.Log("Fired has been set to false");
+
+            //Stores the index on the struct so that other scripts can steal it
+            newBall.myIndex = i;
 
             //Finally adding the ball to the list
             upcomingBallList.Add(newBall);
+            masterBallList.AddThisBallToTheList(newBall.myIndex, newBall.myTauntLevel);
         }
-    }
+
+        masterBallList.AssignRemainingVariables();
+    } //This should run after every successful "Batting Phase".
 
     public IEnumerator ThrowDelay()
     {
-        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
-        canThrow = true;
-        if (pitchingLoopStarted)
-        {
-            StartCoroutine(ThrowDelay());
-        }
+        yield return new WaitForSeconds(Random.Range(/*???????????*/));
     }
-
-    public void battingPhaseThrow()
-    {
-        battingBallCount++;
-        if (battingBallCount < 4)
-        {
-            var thePitcher = fieldingTeam[0];
-            var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-            var myArrow = Instantiate(arrowPrefab);
-            myArrow.transform.SetParent(arrowFolderOnCanvas);
-            myBeamScript.myArrow = myArrow;
-            myBeamScript.originPosition = thePitcher.position;
-            myBeamScript.playerTransform = player.transform;
-            myBeamScript.direction = ((pitchingPhaseTarget.position + (Random.insideUnitSphere)) - thePitcher.position).normalized;
-            if (Gilded)
-            {
-                myBeamScript.sweetSpotActive = true;
-            }
-           
-        }
-        else
-        {
-            //commit die.
-        }
-    }
-
-    //Start of the game/Pitching phase
-    public IEnumerator BattingPhaseTimer()
-    {
-        switch (scoreHolderReference.canScore)
-        {
-            //Case for the MAIN GAME
-            case true:
-                yield return new WaitForSeconds(2);
-                iterator++;
-                if (pitchingLoopStarted == true)
-                {
-                    //pitchingLoopStarted is now being handled on the first hit under fielderTargetingSuccessfulHit to allow the pitching phase multiple times
-                    startPeltingLoop();
-                    Time.timeScale = 1;
-                    iterator = 0;
-                    battingBallCount = 0;
-                    playerVCAM.m_Transitions.m_InheritPosition = true;
-                    playerStateReference.playerState = 2;
-                    StopCoroutine(BattingPhaseTimer());
-                }
-                else if (iterator >= 4)
-                {
-                    //if they havent hit the ball, then kill them
-                    SceneManager.LoadScene(0);
-                }
-
-                else
-                {
-                    battingPhaseThrow();
-                    StartCoroutine(BattingPhaseTimer());
-                }
-                break;
-
-
-            //Case for the TUTORIAL
-            case false:
-                yield return new WaitForSeconds(2);
-                if (scoreHolderReference.score >= 3000)
-                {
-                    Time.timeScale = 1;
-                    battingBallCount = 0;
-                    StopCoroutine(BattingPhaseTimer());
-                    scoreHolderReference.score = 0;
-                    playerVCAM.m_Transitions.m_InheritPosition = false;
-                    playerStateReference.playerState = 0;
-                    tutorialButton.SetActive(true);
-                    tutorialPopup.SetActive(true);
-                    Cursor.visible = true;
-                    Time.timeScale = 0;
-                }
-                else
-                {
-                    battingBallCount = 0;
-                    battingPhaseThrow();
-                    StartCoroutine(BattingPhaseTimer());
-                }
-                break;
-        }
-    }
-    
-    /*  Removed code about the Go Text. Unnecessary until we get assets in that actually make use of this.
-        That means we are waiting on:
-            - Actual Go Text
-            - Accompanying Sound Effect
-            - Fielder Animations
-        Along with those we should probably move that function to an entirely new script but we'll cross that bridge later*/
 
     private void ReadyThrow()
     {
-        ballsOrSomethingIDK finalBall;
-        if (hasReadiedAThrow == false)
+        for (int i =0; i < upcomingBallList.Count; i++)
         {
-            for (int i =0; i < upcomingBallList.Count; i++)
+            Debug.Log("Successfully polled a ball");
+            var testedBall = upcomingBallList[i];
+            if (!testedBall.fired)
             {
-                Debug.Log("Successfully polled a ball");
-                var testedBall = upcomingBallList[i];
-                if (!testedBall.fired)
-                {
-                    Debug.Log("Fired a ball with itterator at " + i);
-                    finalBall = testedBall;
-                    finalBall.fired = true;
-                    upcomingBallList[i] = finalBall;
-                    scoreUpdaterReference.gameObject.GetComponent<scoreUpdater>().ballIndex = i;
+                Debug.Log("Fired a ball with itterator at " + i);
+                testedBall.fired = true;
+                upcomingBallList[i] = testedBall;
 
-                    ReadyThrowPartTwo(finalBall);
-                    break;
-                }
-                else if ( i+1 == upcomingBallList.Count)
-                {
-                    actuallyHasBallsReady = false;
-                }
+                ReadyThrow(testedBall, 1);
+                break;
+            }
+            else if ( i+1 == upcomingBallList.Count)
+            {
+                break;
             }
         }
     }
 
-    private void ReadyThrowPartTwo(ballsOrSomethingIDK myBall)
+    private void ReadyThrow(ballStruct myBall, int requestedFielderCount)
     {
         List<Transform> chosenFielders = new List<Transform>();
-        int numberOfBallsToThrow;
-
-        //Block to choose how many balls to throw
-        numberOfBallsToThrow = 1;
-
-        //The variable "numberOfBallsToThrow" is now holding how many balls the fielders will throw, we now need to find who will throw them
-        while (numberOfBallsToThrow > 0)
+        while (requestedFielderCount > 0)
         {
             chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
-            numberOfBallsToThrow--;
-            firstFielder = true;
+            requestedFielderCount--;
         }
 
         //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
         foreach (Transform fielder in chosenFielders)
         {
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-            var myArrow = Instantiate(arrowPrefab);
-            myArrow.transform.SetParent(arrowFolderOnCanvas);
-            myBeamScript.myArrow = myArrow;
             myBeamScript.originPosition = fielder.position;
-            rangeAllocationScript.GiveTheFielderATarget(firstFielder, fielder);
             myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
-            firstFielder = false;
-            myBeamScript.playerTransform = player.transform;
-            myBeamScript.beamSizeDecreaseSpeed = 1 + (myBall.tauntLevel / 2);
+            myBeamScript.playerTransform = player;
+            myBeamScript.beamSizeDecreaseSpeed = 1 + (myBall.myTauntLevel / 2);
+            rangeAllocationScript.GiveTheFielderATarget(true, fielder);
+
+            //Cheating
             if (Gilded)
             {
                 myBeamScript.sweetSpotActive = true;
             }
         }
-        canThrow = false;
-        Debug.Log("This is the end?");
     }
 }
