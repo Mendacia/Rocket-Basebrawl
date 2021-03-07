@@ -9,10 +9,12 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
     public bool ballIsActive = true;
 
     private scoreUpdater myScoreUpdater;
+    private AudioSource pitchChange;
 
     void Start()
     {
         myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
+        pitchChange = Camera.main.GetComponent<AudioSource>();
 
         var body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
@@ -27,6 +29,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
                 if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
                 {
                     myScoreUpdater.SubtractFromScore();
+                    pitchChange.pitch = pitchChange.pitch - 0.05f;
                     
                     ballIsActive = false;
                 }

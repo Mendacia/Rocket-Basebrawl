@@ -9,11 +9,13 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     [SerializeField] private GameObject onHitEffect = null;
     private scoreUpdater myScoreUpdater;
     private scoreHolder myScoreHolder;
+    private AudioSource pitchChange;
 
     private void Start()
     {
         myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
         myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        pitchChange = Camera.main.GetComponent<AudioSource>();
     }
 
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation, bool sweetSpot)
@@ -47,10 +49,12 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
             if (sweetSpot)
             {
                 myScoreUpdater.SweetAddToScore(false);
+                ChangePitchOnHit();
             }
             else
             {
                 myScoreUpdater.HitAddToScore(false);
+                ChangePitchOnHit();
             }
         }
         
@@ -69,5 +73,17 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     void PlayHitEffect(Vector3 ballTransform)
     {
         Instantiate(onHitEffect, ballTransform, Quaternion.identity);
+    }
+
+    void ChangePitchOnHit()
+    {
+        if (pitchChange.pitch < 1)
+        {
+            pitchChange.pitch = pitchChange.pitch + 0.1f;
+            if(pitchChange.pitch > 1)
+            {
+                pitchChange.pitch = 1;
+            }
+        }
     }
 }
