@@ -235,15 +235,19 @@ PrefabInstance:
       objectReference: {fileID: 471616097}
     - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
       propertyPath: dashCooldown
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
       propertyPath: dashDuration
-      value: 0.7
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
       propertyPath: dashSpeed
-      value: 65
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
+      propertyPath: isDashing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1342894949159672861, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
@@ -8361,8 +8365,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1801740438}
   finalTarget: {x: 0, y: 0, z: 0}
-  lerpDistance: 0.8
-  timeDriven: 1
   distanceFromTargetPlayerShouldSnapTo: 1
 --- !u!114 &1399274995
 MonoBehaviour:
