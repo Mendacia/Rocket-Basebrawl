@@ -48,7 +48,7 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     Debug.Log("DAAAAASH BAAAAT!!!!!!!!!!!!!!!");
-                    //Set trigger for dash bat
+                    playerAnimator.SetTrigger("heDashHit");
                     particleMaster.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
