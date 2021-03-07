@@ -12,6 +12,7 @@ public class playerDash : MonoBehaviour
     [SerializeField] private float dashSpeed = 100;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
+    [SerializeField] private Animator playerAnim = null;
     [SerializeField] private BattingControls battingCont = null;
     [SerializeField] private GameObject dashingEffects = null;
 
@@ -44,6 +45,7 @@ public class playerDash : MonoBehaviour
         //dashingEffects.SetActive(true);
         isDashing = true;
         playerCont.speed = dashSpeed;
+        playerAnim.SetTrigger("heDash");
         yield return new WaitForSeconds(dashDuration);
         playerCont.speed = playerCont.topSpeed;
         yield return new WaitForSeconds(dashCooldown);
