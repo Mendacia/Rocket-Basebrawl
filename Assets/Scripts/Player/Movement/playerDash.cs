@@ -44,8 +44,9 @@ public class playerDash : MonoBehaviour
     {
         //dashingEffects.SetActive(true);
         isDashing = true;
+        playerAnim.SetTrigger("heDashing");
         playerCont.speed = dashSpeed;
-        playerAnim.SetTrigger("heDash");
+        
         yield return new WaitForSeconds(dashDuration);
         playerCont.speed = playerCont.topSpeed;
         yield return new WaitForSeconds(dashCooldown);
