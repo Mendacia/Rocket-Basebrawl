@@ -79,8 +79,8 @@ public class BattingControls : MonoBehaviour
     {
         yield return new WaitForSeconds(hitWindow);
         myCollider.enabled = false;
-        particleMaster.SetActive(false);
         yield return new WaitForSeconds(hitCooldown);
+        particleMaster.SetActive(false);
         dashBat = false;
         isHitting = false;
     }
