@@ -38,8 +38,8 @@ ModelImporter:
       name: DashTest
       takeName: Take 001
       internalID: 0
-      firstFrame: 105
-      lastFrame: 245
+      firstFrame: 120
+      lastFrame: 185
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
