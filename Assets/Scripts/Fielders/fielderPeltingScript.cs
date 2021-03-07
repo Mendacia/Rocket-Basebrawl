@@ -260,6 +260,7 @@ public class fielderPeltingScript : MonoBehaviour
                     tutorialPopup.SetActive(true);
                     Cursor.visible = true;
                     Time.timeScale = 0;
+                    pitchingCam.SetActive(false);
                 }
                 else
                 {

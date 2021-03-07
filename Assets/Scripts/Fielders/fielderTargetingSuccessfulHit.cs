@@ -10,12 +10,14 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     private scoreUpdater myScoreUpdater;
     private scoreHolder myScoreHolder;
     private AudioSource pitchChange;
+    private soundEffectHolder sfxHolder;
 
     private void Start()
     {
         myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
         myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
         pitchChange = Camera.main.GetComponent<AudioSource>();
+        sfxHolder = GameObject.Find("SoundEffectHolder").GetComponent<soundEffectHolder>();
     }
 
     public void SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(Vector3 midPointLocation, bool sweetSpot)
@@ -25,17 +27,20 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         {
             if (TutorialGodScript.isTutorial)
             {
+                sfxHolder.SilverSoundEffect();
                 myScoreHolder.score = myScoreHolder.score + 1000;
             }
 
             if (sweetSpot && !TutorialGodScript.isTutorial)
             {
                 myScoreUpdater.SweetAddToScore(true);
+                sfxHolder.GoldSoundEffect();
                 fielderPeltingScript.pitchingLoopStarted = true;
             }
             else if(!TutorialGodScript.isTutorial)
             {
                 myScoreUpdater.HitAddToScore(true);
+                sfxHolder.SilverSoundEffect();
                 fielderPeltingScript.pitchingLoopStarted = true;
             }
             
@@ -44,16 +49,19 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         {
             if (TutorialGodScript.isTutorial)
             {
+                sfxHolder.SilverSoundEffect();
                 myScoreHolder.score = myScoreHolder.score + 1000;
             }
             if (sweetSpot)
             {
                 myScoreUpdater.SweetAddToScore(false);
+                sfxHolder.GoldSoundEffect();
                 ChangePitchOnHit();
             }
             else
             {
                 myScoreUpdater.HitAddToScore(false);
+                sfxHolder.SilverSoundEffect();
                 ChangePitchOnHit();
             }
         }

@@ -17,6 +17,7 @@ public class BattingControls : MonoBehaviour
     public bool dashBat = false;
     private BoxCollider myCollider = null;
     [SerializeField] private GameObject particleMaster = null;
+    [SerializeField] private soundEffectHolder sfxHolder = null;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     playerAnimator.SetTrigger("heHit");
+                    //sfxHolder.BattingSoundEffect();
                     particleMaster.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
@@ -48,6 +50,7 @@ public class BattingControls : MonoBehaviour
                     isHitting = true;
                     Debug.Log("DAAAAASH BAAAAT!!!!!!!!!!!!!!!");
                     //Set trigger for dash bat
+                    //sfxHolder.BattingSoundEffect();
                     particleMaster.SetActive(true);
                     StartCoroutine(Cooldown());
                 }

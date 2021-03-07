@@ -41,13 +41,13 @@ public class playerDash : MonoBehaviour
 
     IEnumerator Dash()
     {
-        dashingEffects.SetActive(true);
+        //dashingEffects.SetActive(true);
         isDashing = true;
         playerCont.speed = dashSpeed;
         yield return new WaitForSeconds(dashDuration);
         playerCont.speed = playerCont.topSpeed;
         yield return new WaitForSeconds(dashCooldown);
-        dashingEffects.SetActive(false);
+        //dashingEffects.SetActive(false);
         isDashing = false;
         canDash = true;
     }

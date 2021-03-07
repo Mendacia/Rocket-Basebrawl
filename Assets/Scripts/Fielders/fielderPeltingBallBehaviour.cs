@@ -26,7 +26,7 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
         switch (myScoreUpdater.canScore)
         {
             case true:
-                if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
+                if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true && !TutorialGodScript.isTutorial)
                 {
                     myScoreUpdater.SubtractFromScore();
                     pitchChange.pitch = pitchChange.pitch - 0.05f;

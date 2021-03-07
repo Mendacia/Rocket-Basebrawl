@@ -65,18 +65,18 @@ public class playerControls : MonoBehaviour
             rb.velocity = Vector3.zero;
             speed = baseSpeed;
             playerAnimator.SetBool("heMoving", false);
-            if (runningEffects.activeSelf == true)
+            /*if (runningEffects.activeSelf == true)
             {
                 runningEffects.SetActive(false);
-            }
+            }*/
         }
         else
         {
             playerAnimator.SetBool("heMoving", true);
-            if (runningEffects.activeSelf == false)
+            /*if (runningEffects.activeSelf == false)
             {
                 runningEffects.SetActive(true);
-            }
+            }*/
         }
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {
