@@ -4,44 +4,16 @@ using UnityEngine;
 
 public class BallList : MonoBehaviour
 {
-    public enum ballState
-    {
-        INACTIVE,
-        ACTIVE,
-        MISSED,
-        SILVER,
-        GOLD
-    }
-
-    public enum ballType
-    {
-        STANDARD,
-        ARC,
-        SCATTER,
-        MULTI
-    }
-    
-    [System.Serializable]public struct masterBallStruct
-    {
-        public int myIndex;                      //This ball's place in both this script's List and fielderPeltingScript's List
-        public ballType myType;               //Type of throw the fielders will use when firing this ball
-        public ballState currentState;         //Mostly used for UI stuff but also tells the ball when it's active
-        public int myTauntLevel;               //The level of taunt assigned to this ball. Manages other variables
-        public GameObject uIObject;          //The object on the UI that handles the sprite
-        public Transform myFielder;          //The fielder that will throw this ball
-        public float myThrowSpeed;          //Speed at which beam decreases in size
-        public float myReadySpeed;          //Time between last ball and this ball
-        public int extraBallCount;              //Extra balls for multi and scatter
-    }
     public List<masterBallStruct> masterBallList;
 
 
     //Between this and the next comment is entirely setup of variables for the ball list
-    public void AddThisBallToTheList(int Index, int taunt)
+    public void AddThisBallToTheList(int Index, int taunt, Transform fielders)
     {
         masterBallStruct thisBall = new masterBallStruct();
         thisBall.myIndex = Index;
         thisBall.myTauntLevel = taunt;
+        thisBall.myFielders.Add(fielders);
         masterBallList.Add(thisBall);
     }
 
@@ -173,4 +145,56 @@ public class BallList : MonoBehaviour
     }
 
     //That's it. Done. Everything after this is for actually throwing
+
+    //I need to set up both the current ball and the next ball, as the time it takes for the pitcher to request the next ball is dependant on ball 2's 'myReadySpeed'
+
+    public masterBallStruct CallForBall()
+    {
+        for (int i = 0; i < masterBallList.Count; i++)
+        {
+            Debug.Log("Successfully polled a ball");
+            var testedBall = masterBallList[i];
+            if (testedBall.currentState == ballState.INACTIVE)
+            {
+                Debug.Log("Fired a ball with itterator at " + i);
+                testedBall.currentState = ballState.ACTIVE;
+                masterBallList[i] = testedBall;
+                return testedBall;
+            }
+            else if (i + 1 == masterBallList.Count)
+            {
+            }
+        }
+        return new masterBallStruct() { myIndex = -1 };
+    }
+}
+
+[System.Serializable]
+public struct masterBallStruct
+{
+    public int myIndex;                      //This ball's place in both this script's List and fielderPeltingScript's List
+    public ballType myType;               //Type of throw the fielders will use when firing this ball
+    public ballState currentState;         //Mostly used for UI stuff but also tells the ball when it's active
+    public int myTauntLevel;               //The level of taunt assigned to this ball. Manages other variables
+    public GameObject uIObject;          //The object on the UI that handles the sprite
+    public List <Transform> myFielders;          //The fielder that will throw this ball
+    public float myThrowSpeed;          //Speed at which beam decreases in size
+    public float myReadySpeed;          //Time between last ball and this ball
+    public int extraBallCount;              //Extra balls for multi and scatter
+}
+
+public enum ballState
+{
+    INACTIVE,
+    ACTIVE,
+    MISSED,
+    SILVER,
+    GOLD
+}
+public enum ballType
+{
+    STANDARD,
+    ARC,
+    SCATTER,
+    MULTI
 }

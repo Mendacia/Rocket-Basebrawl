@@ -62,7 +62,6 @@ public class BattingControls : MonoBehaviour
     {
         if(other.gameObject.tag == "Fielder")
         {
-            fielderWhackingScript.findFielder(other.transform);
         }
     }
 }

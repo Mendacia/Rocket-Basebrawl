@@ -51,8 +51,6 @@ public class scoreUpdater : MonoBehaviour
         {
             //Changing Texture
             var tempBall = peltingScript.upcomingBallList[ballIndex];
-            tempBall.myTexture = BallIconHolder.GetIcon(BallResult.SILVER, peltingScript.upcomingBallList[ballIndex].myTauntLevel);
-            tempBall.uIIcon.GetComponentInChildren<Image>().sprite = tempBall.myTexture;
             peltingScript.upcomingBallList[ballIndex] = tempBall;
         }
     }
@@ -73,8 +71,6 @@ public class scoreUpdater : MonoBehaviour
         {
             //Changing Texture
             var tempBall = peltingScript.upcomingBallList[ballIndex];
-            tempBall.myTexture = BallIconHolder.GetIcon(BallResult.GOLD, peltingScript.upcomingBallList[ballIndex].myTauntLevel);
-            tempBall.uIIcon.GetComponentInChildren<Image>().sprite = tempBall.myTexture;
             peltingScript.upcomingBallList[ballIndex] = tempBall;
         }
     }
@@ -93,8 +89,6 @@ public class scoreUpdater : MonoBehaviour
 
         
         var tempBall = peltingScript.upcomingBallList[ballIndex];
-        tempBall.myTexture = BallIconHolder.GetIcon(BallResult.MISS, peltingScript.upcomingBallList[ballIndex].myTauntLevel);
-        tempBall.uIIcon.GetComponentInChildren<Image>().sprite = tempBall.myTexture;
         peltingScript.upcomingBallList[ballIndex] = tempBall;
     }
 

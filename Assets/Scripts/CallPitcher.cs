@@ -17,7 +17,6 @@ public class CallPitcher : MonoBehaviour
         }
         else
         {
-            fielderMain.battingPhaseThrow();
             BattingPhaseTimer();
         }
     }

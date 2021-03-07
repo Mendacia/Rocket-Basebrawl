@@ -12,16 +12,4 @@ public class fielderWhacked : MonoBehaviour
     {
         peltingScript = gameObject.GetComponent<fielderPeltingScript>();
     }
-    public void findFielder(Transform recievedFielder)
-    {
-        if (peltingScript.fieldingTeam.Contains(recievedFielder))
-        {
-            var realHitStrength = hitStrength * 10000;
-            Debug.Log("Yeet");
-            peltingScript.fieldingTeam.Remove(recievedFielder);
-            var myRagdoll = Instantiate(ragdoll, recievedFielder.position, Quaternion.identity);
-            Destroy(recievedFielder.gameObject);
-            myRagdoll.GetComponentInChildren<Rigidbody>().AddForce(Random.Range(-realHitStrength, realHitStrength), realHitStrength, Random.Range(-realHitStrength, realHitStrength));
-        }
-    }
 }

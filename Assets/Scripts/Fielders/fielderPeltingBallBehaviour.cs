@@ -24,27 +24,6 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
         pitchChange = Camera.main.GetComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        switch (myScoreUpdater.canScore)
-        {
-            case true:
-                if (ballIsActive == true && fielderPeltingScript.pitchingLoopStarted == true)
-                {
-                    myScoreUpdater.SubtractFromScore();
-                    //effectHolder.vignetteValue = effectHolder.vignetteValue + 0.05f;
-                    //pitchChange.pitch = pitchChange.pitch - 0.1f;
-                    
-                    ballIsActive = false;
-                }
-                break;
-
-            case false:
-                
-                break;
-        }
-    }
-
     //Not being used - Delete?
     /*private void OnTriggerEnter(Collider other)
     {

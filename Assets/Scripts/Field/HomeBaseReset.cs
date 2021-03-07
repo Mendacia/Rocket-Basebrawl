@@ -48,7 +48,6 @@ public class HomeBaseReset : MonoBehaviour
         if (other.gameObject.tag == "Player" && pitchingStarted == false && OnBaseTriggerEffects.currentPitchingNumber == 4 && OnBaseTriggerEffects.currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
         {
             pitchingStarted = true;
-            fielderPeltingScript.pitchingLoopStarted = false;
 
             fielderScript.fielderScoreGenerator();
             StartCoroutine(ResetHomeBase());
@@ -66,11 +65,7 @@ public class HomeBaseReset : MonoBehaviour
     private IEnumerator ResetHomeBase()
     {
         scoreUpdaterReference.BankScore();
-        fielderReference.fielderTauntLevel = 0;
         homeCam.SetActive(true);
-        //Resets game variables back to beginning
-        fielderPeltingScript.pitchingLoopStarted = false;
-        fielderReference.hasStartedThrowingSequenceAlready = false;
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -102,7 +97,6 @@ public class HomeBaseReset : MonoBehaviour
         {
             screenUI.SetActive(false);
             homeCam.SetActive(false);
-            StartCoroutine(fielderReference.BattingPhaseTimer());
             pitchingStarted = false;
             Cursor.visible = false;
             //cart.m_PositionUnits = 0;

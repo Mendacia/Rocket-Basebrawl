@@ -111,7 +111,6 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     {
         if (playerHitTheBall)
         {
-            gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint, sweetSpotActive);
         }
         else
         {

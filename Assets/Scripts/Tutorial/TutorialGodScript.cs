@@ -50,8 +50,6 @@ public class TutorialGodScript : MonoBehaviour
 
     private IEnumerator StartPitchingPhase()
     {
-        //Resets game variables back to beginning
-        fielderReference.hasStartedThrowingSequenceAlready = false;
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -59,7 +57,6 @@ public class TutorialGodScript : MonoBehaviour
         //Reset camera back to the player, start pitching and increase the base variable
         yield return new WaitForSeconds(2);
         fielderReference.canThrow = false; //Set canThrow here so that it's guaranteed to not conflict with the coroutine before it stops
-        StartCoroutine(fielderReference.BattingPhaseTimer());
     }
 
     //Started from a UI button
@@ -106,7 +103,6 @@ public class TutorialGodScript : MonoBehaviour
         battingButton.SetActive(false);
         fielderReference.startPeltingLoop();
         playerStateReference.playerState = 2;
-        fielderPeltingScript.pitchingLoopStarted = true;
         playerVCAM.m_Transitions.m_InheritPosition = true;
         Time.timeScale = 1;
         isBatting = true;

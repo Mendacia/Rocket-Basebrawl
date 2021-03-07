@@ -8,6 +8,5 @@ public class RestartRound : MonoBehaviour
 
     public void RoundRestart()
     {
-        StartCoroutine(fielderReference.BattingPhaseTimer());
     }
 }

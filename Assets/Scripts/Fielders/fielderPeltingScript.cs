@@ -38,6 +38,8 @@ public class fielderPeltingScript : MonoBehaviour
     //Cheats Below
     [System.NonSerialized] public bool Gilded = false;
 
+    public bool canThrow = false; //Delete this
+
     /* -----------
      Code below 
      ------------*/
@@ -74,7 +76,7 @@ public class fielderPeltingScript : MonoBehaviour
             fielder.LookAt(player);
         }
 
-        if (/*???????????*/)
+        if (Input.GetKeyDown(KeyCode.N)) //TEMPORARY PLEASE CHANGE THIS RIGHTNOWMEDIATELY
         {
             ReadyThrow();
         }
@@ -87,12 +89,12 @@ public class fielderPeltingScript : MonoBehaviour
 
     public void startPeltingLoop()
     {
-        if (/*The player is in running phase*/)
+        if (Input.GetKeyDown(KeyCode.B)) //TEMPORARY PLEASE CHANGE THIS RIGHTNOWMEDIATELY
         {
             ballListPopulater(fielderTauntLevel);
 
             //This will make the fielders throw the first ball in their list. This will need to be called elsewhere later.
-            StartCoroutine(ThrowDelay());
+            ReadyThrow();
         }
     }
 
@@ -134,7 +136,8 @@ public class fielderPeltingScript : MonoBehaviour
 
             //Finally adding the ball to the list
             upcomingBallList.Add(newBall);
-            masterBallList.AddThisBallToTheList(newBall.myIndex, newBall.myTauntLevel);
+            var deliveredFielder = (fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
+            masterBallList.AddThisBallToTheList(newBall.myIndex, newBall.myTauntLevel, deliveredFielder);
         }
 
         masterBallList.AssignRemainingVariables();
@@ -142,48 +145,27 @@ public class fielderPeltingScript : MonoBehaviour
 
     public IEnumerator ThrowDelay()
     {
-        yield return new WaitForSeconds(Random.Range(/*???????????*/));
+        yield return new WaitForSeconds(Random.Range(1, 1.5f));
     }
 
     private void ReadyThrow()
     {
-        for (int i =0; i < upcomingBallList.Count; i++)
+        var ball = masterBallList.CallForBall();
+        if (ball.myIndex != -1)
         {
-            Debug.Log("Successfully polled a ball");
-            var testedBall = upcomingBallList[i];
-            if (!testedBall.fired)
-            {
-                Debug.Log("Fired a ball with itterator at " + i);
-                testedBall.fired = true;
-                upcomingBallList[i] = testedBall;
-
-                ReadyThrow(testedBall, 1);
-                break;
-            }
-            else if ( i+1 == upcomingBallList.Count)
-            {
-                break;
-            }
+            ReadyThrow2(ball);
         }
     }
 
-    private void ReadyThrow(ballStruct myBall, int requestedFielderCount)
+    private void ReadyThrow2(masterBallStruct ball)
     {
-        List<Transform> chosenFielders = new List<Transform>();
-        while (requestedFielderCount > 0)
-        {
-            chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
-            requestedFielderCount--;
-        }
-
-        //Cool, we now have a list populated with the fielders that will throw the ball. Now all we need to do is, get them to do that...
-        foreach (Transform fielder in chosenFielders)
+        foreach (Transform fielder in ball.myFielders)
         {
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
             myBeamScript.originPosition = fielder.position;
             myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
             myBeamScript.playerTransform = player;
-            myBeamScript.beamSizeDecreaseSpeed = 1 + (myBall.myTauntLevel / 2);
+            myBeamScript.beamSizeDecreaseSpeed = ball.myThrowSpeed;
             rangeAllocationScript.GiveTheFielderATarget(true, fielder);
 
             //Cheating
