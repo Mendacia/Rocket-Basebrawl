@@ -16,7 +16,6 @@ public class playerControls : MonoBehaviour
 
     [Header("Please put the animator from CheetahIdle here")]
     [SerializeField] private Animator playerAnimator = null;
-    //[SerializeField] private Animator hitariAnimator = null;
 
     
     //Input System Movements
@@ -33,9 +32,6 @@ public class playerControls : MonoBehaviour
     [SerializeField] private float jumpForce = 50;
     [SerializeField] private float hangTime = 0.2f;
 
-    [Header("Running Effects")]
-    [SerializeField] private GameObject runningEffects = null;
-
     [Header("Tick this if the player needs to be locked in place on Start")]
     public bool isFrozen = false;
 
@@ -51,7 +47,6 @@ public class playerControls : MonoBehaviour
     private void Start()
     {
         speed = baseSpeed;
-        //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
         if (isFrozen == true)
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -65,18 +60,10 @@ public class playerControls : MonoBehaviour
             rb.velocity = Vector3.zero;
             speed = baseSpeed;
             playerAnimator.SetBool("heMoving", false);
-            /*if (runningEffects.activeSelf == true)
-            {
-                runningEffects.SetActive(false);
-            }*/
         }
         else
         {
             playerAnimator.SetBool("heMoving", true);
-            /*if (runningEffects.activeSelf == false)
-            {
-                runningEffects.SetActive(true);
-            }*/
         }
         if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
         {

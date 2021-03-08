@@ -22,6 +22,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     public static int currentPitchingNumber = 1;
     [Header("Put trigger box collider here!")]
     [SerializeField] private BoxCollider baseTrigger = null;
+    [SerializeField] private GameObject baseBeacon = null;
     [Header("Put Canvas Here!")]
     [SerializeField] private GameObject baseCanvas = null;
 
@@ -42,13 +43,15 @@ public class OnBaseTriggerEffects : MonoBehaviour
 
     private void Update()
     {
-        if (fielderReference.canThrow == true)
+        if (fielderReference.canThrow == true && currentPitchingNumber == pitchingNumber)
         {
             baseTrigger.enabled = true;
+            baseBeacon.SetActive(true);
         }
         else
         {
             baseTrigger.enabled = false;
+            baseBeacon.SetActive(false);
         }
         if (fielderPeltingScript.pitchingLoopStarted)
         {

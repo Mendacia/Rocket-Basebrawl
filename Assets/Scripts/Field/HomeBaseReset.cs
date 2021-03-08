@@ -24,6 +24,8 @@ public class HomeBaseReset : MonoBehaviour
     [SerializeField] private scoreUpdater scoreUpdaterReference = null;
     [Header("Put the base number here!")]
     [SerializeField] private int pitchingNumber = 4;
+    [SerializeField] private GameObject baseBeacon = null;
+    [SerializeField] private BoxCollider baseTrigger = null;
 
     GameObject[] tempIcons;
 
@@ -41,6 +43,15 @@ public class HomeBaseReset : MonoBehaviour
         roundsRun = 0;
         basePosition = this.transform.position;
         
+    }
+
+    private void Update()
+    {
+        if(OnBaseTriggerEffects.currentPitchingNumber == 4 && fielderReference.canThrow)
+        {
+            baseBeacon.SetActive(true);
+            baseTrigger.enabled = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

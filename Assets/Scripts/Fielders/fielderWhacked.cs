@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class fielderWhacked : MonoBehaviour
 {
-    private fielderPeltingScript peltingScript;
+    [SerializeField] private fielderPeltingScript peltingScript;
     [SerializeField] private GameObject ragdoll;
     [SerializeField] private float hitStrength = 1;
 
-    private void Start()
-    {
-        peltingScript = gameObject.GetComponent<fielderPeltingScript>();
-    }
     public void findFielder(Transform recievedFielder)
     {
         if (peltingScript.fieldingTeam.Contains(recievedFielder))
