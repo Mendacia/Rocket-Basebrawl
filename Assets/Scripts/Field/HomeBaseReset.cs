@@ -47,7 +47,7 @@ public class HomeBaseReset : MonoBehaviour
 
     private void Update()
     {
-        if(OnBaseTriggerEffects.currentPitchingNumber == 4 && fielderReference.canThrow)
+        if(OnBaseTriggerEffects.currentPitchingNumber == 4 && fielderReference.activateBase)
         {
             baseBeacon.SetActive(true);
             baseTrigger.enabled = true;

@@ -43,7 +43,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
 
     private void Update()
     {
-        if (fielderReference.canThrow == true && currentPitchingNumber == pitchingNumber)
+        if (fielderReference.activateBase == true && currentPitchingNumber == pitchingNumber)
         {
             baseTrigger.enabled = true;
             baseBeacon.SetActive(true);
@@ -121,6 +121,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
     {
         //Resets game variables back to beginning
         fielderReference.hasStartedThrowingSequenceAlready = false;
+        fielderReference.activateBase = false;
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;

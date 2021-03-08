@@ -26,6 +26,8 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private float minWaitTime = 1f;
     [SerializeField] private float maxWaitTime = 3f;
 
+    [System.NonSerialized] public bool activateBase = false;
+
     [Header("Determines how many balls the fielders will throw between this base and the next")]
     [SerializeField] private int ballsToThrowMinimum = 10;
     [SerializeField] private int ballsToThrowMaximum = 15;
@@ -291,6 +293,7 @@ public class fielderPeltingScript : MonoBehaviour
                 if (!testedBall.fired)
                 {
                     Debug.Log("Fired a ball with itterator at " + i);
+                    activateBase = false;
                     finalBall = testedBall;
                     finalBall.fired = true;
                     upcomingBallList[i] = finalBall;
@@ -302,6 +305,8 @@ public class fielderPeltingScript : MonoBehaviour
                 else if ( i+1 == upcomingBallList.Count)
                 {
                     actuallyHasBallsReady = false;
+                    Debug.Log("Yes hi, end of thing here");
+                    activateBase = true;
                 }
             }
         }

@@ -5,14 +5,13 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class playerDash : MonoBehaviour
 {
-    [SerializeField] private playerControls playerCont;
+    [SerializeField] private playerControls playerCont = null;
     private bool canDash = true;
     public bool isDashing = false;
     [SerializeField] private float dashSpeed = 100;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private Animator playerAnim = null;
-    [SerializeField] private BattingControls battingCont = null;
 
     public Vector3 recievedVector(Vector3 myVector)
     {

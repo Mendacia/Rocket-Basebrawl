@@ -14,7 +14,6 @@ public class BattingControls : MonoBehaviour
     public bool dashBat = false;
     private BoxCollider myCollider = null;
     [SerializeField] private GameObject particleMaster = null;
-    [SerializeField] private soundEffectHolder sfxHolder = null;
 
     private void Start()
     {
