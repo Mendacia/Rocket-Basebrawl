@@ -52,7 +52,6 @@ public class HomeBaseReset : MonoBehaviour
             fielderScript.fielderScoreGenerator();
             StartCoroutine(ResetHomeBase());
 
-            fielderReference.upcomingBallList.Clear();
 
             tempIcons = GameObject.FindGameObjectsWithTag("BallIconTag");
             foreach (GameObject ball in tempIcons)

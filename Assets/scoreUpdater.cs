@@ -50,8 +50,6 @@ public class scoreUpdater : MonoBehaviour
         if (!pitchingPhase)
         {
             //Changing Texture
-            var tempBall = peltingScript.upcomingBallList[ballIndex];
-            peltingScript.upcomingBallList[ballIndex] = tempBall;
         }
     }
 
@@ -70,8 +68,6 @@ public class scoreUpdater : MonoBehaviour
         if (!pitchingPhase)
         {
             //Changing Texture
-            var tempBall = peltingScript.upcomingBallList[ballIndex];
-            peltingScript.upcomingBallList[ballIndex] = tempBall;
         }
     }
 
@@ -86,10 +82,6 @@ public class scoreUpdater : MonoBehaviour
         myScoreHolder.score -= 1000;
         comboCount = 0;
         totalMiss++;
-
-        
-        var tempBall = peltingScript.upcomingBallList[ballIndex];
-        peltingScript.upcomingBallList[ballIndex] = tempBall;
     }
 
     public void BankScore()

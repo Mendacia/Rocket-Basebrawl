@@ -61,8 +61,6 @@ public class OnBaseTriggerEffects : MonoBehaviour
             Time.timeScale = 0;
             Cursor.visible = true;
 
-            fielderReference.upcomingBallList.Clear();
-
             tempIcons = GameObject.FindGameObjectsWithTag("BallIconTag");
             foreach(GameObject ball in tempIcons)
             {

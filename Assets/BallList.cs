@@ -6,52 +6,62 @@ public class BallList : MonoBehaviour
 {
     public List<masterBallStruct> masterBallList;
 
-
     //Between this and the next comment is entirely setup of variables for the ball list
     public void AddThisBallToTheList(int Index, int taunt, Transform fielders)
     {
         masterBallStruct thisBall = new masterBallStruct();
         thisBall.myIndex = Index;
         thisBall.myTauntLevel = taunt;
-        thisBall.myFielders.Add(fielders);
+        thisBall.myFielders = new List<Transform>();
+        thisBall = AssignRemainingVariables(thisBall);
         masterBallList.Add(thisBall);
     }
 
-    public void AssignRemainingVariables()
+    public void AddFieldersToTheBall(List<Transform> fielders, int index)
     {
-        foreach(masterBallStruct ball in masterBallList)
+        var thisBall = masterBallList[index];
+        foreach(Transform fielder in fielders)
         {
-            SetType(ball);
-
-            switch (ball.myType)
-            {
-                case ballType.STANDARD:
-                    StandardBallSetup(ball);
-                    return;
-
-                case ballType.ARC:
-                    ArcBallSetup(ball);
-                    return;
-
-                case ballType.MULTI:
-                    MultiBallSetup(ball);
-                    return;
-
-                case ballType.SCATTER:
-                    ScatterBallSetup(ball);
-                    return;
-            }
+            thisBall.myFielders.Add(fielder);
         }
+        masterBallList[index] = thisBall;
     }
 
-    private void SetType(masterBallStruct thisball)
+    public masterBallStruct AssignRemainingVariables(masterBallStruct ball)
+    {
+        ball.myType = SetType(ball).myType;
+        switch (ball.myType)
+            {
+                case ballType.STANDARD:
+                    ball = StandardBallSetup(ball);
+                    return ball;
+
+                case ballType.ARC:
+                    ball = ArcBallSetup(ball);
+                    return ball;
+
+                case ballType.MULTI:
+                    ball = MultiBallSetup(ball);
+                    return ball;
+
+                case ballType.SCATTER:
+                    ball = ScatterBallSetup(ball);
+                    return ball;
+
+                default:
+                    ball = StandardBallSetup(ball);
+                    return ball;
+            }
+    }
+
+    private masterBallStruct SetType(masterBallStruct thisball)
     {
         int myTypeNumber;
         switch (thisball.myTauntLevel)
         {
             case 0:
                 thisball.myType = ballType.STANDARD;
-                return;
+                return thisball;
 
             case 1:
                 myTypeNumber = Random.Range(0, 3);
@@ -63,7 +73,7 @@ public class BallList : MonoBehaviour
                 {
                     thisball.myType = ballType.STANDARD;
                 }
-                return;
+                return thisball;
 
             case 2:
                 myTypeNumber = Random.Range(0, 5);
@@ -79,7 +89,7 @@ public class BallList : MonoBehaviour
                 {
                     thisball.myType = ballType.STANDARD;
                 }
-                return;
+                return thisball;
 
             case 3:
                 myTypeNumber = Random.Range(0, 7);
@@ -99,7 +109,7 @@ public class BallList : MonoBehaviour
                 {
                     thisball.myType = ballType.STANDARD;
                 }
-                return;
+                return thisball;
 
             default:
                 myTypeNumber = Random.Range(0, 8);
@@ -119,29 +129,34 @@ public class BallList : MonoBehaviour
                 {
                     thisball.myType = ballType.STANDARD;
                 }
-                return;
+                return thisball;
         }
     }
 
-    private void StandardBallSetup(masterBallStruct thisball)
+    private masterBallStruct StandardBallSetup(masterBallStruct thisball)
     {
-        thisball.myThrowSpeed = 0.5f + (2 / thisball.myTauntLevel + 1);
-        thisball.myReadySpeed = 0.5f + (2 / thisball.myTauntLevel + 1);
+        thisball.myThrowSpeed = 0.5f + (2 / (thisball.myTauntLevel + 1));
+        thisball.myReadySpeed = 0.5f + (2 / (thisball.myTauntLevel + 1));
+        return thisball;
     }
-    private void ArcBallSetup(masterBallStruct thisball)
+    private masterBallStruct ArcBallSetup(masterBallStruct thisball)
     {
         thisball.myThrowSpeed = 0.7f + (2 / thisball.myTauntLevel + 1);
         thisball.myReadySpeed = 0.7f + (2 / thisball.myTauntLevel + 1);
+        return thisball;
     }
-    private void MultiBallSetup(masterBallStruct thisball)
+    private masterBallStruct MultiBallSetup(masterBallStruct thisball)
     {
         thisball.myThrowSpeed = 1f + (2 / thisball.myTauntLevel + 1);
         thisball.myReadySpeed = 0.7f + (2 / thisball.myTauntLevel + 1);
+        thisball.extraBallCount = Random.Range(1, 4);
+        return thisball;
     }
-    private void ScatterBallSetup(masterBallStruct thisball)
+    private masterBallStruct ScatterBallSetup(masterBallStruct thisball)
     {
         thisball.myThrowSpeed = 1.2f + (2 / thisball.myTauntLevel + 1);
         thisball.myReadySpeed = 0.3f + (2 / thisball.myTauntLevel + 1);
+        return thisball;
     }
 
     //That's it. Done. Everything after this is for actually throwing
