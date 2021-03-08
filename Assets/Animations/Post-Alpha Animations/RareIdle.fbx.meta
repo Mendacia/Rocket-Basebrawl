@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 88fec56631286394e9e58349f8f5cab4
+guid: 4348a29c474ca614c85dca323c43a491
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cheetah Rare Idle V1
+    second: Cheetah Rare Idle/Taunt
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah Rare Idle V1
+      name: Cheetah Rare Idle/Taunt
       takeName: Take 001
       internalID: 0
       firstFrame: 2
@@ -122,12 +122,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ed215862e27576e408022b109cf25989,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 2
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
