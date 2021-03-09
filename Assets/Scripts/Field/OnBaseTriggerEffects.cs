@@ -7,6 +7,12 @@ public class OnBaseTriggerEffects : MonoBehaviour
     [Header("Put Camera under the base here!")]
     [SerializeField] private GameObject cineMachineBaseCam = null;
     [SerializeField] private GameObject pitchingCam = null;
+    [Header("Put taunt cameras here!")]
+    private Camera mainCamera;
+    [SerializeField] private GameObject playerTauntCam = null;
+    [SerializeField] private GameObject pitcherTauntCam = null;
+    [SerializeField] private Camera playerTauntMaster = null;
+    [SerializeField] private Camera pitcherTauntMaster = null;
     [Header("Put Player Controller here!")]
     [SerializeField] private GameObject player = null;
     [SerializeField] private playerControls playerStateReference = null;
@@ -28,12 +34,14 @@ public class OnBaseTriggerEffects : MonoBehaviour
 
     GameObject[] tempIcons;
     private bool pitchingStarted = false;
+    private bool hasTaunted = false;
 
     private Vector3 basePosition;
 
     private void Awake()
     {
         currentPitchingNumber = 1;
+        mainCamera = Camera.main;
     }
 
     void Start()
@@ -84,11 +92,32 @@ public class OnBaseTriggerEffects : MonoBehaviour
     {
         //Taunt adds to taunt value and changes pithcing values accordingly
         fielderReference.fielderTauntLevelIncreaser();
-        StartCoroutine(StartPitchingPhase());
+        fielderReference.activateBase = false;
+        hasTaunted = true;
+        playerStateReference.playerState = 1;
+        var rb = player.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        player.transform.position = basePosition + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, pitcherTauntMaster.transform.eulerAngles.y, 0);
         baseCanvas.SetActive(false);
         Time.timeScale = 1;
         Cursor.visible = false;
+        StartCoroutine(TauntBreaker());
     }
+
+    IEnumerator TauntBreaker()
+    {
+        playerTauntCam.SetActive(true);
+        pitcherTauntCam.SetActive(true);
+        mainCamera.enabled = false;
+        yield return new WaitForSeconds(3);
+        pitcherTauntCam.SetActive(false);
+        playerTauntCam.SetActive(false);
+        mainCamera.enabled = true;
+        StartCoroutine(StartPitchingPhase());
+
+    }
+
     public void Hold()
     {
         //Hold just doesn't affect the score...
@@ -125,7 +154,10 @@ public class OnBaseTriggerEffects : MonoBehaviour
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        cineMachineBaseCam.SetActive(true);
+        if (!hasTaunted)
+        {
+            cineMachineBaseCam.SetActive(true);
+        }
         pitchingCam.SetActive(true);
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
@@ -141,5 +173,6 @@ public class OnBaseTriggerEffects : MonoBehaviour
         cineMachineBaseCam.SetActive(false);
         StartCoroutine(fielderReference.BattingPhaseTimer());
         currentPitchingNumber++;
+        hasTaunted = false;
     }
 }

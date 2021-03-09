@@ -6,41 +6,31 @@ using Cinemachine;
 public class CinemachineBlendLookAtFielders : MonoBehaviour
 {
     [SerializeField] private AimOnKeypress aiming = null;
-    [SerializeField] private aimModeSnapping snapping = null;
+    private aimModeSnapping snapping = null;
     [SerializeField] private GameObject vcamMaster = null;
     [SerializeField] private CinemachineVirtualCamera vcam = null;
     private Transform fielderLocation;
 
+    private void Start()
+    {
+        snapping = GameObject.Find("BunnyTeam").GetComponent<aimModeSnapping>();
+    }
+
     void Update()
     {
-        fielderLocation = snapping.fielderPosition;
+        if(snapping != null)
+        {
+            fielderLocation = snapping.fielderPosition;
 
-        if (aiming.boosted == true && fielderLocation != null)
-        {
-            vcamMaster.SetActive(true);
-            vcam.LookAt = fielderLocation;
-        }
-        else
-        {
-            vcamMaster.SetActive(false);
-        }
-    }
-    /*
-    Transform GetClosestFielder(List<Transform> fielders, Transform fromThis)
-    {
-        Transform bestTarget = null;
-        float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = fromThis.position;
-        foreach (Transform potentialTarget in fielders)
-        {
-            Vector3 directionToTarget = potentialTarget.position - currentPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
+            if (aiming.boosted == true && fielderLocation != null)
             {
-                closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget;
+                vcamMaster.SetActive(true);
+                vcam.LookAt = fielderLocation;
+            }
+            else
+            {
+                vcamMaster.SetActive(false);
             }
         }
-        return bestTarget;
-    }*/
+    }
 }
