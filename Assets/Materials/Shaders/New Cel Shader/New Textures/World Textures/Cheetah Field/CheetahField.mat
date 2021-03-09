@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CheetahField
-  m_Shader: {fileID: -6465566751694194690, guid: ce122731cbde9ec408035a8a705d4675,
+  m_Shader: {fileID: -6465566751694194690, guid: 631fa94cf8e0a3840a8ef3bae7286990,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1A06547D: 0
+    - Vector1_1A06547D: 1.31
     - Vector1_3FBFDC6A: 0
     - Vector1_48F29B53: 0.75
     - Vector1_497300E1: 0
@@ -75,7 +75,7 @@ Material:
     - Vector1_6AAE875: 1
     - Vector1_BC878080: 2
     - Vector1_E4DC2276: 0.96
-    - Vector1_EF2B9D0F: 0
+    - Vector1_EF2B9D0F: 1.05
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -98,7 +98,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_7805E1CE: {r: 0, g: 0, b: 0, a: 0}
+    - Color_7805E1CE: {r: 1, g: 1, b: 1, a: 0}
     - Color_B9F825DD: {r: 0, g: 0, b: 0, a: 1}
     - Color_E1CC85B2: {r: 0, g: 0, b: 0, a: 0}
     - Color_FA84A6CB: {r: 1, g: 0.98394775, b: 0.6666667, a: 0}
