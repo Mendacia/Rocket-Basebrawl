@@ -7,16 +7,11 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
     [Header("Make sure this is actually set up on the prefab")]
     [SerializeField] private GameObject baseballPrefab = null;
 
-    private BaseballEffectHolder effectHolder;
-    private scoreUpdater myScoreUpdater;
-    private scoreHolder myScoreHolder;
-    private AudioSource pitchChange;
-
-    private void Start()
+    public void SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(bool gold, Vector3 mPos)
     {
-        effectHolder = GameObject.Find("BaseballEffectHolder").GetComponent<BaseballEffectHolder>();
-        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
-        myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
-        pitchChange = Camera.main.GetComponent<AudioSource>();
+        var myBaseballObject = Instantiate(baseballPrefab);
+        myBaseballObject.transform.position = mPos;
+        myBaseballObject.transform.rotation = Camera.main.transform.rotation;
+        myBaseballObject.transform.position = myBaseballObject.transform.position + new Vector3(0, 0.5f, 1);
     }
 }

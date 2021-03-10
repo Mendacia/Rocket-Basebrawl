@@ -150,17 +150,14 @@ public class fielderPeltingScript : MonoBehaviour
     {
         foreach (Transform fielder in ball.myFielders)
         {
+            var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-            myBeamScript.originPosition = fielder.position;
-            myBeamScript.direction = ((rangeAllocationScript.finalTargetPosition) - fielder.position).normalized;
-            myBeamScript.playerTransform = player;
-            myBeamScript.beamSizeDecreaseSpeed = ball.myThrowSpeed;
-            rangeAllocationScript.GiveTheFielderATarget(true, fielder);
+            myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
 
             //Cheating
             if (Gilded)
             {
-                myBeamScript.sweetSpotActive = true;
+                myBeamScript.GildMe();
             }
         }
     }

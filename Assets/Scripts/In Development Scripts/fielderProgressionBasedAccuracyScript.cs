@@ -4,56 +4,85 @@ using UnityEngine;
 
 public class fielderProgressionBasedAccuracyScript : MonoBehaviour
 {
-    [SerializeField] private Transform playerPosition = null;
-    [SerializeField] private baseManager baseManagerScript = null;
-    [SerializeField] private aimModeSnapping snappingScript = null;
-    [SerializeField] private float targetingSphereScale = 20f;
+    private Transform playerPosition;
+    [SerializeField] private float targetingSphereScaleMaximum = 20f;
     [SerializeField] private float targetingDistanceMaximum = 20f;
-    private Transform recievedNextBase = null;
-    public Vector3 finalTargetPosition = Vector3.zero;
-    private int nextBaseInt = 0;
+    private List<Transform> bases;
+    private int nextBaseIndex;
+    private int baseAfterIndex;
+    private int nextBaseInt;
+    private int finalBase;
     private float finalScaleMultiplier;
+    private float percentageOfRunRemaining;
 
-    public void NewTargetingNextBaseUpdater(int sentNextBase)
+    private void Awake()
     {
-        recievedNextBase = baseManagerScript.GetBases()[sentNextBase];
-        nextBaseInt = sentNextBase;
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void NewTargetingNextBaseUpdater(List<Transform> recievedBases, int currentBase)
+    {
+        bases = recievedBases;
+        if (currentBase != recievedBases.Count - 1 && currentBase != recievedBases.Count -2)
+        {
+            nextBaseIndex = currentBase + 1;
+            baseAfterIndex = currentBase + 2;
+        }
+        else if (currentBase == recievedBases.Count - 2)
+        {
+            nextBaseIndex = recievedBases.Count - 1;
+            baseAfterIndex = 0;
+        }
+        else
+        {
+            nextBaseIndex = 0;
+            baseAfterIndex = 1;
+        }
+    }
+
+    public void  updateAccuracysPercentage(float p)
+    {
+        percentageOfRunRemaining = p;
     }
 
     void Update()
     {
-        var targetingDistanceUpdated = (targetingDistanceMaximum * baseManagerScript.percentageOfRunRemaining);
+        var targetingDistanceUpdated = (targetingDistanceMaximum * percentageOfRunRemaining);
+
+        //This is running on an empty so I can see things in inspector, this is just moving it's position
         gameObject.transform.position = playerPosition.position;
-        transform.LookAt(recievedNextBase);
+        transform.LookAt(bases[nextBaseIndex]);
         gameObject.transform.Translate(0, 0, targetingDistanceUpdated);
-        var extraDistance = Vector3.Distance(recievedNextBase.position, gameObject.transform.position);
-        if (Vector3.Distance(playerPosition.position, recievedNextBase.position) < Vector3.Distance(playerPosition.position, gameObject.transform.position) && nextBaseInt != 0 && nextBaseInt != baseManagerScript.GetBases().Count - 1)
+        var extraDistance = Vector3.Distance(bases[nextBaseIndex].position, gameObject.transform.position);
+
+
+
+
+        //This is for the case where this object needs to move towards the base after the next      (Which is when the player is too close to next base). 
+        if (Vector3.Distance(playerPosition.position, bases[nextBaseIndex].position) < Vector3.Distance(playerPosition.position, gameObject.transform.position))
         {
-            gameObject.transform.position = recievedNextBase.position;
-            transform.LookAt(baseManagerScript.GetBases()[nextBaseInt + 1]);
+            gameObject.transform.position = bases[nextBaseIndex].position;
+            transform.LookAt(bases[baseAfterIndex]);
             gameObject.transform.Translate(0, 0, extraDistance);
         }
-        else if (Vector3.Distance(playerPosition.position, recievedNextBase.position) < Vector3.Distance(playerPosition.position, gameObject.transform.position) && nextBaseInt == baseManagerScript.GetBases().Count - 1)
-        {
-            gameObject.transform.position = recievedNextBase.position;
-            transform.LookAt(baseManagerScript.GetBases()[0]);
-            gameObject.transform.Translate(0, 0, extraDistance);
-        }
+
         gameObject.transform.position = new Vector3 (gameObject.transform.position.x, 1, gameObject.transform.position.z);
 
-        //Final Scale Multiplier setter:
-        finalScaleMultiplier = 1 + (1 - baseManagerScript.percentageOfRunRemaining);
 
-        //Updates the size of the targeting sphere
-        gameObject.transform.localScale = new Vector3 (finalScaleMultiplier * targetingSphereScale, finalScaleMultiplier * targetingSphereScale, finalScaleMultiplier * targetingSphereScale);
+
+
+        //Setting the scale of the targeting Sphere:
+        finalScaleMultiplier = 1 + (1 - percentageOfRunRemaining);
+        var finalScale = finalScaleMultiplier * targetingSphereScaleMaximum;
+        gameObject.transform.localScale = new Vector3 (finalScale, finalScale, finalScale);
     }
 
-    public void GiveTheFielderATarget(bool isFirstFielder, Transform recievedFielder)
+    public Vector3 GiveTheFielderATarget(bool isFirstFielder, Transform recievedFielder)
     {
         {
-            finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (finalScaleMultiplier * targetingSphereScale) / 2));
+            var finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (finalScaleMultiplier * targetingSphereScaleMaximum) / 2));
             finalTargetPosition.y = 1f;
-            snappingScript.assignTargetFromNearestFielderTargetToPlayer(finalTargetPosition, recievedFielder);
+            return finalTargetPosition;
         }
     }
 }

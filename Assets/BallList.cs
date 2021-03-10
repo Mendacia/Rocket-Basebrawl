@@ -192,7 +192,7 @@ public struct masterBallStruct
     public ballState currentState;         //Mostly used for UI stuff but also tells the ball when it's active
     public int myTauntLevel;               //The level of taunt assigned to this ball. Manages other variables
     public GameObject uIObject;          //The object on the UI that handles the sprite
-    public List <Transform> myFielders;          //The fielder that will throw this ball
+    public List <Transform> myFielders; //The fielder that will throw this ball
     public float myThrowSpeed;          //Speed at which beam decreases in size
     public float myReadySpeed;          //Time between last ball and this ball
     public int extraBallCount;              //Extra balls for multi and scatter
