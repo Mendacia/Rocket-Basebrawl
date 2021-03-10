@@ -1741,12 +1741,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineMachineBaseCam: {fileID: 2077356605}
+  pitchingCam: {fileID: 0}
   player: {fileID: 1801740430}
   playerStateReference: {fileID: 1801740431}
   fielderReference: {fileID: 1399274990}
   pitchingPhaseTarget: {fileID: 1471202109}
   scoreReference: {fileID: 589835095}
+  scoreUpdaterReference: {fileID: 0}
   pitchingNumber: 3
+  baseTrigger: {fileID: 0}
   baseCanvas: {fileID: 1720287605}
 --- !u!4 &378140181 stripped
 Transform:
@@ -4090,7 +4093,6 @@ MonoBehaviour:
   snappingScript: {fileID: 1399274994}
   targetingSphereScale: 1
   targetingDistanceMaximum: 20
-  secondBallRadius: 2
   finalTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &763004675
 Transform:
@@ -6572,12 +6574,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineMachineBaseCam: {fileID: 1394510363}
+  pitchingCam: {fileID: 0}
   player: {fileID: 1801740430}
   playerStateReference: {fileID: 1801740431}
   fielderReference: {fileID: 1399274990}
   pitchingPhaseTarget: {fileID: 1471202109}
   scoreReference: {fileID: 589835095}
+  scoreUpdaterReference: {fileID: 0}
   pitchingNumber: 2
+  baseTrigger: {fileID: 0}
   baseCanvas: {fileID: 998602895}
 --- !u!4 &1303939186 stripped
 Transform:
@@ -6751,7 +6756,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3e4d52cc48d20394c83f0be97adbdb63, type: 2}
+      objectReference: {fileID: 2100000, guid: bc066a96c7c108a46be6b86ff4d3839c, type: 2}
     - target: {fileID: -5943117048679232473, guid: a0890ca1a4dd7e842a33cd67b7e24c7d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6896,7 +6901,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3e4d52cc48d20394c83f0be97adbdb63, type: 2}
+      objectReference: {fileID: 2100000, guid: bc066a96c7c108a46be6b86ff4d3839c, type: 2}
     - target: {fileID: -2451661072404569955, guid: a0890ca1a4dd7e842a33cd67b7e24c7d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7131,7 +7136,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e04ebd8ab3a8f9b42aeea1ccf49ebe32, type: 2}
+      objectReference: {fileID: 2100000, guid: 32ba065ca43835f4b90ee7e1c2560489, type: 2}
     - target: {fileID: 4057192245462364389, guid: a0890ca1a4dd7e842a33cd67b7e24c7d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7251,7 +7256,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e04ebd8ab3a8f9b42aeea1ccf49ebe32, type: 2}
+      objectReference: {fileID: 2100000, guid: 32ba065ca43835f4b90ee7e1c2560489, type: 2}
     - target: {fileID: 8962317647793404539, guid: a0890ca1a4dd7e842a33cd67b7e24c7d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7718,6 +7723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1801740438}
+  pitchingCam: {fileID: 0}
   targetingBeamPrefab: {fileID: 3623002623490018393, guid: 07b0e174ba10aaa47b636082b7f828b0,
     type: 3}
   arrowPrefab: {fileID: 467032714953259671, guid: ab191eaee86ebf94f99c61837528edaf,
@@ -7731,6 +7737,7 @@ MonoBehaviour:
   playerStateReference: {fileID: 1801740431}
   playerVCAM: {fileID: 280257813}
   scoreHolderReference: {fileID: 589835095}
+  scoreUpdaterReference: {fileID: 0}
   minWaitTime: 1
   maxWaitTime: 1.5
   ballsToThrowMinimum: 10
@@ -7742,6 +7749,7 @@ MonoBehaviour:
   fieldingTeam: []
   canThrow: 0
   hasStartedThrowingSequenceAlready: 0
+  fielderTauntLevel: 0
 --- !u!4 &1399274991
 Transform:
   m_ObjectHideFlags: 0
@@ -7789,8 +7797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1801740438}
   finalTarget: {x: 0, y: 0, z: 0}
-  lerpDistance: 0.8
-  timeDriven: 1
   distanceFromTargetPlayerShouldSnapTo: 1
 --- !u!114 &1399274995
 MonoBehaviour:
@@ -7937,6 +7943,7 @@ MonoBehaviour:
   pitchingPhaseTarget: {fileID: 1471202109}
   fielderReference: {fileID: 1399274990}
   scoreReference: {fileID: 589835095}
+  scoreUpdaterReference: {fileID: 0}
   pitchingNumber: 4
   fielderScript: {fileID: 1116495033}
 --- !u!4 &1422249702 stripped
@@ -8117,7 +8124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636734, w: 0.83202654}
+  m_LocalRotation: {x: 0.15287708, y: -0.52447486, z: 0.096367344, w: 0.8320265}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9422,12 +9429,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineMachineBaseCam: {fileID: 1067102855}
+  pitchingCam: {fileID: 0}
   player: {fileID: 1801740430}
   playerStateReference: {fileID: 1801740431}
   fielderReference: {fileID: 1399274990}
   pitchingPhaseTarget: {fileID: 1471202109}
   scoreReference: {fileID: 589835095}
+  scoreUpdaterReference: {fileID: 0}
   pitchingNumber: 1
+  baseTrigger: {fileID: 0}
   baseCanvas: {fileID: 764811564}
 --- !u!4 &1790341466 stripped
 Transform:
@@ -10493,6 +10503,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047127761}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2052398560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052398564}
+  - component: {fileID: 2052398563}
+  - component: {fileID: 2052398562}
+  - component: {fileID: 2052398561}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &2052398561
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052398560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2052398562
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052398560}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0d6ba1dc78a7ca844a017001f08e0825, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2052398563
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052398560}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2052398564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052398560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -10.4, z: 0}
+  m_LocalScale: {x: 300, y: 1, z: 300}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2054949384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2622708238490526508, guid: a2aee1f350edf154593eab7695680155,
