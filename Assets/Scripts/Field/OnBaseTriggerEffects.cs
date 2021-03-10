@@ -109,11 +109,11 @@ public class OnBaseTriggerEffects : MonoBehaviour
     {
         playerTauntCam.SetActive(true);
         pitcherTauntCam.SetActive(true);
-        mainCamera.enabled = false;
+        //mainCamera.enabled = false;
         yield return new WaitForSeconds(3);
         pitcherTauntCam.SetActive(false);
         playerTauntCam.SetActive(false);
-        mainCamera.enabled = true;
+        //mainCamera.enabled = true;
         StartCoroutine(StartPitchingPhase());
 
     }
