@@ -5930,7 +5930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef52aaba0476ae74ca5e82be3fee3852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fielderAccuracyObject: {fileID: 0}
+  fielderAccuracyObject: {fileID: 763004674}
   bases: []
   percentageOfRunRemaining: 0
   distanceFromBaseRequiredToProgress: 5
