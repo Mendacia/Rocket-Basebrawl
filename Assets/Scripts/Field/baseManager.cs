@@ -18,7 +18,6 @@ public class baseManager : MonoBehaviour
     [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
 
     private Transform playerPosition = null;
-    private bool hasLeftHome = false;
     private int currentBase = 0;
     private int nextBase = 1;
     private List<float> distanceBetweenBases = new List<float>();
@@ -69,7 +68,6 @@ public class baseManager : MonoBehaviour
     {
         //distance between player and next base
         remainingDistanceToNextBase = Vector3.Distance(playerPosition.position, bases[nextBase].position);
-        realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
 
         //Updates the current and next bases when the player enters their range
         if (Vector3.Distance(playerPosition.position, bases[nextBase].position) < distanceFromBaseRequiredToProgress)
@@ -77,55 +75,37 @@ public class baseManager : MonoBehaviour
             if (nextBase != bases.Count - 1 && nextBase != 0)
             {
                 ProgressBase(currentBase + 1, nextBase + 1);
+                remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
             }
             else if (nextBase == bases.Count - 1)
             {
                 ProgressBase(currentBase + 1, nextBase = 0);
+                remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
             }
             else if (nextBase == 0)
             {
                 ProgressBase(currentBase = 0, nextBase + 1);
-            }
-        }
-
-
-
-
-
-        //Updates the current base if the player is within the distanceFromBaseRequiredToProgress
-        if (nextBase != (bases.Count - 1) && nextBase != 0)
-        {
-            if (Vector3.Distance(playerPosition.position, bases[(currentBase + 1)].position) < distanceFromBaseRequiredToProgress)
-            {
-                currentBase++;
-                nextBase++;
-                hasLeftHome = true;
-                remainingDistanceToHomeBaseSansPlayerToNextBase = remainingDistanceToHomeBaseSansPlayerToNextBase - distanceBetweenBases[currentBase];
-            }
-        }
-        //This is here because it covers an error where if this was an "or" in the above "if" then the next base would be higher than the index of bases, causing an error.
-        else if (nextBase == (bases.Count - 1))
-        {
-            if (Vector3.Distance(playerPosition.position, bases[bases.Count - 1].position) < distanceFromBaseRequiredToProgress)
-            {
-                currentBase++;
-                nextBase = 0;
-                remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(playerPosition.position, bases[0].position) < distanceFromBaseRequiredToProgress)
-            {
-                currentBase = 0;
-                nextBase++;
                 remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases;
-                remainingDistanceToHomeBaseSansPlayerToNextBase = remainingDistanceToHomeBaseSansPlayerToNextBase - distanceBetweenBases[currentBase];
+                remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
             }
-        }
-        fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
+            fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
 
-        //realRemainingDistanceToHomeBase totalDistanceBetweenAllBases
+            //TRIGGER UI MANAGER'S TAUNT/BANK/HOLD MENU HERE
+
+            //CALL FOR BATTING PHASE HERE
+
+
+
+            /*  -Force player into tutorial on all bases but home
+
+                -Cinemachine shit for batting phase on bases
+
+                - Batting phase script required, should overwrite FielderPeltingScript
+            */
+
+        }
+
+        realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
         percentageOfRunRemaining = realRemainingDistanceToHomeBase / totalDistanceBetweenAllBases;
         fielderAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
     }

@@ -942,7 +942,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1300265486}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Hold
         m_Mode: 1
@@ -1564,7 +1564,6 @@ GameObject:
   - component: {fileID: 373872656}
   - component: {fileID: 373872655}
   - component: {fileID: 373872654}
-  - component: {fileID: 373872658}
   m_Layer: 0
   m_Name: 3
   m_TagString: Untagged
@@ -1663,28 +1662,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373872652}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &373872658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373872652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009d029aa38c29b41be20e0727fd133e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cineMachineBaseCam: {fileID: 2077356605}
-  player: {fileID: 1801740430}
-  playerStateReference: {fileID: 1801740431}
-  fielderReference: {fileID: 1399274990}
-  pitchingPhaseTarget: {fileID: 1471202109}
-  scoreReference: {fileID: 589835095}
-  scoreUpdaterReference: {fileID: 1098240544}
-  pitchingNumber: 3
-  baseTrigger: {fileID: 373872655}
-  baseCanvas: {fileID: 1720287605}
 --- !u!4 &378140181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8529429290064647585, guid: 358b08eedf8aef24688155550571a924,
@@ -2045,7 +2022,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 373872658}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Bank
         m_Mode: 1
@@ -5921,13 +5898,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef52aaba0476ae74ca5e82be3fee3852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fielderAccuracyObject: {fileID: 0}
   bases: []
-  playerPosition: {fileID: 1801740438}
-  myScoreUpdate: {fileID: 0}
-  uIBaseText: {fileID: 6784341483984673715}
-  testingAllocationScript: {fileID: 763004674}
-  distanceFromBaseRequiredToProgress: 5
   percentageOfRunRemaining: 0
+  distanceFromBaseRequiredToProgress: 5
 --- !u!114 &1116495033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6455,7 +6429,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1408954237}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: HomeBaseReset, Assembly-CSharp
         m_MethodName: RoundRestart
         m_Mode: 1
@@ -6693,7 +6667,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 373872658}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Hold
         m_Mode: 1
@@ -6797,7 +6771,6 @@ GameObject:
   - component: {fileID: 1300265484}
   - component: {fileID: 1300265483}
   - component: {fileID: 1300265482}
-  - component: {fileID: 1300265486}
   m_Layer: 0
   m_Name: 2
   m_TagString: Untagged
@@ -6896,28 +6869,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300265480}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1300265486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300265480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009d029aa38c29b41be20e0727fd133e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cineMachineBaseCam: {fileID: 1394510363}
-  player: {fileID: 1801740430}
-  playerStateReference: {fileID: 1801740431}
-  fielderReference: {fileID: 1399274990}
-  pitchingPhaseTarget: {fileID: 1471202109}
-  scoreReference: {fileID: 589835095}
-  scoreUpdaterReference: {fileID: 1098240544}
-  pitchingNumber: 2
-  baseTrigger: {fileID: 1300265483}
-  baseCanvas: {fileID: 998602895}
 --- !u!4 &1303939186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3167575404677891443, guid: 358b08eedf8aef24688155550571a924,
@@ -7170,7 +7121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1300265486}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Bank
         m_Mode: 1
@@ -7440,7 +7391,6 @@ GameObject:
   - component: {fileID: 1408954235}
   - component: {fileID: 1408954234}
   - component: {fileID: 1408954233}
-  - component: {fileID: 1408954237}
   m_Layer: 0
   m_Name: H
   m_TagString: Untagged
@@ -7507,7 +7457,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0209603bab9a6324bb1334a4593a2d70, type: 2}
+  - {fileID: 2100000, guid: 8e2ee1d8dacc75046a6bf5733c0e9ce0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7537,30 +7487,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408954231}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1408954237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408954231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae55191831a2ee44b62e733dc669795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  homeCam: {fileID: 1755673190}
-  cart: {fileID: 1804151274}
-  playerVCAM: {fileID: 280257813}
-  screenUI: {fileID: 1982162609}
-  player: {fileID: 1801740430}
-  playerStateReference: {fileID: 1801740431}
-  pitchingPhaseTarget: {fileID: 1471202109}
-  fielderReference: {fileID: 1399274990}
-  scoreReference: {fileID: 589835095}
-  scoreUpdaterReference: {fileID: 1098240544}
-  pitchingNumber: 4
-  fielderScript: {fileID: 1116495033}
 --- !u!4 &1422249702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -9064325173771588411, guid: 358b08eedf8aef24688155550571a924,
@@ -8726,7 +8652,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1779730014}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Bank
         m_Mode: 1
@@ -9001,7 +8927,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 373872658}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Taunt
         m_Mode: 1
@@ -9111,7 +9037,6 @@ GameObject:
   - component: {fileID: 1779730012}
   - component: {fileID: 1779730011}
   - component: {fileID: 1779730010}
-  - component: {fileID: 1779730014}
   m_Layer: 0
   m_Name: 1
   m_TagString: Untagged
@@ -9210,39 +9135,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779730008}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1779730014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779730008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009d029aa38c29b41be20e0727fd133e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cineMachineBaseCam: {fileID: 1067102855}
-  player: {fileID: 1801740430}
-  playerStateReference: {fileID: 1801740431}
-  fielderReference: {fileID: 1399274990}
-  pitchingPhaseTarget: {fileID: 1471202109}
-  scoreReference: {fileID: 589835095}
-  scoreUpdaterReference: {fileID: 1098240544}
-  pitchingNumber: 1
-  baseTrigger: {fileID: 1779730011}
-  baseCanvas: {fileID: 764811564}
 --- !u!4 &1790341466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2989701457832414701, guid: 358b08eedf8aef24688155550571a924,
     type: 3}
   m_PrefabInstance: {fileID: 700766184}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1801740430 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5690458437627713272, guid: e7ae1472e0e62394cb491cda78c3863d,
-    type: 3}
-  m_PrefabInstance: {fileID: 52489557}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1801740431 stripped
 MonoBehaviour:
@@ -9250,7 +9147,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 52489557}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801740430}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f6fd22dcbc643040b7ab4512c184b31, type: 3}
@@ -9766,7 +9663,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1779730014}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Hold
         m_Mode: 1
@@ -9898,7 +9795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1300265486}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Taunt
         m_Mode: 1
@@ -10929,7 +10826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1779730014}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CinemachineLookAtPitcher, Assembly-CSharp
         m_MethodName: Taunt
         m_Mode: 1
