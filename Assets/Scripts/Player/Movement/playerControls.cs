@@ -6,85 +6,53 @@ using UnityEngine.InputSystem;
 
 public class playerControls : MonoBehaviour
 {
-    [Header("Player Speed")]
-    [System.NonSerialized] public float speed = 30;
+    [Header("Speed Controls")]
     [SerializeField] private float baseSpeed = 30;
-    public float topSpeed = 45;
-    //Lock player movement at the start
-    [Header("Player State")]
-    public int playerState = 2;
+    [SerializeField] private float acceleration = 30;
+    [SerializeField] private float topSpeed = 45;
+    [SerializeField] private float stoppingSpeed = 10;
+    [SerializeField] private float dashSpeed = 100;
 
-    [Header("Please put the animator from CheetahIdle here")]
-    [SerializeField] private Animator playerAnimator = null;
-    //[SerializeField] private Animator hitariAnimator = null;
+    public enum playerstate
+    {
+        FROZEN,
+        BATTING,
+        RUNNING
+    }
+    [Header("Player State")]
+    public playerstate currentState = playerstate.FROZEN;
 
     
     //Input System Movements
-    private PlayerInputActions inputActions;
     private Vector2 movementInput;
-    private Vector3 inputDirection, moveVector;
+    private Vector3 inputDirection;
     private Quaternion currentRotation;
+    private float currentSpeed = 30;
 
-    [Header("Rigidbody Variables")]
-    [SerializeField] private Rigidbody rb = null;
-    [SerializeField] private float magnitudeStopFloat = 10;
-
-    [Header("Jump Variables")]
-    [SerializeField] private float jumpForce = 50;
-    [SerializeField] private float hangTime = 0.2f;
-
-    [Header("Tick this if the player needs to be locked in place on Start")]
-    public bool isFrozen = false;
-
-    private bool isGrounded = true;
+    private Animator playerAnimator = null;
+    private Rigidbody rb = null;
 
     private void Awake()
     {
-        //On awake grabs the InputSystem and assigns the variable movementInput to the Move field
-        inputActions = new PlayerInputActions();
-        inputActions.Player.Move.performed += context => movementInput = context.ReadValue<Vector2>();
+        playerAnimator = GetComponentInChildren<Animator>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        speed = baseSpeed;
-        //Gamepad.current.SetMotorSpeeds(0.25f, 0.75f);
-        if (isFrozen == true)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
-
-    private void Update()
-    {
-        if (rb.velocity.magnitude <= magnitudeStopFloat)
-        {
-            rb.velocity = Vector3.zero;
-            speed = baseSpeed;
-            playerAnimator.SetBool("heMoving", false);
-            //hitariAnimator.SetBool("Running", false);
-        }
-        else
-        {
-            playerAnimator.SetBool("heMoving", true);
-            //hitariAnimator.SetBool("Running", true);
-        }
-        if(rb.velocity.magnitude >= magnitudeStopFloat && speed <= topSpeed)
-        {
-            speed = speed + 0.1f;
-        }
+        currentSpeed = baseSpeed;
     }
 
     private void FixedUpdate()
     {
-        switch (playerState)
+        switch (currentState)
         {
             //No input, aiming only
-            case 1:
+            case playerstate.BATTING:
                 
                 break;
             //Full movement
-            case 2:
+            case playerstate.RUNNING:
                 float h = movementInput.x;
                 float v = movementInput.y;
 
@@ -99,54 +67,42 @@ public class playerControls : MonoBehaviour
 
                 Vector3 desiredDirection = camForward * inputDirection.z + camRight * inputDirection.x;
 
+                if (desiredDirection.magnitude > 1)
+                {
+                    desiredDirection.Normalize();
+                }
+
                 Move(desiredDirection);
                 Turn(desiredDirection);
                 
                 break;
         }
-    }
 
-    public void Jump(CallbackContext context)
-    {
-        if(context.performed && isGrounded && playerState == 2)
+        if (rb.velocity.magnitude <= stoppingSpeed)
         {
-            isGrounded = false;
-            StartCoroutine(Jump());
+            rb.velocity = Vector3.zero;
+            currentSpeed = baseSpeed;
+            playerAnimator.SetBool("heMoving", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("heMoving", true);
+        }
+        if (currentSpeed <= topSpeed)
+        {
+            currentSpeed += acceleration * Time.deltaTime;
         }
     }
 
-    IEnumerator Jump()
+    public void SetMoveDirection(CallbackContext context)
     {
-        /*Vector3 initialPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Vector3 newPos = new Vector3(transform.position.x, transform.position.y + jumpForce, transform.position.z);
-        Vector3 jump = Vector3.Lerp(initialPos, newPos, 1.0f);*/
-        Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
-        //rb.AddForce(jump * jumpForce, ForceMode.Force);
-        rb.useGravity = false;
-        for (int t = 0; t < 20; t++)
-        {
-            rb.AddRelativeForce(jump * jumpForce, ForceMode.Force);
-            yield return new WaitForSeconds(0.005f);
-        }
-            //transform.position = jump;
-            
-        yield return new WaitForSeconds(hangTime);
-        rb.useGravity = true;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.layer == 14 /*Ground*/)
-        {
-            isGrounded = true;
-        }
+        movementInput = context.ReadValue<Vector2>();
     }
 
     void Move(Vector3 desiredDirection)
     {
-        moveVector.Set(desiredDirection.x, 0, desiredDirection.z);
-        moveVector += moveVector * speed / 5 * Time.deltaTime;
-        rb.velocity = moveVector * speed * 50 * Time.deltaTime;
+        var moveVector = new Vector3(desiredDirection.x, 0, desiredDirection.z);
+        rb.velocity = moveVector * currentSpeed;
     }
 
     void Turn(Vector3 desiredDirection)
@@ -160,13 +116,15 @@ public class playerControls : MonoBehaviour
             transform.rotation = currentRotation;
     }
 
-    //Enables NewInputSystem Inputs
-    private void OnEnable()
+    public void Dash(bool on)
     {
-        inputActions.Enable();
-    }
-    private void OnDisable()
-    {
-        inputActions.Disable();
+        if (on)
+        {
+            currentSpeed = dashSpeed;
+        }
+        else
+        {
+            currentSpeed = topSpeed;
+        }
     }
 }

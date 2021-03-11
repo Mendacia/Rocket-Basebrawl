@@ -8,7 +8,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private GameObject targetingBeamPrefab;
 
     //Things I've already set up:
-    private BallList masterBallList; //This is holy
+    private BallList ballGodScript; //This is holy
     private Transform player;
     private fielderProgressionBasedAccuracyScript rangeAllocationScript;
 
@@ -34,12 +34,9 @@ public class fielderPeltingScript : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rangeAllocationScript = GameObject.Find("AccuracyTarget").GetComponent<fielderProgressionBasedAccuracyScript>();
-        masterBallList = GameObject.Find("BallGod").GetComponent<BallList>();
+        ballGodScript = GameObject.Find("BallGod").GetComponent<BallList>();
         fieldingTeam = new List<Transform>();
-    }
 
-    private void Start()
-    {
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
@@ -56,7 +53,7 @@ public class fielderPeltingScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B)) //TEMPORARY PLEASE CHANGE THIS RIGHTNOWMEDIATELY
         {
             Debug.Log("B Pressed 1");
-            startPeltingLoop();
+            InitializeRunningPhase();
             Debug.Log("B Pressed 2");
         }
 
@@ -72,16 +69,10 @@ public class fielderPeltingScript : MonoBehaviour
         fielderTauntLevel++;
     }
 
-    public void startPeltingLoop()
+    public void InitializeRunningPhase()
     {
-        bool holdThis = true;
-        if (holdThis) //TEMPORARY PLEASE CHANGE THIS RIGHTNOWMEDIATELY
-        {
-            ballListPopulater(3);
-
-            //This will make the fielders throw the first ball in their list. This will need to be called elsewhere later.
-            ReadyThrow();
-        }
+        ballListPopulater(fielderTauntLevel);
+        StartCoroutine(ThrowDelay(0.5f));
     }
 
     private void ballListPopulater(int recievedTauntLevel)
@@ -121,25 +112,26 @@ public class fielderPeltingScript : MonoBehaviour
 
             //Finally adding the ball to the list
             var deliveredFielder = (fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
-            masterBallList.AddThisBallToTheList(myIndex, myTauntLevel, deliveredFielder);
+            ballGodScript.AddThisBallToTheList(myIndex, myTauntLevel, deliveredFielder);
 
             List<Transform> chosenFielders = new List<Transform>();
-            for(int i2=masterBallList.masterBallList[i].extraBallCount; i2>=0; i2--)
+            for(int i2=ballGodScript.masterBallList[i].extraBallCount; i2>=0; i2--)
             {
                 chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
             }
-            masterBallList.AddFieldersToTheBall(chosenFielders, myIndex);
+            ballGodScript.AddFieldersToTheBall(chosenFielders, myIndex);
         }
     }
 
-    public IEnumerator ThrowDelay()
+    public IEnumerator ThrowDelay(float requestedDelay)
     {
-        yield return new WaitForSeconds(Random.Range(1, 1.5f));
+        yield return new WaitForSeconds(Random.Range(requestedDelay - 0.2f, requestedDelay + 0.2f));
+        ReadyThrow();
     }
 
     private void ReadyThrow()
     {
-        var ball = masterBallList.CallForBall();
+        var ball = ballGodScript.CallForBall();
         if (ball.myIndex != -1)
         {
             ReadyThrow2(ball);
@@ -153,6 +145,8 @@ public class fielderPeltingScript : MonoBehaviour
             var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
             myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
+
+            StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
 
             //Cheating
             if (Gilded)

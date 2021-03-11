@@ -8,7 +8,6 @@ public class playerDash : MonoBehaviour
     private Rigidbody playerRigidbody = null;
     [SerializeField] private playerControls playerCont;
     private bool canDash = true;
-    [SerializeField] private float dashSpeed = 100;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private BattingControls battingCont = null;
@@ -28,7 +27,6 @@ public class playerDash : MonoBehaviour
     {
         if (context.performed)
         {
-            //playerRigidbody.AddForce(Vector3.forward * 100000);
             if (canDash)
             {
                 canDash = false;
@@ -40,9 +38,9 @@ public class playerDash : MonoBehaviour
 
     IEnumerator Dash()
     {
-        playerCont.speed = dashSpeed;
+        playerCont.Dash(true);
         yield return new WaitForSeconds(dashDuration);
-        playerCont.speed = playerCont.topSpeed;
+        playerCont.Dash(false);
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
