@@ -3,7 +3,9 @@ guid: e45fa1afe2fe78244bcc97afcd088730
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - shader: {fileID: 4800000, guid: 55176db66f5d27f46a5109f2f6ae541e, type: 3}
+  - _SecondCamera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
