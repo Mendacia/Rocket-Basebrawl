@@ -1107,10 +1107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 132307160}
   - component: {fileID: 132307164}
-  - component: {fileID: 132307163}
   - component: {fileID: 132307162}
   - component: {fileID: 132307165}
-  - component: {fileID: 132307166}
   m_Layer: 17
   m_Name: PlayerTauntCamera
   m_TagString: Untagged
@@ -1163,14 +1161,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &132307163
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132307159}
-  m_Enabled: 1
 --- !u!20 &132307164
 Camera:
   m_ObjectHideFlags: 0
@@ -1226,21 +1216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3928006b9835ebd49b5bc5a889a7c627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &132307166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132307159}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45fa1afe2fe78244bcc97afcd088730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 55176db66f5d27f46a5109f2f6ae541e, type: 3}
-  _SpiltScreenMode: 1
-  _SecondCamera: {fileID: 1396007140}
 --- !u!4 &147584978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4431429744085825124, guid: 358b08eedf8aef24688155550571a924,
@@ -6272,7 +6247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &859051782
 Transform:
   m_ObjectHideFlags: 0
@@ -9560,7 +9535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1396007136}
   - component: {fileID: 1396007140}
-  - component: {fileID: 1396007139}
   - component: {fileID: 1396007138}
   - component: {fileID: 1396007141}
   m_Layer: 16
@@ -9615,14 +9589,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1396007139
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396007135}
-  m_Enabled: 1
 --- !u!20 &1396007140
 Camera:
   m_ObjectHideFlags: 0
@@ -10419,7 +10385,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.1528771, y: -0.52447486, z: 0.09636736, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287708, y: -0.52447486, z: 0.096367344, w: 0.8320265}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10938,7 +10904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1588071140
 Transform:
   m_ObjectHideFlags: 0
@@ -10978,7 +10944,8 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 0}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 337084928}
   m_Instructions: []
   m_DefaultBlend:
     m_Style: 1

@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SplitScreen : ScreenPostEffectBase
 {
     public bool _SpiltScreenMode = true;
     public Camera _SecondCamera;
 
-    public virtual void Configure(RenderTexture sourceTexture, RenderTexture destTexture)
+
+    private void Update()
+    {
+        
+        //Configure(RenderTexture sourceTexture, RenderTexture destTexture);
+        //Configure();
+    }
+
+    public void Blit(RenderTexture sourceTexture, RenderTexture destTexture)
     {
         if (_Material != null)
         {
@@ -19,14 +28,13 @@ public class SplitScreen : ScreenPostEffectBase
             _Material.SetTexture("_SecondCameraTexture", _SecondCamera.targetTexture);
             _Material.SetInt("_SpiltScreenMode", _SpiltScreenMode ? 1 : 0);
 
-            Debug.Log(_SpiltScreenMode ? 1 : 0);
+            //Debug.Log(_SpiltScreenMode ? 1 : 0);
 
             Graphics.Blit(sourceTexture, destTexture, _Material);
         }
         else
         {
-            Debug.Log("Please say it's called");
-            Graphics.Blit(sourceTexture, destTexture);
+            //Graphics.Blit(sourceTexture, destTexture);
         }
     }
 }
