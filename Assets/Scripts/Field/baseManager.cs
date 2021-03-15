@@ -18,6 +18,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
 
     private Transform playerPosition = null;
+    [System.NonSerialized] public Transform currentBaseTarget = null;
     private int currentBase = 0;
     private int nextBase = 1;
     private List<float> distanceBetweenBases = new List<float>();
@@ -76,38 +77,52 @@ public class baseManager : MonoBehaviour
             {
                 ProgressBase(currentBase + 1, nextBase + 1);
                 remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
+                currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
+                SwitchToBattingPhaseOnBaseTouch();
             }
             else if (nextBase == bases.Count - 1)
             {
                 ProgressBase(currentBase + 1, nextBase = 0);
                 remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
+                currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
+                SwitchToBattingPhaseOnBaseTouch();
             }
             else if (nextBase == 0)
             {
                 ProgressBase(currentBase = 0, nextBase + 1);
                 remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases;
                 remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
+                currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
+                SwitchToBattingPhaseOnHomeBaseTouch();
             }
             fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
-
-            //TRIGGER UI MANAGER'S TAUNT/BANK/HOLD MENU HERE
-
-            //CALL FOR BATTING PHASE HERE
-
-
-
-            /*  -Force player into tutorial on all bases but home
-
-                -Cinemachine shit for batting phase on bases
-
-                - Batting phase script required, should overwrite FielderPeltingScript
-            */
-
         }
 
         realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
         percentageOfRunRemaining = realRemainingDistanceToHomeBase / totalDistanceBetweenAllBases;
         fielderAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
+    }
+
+    private void SwitchToBattingPhaseOnBaseTouch()
+    {
+        
+        WorldStateMachine.SetCurrentState(WorldState.BATTING);
+        //TRIGGER UI MANAGER'S TAUNT/BANK/HOLD MENU HERE
+
+
+        /* 
+            -Cinemachine shit for batting phase on bases
+        */
+    }
+
+    private void SwitchToBattingPhaseOnHomeBaseTouch()
+    {
+        WorldStateMachine.SetCurrentState(WorldState.BATTING);
+
+
+        /*
+            -Cinemachine shit for batting phase on bases
+        */
     }
 
     private void ProgressBase(int requestedCurrentBase, int requestedNextBase)

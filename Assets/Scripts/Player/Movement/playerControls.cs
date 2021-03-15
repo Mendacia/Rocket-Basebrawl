@@ -13,16 +13,6 @@ public class playerControls : MonoBehaviour
     [SerializeField] private float stoppingSpeed = 10;
     [SerializeField] private float dashSpeed = 100;
 
-    public enum playerstate
-    {
-        FROZEN,
-        BATTING,
-        RUNNING
-    }
-    [Header("Player State")]
-    public playerstate currentState = playerstate.FROZEN;
-
-    
     //Input System Movements
     private Vector2 movementInput;
     private Vector3 inputDirection;
@@ -45,14 +35,14 @@ public class playerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (currentState)
+        switch (WorldStateMachine.GetCurrentState())
         {
             //No input, aiming only
-            case playerstate.BATTING:
+            case WorldState.BATTING:
                 
                 break;
             //Full movement
-            case playerstate.RUNNING:
+            case WorldState.RUNNING:
                 float h = movementInput.x;
                 float v = movementInput.y;
 

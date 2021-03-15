@@ -24,7 +24,7 @@ public class ActivatePlayer : MonoBehaviour
     {
         //Yes this is fine to have in update, the script deactivates itself anyway
 
-        if(player.currentState == playerControls.playerstate.RUNNING)
+        if(WorldStateMachine.GetCurrentState() == WorldState.RUNNING)
         {
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionY & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
@@ -36,13 +36,13 @@ public class ActivatePlayer : MonoBehaviour
     public void PlayerActivation(CallbackContext callbackContext)
     {
         //Accepts players first input, enabling the scene
-        if(callbackContext.performed && player.currentState == playerControls.playerstate.FROZEN)
+        if(callbackContext.performed && WorldStateMachine.GetCurrentState() == WorldState.FROZEN)
         {
-            player.currentState = playerControls.playerstate.BATTING;
+            WorldStateMachine.SetCurrentState(WorldState.BATTING);
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && player.currentState == playerControls.playerstate.BATTING && !DeactiveateCamera.dollyActive)
+        if (callbackContext.performed && WorldStateMachine.GetCurrentState() == WorldState.BATTING && !DeactiveateCamera.dollyActive)
         {
             //StartCoroutine(TimeSlowOnHit());
         }

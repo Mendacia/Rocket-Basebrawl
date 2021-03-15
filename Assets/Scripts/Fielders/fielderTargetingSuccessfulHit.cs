@@ -13,5 +13,6 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         myBaseballObject.transform.position = mPos;
         myBaseballObject.transform.rotation = Camera.main.transform.rotation;
         myBaseballObject.transform.position = myBaseballObject.transform.position + new Vector3(0, 0.5f, 1);
+        WorldStateMachine.SetCurrentState(WorldState.RUNNING);
     }
 }

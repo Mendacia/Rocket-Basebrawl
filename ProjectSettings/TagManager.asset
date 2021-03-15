@@ -15,6 +15,7 @@ TagManager:
   - CineAim
   - Undefined
   - BallIconTag
+  - BaseTarget
   layers:
   - Default
   - TransparentFX
