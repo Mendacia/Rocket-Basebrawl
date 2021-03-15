@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Swing_Mat Wolf
+  m_Name: Swing_Mat Wolf B
   m_Shader: {fileID: -6465566751694194690, guid: fbe78e101ec2a47428d498bd365c9824,
     type: 3}
   m_ShaderKeywords: 
