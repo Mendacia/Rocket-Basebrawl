@@ -221,6 +221,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1801740439, guid: e7ae1472e0e62394cb491cda78c3863d, type: 3}
+      propertyPath: battingCont
+      value: 
+      objectReference: {fileID: 871720697}
     - target: {fileID: 1345172540964745008, guid: e7ae1472e0e62394cb491cda78c3863d,
         type: 3}
       propertyPath: m_IsActive
@@ -4661,6 +4665,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &871720697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5690458438556619051, guid: e7ae1472e0e62394cb491cda78c3863d,
+    type: 3}
+  m_PrefabInstance: {fileID: 52489557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273d35933e9e51240bc2f4b114ea288d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &878638130
 GameObject:
   m_ObjectHideFlags: 0
@@ -7730,7 +7746,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.15287708, y: -0.52447486, z: 0.096367344, w: 0.8320265}
+  m_LocalRotation: {x: 0.1528771, y: -0.52447486, z: 0.09636736, w: 0.8320265}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

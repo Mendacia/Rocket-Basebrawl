@@ -6,7 +6,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class playerDash : MonoBehaviour
 {
     private Rigidbody playerRigidbody = null;
-    [SerializeField] private playerControls playerCont;
+    private playerControls playerCont;
     private bool canDash = true;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
@@ -18,9 +18,10 @@ public class playerDash : MonoBehaviour
     }
 
     //Get input code
-    private void Start()
+    private void Awake()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody>();
+        playerCont = gameObject.GetComponent<playerControls>();
     }
     
     public void PushThePlayerForwardRealHard(CallbackContext context)

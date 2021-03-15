@@ -146,7 +146,10 @@ public class fielderPeltingScript : MonoBehaviour
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
             myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
 
-            StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
+            if (ball.myIndex != ballGodScript.masterBallList.Count - 1)
+            {
+                StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
+            }
 
             //Cheating
             if (Gilded)
