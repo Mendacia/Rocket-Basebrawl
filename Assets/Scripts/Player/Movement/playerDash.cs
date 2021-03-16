@@ -5,12 +5,11 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class playerDash : MonoBehaviour
 {
-    private Rigidbody playerRigidbody = null;
     private playerControls playerCont;
     private bool canDash = true;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
-    [SerializeField] private Animator playerAnim = null;
+    [System.NonSerialized] public bool isDashing = false;
 
     public Vector3 recievedVector(Vector3 myVector)
     {
@@ -20,13 +19,12 @@ public class playerDash : MonoBehaviour
     //Get input code
     private void Awake()
     {
-        playerRigidbody = gameObject.GetComponent<Rigidbody>();
         playerCont = gameObject.GetComponent<playerControls>();
     }
     
     public void PushThePlayerForwardRealHard(CallbackContext context)
     {
-        if (context.performed && playerCont.playerState == 2)
+        if (context.performed && WorldStateMachine.GetCurrentState() == WorldState.RUNNING)
         {
             if (canDash)
             {
