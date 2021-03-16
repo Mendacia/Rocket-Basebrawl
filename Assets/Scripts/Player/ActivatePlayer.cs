@@ -7,13 +7,12 @@ public class ActivatePlayer : MonoBehaviour
 {
     private Rigidbody rb;
     private PlayerInputActions inputActions;
-
-    [Header("Put the Player Controller here")]
-    [SerializeField] private playerControls playerStateReference = null;
+    private playerControls player;
 
 
     private void Awake()
     {
+        player = GetComponent<playerControls>();
         inputActions = new PlayerInputActions();
     }
 
@@ -25,9 +24,8 @@ public class ActivatePlayer : MonoBehaviour
     {
         //Yes this is fine to have in update, the script deactivates itself anyway
 
-        if(playerStateReference.playerState == 2)
+        if(WorldStateMachine.GetCurrentState() == WorldState.RUNNING)
         {
-            playerStateReference.playerState = 2;
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionY & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
             //fielderMain.startPeltingLoop();
@@ -38,13 +36,13 @@ public class ActivatePlayer : MonoBehaviour
     public void PlayerActivation(CallbackContext callbackContext)
     {
         //Accepts players first input, enabling the scene
-        if(callbackContext.performed && playerStateReference.playerState == 0)
+        if(callbackContext.performed && WorldStateMachine.GetCurrentState() == WorldState.FROZEN)
         {
-            playerStateReference.playerState = 1;
+            WorldStateMachine.SetCurrentState(WorldState.BATTING);
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked
-        if (callbackContext.performed && playerStateReference.playerState == 1 && !DeactiveateCamera.dollyActive)
+        if (callbackContext.performed && WorldStateMachine.GetCurrentState() == WorldState.BATTING && !DeactiveateCamera.dollyActive)
         {
             //StartCoroutine(TimeSlowOnHit());
         }

@@ -42,7 +42,7 @@ public class POVCamControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (playerStateReference.playerState > 0)
+        if (WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
         {
             if (useX == true)
             {

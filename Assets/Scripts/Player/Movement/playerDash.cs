@@ -5,10 +5,9 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class playerDash : MonoBehaviour
 {
-    [SerializeField] private playerControls playerCont = null;
+    private Rigidbody playerRigidbody = null;
+    private playerControls playerCont;
     private bool canDash = true;
-    public bool isDashing = false;
-    [SerializeField] private float dashSpeed = 100;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private Animator playerAnim = null;
@@ -17,6 +16,14 @@ public class playerDash : MonoBehaviour
     {
         return myVector;
     }
+
+    //Get input code
+    private void Awake()
+    {
+        playerRigidbody = gameObject.GetComponent<Rigidbody>();
+        playerCont = gameObject.GetComponent<playerControls>();
+    }
+    
     public void PushThePlayerForwardRealHard(CallbackContext context)
     {
         if (context.performed && playerCont.playerState == 2)
@@ -31,11 +38,9 @@ public class playerDash : MonoBehaviour
 
     IEnumerator Dash()
     {
-        isDashing = true;
-        playerAnim.SetTrigger("heDashing");
-        playerCont.speed = dashSpeed;
+        playerCont.Dash(true);
         yield return new WaitForSeconds(dashDuration);
-        playerCont.speed = playerCont.topSpeed;
+        playerCont.Dash(false);
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
         canDash = true;

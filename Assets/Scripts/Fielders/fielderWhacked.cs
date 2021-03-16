@@ -8,16 +8,8 @@ public class fielderWhacked : MonoBehaviour
     [SerializeField] private GameObject ragdoll;
     [SerializeField] private float hitStrength = 1;
 
-    public void findFielder(Transform recievedFielder)
+    private void Start()
     {
-        if (peltingScript.fieldingTeam.Contains(recievedFielder))
-        {
-            var realHitStrength = hitStrength * 10000;
-            Debug.Log("Yeet");
-            peltingScript.fieldingTeam.Remove(recievedFielder);
-            var myRagdoll = Instantiate(ragdoll, recievedFielder.position, Quaternion.identity);
-            Destroy(recievedFielder.gameObject);
-            myRagdoll.GetComponentInChildren<Rigidbody>().AddForce(Random.Range(-realHitStrength, realHitStrength), realHitStrength, Random.Range(-realHitStrength, realHitStrength));
-        }
+        peltingScript = gameObject.GetComponent<fielderPeltingScript>();
     }
 }

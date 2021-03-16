@@ -7,12 +7,11 @@ public class fielderTargetingBallSpawner : MonoBehaviour
     [Header("Make sure this is actually set up on the prefab")]
     [SerializeField] private GameObject baseballPrefab = null;
 
-    public void SpawnTheBaseballPrefabAndThrowItAtTheTarget()
+    public void SpawnTheBaseballPrefabAndThrowItAtTheTarget(Vector3 oPos, Vector3 dir)
     {
-        var myLineRendererScript = gameObject.GetComponent<fielderTargetingLineRenderer>();
         var myBaseballObject = Instantiate(baseballPrefab);
-        myBaseballObject.transform.position = myLineRendererScript.originPosition;
-        myBaseballObject.transform.LookAt(myLineRendererScript.originPosition + myLineRendererScript.direction);
+        myBaseballObject.transform.position = oPos;
+        myBaseballObject.transform.LookAt(oPos + dir);
         myBaseballObject.transform.position = myBaseballObject.transform.position + new Vector3(0, 0.5f, 1);
     }
 }

@@ -61,4 +61,11 @@ public class BattingControls : MonoBehaviour
         dashBat = false;
         isHitting = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Fielder")
+        {
+        }
+    }
 }

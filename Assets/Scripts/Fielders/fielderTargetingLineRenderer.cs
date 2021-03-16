@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class fielderTargetingLineRenderer : MonoBehaviour
 {
-    [Header("Set this to the prefab that this script is on")]
-    [SerializeField] private LineRenderer targetingBeam = null;
-    [Header("This is roughly how fast the beam will shrink before the ball fires")]
-    public float beamSizeDecreaseSpeed = 1f;
+    private LineRenderer targetingBeam = null;
     [Header("This, in seconds, is how close to the ball firing you have to hit the ball to get gold")]
-    public float goldThreshold = 0.2f;
+    private float goldThreshold = 0.2f;
+
     [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColour;
     [SerializeField] private Color lineRendererColourEXPlusUltra;
@@ -18,30 +16,51 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
+
     private float currentBeamTime = 0;
 
     private float beamWidth = 1f;
-    [System.NonSerialized] public Vector3 direction = Vector3.zero;
-    [System.NonSerialized] public Vector3 originPosition = Vector3.zero;
-    [System.NonSerialized] public Transform playerTransform = null;
-    [System.NonSerialized] public bool theUIArrowScriptHasTheOsprite = false;
-    [System.NonSerialized] public GameObject myArrow = null;
-    [System.NonSerialized] public float beamTimeLimit = 1;
-    [System.NonSerialized] public bool sweetSpotActive = false;
+    private Vector3 direction = Vector3.zero;
+    private Vector3 originPosition = Vector3.zero;
+    private Transform playerTransform = null;
+    private bool sweetSpotActive = false;
+
+    private float recievedBeamLifetime;
+    private int recievedIndex;
+    private scoreUpdater myScoreUpdater;
+    private BallList myBallList;
+
+    private void Awake()
+    {
+        targetingBeam = gameObject.GetComponent<LineRenderer>();
+        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
+        myBallList = GameObject.Find("BallGod").GetComponent<BallList>();
+    }
+
+    public void SetUp(float lifetime, int index, Transform player, Transform fielder, Vector3 recievedDirection)
+    {
+        recievedBeamLifetime = lifetime;
+        recievedIndex = index;
+        playerTransform = player;
+        originPosition = fielder.position;
+        direction = recievedDirection;
+    }
 
     private void Update()
     {
+        //Setup for Linerenderer positions
         var startPoint = originPosition;
         var midPoint = originPosition;
         var midPointTwo = originPosition;
         var endPoint = originPosition;
-        //Get new hitter raycast hit
+
+        //This is where the player actually hits the ball
         if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
             fire(true, midPoint);
         }
-        //Get new physics raycast hit
+        //This is where the player has not hit the ball
         if (Physics.Raycast(originPosition, direction, out var physicsRaycastHit, 1000, physicsLayerMask))
         {
             midPoint = startPoint + direction * Vector3.Distance(startPoint, playerTransform.position);
@@ -49,44 +68,46 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             endPoint = physicsRaycastHit.point;
         }
 
-        //Set points to original start point and raycast hit point
+        //Setup for the actual raycast's positions
         var positions = new List<Vector3>();
 
-        //Theoretically, go start-mid, then mid-end with 2 line renderers
-        //midPointTwo exists for colouring purposes
-
+        //Inputting the raycast's positions
         positions.Add(startPoint);
         positions.Add(midPoint);
         positions.Add(midPointTwo);
         positions.Add(endPoint);
+
         targetingBeam.positionCount = positions.Count;
         targetingBeam.SetPositions(positions.ToArray());
+
+        //Visuals to help with telling the player where to run to
         oSprite.transform.position = midPoint;
         xSprite.transform.position = midPoint;
-        myArrow.GetComponent<UIArrow>().giveTheUIArrowTheMidPoint(oSprite.transform);
-        myArrow.GetComponent<UIArrow>().myColor = lineRendererColour;
-        //Start shrinking that beam
+
+        //Start shrinking the beam, failing to hit the ball also runs through ShrinkBeam
         targetingBeam.startWidth = beamWidth;
         targetingBeam.endWidth = beamWidth;
-
         ShrinkBeam(midPoint);
-        ColourBeam(startPoint, midPoint, endPoint);
+
+        //Color the beam
+        ColorBeam(startPoint, midPoint, endPoint);
     }
 
-    public void GildMe()
+    public void GildMe() //Cheat funciton
     {
-        goldThreshold = beamTimeLimit;
+        sweetSpotActive = true;
     }
 
     private void ShrinkBeam(Vector3 fireAt)
     {
-        if (currentBeamTime < beamTimeLimit)
+        if (currentBeamTime < recievedBeamLifetime)
         {
-            currentBeamTime = currentBeamTime + 1/beamSizeDecreaseSpeed * Time.deltaTime;
-            beamWidth = 1 - (currentBeamTime / beamTimeLimit);
+            currentBeamTime = currentBeamTime + Time.deltaTime;
+            beamWidth = 1 - (currentBeamTime / recievedBeamLifetime);
             oSprite.transform.localScale = new Vector3(beamWidth, beamWidth, beamWidth);
 
-            if(currentBeamTime > beamTimeLimit - goldThreshold)
+            //Setting up for gold hits
+            if(currentBeamTime > recievedBeamLifetime - goldThreshold)
             {
                 sweetSpotActive = true;
             }
@@ -97,7 +118,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
     }
 
-    private void ColourBeam(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
+    private void ColorBeam(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
     {
         var midDistance = Vector3.Distance(recievedStartPoint, recievedMidPoint) / Vector3.Distance(recievedStartPoint, recievedEndPoint);
         myGradient.SetKeys(
@@ -111,13 +132,25 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     {
         if (playerHitTheBall)
         {
-            gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAtThePlayerAndHitItRealHard(midPoint, sweetSpotActive);
+            if (sweetSpotActive)
+            {
+                myBallList.SetToGold(recievedIndex);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                myScoreUpdater.SweetAddToScore();
+            }
+            else
+            {
+                myBallList.SetToSilver(recievedIndex);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                myScoreUpdater.HitAddToScore();
+            }
         }
         else
         {
-            gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget();
+            myBallList.SetToMiss(recievedIndex);
+            gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget(originPosition, direction);
+            myScoreUpdater.SubtractFromScore();
         }
-        Destroy(myArrow);
         Destroy(gameObject);
     }
 }

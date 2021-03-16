@@ -7,30 +7,31 @@ using System.Linq;
 
 public class baseManager : MonoBehaviour
 {
-    [Header("You shouldn't need to touch these, they're visible for debug purposes")]
+    [Header("This must be manually set up until I can figure out a solution")]
+    [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
+    [SerializeField] private HUDManager hUDScript = null;
+
+    [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
+    [SerializeField] private float percentageOfRunRemaining = 0f;
+
+    [Header("Tweak this")]
+    [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
+
+    private Transform playerPosition = null;
+    [System.NonSerialized] public Transform currentBaseTarget = null;
     private int currentBase = 0;
     private int nextBase = 1;
-    [Header("Set these to their respective objects please and thank you")]
-    [SerializeField] private Transform playerPosition = null;
-    [SerializeField] private scoreUpdater myScoreUpdate = null;
-    [SerializeField] private Text uIBaseText = null;
-    [SerializeField] private fielderProgressionBasedAccuracyScript testingAllocationScript = null;
-    [Header("This is 5 by default")]
-    [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
-    private bool hasLeftHome = false;
-    [Header("This is theoretically how complete the run is")]
     private List<float> distanceBetweenBases = new List<float>();
-
-    private float roundsCompleted = 0;
-
     private float totalDistanceBetweenAllBases = 0f;
     private float remainingDistanceToHomeBaseSansPlayerToNextBase = 0f;
     private float realRemainingDistanceToHomeBase = 0f;
     private float remainingDistanceToNextBase = 0f;
-    public float percentageOfRunRemaining = 0f;
 
-
+    private void Awake()
+    {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     private void Start()
     {
         //Populating list, if bases are wack order the prefab better, if bases break in build, this is probably the issue.
@@ -44,7 +45,7 @@ public class baseManager : MonoBehaviour
         //Sets initial base to home
         currentBase = 0;
         nextBase = 1;
-        testingAllocationScript.NewTargetingNextBaseUpdater(nextBase);
+        fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
 
         //This populates the list for distance between bases
         for (int i = 0; i < bases.Count; i++)
@@ -60,66 +61,76 @@ public class baseManager : MonoBehaviour
         }
 
         totalDistanceBetweenAllBases = distanceBetweenBases.Sum();
-        //Stores the total distance for accuracy calculations
-        remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases;
-
-        //Removes the distance between base 0 and 1
-        remainingDistanceToHomeBaseSansPlayerToNextBase = remainingDistanceToHomeBaseSansPlayerToNextBase - distanceBetweenBases[currentBase];
+       
+        //Storing this for percentage calculations
+        remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases - distanceBetweenBases[currentBase];
     }
 
     private void Update()
     {
-        
         //distance between player and next base
         remainingDistanceToNextBase = Vector3.Distance(playerPosition.position, bases[nextBase].position);
-        realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
 
-
-        //Updates the current base if the player is within the distanceFromBaseRequiredToProgress
-        if (nextBase != (bases.Count - 1) && nextBase != 0)
+        //Updates the current and next bases when the player enters their range
+        if (Vector3.Distance(playerPosition.position, bases[nextBase].position) < distanceFromBaseRequiredToProgress)
         {
-            if (Vector3.Distance(playerPosition.position, bases[(currentBase + 1)].position) < distanceFromBaseRequiredToProgress)
+            if (nextBase != bases.Count - 1 && nextBase != 0)
             {
-                currentBase++;
-                nextBase++;
-                hasLeftHome = true;
-                remainingDistanceToHomeBaseSansPlayerToNextBase = remainingDistanceToHomeBaseSansPlayerToNextBase - distanceBetweenBases[currentBase];
+                ProgressBase(currentBase + 1, nextBase + 1);
+                remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
+                currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
+                SwitchToBattingPhaseOnBaseTouch(nextBase.ToString());
             }
-        }
-        //This is here because it covers an error where if this was an "or" in the above "if" then the next base would be higher than the index of bases, causing an error.
-        else if (nextBase == (bases.Count - 1))
-        {
-            if (Vector3.Distance(playerPosition.position, bases[bases.Count - 1].position) < distanceFromBaseRequiredToProgress)
+            else if (nextBase == bases.Count - 1)
             {
-                currentBase++;
-                nextBase = 0;
+                ProgressBase(currentBase + 1, nextBase = 0);
                 remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
+                currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
+                SwitchToBattingPhaseOnBaseTouch("HOME");
             }
-        }
-        else
-        {
-            if (Vector3.Distance(playerPosition.position, bases[0].position) < distanceFromBaseRequiredToProgress)
+            else if (nextBase == 0)
             {
-                currentBase = 0;
-                nextBase++;
+                ProgressBase(currentBase = 0, nextBase + 1);
                 remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases;
-                remainingDistanceToHomeBaseSansPlayerToNextBase = remainingDistanceToHomeBaseSansPlayerToNextBase - distanceBetweenBases[currentBase];
+                remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
+                currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
+                SwitchToBattingPhaseOnHomeBaseTouch();
             }
-        }
-        testingAllocationScript.NewTargetingNextBaseUpdater(nextBase);
-
-        //Loads scene on return to home, replace this later
-        if (currentBase == 0 && hasLeftHome)
-        {
-            //SceneManager.LoadScene("EndingBasebrawlTestingZone");
-            roundsCompleted++;
+            fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
         }
 
-        uIBaseText.text = bases[nextBase].name;
-        //This used to be in the if statements, but I got really tired of it not working, so it's here now. equations in "if" statements go through when you close the 'if'.
-
-        //realRemainingDistanceToHomeBase totalDistanceBetweenAllBases
+        realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
         percentageOfRunRemaining = realRemainingDistanceToHomeBase / totalDistanceBetweenAllBases;
+        fielderAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
+    }
+
+    private void SwitchToBattingPhaseOnBaseTouch(string nextBaseString)
+    {
+        hUDScript.SetTheBaseString(nextBaseString);
+        WorldStateMachine.SetCurrentState(WorldState.BATTING);
+        //TRIGGER UI MANAGER'S TAUNT/BANK/HOLD MENU HERE
+
+
+        /* 
+            -Cinemachine shit for batting phase on bases
+        */
+    }
+
+    private void SwitchToBattingPhaseOnHomeBaseTouch()
+    {
+        hUDScript.SetTheBaseString("1");
+        WorldStateMachine.SetCurrentState(WorldState.BATTING);
+
+
+        /*
+            -Cinemachine shit for batting phase on bases
+        */
+    }
+
+    private void ProgressBase(int requestedCurrentBase, int requestedNextBase)
+    {
+        currentBase = requestedCurrentBase;
+        nextBase = requestedNextBase;
     }
 
     public List<Transform> GetBases() => bases;
