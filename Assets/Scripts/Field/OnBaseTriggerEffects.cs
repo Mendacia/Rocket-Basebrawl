@@ -56,13 +56,13 @@ public class OnBaseTriggerEffects : MonoBehaviour
         if(other.gameObject.tag == "Player" && pitchingStarted == false && currentPitchingNumber == pitchingNumber && scoreReference.canScore == true)
         {
             pitchingStarted = true;
-            fielderPeltingScript.pitchingLoopStarted = false;
+            //fielderPeltingScript.pitchingLoopStarted = false;
 
             baseCanvas.SetActive(true);
             Time.timeScale = 0;
             Cursor.visible = true;
 
-            fielderReference.upcomingBallList.Clear();
+            //fielderReference.upcomingBallList.Clear();
 
             tempIcons = GameObject.FindGameObjectsWithTag("BallIconTag");
             foreach(GameObject ball in tempIcons)
@@ -112,8 +112,8 @@ public class OnBaseTriggerEffects : MonoBehaviour
     private IEnumerator StartPitchingPhase()
     {
         //Resets game variables back to beginning
-        fielderReference.hasStartedThrowingSequenceAlready = false;
-        playerStateReference.playerState = 1;
+        //fielderReference.hasStartedThrowingSequenceAlready = false;
+        //playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         cineMachineBaseCam.SetActive(true);
@@ -129,7 +129,7 @@ public class OnBaseTriggerEffects : MonoBehaviour
         yield return new WaitForSeconds(2);
         fielderReference.canThrow = false; //Set canThrow here so that it's guaranteed to not conflict with the coroutine before it stops
         cineMachineBaseCam.SetActive(false);
-        StartCoroutine(fielderReference.BattingPhaseTimer());
+        //StartCoroutine(fielderReference.BattingPhaseTimer());
         currentPitchingNumber++;
     }
 }

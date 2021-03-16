@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class CinemachineBlendLookAtFielders : MonoBehaviour
 {
-    [SerializeField] private AimOnKeypress aiming = null;
+    //[SerializeField] private AimOnKeypress aiming = null;
     [SerializeField] private aimModeSnapping snapping = null;
     [SerializeField] private GameObject vcamMaster = null;
     [SerializeField] private CinemachineVirtualCamera vcam = null;
@@ -15,7 +15,7 @@ public class CinemachineBlendLookAtFielders : MonoBehaviour
     {
         fielderLocation = snapping.fielderPosition;
 
-        if (aiming.boosted == true && fielderLocation != null)
+        /*if (aiming.boosted == true && fielderLocation != null)
         {
             vcamMaster.SetActive(true);
             vcam.LookAt = fielderLocation;
@@ -23,7 +23,7 @@ public class CinemachineBlendLookAtFielders : MonoBehaviour
         else
         {
             vcamMaster.SetActive(false);
-        }
+        }*/
     }
     /*
     Transform GetClosestFielder(List<Transform> fielders, Transform fromThis)
