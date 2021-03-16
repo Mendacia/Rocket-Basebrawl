@@ -5,24 +5,22 @@ using UnityEngine.UI;
 
 public class scoreUpdater : MonoBehaviour
 {
-    private scoreHolder myScoreHolder;
-    [System.NonSerialized] public int ballIndex;
-    [Header("This needs to be set to the fielding team to manipulate the UI")]
-    [SerializeField] private fielderPeltingScript peltingScript = null;
+    [SerializeField] private scoreHolder myScoreHolder;
+    [SerializeField] private HUDManager myHUDManager;
     [Header("How much a single, no combo ball is worth")]
-    [SerializeField] private float defaultScore = 1000;
+    [SerializeField] private int defaultScore = 1000;
     [Header("How much each action will increase per hit in combo")]
-    [SerializeField] private float hitComboIncrament = 200;
-    [SerializeField] private float sweetComboIncrament = 450;
-    [SerializeField] private float bonkComboIncrament = 750;
+    [SerializeField] private int hitComboIncrament = 200;
+    [SerializeField] private int sweetComboIncrament = 450;
+    [SerializeField] private int bonkComboIncrament = 750;
     [Header("Set this to a text object on the UI")]
     [SerializeField] private Text unstableScoreText = null;
     [SerializeField] private Text comboText = null;
 
-    [System.NonSerialized] public bool canScore =true;
+    [System.NonSerialized] public bool canScore = true;
     private int comboCount = 0;
-    private float totalUnbankedBalls = 0;
-    private float unstableScore = 0;
+    private int totalUnbankedBalls = 0;
+    private int unstableScore = 0;
 
     //This gets sent off to the scoreHolder for use in the end screen
     private int totalSilver;
@@ -35,7 +33,7 @@ public class scoreUpdater : MonoBehaviour
         myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
     }
 
-    public void HitAddToScore(bool pitchingPhase)
+    public void HitAddToScore()
     {
 
         unstableScore += (defaultScore + comboCount * hitComboIncrament);
@@ -47,16 +45,14 @@ public class scoreUpdater : MonoBehaviour
         totalUnbankedBalls++;
         totalSilver++;
 
-        if (!pitchingPhase)
-        {
-            //Changing Texture
-        }
+        myHUDManager.SetTheTargetUnstableScore(unstableScore);
+        myHUDManager.UpdateTheComboMultiplier(comboCount);
     }
 
-    public void SweetAddToScore(bool pitchingPhase)
+    public void SweetAddToScore()
     {
         Debug.Log("Fired");
-        unstableScore += (defaultScore * 1.25f) + (comboCount * sweetComboIncrament);
+        unstableScore += (int)(defaultScore * 1.25f) + (comboCount * sweetComboIncrament);
         comboCount++;
         if (comboCount > maxCombo)
         {
@@ -65,15 +61,15 @@ public class scoreUpdater : MonoBehaviour
         totalUnbankedBalls++;
         totalGold++;
 
-        if (!pitchingPhase)
-        {
-            //Changing Texture
-        }
+        myHUDManager.SetTheTargetUnstableScore(unstableScore);
+        myHUDManager.UpdateTheComboMultiplier(comboCount);
     }
 
     public void BonkAddToScore()
     {
         unstableScore += (defaultScore / 2) + (comboCount * bonkComboIncrament);
+
+        myHUDManager.SetTheTargetUnstableScore(unstableScore);
     }
 
     public void SubtractFromScore()
@@ -82,6 +78,9 @@ public class scoreUpdater : MonoBehaviour
         myScoreHolder.score -= 1000;
         comboCount = 0;
         totalMiss++;
+
+        myHUDManager.SetTheTargetUnstableScore(unstableScore);
+        myHUDManager.UpdateTheComboMultiplier(comboCount);
     }
 
     public void BankScore()
@@ -90,23 +89,12 @@ public class scoreUpdater : MonoBehaviour
         unstableScore = 0;
         comboCount = 0;
         totalUnbankedBalls = 0;
+        myHUDManager.SetTheTargetUnstableScore(unstableScore);
+        myHUDManager.UpdateTheComboMultiplier(comboCount);
     }
 
     public void SendNumbersOverToTheScoreHolder()
     {
         myScoreHolder.StoreVariablesFromGameplay(totalSilver, totalGold, totalMiss, maxCombo);
-    }
-
-    private void Update()
-    {
-        unstableScoreText.text = unstableScore.ToString();
-        if (comboCount > 1)
-        {
-            comboText.text = "COMBO " + comboCount.ToString() + "!";
-        }
-        else
-        {
-            comboText.text = "";
-        }
     }
 }

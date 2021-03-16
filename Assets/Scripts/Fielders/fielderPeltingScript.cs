@@ -20,6 +20,7 @@ public class fielderPeltingScript : MonoBehaviour
 
     private List<Transform> fieldingTeam;
     private int fielderTauntLevel = 0;
+    private bool pleaseStop = false;
 
     //Cheats Below
     [System.NonSerialized] public bool Gilded = false;
@@ -46,22 +47,22 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N)) //TEMPORARY PLEASE CHANGE THIS RIGHTNOWMEDIATELY
-        {
-            ReadyThrow();
-        }
-        if (Input.GetKeyDown(KeyCode.B)) //TEMPORARY PLEASE CHANGE THIS RIGHTNOWMEDIATELY
-        {
-            Debug.Log("B Pressed 1");
-            InitializeRunningPhase();
-            Debug.Log("B Pressed 2");
-        }
-
         //Makes the Fielders all look at the player at all times
         foreach (Transform fielder in fieldingTeam)
         {
             fielder.LookAt(player);
         }
+    }
+
+    public void StopMe()
+    {
+        pleaseStop = true;
+        StopCoroutine(ThrowDelay(0));
+    }
+
+    public void StartMe()
+    {
+        pleaseStop = false;
     }
 
     public void fielderTauntLevelIncreaser()
@@ -72,7 +73,7 @@ public class fielderPeltingScript : MonoBehaviour
     public void InitializeRunningPhase()
     {
         ballListPopulater(fielderTauntLevel);
-        StartCoroutine(ThrowDelay(0.5f));
+        StartCoroutine(ThrowDelay(2f));
     }
 
     private void ballListPopulater(int recievedTauntLevel)
@@ -126,7 +127,13 @@ public class fielderPeltingScript : MonoBehaviour
     public IEnumerator ThrowDelay(float requestedDelay)
     {
         yield return new WaitForSeconds(Random.Range(requestedDelay - 0.2f, requestedDelay + 0.2f));
-        ReadyThrow();
+        if (pleaseStop)
+        {
+        }
+        else
+        {
+            ReadyThrow();
+        }
     }
 
     private void ReadyThrow()

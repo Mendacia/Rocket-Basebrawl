@@ -4135,7 +4135,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.35e-43, y: 1.08e-42, z: 0, w: -2.0098515}
+  m_BoundingSphereOverride: {x: 1.7748036e+28, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5856,7 +5856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd07608cecbb2584791eb372d2f5210f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peltingScript: {fileID: 1399274990}
+  myScoreHolder: {fileID: 589835095}
+  myHUDManager: {fileID: 1712722505}
   defaultScore: 1000
   hitComboIncrament: 200
   sweetComboIncrament: 450
@@ -8700,6 +8701,8 @@ MonoBehaviour:
     type: 3}
   arrowObject: {fileID: 467032714953259671, guid: ab191eaee86ebf94f99c61837528edaf,
     type: 3}
+  lerp: 0
+  duration: 2
 --- !u!114 &1712722513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9086,6 +9089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1522f47a096affb49821c1add3727326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theHUD: {fileID: 1712722505}
   masterBallList: []
 --- !u!4 &1777289291
 Transform:

@@ -10,12 +10,34 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Text combo;
     [SerializeField] private Text baseNumber;
     [SerializeField] private Transform arrowHolder;
-    [SerializeField] private Transform ballIconHolder;
+    public Transform ballIconHolder;
 
     [Header("Prefab Setup")]
-    [SerializeField] private GameObject ballIconObject;
+    public GameObject ballIconObject;
     [SerializeField] private GameObject arrowObject;
 
+    private int targetUnstableScore;
+    private int currentlyDisplayedUnstableScore;
+    [SerializeField] private float lerp = 0f, duration = 2f;
 
-    
+
+
+    private void Update()
+    {
+        lerp += Time.deltaTime / duration;
+        currentlyDisplayedUnstableScore = (int)Mathf.Lerp(currentlyDisplayedUnstableScore, targetUnstableScore, lerp);
+        unstableScore.text = currentlyDisplayedUnstableScore.ToString();
+    }
+
+    public void SetTheTargetUnstableScore(int recievedScore) => targetUnstableScore = recievedScore;
+
+    public void SetTheBaseString(string recievedBase)
+    {
+        baseNumber.text = recievedBase;
+    }
+
+    public void UpdateTheComboMultiplier(int recievedCombo)
+    {
+        combo.text = recievedCombo.ToString();
+    }
 }

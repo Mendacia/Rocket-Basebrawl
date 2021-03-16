@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallList : MonoBehaviour
 {
+    [SerializeField] private HUDManager theHUD = null;
     public List<masterBallStruct> masterBallList;
 
     //Between this and the next comment is entirely setup of variables for the ball list
@@ -14,6 +16,7 @@ public class BallList : MonoBehaviour
         thisBall.myTauntLevel = taunt;
         thisBall.myFielders = new List<Transform>();
         thisBall = AssignRemainingVariables(thisBall);
+        thisBall = AddBallsToHud(thisBall);
         masterBallList.Add(thisBall);
     }
 
@@ -159,6 +162,13 @@ public class BallList : MonoBehaviour
         return thisball;
     }
 
+    private masterBallStruct AddBallsToHud(masterBallStruct ball)
+    {
+        ball.uIObject = Instantiate(theHUD.ballIconObject, theHUD.ballIconHolder);
+        ball.uIObject.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, ball.myTauntLevel);
+        return ball;
+    }
+
     //That's it. Done. Everything after this is for actually throwing
 
     //I need to set up both the current ball and the next ball, as the time it takes for the pitcher to request the next ball is dependant on ball 2's 'myReadySpeed'
@@ -167,7 +177,6 @@ public class BallList : MonoBehaviour
     {
         for (int i = 0; i < masterBallList.Count; i++)
         {
-            Debug.Log("Successfully polled a ball");
             var testedBall = masterBallList[i];
             if (testedBall.currentState == ballState.INACTIVE)
             {
@@ -181,6 +190,28 @@ public class BallList : MonoBehaviour
             }
         }
         return new masterBallStruct() { myIndex = -1 };
+    }
+
+    public void SetToGold(int recievedIndex)
+    {
+        Debug.Log("Set To Gold");
+        var thisBall = masterBallList[recievedIndex];
+        thisBall.currentState = ballState.GOLD;
+        masterBallList[recievedIndex] = thisBall;
+    }
+    public void SetToSilver(int recievedIndex)
+    {
+        Debug.Log("Set To Silver");
+        var thisBall = masterBallList[recievedIndex];
+        thisBall.currentState = ballState.SILVER;
+        masterBallList[recievedIndex] = thisBall;
+    }
+    public void SetToMiss(int recievedIndex)
+    {
+        Debug.Log("Set To Miss");
+        var thisBall = masterBallList[recievedIndex];
+        thisBall.currentState = ballState.MISSED;
+        masterBallList[recievedIndex] = thisBall;
     }
 }
 

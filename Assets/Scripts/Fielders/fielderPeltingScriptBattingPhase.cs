@@ -78,7 +78,6 @@ public class fielderPeltingScriptBattingPhase : MonoBehaviour
 
     private void ReadyThrow()
     {
-        Debug.Log("Ball is being thrown P1");
         var ball = ballGodScript.CallForBall();
         if (ball.myIndex != -1)
         {
@@ -88,7 +87,6 @@ public class fielderPeltingScriptBattingPhase : MonoBehaviour
 
     private void ReadyThrow2(masterBallStruct ball)
     {
-        Debug.Log("Ball is being thrown P2");
         var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
         myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, pitcher, (pitcherTarget.position - pitcher.position).normalized);
 

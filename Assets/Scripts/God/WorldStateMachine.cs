@@ -26,7 +26,9 @@ public class WorldStateMachine : MonoBehaviour
             BattingPhase.enabled = false;
             PeltingScript.enabled = true;
             BattingPhase.StopMe();
+            PeltingScript.StartMe();
             BallGod.masterBallList.Clear();
+            PeltingScript.InitializeRunningPhase();
             currentState = WorldState.RUNNING;
         }
 
@@ -36,6 +38,7 @@ public class WorldStateMachine : MonoBehaviour
             PeltingScript.enabled = false;
             BallGod.masterBallList.Clear();
             BattingPhase.StartMe();
+            PeltingScript.StopMe();
             BattingPhase.InitializeBattingPhase(BaseScript.currentBaseTarget);
             currentState = WorldState.BATTING;
         }

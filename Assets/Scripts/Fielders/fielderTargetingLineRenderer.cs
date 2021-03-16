@@ -27,10 +27,14 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 
     private float recievedBeamLifetime;
     private int recievedIndex;
+    private scoreUpdater myScoreUpdater;
+    private BallList myBallList;
 
     private void Awake()
     {
         targetingBeam = gameObject.GetComponent<LineRenderer>();
+        myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
+        myBallList = GameObject.Find("BallGod").GetComponent<BallList>();
     }
 
     public void SetUp(float lifetime, int index, Transform player, Transform fielder, Vector3 recievedDirection)
@@ -130,17 +134,22 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         {
             if (sweetSpotActive)
             {
+                myBallList.SetToGold(recievedIndex);
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                myScoreUpdater.SweetAddToScore();
             }
             else
             {
+                myBallList.SetToSilver(recievedIndex);
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                myScoreUpdater.HitAddToScore();
             }
         }
         else
         {
-            //Miss
+            myBallList.SetToMiss(recievedIndex);
             gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget(originPosition, direction);
+            myScoreUpdater.SubtractFromScore();
         }
         Destroy(gameObject);
     }
