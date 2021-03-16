@@ -19,4 +19,21 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
             WorldStateMachine.SetCurrentState(WorldState.RUNNING);
         }
     }
+
+    void PlayHitEffect(Vector3 ballTransform)
+    {
+        Instantiate(onHitEffect, ballTransform, Quaternion.identity);
+    }
+
+    void ChangePitchOnHit()
+    {
+        if (pitchChange.pitch < 1)
+        {
+            pitchChange.pitch = pitchChange.pitch + 0.1f;
+            if(pitchChange.pitch > 1)
+            {
+                pitchChange.pitch = 1;
+            }
+        }
+    }
 }

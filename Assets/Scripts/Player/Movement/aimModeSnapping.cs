@@ -6,8 +6,8 @@ public class aimModeSnapping : MonoBehaviour
 {
     [SerializeField] private Transform player = null;
     public Vector3 finalTarget = Vector3.zero;
-    [SerializeField] private float lerpDistance = 0.8f;
-    [SerializeField] private bool timeDriven = true;
+    //[SerializeField] private float lerpDistance = 0.8f;
+    //[SerializeField] private bool timeDriven = true;
     [SerializeField] private float distanceFromTargetPlayerShouldSnapTo = 1;
     [System.NonSerialized] public Transform fielderPosition;
 

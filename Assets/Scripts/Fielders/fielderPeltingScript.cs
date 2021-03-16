@@ -12,6 +12,8 @@ public class fielderPeltingScript : MonoBehaviour
     private Transform player;
     private fielderProgressionBasedAccuracyScript rangeAllocationScript;
 
+    [System.NonSerialized] public bool activateBase = false;
+
     [Header("Determines how many balls the fielders will throw between this base and the next")]
     [SerializeField] private int ballsToThrowMinimum = 10;
     [SerializeField] private int ballsToThrowMaximum = 15;

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Haha hades joke
-  m_Shader: {fileID: -6465566751694194690, guid: fbe78e101ec2a47428d498bd365c9824,
+  m_Shader: {fileID: -6465566751694194690, guid: f1b397a8eee831f4c817f7632c3af20e,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -56,13 +56,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2BC265CF_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_2BD51D4A: 5
+    - Vector1_383AD3AD: 0
     - Vector1_3CB72D4D: 0.81
+    - Vector1_5D9D170F: 0
+    - Vector1_676A9810: 0
     - Vector1_AA4F0709: 0.5
     - Vector1_EBB6C1E1: 2
     - _AlphaClip: 0
@@ -91,6 +98,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_9EFEEE2E: {r: 1, g: 1, b: 1, a: 1}
+    - Color_9F1E78FF: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

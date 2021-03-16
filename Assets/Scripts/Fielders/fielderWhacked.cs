@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class fielderWhacked : MonoBehaviour
 {
-    private fielderPeltingScript peltingScript;
+    [SerializeField] private fielderPeltingScript peltingScript;
     [SerializeField] private GameObject ragdoll;
     [SerializeField] private float hitStrength = 1;
 

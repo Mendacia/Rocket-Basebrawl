@@ -10,7 +10,7 @@ public class playerDash : MonoBehaviour
     private bool canDash = true;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.5f;
-    [SerializeField] private BattingControls battingCont = null;
+    [SerializeField] private Animator playerAnim = null;
 
     public Vector3 recievedVector(Vector3 myVector)
     {
@@ -26,12 +26,11 @@ public class playerDash : MonoBehaviour
     
     public void PushThePlayerForwardRealHard(CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && playerCont.playerState == 2)
         {
             if (canDash)
             {
                 canDash = false;
-                battingCont.DashBatting();
                 StartCoroutine(Dash());
             }
         }
@@ -43,6 +42,7 @@ public class playerDash : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
         playerCont.Dash(false);
         yield return new WaitForSeconds(dashCooldown);
+        isDashing = false;
         canDash = true;
     }
 }

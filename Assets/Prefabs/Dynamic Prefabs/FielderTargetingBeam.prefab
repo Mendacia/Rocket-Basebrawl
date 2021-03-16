@@ -316,6 +316,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseballPrefab: {fileID: 8581812953805991084, guid: 5f71715b659aac64fb6be66e7117f5e0,
     type: 3}
+  onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
+    type: 3}
 --- !u!1 &3823213838625514372
 GameObject:
   m_ObjectHideFlags: 0

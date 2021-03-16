@@ -102,7 +102,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: d47098757d6c66249a5013e49c70b3f2,
+  m_Motion: {fileID: 1827226128182048838, guid: 33d3609a250fdd14e8d998dbf49cb28c,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -151,9 +151,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.07794821
+  m_TransitionDuration: 0.055265278
   m_TransitionOffset: 0
-  m_ExitTime: 0.9130459
+  m_ExitTime: 0.62950927
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -173,13 +173,10 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4887830269466453373}
-    m_Position: {x: 400, y: -50, z: 0}
+    m_Position: {x: 390, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1925120706766471130}
     m_Position: {x: 540, y: 130, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3534410802035777330}
-    m_Position: {x: 400, y: 250, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -259,33 +256,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &3534410802035777330
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Cheetah Rare Idle V1
-  m_Speed: 8
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 88fec56631286394e9e58349f8f5cab4,
-    type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &6378605737544013755
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -328,9 +298,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
-  m_TransitionOffset: 0
-  m_ExitTime: 0.72160685
+  m_TransitionDuration: 0.027561367
+  m_TransitionOffset: 0.05455332
+  m_ExitTime: 0.96368235
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -379,7 +349,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.36277565
+  m_TransitionDuration: 0.228873
   m_TransitionOffset: 0
   m_ExitTime: 0.52134824
   m_HasExitTime: 1
