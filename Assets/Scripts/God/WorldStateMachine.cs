@@ -9,6 +9,7 @@ public class WorldStateMachine : MonoBehaviour
     [SerializeField] private fielderPeltingScript PeltingScript = null;
     [SerializeField] private baseManager BaseScript = null;
     [SerializeField] private BallList BallGod = null;
+    [SerializeField] private HUDManager hUDScript;
     private WorldState currentState;
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class WorldStateMachine : MonoBehaviour
             BattingPhase.StopMe();
             PeltingScript.StartMe();
             BallGod.masterBallList.Clear();
+            hUDScript.clearTheBallUI();
             PeltingScript.InitializeRunningPhase();
             currentState = WorldState.RUNNING;
         }
@@ -36,9 +38,10 @@ public class WorldStateMachine : MonoBehaviour
         {
             BattingPhase.enabled = true;
             PeltingScript.enabled = false;
-            BallGod.masterBallList.Clear();
             BattingPhase.StartMe();
             PeltingScript.StopMe();
+            BallGod.masterBallList.Clear();
+            hUDScript.clearTheBallUI();
             BattingPhase.InitializeBattingPhase(BaseScript.currentBaseTarget);
             currentState = WorldState.BATTING;
         }

@@ -18,14 +18,19 @@ public class HUDManager : MonoBehaviour
 
     private int targetUnstableScore;
     private int currentlyDisplayedUnstableScore;
-    [SerializeField] private float lerp = 0f, duration = 2f;
 
-
+    private void Start()
+    {
+        SetTheBaseString("1");
+    }
 
     private void Update()
     {
-        lerp += Time.deltaTime / duration;
-        currentlyDisplayedUnstableScore = (int)Mathf.Lerp(currentlyDisplayedUnstableScore, targetUnstableScore, lerp);
+        currentlyDisplayedUnstableScore = (int)Mathf.Lerp(currentlyDisplayedUnstableScore, targetUnstableScore, 1.5f * Time.deltaTime);
+        if (currentlyDisplayedUnstableScore + 100 > targetUnstableScore)
+        {
+            currentlyDisplayedUnstableScore = targetUnstableScore;
+        }
         unstableScore.text = currentlyDisplayedUnstableScore.ToString();
     }
 
@@ -39,5 +44,24 @@ public class HUDManager : MonoBehaviour
     public void UpdateTheComboMultiplier(int recievedCombo)
     {
         combo.text = recievedCombo.ToString();
+    }
+
+    public masterBallStruct addBallToTheUI(masterBallStruct ball)
+    {
+        ball.uIObject = Instantiate(ballIconObject, ballIconHolder);
+        ball.uIObject.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, ball.myTauntLevel);
+        return ball;
+    }
+    public masterBallStruct changeBallUISpriteToCorrectColor(masterBallStruct ball, BallResult myResult)
+    {
+        ball.uIObject.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(myResult, ball.myTauntLevel);
+        return ball;
+    }
+    public void clearTheBallUI()
+    {
+        foreach(Transform child in ballIconHolder)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

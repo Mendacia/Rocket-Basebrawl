@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class BallList : MonoBehaviour
 {
-    [SerializeField] private HUDManager theHUD = null;
     public List<masterBallStruct> masterBallList;
+    [SerializeField] private HUDManager hUDScript;
 
     //Between this and the next comment is entirely setup of variables for the ball list
     public void AddThisBallToTheList(int Index, int taunt, Transform fielders)
@@ -16,7 +16,7 @@ public class BallList : MonoBehaviour
         thisBall.myTauntLevel = taunt;
         thisBall.myFielders = new List<Transform>();
         thisBall = AssignRemainingVariables(thisBall);
-        thisBall = AddBallsToHud(thisBall);
+        thisBall = hUDScript.addBallToTheUI(thisBall);
         masterBallList.Add(thisBall);
     }
 
@@ -162,13 +162,6 @@ public class BallList : MonoBehaviour
         return thisball;
     }
 
-    private masterBallStruct AddBallsToHud(masterBallStruct ball)
-    {
-        ball.uIObject = Instantiate(theHUD.ballIconObject, theHUD.ballIconHolder);
-        ball.uIObject.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, ball.myTauntLevel);
-        return ball;
-    }
-
     //That's it. Done. Everything after this is for actually throwing
 
     //I need to set up both the current ball and the next ball, as the time it takes for the pitcher to request the next ball is dependant on ball 2's 'myReadySpeed'
@@ -197,6 +190,7 @@ public class BallList : MonoBehaviour
         Debug.Log("Set To Gold");
         var thisBall = masterBallList[recievedIndex];
         thisBall.currentState = ballState.GOLD;
+        thisBall =  hUDScript.changeBallUISpriteToCorrectColor(thisBall, BallResult.GOLD);
         masterBallList[recievedIndex] = thisBall;
     }
     public void SetToSilver(int recievedIndex)
@@ -204,6 +198,7 @@ public class BallList : MonoBehaviour
         Debug.Log("Set To Silver");
         var thisBall = masterBallList[recievedIndex];
         thisBall.currentState = ballState.SILVER;
+        thisBall = hUDScript.changeBallUISpriteToCorrectColor(thisBall, BallResult.SILVER);
         masterBallList[recievedIndex] = thisBall;
     }
     public void SetToMiss(int recievedIndex)
@@ -211,6 +206,7 @@ public class BallList : MonoBehaviour
         Debug.Log("Set To Miss");
         var thisBall = masterBallList[recievedIndex];
         thisBall.currentState = ballState.MISSED;
+        thisBall = hUDScript.changeBallUISpriteToCorrectColor(thisBall, BallResult.MISS);
         masterBallList[recievedIndex] = thisBall;
     }
 }

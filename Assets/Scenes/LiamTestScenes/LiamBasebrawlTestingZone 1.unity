@@ -6024,6 +6024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fielderAccuracyObject: {fileID: 763004674}
+  hUDScript: {fileID: 0}
   bases: []
   percentageOfRunRemaining: 0
   distanceFromBaseRequiredToProgress: 5
@@ -7870,7 +7871,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.1528771, y: -0.52447486, z: 0.09636736, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636734, w: 0.83202654}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8680,6 +8681,7 @@ MonoBehaviour:
   PeltingScript: {fileID: 1399274990}
   BaseScript: {fileID: 1116495032}
   BallGod: {fileID: 1777289290}
+  hUDScript: {fileID: 1712722505}
 --- !u!114 &1712722505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8701,8 +8703,6 @@ MonoBehaviour:
     type: 3}
   arrowObject: {fileID: 467032714953259671, guid: ab191eaee86ebf94f99c61837528edaf,
     type: 3}
-  lerp: 0
-  duration: 2
 --- !u!114 &1712722513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9089,8 +9089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1522f47a096affb49821c1add3727326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theHUD: {fileID: 1712722505}
   masterBallList: []
+  hUDScript: {fileID: 1712722505}
 --- !u!4 &1777289291
 Transform:
   m_ObjectHideFlags: 0

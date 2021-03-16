@@ -9,6 +9,7 @@ public class baseManager : MonoBehaviour
 {
     [Header("This must be manually set up until I can figure out a solution")]
     [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
+    [SerializeField] private HUDManager hUDScript = null;
 
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
@@ -78,14 +79,14 @@ public class baseManager : MonoBehaviour
                 ProgressBase(currentBase + 1, nextBase + 1);
                 remainingDistanceToHomeBaseSansPlayerToNextBase -= distanceBetweenBases[currentBase];
                 currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
-                SwitchToBattingPhaseOnBaseTouch();
+                SwitchToBattingPhaseOnBaseTouch(nextBase.ToString());
             }
             else if (nextBase == bases.Count - 1)
             {
                 ProgressBase(currentBase + 1, nextBase = 0);
                 remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
                 currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
-                SwitchToBattingPhaseOnBaseTouch();
+                SwitchToBattingPhaseOnBaseTouch("HOME");
             }
             else if (nextBase == 0)
             {
@@ -103,9 +104,9 @@ public class baseManager : MonoBehaviour
         fielderAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
     }
 
-    private void SwitchToBattingPhaseOnBaseTouch()
+    private void SwitchToBattingPhaseOnBaseTouch(string nextBaseString)
     {
-        
+        hUDScript.SetTheBaseString(nextBaseString);
         WorldStateMachine.SetCurrentState(WorldState.BATTING);
         //TRIGGER UI MANAGER'S TAUNT/BANK/HOLD MENU HERE
 
@@ -117,6 +118,7 @@ public class baseManager : MonoBehaviour
 
     private void SwitchToBattingPhaseOnHomeBaseTouch()
     {
+        hUDScript.SetTheBaseString("1");
         WorldStateMachine.SetCurrentState(WorldState.BATTING);
 
 
