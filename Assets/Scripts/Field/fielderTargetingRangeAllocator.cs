@@ -22,14 +22,6 @@ public class fielderTargetingRangeAllocator : MonoBehaviour
         recievedNextBase = baseManagerScript.GetBases()[sentNextBase];
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.B))
-        {
-            GiveTheFielderATarget();
-        }
-    }
-
     public void GiveTheFielderATarget()
     {
         if (firstFielder == true)

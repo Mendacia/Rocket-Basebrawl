@@ -40,7 +40,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""85d64e14-d375-4499-a81c-8a3be6ffd372"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Aim"",
@@ -48,7 +48,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""3a928ead-c7bd-44f4-b176-69c7cd03aaf1"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.01,pressPoint=0.01)""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Jump"",
@@ -56,7 +56,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""efdb7027-3535-4f30-b525-abfb3ff5ae85"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.01,pressPoint=0.01)""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Dash"",
@@ -64,7 +64,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""6041d3b0-c361-4cdf-8dd1-1817036ac362"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.01,pressPoint=0.01)""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [

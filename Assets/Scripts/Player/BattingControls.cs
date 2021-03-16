@@ -6,18 +6,14 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class BattingControls : MonoBehaviour
 {
-    //[SerializeField] private Text devHittingCheckText = null;
     [SerializeField] private Animator playerAnimator = null;
     [SerializeField] private float hitWindow = 0.5f;
     [SerializeField] private float hitCooldown = 0.5f;
     [SerializeField] private playerDash dashCont = null;
-    [SerializeField] private fielderWhacked fielderWhackingScript = null;
-    [SerializeField] private LayerMask fielderLayerMask = 0;
     private bool isHitting = false;
     public bool dashBat = false;
     private BoxCollider myCollider = null;
     [SerializeField] private GameObject particleMaster = null;
-    [SerializeField] private soundEffectHolder sfxHolder = null;
 
     private void Start()
     {
@@ -54,24 +50,7 @@ public class BattingControls : MonoBehaviour
                 }
                 break;
         }
-
-        
     }
-
-   /* public void DashBatting(CallbackContext context)
-    {
-        if(context.performed && isHitting == false && PauseMenu.isPaused == false)
-
-        if (isHitting == false && PauseMenu.isPaused == false)
-        {
-            myCollider.enabled = true;
-            isHitting = true;
-            Debug.Log("DASH BAT!");
-            //Do SetTrigger for Dash Batting animation
-            particleMaster.SetActive(true);
-            StartCoroutine(Cooldown());
-        }
-    }*/
 
     IEnumerator Cooldown()
     {
@@ -87,7 +66,6 @@ public class BattingControls : MonoBehaviour
     {
         if(other.gameObject.tag == "Fielder")
         {
-            fielderWhackingScript.findFielder(other.transform);
         }
     }
 }
