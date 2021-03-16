@@ -154,11 +154,12 @@ public class OnBaseTriggerEffects : MonoBehaviour
         playerStateReference.playerState = 1;
         var rb = player.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        if (!hasTaunted)
+        if (hasTaunted == false)
         {
-            cineMachineBaseCam.SetActive(true);
+            //cineMachineBaseCam.SetActive(true);
+            //pitchingCam.SetActive(true);
         }
-        pitchingCam.SetActive(true);
+        
         player.GetComponent<ActivatePlayer>().enabled = true;
         //Wait a second so that the player can't see the players position and rotation being corrected
 

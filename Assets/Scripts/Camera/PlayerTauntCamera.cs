@@ -15,15 +15,48 @@ public class PlayerTauntCamera : MonoBehaviour
     void Start()
     {
         myCamera.rect = new Rect(1, 0, 0.5f, 1);
+        StartCoroutine(cameraMove());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(rectX > 0.5f)
+        /*if(rectX > 0.5f)
         {
             rectX = rectX - 0.05f;
         }
-        myCamera.rect = new Rect(rectX, 0, 0.5f, 1);
+        myCamera.rect = new Rect(rectX, 0, 0.5f, 1);*/
+    }
+
+    IEnumerator cameraMove()
+    {
+        for (int t = 0; t < 5; t++)
+        {
+            if (rectX > 0.5f)
+            {
+                rectX = rectX - 0.1f;
+            }
+            myCamera.rect = new Rect(rectX, 0, 0.5f, 1);
+            yield return new WaitForSeconds(0.0015f);
+        }
+        /*for (int t = 0; t < 9; t++)
+        {
+            if (rectX <= 0.5f)
+            {
+                rectX = rectX + 0.025f;
+            }
+            myCamera.rect = new Rect(rectX, 0, 0.5f, 1);
+            yield return new WaitForSeconds(0.005f);
+        }
+        for (int t = 0; t < 19; t++)
+        {
+            if (rectX > 0.5f)
+            {
+                rectX = rectX - 0.01f;
+            }
+            myCamera.rect = new Rect(rectX, 0, 0.5f, 1);
+            yield return new WaitForSeconds(0.005f);
+        }*/
+        yield return new WaitForSeconds(0);
     }
 }
