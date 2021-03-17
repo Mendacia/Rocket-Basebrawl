@@ -18,16 +18,6 @@ public class PitcherTauntCamera : MonoBehaviour
         StartCoroutine(cameraMove());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (rectX < 0)
-        {
-            rectX = rectX + 0.05f;
-        }
-        myCamera.rect = new Rect(rectX, 0, 0.5f, 1);*/
-    }
-
     IEnumerator cameraMove()
     {
         for (int t = 0; t < 5; t++)
@@ -57,6 +47,7 @@ public class PitcherTauntCamera : MonoBehaviour
             myCamera.rect = new Rect(rectX, 0, 0.5f, 1);
             yield return new WaitForSeconds(0.005f);
         }*/
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(3);
+        this.gameObject.SetActive(false);
     }
 }

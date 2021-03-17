@@ -13,8 +13,9 @@ public class baseManager : MonoBehaviour
 
     [Header("BaseEffects")]
     [SerializeField] private List<GameObject> pitchingCameras;
+    [SerializeField] private List<GameObject> SplitScreenLefts;
+    [SerializeField] private List<GameObject> SplitScreenRights;
     [SerializeField] private GameObject baseCanvas = null;
-    [SerializeField] private GameObject playerPitchingCamera = null;
     [SerializeField] private GameObject player = null;
 
     [Header("Visible for debug")]
@@ -153,6 +154,8 @@ public class baseManager : MonoBehaviour
     {
         Cursor.visible = false;
         Time.timeScale = 1;
+        SplitScreenLefts[currentBase - 1].SetActive(true);
+        SplitScreenRights[currentBase - 1].SetActive(true);
         StartCoroutine(BaseEffects());
         baseCanvas.SetActive(false);
     }
