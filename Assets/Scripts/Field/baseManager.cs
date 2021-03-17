@@ -11,6 +11,12 @@ public class baseManager : MonoBehaviour
     [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
     [SerializeField] private HUDManager hUDScript = null;
 
+    [Header("BaseEffects")]
+    [SerializeField] private List<GameObject> pitchingCameras;
+    [SerializeField] private GameObject baseCanvas = null;
+    [SerializeField] private GameObject playerPitchingCamera = null;
+    [SerializeField] private GameObject player = null;
+
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
     [SerializeField] private float percentageOfRunRemaining = 0f;
@@ -108,12 +114,10 @@ public class baseManager : MonoBehaviour
     {
         hUDScript.SetTheBaseString(nextBaseString);
         WorldStateMachine.SetCurrentState(WorldState.BATTING);
-        //TRIGGER UI MANAGER'S TAUNT/BANK/HOLD MENU HERE
 
-
-        /* 
-            -Cinemachine shit for batting phase on bases
-        */
+        Cursor.visible = true;
+        baseCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     private void SwitchToBattingPhaseOnHomeBaseTouch()
@@ -131,6 +135,42 @@ public class baseManager : MonoBehaviour
     {
         currentBase = requestedCurrentBase;
         nextBase = requestedNextBase;
+    }
+
+    private IEnumerator BaseEffects()
+    {
+        /*var rb = playerPosition.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;*/
+        pitchingCameras[currentBase - 1].SetActive(true);
+        yield return new WaitForSeconds(1);
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
+        yield return new WaitForSeconds(2);
+        pitchingCameras[currentBase - 1].SetActive(false);
+    }
+
+    public void Taunt()
+    {
+        Cursor.visible = false;
+        Time.timeScale = 1;
+        StartCoroutine(BaseEffects());
+        baseCanvas.SetActive(false);
+    }
+
+    public void Bank()
+    {
+        Cursor.visible = false;
+        Time.timeScale = 1;
+        StartCoroutine(BaseEffects());
+        baseCanvas.SetActive(false);
+    }
+
+    public void Hold()
+    {
+        Cursor.visible = false;
+        Time.timeScale = 1;
+        StartCoroutine(BaseEffects());
+        baseCanvas.SetActive(false);
     }
 
     public List<Transform> GetBases() => bases;

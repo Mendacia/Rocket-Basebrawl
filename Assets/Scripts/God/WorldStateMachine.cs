@@ -9,7 +9,9 @@ public class WorldStateMachine : MonoBehaviour
     [SerializeField] private fielderPeltingScript PeltingScript = null;
     [SerializeField] private baseManager BaseScript = null;
     [SerializeField] private BallList BallGod = null;
-    [SerializeField] private HUDManager hUDScript;
+    [SerializeField] private HUDManager hUDScript = null;
+    [SerializeField] private GameObject player = null;
+    [SerializeField] private GameObject pitchingCam = null;
     private WorldState currentState;
     private void Awake()
     {
@@ -24,6 +26,9 @@ public class WorldStateMachine : MonoBehaviour
     {
         if (state == WorldState.RUNNING)
         {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = ~RigidbodyConstraints.FreezeAll;
+            pitchingCam.SetActive(false);
             BattingPhase.enabled = false;
             PeltingScript.enabled = true;
             BattingPhase.StopMe();
@@ -36,6 +41,9 @@ public class WorldStateMachine : MonoBehaviour
 
         if (state == WorldState.BATTING)
         {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            pitchingCam.SetActive(true);
             BattingPhase.enabled = true;
             PeltingScript.enabled = false;
             BattingPhase.StartMe();
