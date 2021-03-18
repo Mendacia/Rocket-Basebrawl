@@ -37,6 +37,7 @@ public class playerDash : MonoBehaviour
     IEnumerator Dash()
     {
         playerCont.Dash(true);
+        isDashing = true;
         yield return new WaitForSeconds(dashDuration);
         playerCont.Dash(false);
         yield return new WaitForSeconds(dashCooldown);

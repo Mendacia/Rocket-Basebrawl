@@ -13,6 +13,7 @@ public class baseManager : MonoBehaviour
 
     [Header("BaseEffects")]
     [SerializeField] private List<GameObject> pitchingCameras;
+    [SerializeField] private GameObject playerBackCam = null;
     [SerializeField] private List<GameObject> SplitScreenLefts;
     [SerializeField] private List<GameObject> SplitScreenRights;
     [SerializeField] private GameObject baseCanvas = null;
@@ -143,6 +144,7 @@ public class baseManager : MonoBehaviour
         Debug.Log(WorldStateMachine.GetCurrentState());
         /*var rb = playerPosition.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;*/
+        playerBackCam.SetActive(true);
         pitchingCameras[currentBase - 1].SetActive(true);
         yield return new WaitForSeconds(1);
         player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
