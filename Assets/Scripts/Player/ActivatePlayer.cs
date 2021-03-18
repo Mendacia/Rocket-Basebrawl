@@ -28,7 +28,6 @@ public class ActivatePlayer : MonoBehaviour
         {
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionY & ~RigidbodyConstraints.FreezePositionZ;
             //inputActions.Player.EnablePlayer.Disable();
-            //fielderMain.startPeltingLoop();
             this.GetComponent<ActivatePlayer>().enabled = false;
         }
     }
@@ -38,7 +37,8 @@ public class ActivatePlayer : MonoBehaviour
         //Accepts players first input, enabling the scene
         if(callbackContext.performed && WorldStateMachine.GetCurrentState() == WorldState.FROZEN)
         {
-            WorldStateMachine.SetCurrentState(WorldState.BATTING);
+            //WorldStateMachine.SetCurrentState(WorldState.BATTING);
+            this.GetComponent<ActivatePlayer>().enabled = false;
         }
 
         //Call the coroutine to activate player only when you're NOT watching the dolly and when you're locked

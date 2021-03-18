@@ -38,6 +38,7 @@ public class POVCamControl : MonoBehaviour
         {
             vcam.m_Transitions.m_InheritPosition = true;
         }
+        StartCoroutine(InheritAfterTime());
     }
 
     void FixedUpdate()
@@ -52,6 +53,13 @@ public class POVCamControl : MonoBehaviour
             POVCam.m_VerticalAxis.Value -= camInput.y * (sensitivity / 3) / 2.5f * Time.deltaTime;
             camInput = Vector2.zero;
         }
+    }
+
+    IEnumerator InheritAfterTime()
+    {
+        var vcam = GetComponent<CinemachineVirtualCamera>();
+        yield return new WaitForSeconds(5);
+        vcam.m_Transitions.m_InheritPosition = true;
     }
 
     private void GetValue(CallbackContext context)
