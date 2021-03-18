@@ -114,7 +114,7 @@ public class baseManager : MonoBehaviour
     private void SwitchToBattingPhaseOnBaseTouch(string nextBaseString)
     {
         hUDScript.SetTheBaseString(nextBaseString);
-        WorldStateMachine.SetCurrentState(WorldState.BATTING);
+        WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
         Cursor.visible = true;
         baseCanvas.SetActive(true);
@@ -124,7 +124,7 @@ public class baseManager : MonoBehaviour
     private void SwitchToBattingPhaseOnHomeBaseTouch()
     {
         hUDScript.SetTheBaseString("1");
-        WorldStateMachine.SetCurrentState(WorldState.BATTING);
+        WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
 
         /*
@@ -140,20 +140,25 @@ public class baseManager : MonoBehaviour
 
     private IEnumerator BaseEffects()
     {
+        Debug.Log(WorldStateMachine.GetCurrentState());
         /*var rb = playerPosition.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;*/
         pitchingCameras[currentBase - 1].SetActive(true);
         yield return new WaitForSeconds(1);
         player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
+        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
         yield return new WaitForSeconds(2);
         pitchingCameras[currentBase - 1].SetActive(false);
+        yield return new WaitForSeconds(1);
+        WorldStateMachine.SetCurrentState(WorldState.BATTING);
     }
 
     public void Taunt()
     {
         Cursor.visible = false;
         Time.timeScale = 1;
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
         SplitScreenLefts[currentBase - 1].SetActive(true);
         SplitScreenRights[currentBase - 1].SetActive(true);
         StartCoroutine(BaseEffects());

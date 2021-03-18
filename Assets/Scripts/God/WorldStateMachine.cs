@@ -53,6 +53,19 @@ public class WorldStateMachine : MonoBehaviour
             BattingPhase.InitializeBattingPhase(BaseScript.currentBaseTarget);
             currentState = WorldState.BATTING;
         }
+        if (state == WorldState.FROZEN)
+        {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            currentState = WorldState.FROZEN;
+            pitchingCam.SetActive(false);
+            BattingPhase.enabled = false;
+            PeltingScript.enabled = false;
+            BattingPhase.StopMe();
+            PeltingScript.StopMe();
+            BallGod.masterBallList.Clear();
+            hUDScript.clearTheBallUI();
+        }
     }
 
     public static WorldState GetCurrentState() => Instance.currentState;
