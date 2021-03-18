@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BunnyOutline
-  m_Shader: {fileID: -6465566751694194690, guid: 631fa94cf8e0a3840a8ef3bae7286990,
+  m_Name: Paths
+  m_Shader: {fileID: -6465566751694194690, guid: ee4a925130afca641b89928c7305c5d9,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,8 +33,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_5ADDAE84:
+        m_Texture: {fileID: 2800000, guid: f63eea91ff30e6d48800caa1ebc457ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_A45485D8:
-        m_Texture: {fileID: 2800000, guid: 1b4d3880b595181408d27a0e27d95960, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -66,16 +70,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1A06547D: 1.71
-    - Vector1_3FBFDC6A: 0.111
+    - Vector1_1A06547D: 0
+    - Vector1_3FBFDC6A: 0.653
+    - Vector1_47130CC7: 1.5
     - Vector1_48F29B53: 0.75
-    - Vector1_497300E1: 0.032
-    - Vector1_4E87E868: 0
+    - Vector1_497300E1: 0.331
+    - Vector1_4E87E868: 0.75
     - Vector1_541E821D: 1
+    - Vector1_544A9164: 1
     - Vector1_6AAE875: 1
-    - Vector1_BC878080: 5.35
-    - Vector1_E4DC2276: 0.415
-    - Vector1_EF2B9D0F: 1.54
+    - Vector1_A8742EF5: 0
+    - Vector1_BC878080: 3
+    - Vector1_E4DC2276: 0
+    - Vector1_EF2B9D0F: 1.5
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -98,9 +105,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_7805E1CE: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
-    - Color_B9F825DD: {r: 0, g: 0, b: 0, a: 1}
-    - Color_E1CC85B2: {r: 0.4056604, g: 0.13585797, b: 0.35940853, a: 1}
+    - Color_7805E1CE: {r: 0.103773594, g: 0.038043045, b: 0, a: 0}
+    - Color_B9F825DD: {r: 0.14150941, g: 0.012682444, b: 0.012682444, a: 1}
+    - Color_D5557864: {r: 0, g: 0, b: 0, a: 0}
+    - Color_E1CC85B2: {r: 0.4528302, g: 0.1272611, b: 0.061943766, a: 0}
+    - Color_FA84A6CB: {r: 0.5, g: 0.28992587, b: 0.1957547, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
