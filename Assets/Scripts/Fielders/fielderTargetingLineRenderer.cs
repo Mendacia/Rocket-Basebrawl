@@ -29,6 +29,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     private float recievedBeamLifetime;
     private int recievedIndex;
     private scoreUpdater myScoreUpdater;
+    private soundEffectHolder soundFX;
     private BallList myBallList;
 
     private void Awake()
@@ -36,6 +37,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         targetingBeam = gameObject.GetComponent<LineRenderer>();
         myScoreUpdater = GameObject.Find("ScoreUpdater").GetComponent<scoreUpdater>();
         myBallList = GameObject.Find("BallGod").GetComponent<BallList>();
+        soundFX = GameObject.Find("SoundEffectHolder").GetComponent<soundEffectHolder>();
     }
 
     public void SetUp(float lifetime, int index, Transform player, Transform fielder, Vector3 recievedDirection)
@@ -150,12 +152,14 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             {
                 myBallList.SetToGold(recievedIndex);
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                soundFX.GoldSoundEffect();
                 myScoreUpdater.SweetAddToScore();
             }
             else
             {
                 myBallList.SetToSilver(recievedIndex);
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                soundFX.SilverSoundEffect();
                 myScoreUpdater.HitAddToScore();
             }
         }

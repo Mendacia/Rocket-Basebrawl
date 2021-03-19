@@ -29,10 +29,10 @@ public class WorldStateMachine : MonoBehaviour
             var rb = player.GetComponent<Rigidbody>();
             rb.constraints = ~RigidbodyConstraints.FreezeAll;
             pitchingCam.SetActive(false);
-            BattingPhase.enabled = false;
-            PeltingScript.enabled = true;
             BattingPhase.StopMe();
             PeltingScript.StartMe();
+            BattingPhase.enabled = false;
+            PeltingScript.enabled = true;
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             PeltingScript.InitializeRunningPhase();
@@ -43,11 +43,11 @@ public class WorldStateMachine : MonoBehaviour
         {
             var rb = player.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
+            BattingPhase.StartMe();
+            PeltingScript.StopMe();
             pitchingCam.SetActive(true);
             BattingPhase.enabled = true;
             PeltingScript.enabled = false;
-            BattingPhase.StartMe();
-            PeltingScript.StopMe();
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             BattingPhase.InitializeBattingPhase(BaseScript.currentBaseTarget);
@@ -59,12 +59,12 @@ public class WorldStateMachine : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
             pitchingCam.SetActive(false);
-            BattingPhase.enabled = false;
-            PeltingScript.enabled = false;
-            BattingPhase.StopMe();
-            PeltingScript.StopMe();
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
+            BattingPhase.StopMe();
+            PeltingScript.StopMe();
+            BattingPhase.enabled = false;
+            PeltingScript.enabled = false;
         }
     }
 
