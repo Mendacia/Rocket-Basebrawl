@@ -10,6 +10,8 @@ public class baseManager : MonoBehaviour
     [Header("This must be manually set up until I can figure out a solution")]
     [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
     [SerializeField] private HUDManager hUDScript = null;
+    [SerializeField] private fielderPeltingScript fpScript= null;
+    [SerializeField] private scoreUpdater scoreUpdaterScript = null;
 
     [Header("BaseEffects")]
     [SerializeField] private List<GameObject> pitchingCameras;
@@ -159,6 +161,7 @@ public class baseManager : MonoBehaviour
         Time.timeScale = 1;
         player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
+        fpScript.fielderTauntLevelIncreaser();
         SplitScreenLefts[currentBase - 1].SetActive(true);
         SplitScreenRights[currentBase - 1].SetActive(true);
         StartCoroutine(BaseEffects());
@@ -170,6 +173,7 @@ public class baseManager : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1;
         StartCoroutine(BaseEffects());
+        scoreUpdaterScript.BankScore();
         baseCanvas.SetActive(false);
     }
 

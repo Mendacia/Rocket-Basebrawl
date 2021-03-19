@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3623002623490018406}
   - component: {fileID: 3623002623490018407}
-  - component: {fileID: 2757767368458577741}
   - component: {fileID: 3623002623490018392}
   - component: {fileID: 2770760321334005192}
   - component: {fileID: 3094088559040947739}
@@ -215,25 +214,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!95 &2757767368458577741
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3623002623490018393}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a1ee53443eca5754ba101790094ca95e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3623002623490018392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,11 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e49d0854e44694c956f0ce41e95a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingBeam: {fileID: 3623002623490018407}
-  beamSizeDecreaseSpeed: 1
-  goldThreshold: 0.2
-  lineRendererColour: {r: 0, g: 0, b: 0, a: 0}
-  lineRendererColourEXPlusUltra: {r: 0, g: 0, b: 0, a: 1}
+  goldThreshold: 0.8
+  lineRendererColorSilver: {r: 0.6784888, g: 0.73832935, b: 0.745283, a: 1}
+  lineRendererColorGold: {r: 1, g: 0.78039217, b: 0.21960784, a: 0}
+  lineRendererColorBehindPlayer: {r: 0, g: 0, b: 0, a: 0}
   hitterLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -315,8 +294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseballPrefab: {fileID: 8581812953805991084, guid: 5f71715b659aac64fb6be66e7117f5e0,
-    type: 3}
-  onHitEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
     type: 3}
 --- !u!1 &3823213838625514372
 GameObject:

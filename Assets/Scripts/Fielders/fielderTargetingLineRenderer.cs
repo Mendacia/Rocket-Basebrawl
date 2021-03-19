@@ -6,11 +6,12 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 {
     private LineRenderer targetingBeam = null;
     [Header("This, in seconds, is how close to the ball firing you have to hit the ball to get gold")]
-    private float goldThreshold = 0.2f;
+    [SerializeField] private float goldThreshold = 0.2f;
 
     [Header("These are the visual controls for the linerenderer")]
-    [SerializeField] private Color lineRendererColour;
-    [SerializeField] private Color lineRendererColourEXPlusUltra;
+    [SerializeField] private Color lineRendererColorSilver;
+    [SerializeField] private Color lineRendererColorGold;
+    [SerializeField] private Color lineRendererColorBehindPlayer;
     [SerializeField] private LayerMask hitterLayerMask;
     [SerializeField] private LayerMask physicsLayerMask;
     [SerializeField] private GameObject oSprite = null;
@@ -87,10 +88,9 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         //Start shrinking the beam, failing to hit the ball also runs through ShrinkBeam
         targetingBeam.startWidth = beamWidth;
         targetingBeam.endWidth = beamWidth;
-        ShrinkBeam(midPoint);
+        BeamEffectsOverLifetime(midPoint, startPoint, endPoint);
 
         //Color the beam
-        ColorBeam(startPoint, midPoint, endPoint);
     }
 
     public void GildMe() //Cheat funciton
@@ -98,7 +98,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         sweetSpotActive = true;
     }
 
-    private void ShrinkBeam(Vector3 fireAt)
+    private void BeamEffectsOverLifetime(Vector3 fireAt, Vector3 startPoint, Vector3 endPoint)
     {
         if (currentBeamTime < recievedBeamLifetime)
         {
@@ -110,6 +110,11 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             if(currentBeamTime > recievedBeamLifetime - goldThreshold)
             {
                 sweetSpotActive = true;
+                ColorBeamGold(startPoint, fireAt, endPoint);
+            }
+            else
+            {
+                ColorBeamSilver(startPoint, fireAt, endPoint);
             }
         }
         else
@@ -118,11 +123,20 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
     }
 
-    private void ColorBeam(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
+    private void ColorBeamSilver(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
     {
         var midDistance = Vector3.Distance(recievedStartPoint, recievedMidPoint) / Vector3.Distance(recievedStartPoint, recievedEndPoint);
         myGradient.SetKeys(
-             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColour, 0.0f), new GradientColorKey(lineRendererColour, midDistance), new GradientColorKey(lineRendererColourEXPlusUltra, (midDistance * 1.01f)), new GradientColorKey(lineRendererColourEXPlusUltra, 1) },
+             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColorSilver, 0.0f), new GradientColorKey(lineRendererColorSilver, midDistance), new GradientColorKey(lineRendererColorBehindPlayer, (midDistance * 1.01f)), new GradientColorKey(lineRendererColorBehindPlayer, 1) },
+             /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
+            );
+        targetingBeam.colorGradient = myGradient;
+    }
+    private void ColorBeamGold(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
+    {
+        var midDistance = Vector3.Distance(recievedStartPoint, recievedMidPoint) / Vector3.Distance(recievedStartPoint, recievedEndPoint);
+        myGradient.SetKeys(
+             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColorGold, 0.0f), new GradientColorKey(lineRendererColorGold, midDistance), new GradientColorKey(lineRendererColorBehindPlayer, (midDistance * 1.01f)), new GradientColorKey(lineRendererColorBehindPlayer, 1) },
              /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
             );
         targetingBeam.colorGradient = myGradient;

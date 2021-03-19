@@ -6902,7 +6902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingSphereScaleMaximum: 20
-  targetingDistanceMaximum: 0
+  targetingDistanceMaximum: 10
 --- !u!4 &763004675
 Transform:
   m_ObjectHideFlags: 0
@@ -7516,6 +7516,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fielderAccuracyObject: {fileID: 763004674}
   hUDScript: {fileID: 1712722505}
+  fpScript: {fileID: 1399274990}
+  scoreUpdaterScript: {fileID: 1098240544}
   pitchingCameras:
   - {fileID: 1067102855}
   - {fileID: 1394510363}
@@ -8313,8 +8315,6 @@ GameObject:
   - component: {fileID: 1399274991}
   - component: {fileID: 1399274990}
   - component: {fileID: 1399274992}
-  - component: {fileID: 1399274993}
-  - component: {fileID: 1399274994}
   - component: {fileID: 1399274995}
   m_Layer: 0
   m_Name: Team Master
@@ -8373,30 +8373,6 @@ MonoBehaviour:
     type: 3}
   pitcher: {fileID: 794016247}
   homeBaseTarget: {fileID: 1489021197}
---- !u!114 &1399274993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399274989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9f536a1a601514d809e5885f1ce401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1399274994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399274989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31f422dff720e3f42aa50b590bb823f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1399274995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8660,7 +8636,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636733, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287709, y: -0.52447486, z: 0.09636735, w: 0.8320265}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -30849,7 +30825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 5690458438353382400}
   hitWindow: 0.5
-  hitCooldown: 0.5
+  hitCooldown: 0.1
   dashCont: {fileID: 1749323202}
   dashBat: 0
   particleMaster: {fileID: 8422740989614231690}
