@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class HUDManager : MonoBehaviour
 {
     [Header("Text setup for the UI")]
-    [SerializeField] private Text unstableScore;
-    [SerializeField] private Text combo;
-    [SerializeField] private Text baseNumber;
-    [SerializeField] private Transform arrowHolder;
+    [SerializeField] private Text unstableScore = null;
+    [SerializeField] private Text combo = null;
+    [SerializeField] private Text baseNumber = null;
+    [SerializeField] private Transform arrowHolder = null;
     public Transform ballIconHolder;
 
     [Header("Prefab Setup")]
     public GameObject ballIconObject;
-    [SerializeField] private GameObject arrowObject;
+    [SerializeField] private GameObject arrowObject = null;
 
     private int targetUnstableScore;
     private int currentlyDisplayedUnstableScore;
@@ -36,15 +36,9 @@ public class HUDManager : MonoBehaviour
 
     public void SetTheTargetUnstableScore(int recievedScore) => targetUnstableScore = recievedScore;
 
-    public void SetTheBaseString(string recievedBase)
-    {
-        baseNumber.text = recievedBase;
-    }
+    public void SetTheBaseString(string recievedBase) => baseNumber.text = recievedBase;
 
-    public void UpdateTheComboMultiplier(int recievedCombo)
-    {
-        combo.text = recievedCombo.ToString();
-    }
+    public void UpdateTheComboMultiplier(int recievedCombo) => combo.text = recievedCombo.ToString();
 
     public masterBallStruct addBallToTheUI(masterBallStruct ball)
     {

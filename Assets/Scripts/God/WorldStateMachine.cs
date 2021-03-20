@@ -33,8 +33,8 @@ public class WorldStateMachine : MonoBehaviour
             PeltingScript.StartMe();
             BattingPhase.enabled = false;
             PeltingScript.enabled = true;
-            BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
+            BallGod.masterBallList.Clear();
             PeltingScript.InitializeRunningPhase();
             currentState = WorldState.RUNNING;
         }

@@ -6,6 +6,7 @@ public class fielderPeltingScript : MonoBehaviour
 {
     [Header("Set this prefab up please")]
     [SerializeField] private GameObject targetingBeamPrefab;
+    [SerializeField] private HUDManager hUDScript;
 
     //Things I've already set up:
     private BallList ballGodScript; //This is holy
@@ -140,6 +141,7 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void ReadyThrow()
     {
+        Debug.Log("ReadyThrow was called");
         var ball = ballGodScript.CallForBall();
         if (ball.myIndex != -1)
         {
@@ -155,16 +157,15 @@ public class fielderPeltingScript : MonoBehaviour
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
             myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
 
-            if (ball.myIndex != ballGodScript.masterBallList.Count - 1)
-            {
-                StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
-            }
-
             //Cheating
             if (Gilded)
             {
                 myBeamScript.GildMe();
             }
+        }
+        if (ball.myIndex != ballGodScript.masterBallList.Count - 1)
+        {
+            StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
         }
     }
 }

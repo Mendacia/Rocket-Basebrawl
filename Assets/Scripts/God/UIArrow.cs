@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIArrow : MonoBehaviour
 {
-    private Transform target;
+    private Vector3 target;
     private Image myImage;
     [SerializeField] private Image innerArrow;
     public Color myColor;
@@ -14,7 +14,7 @@ public class UIArrow : MonoBehaviour
     {
         myImage = gameObject.GetComponentInChildren<Image>();
     }
-    public void giveTheUIArrowTheMidPoint(Transform recievedMidPoint)
+    public void giveTheUIArrowTheMidPoint(Vector3 recievedMidPoint)
     {
         target = recievedMidPoint;
     } 
@@ -24,8 +24,8 @@ public class UIArrow : MonoBehaviour
     {
         gameObject.transform.position = transform.parent.position;      //Camera.main.WorldToScreenPoint(target.position);         //Gets the location of pitcher's midpoint but like mapped to the canvas like a reasonable person
 
-        var NormalizedX = Camera.main.WorldToViewportPoint(target.position).x;
-        var NormalizedY = Camera.main.WorldToViewportPoint(target.position).y;
+        var NormalizedX = Camera.main.WorldToViewportPoint(target).x;
+        var NormalizedY = Camera.main.WorldToViewportPoint(target).y;
 
         if(NormalizedX < 1.0f && NormalizedX > 0.0f && NormalizedY < 1.0f && NormalizedY > 0.0f)
         {
@@ -36,7 +36,7 @@ public class UIArrow : MonoBehaviour
             myImage.gameObject.SetActive(true);
             innerArrow.color = myColor;
 
-            var targetPos = Camera.main.WorldToScreenPoint(target.position);
+            var targetPos = Camera.main.WorldToScreenPoint(target);
             var myPos = transform.position;
             targetPos.x = targetPos.x - myPos.x;
             targetPos.y = targetPos.y - myPos.y;
