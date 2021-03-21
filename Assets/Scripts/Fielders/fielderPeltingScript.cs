@@ -168,4 +168,6 @@ public class fielderPeltingScript : MonoBehaviour
             StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
         }
     }
+
+    public int GetFielderTauntLevel() => fielderTauntLevel;
 }

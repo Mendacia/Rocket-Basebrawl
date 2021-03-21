@@ -17,14 +17,6 @@ public class BallList : MonoBehaviour
         thisBall.myFielders = new List<Transform>();
         thisBall = AssignRemainingVariables(thisBall);
         thisBall = hUDScript.addBallToTheUI(thisBall);
-
-        //This makes it so no other balls can interrupt a multi or scatter ball
-        if (thisBall.myIndex == 0) ;
-        else if (masterBallList[Index - 1].myType == ballType.MULTI || masterBallList[Index - 1].myType == ballType.SCATTER)
-        {
-            thisBall.myReadySpeed = (masterBallList[Index - 1].myThrowSpeed * Random.Range(0.7f, 1.1f));
-        }
-
         masterBallList.Add(thisBall);
     }
 

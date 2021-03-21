@@ -12,6 +12,10 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Transform arrowHolder = null;
     public Transform ballIconHolder;
 
+    [SerializeField] private GameObject baseCanvas = null;
+    [SerializeField] private Image currentBallIcon = null;
+    [SerializeField] private Image nextBallIcon = null;
+
     [Header("Prefab Setup")]
     public GameObject ballIconObject;
     [SerializeField] private GameObject arrowObject = null;
@@ -57,5 +61,15 @@ public class HUDManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void runTheBaseUI(bool isActive, int currentTaunt)
+    {
+        baseCanvas.SetActive(isActive);
+        currentBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
+        if (currentTaunt != 3) nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt + 1);
+        else nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
+
+        Debug.Log("current ball should be " + currentTaunt);
     }
 }

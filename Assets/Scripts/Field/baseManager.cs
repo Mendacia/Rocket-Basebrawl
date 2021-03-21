@@ -120,7 +120,7 @@ public class baseManager : MonoBehaviour
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
         Cursor.visible = true;
-        baseCanvas.SetActive(true);
+        hUDScript.runTheBaseUI(true, fpScript.GetFielderTauntLevel());
         Time.timeScale = 0;
     }
 
@@ -167,7 +167,7 @@ public class baseManager : MonoBehaviour
         SplitScreenLefts[currentBase - 1].SetActive(true);
         SplitScreenRights[currentBase - 1].SetActive(true);
         StartCoroutine(BaseEffects());
-        baseCanvas.SetActive(false);
+        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }
 
     public void Bank()
@@ -176,7 +176,7 @@ public class baseManager : MonoBehaviour
         Time.timeScale = 1;
         StartCoroutine(BaseEffects());
         scoreUpdaterScript.BankScore();
-        baseCanvas.SetActive(false);
+        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }
 
     public void Hold()
@@ -184,7 +184,7 @@ public class baseManager : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1;
         StartCoroutine(BaseEffects());
-        baseCanvas.SetActive(false);
+        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }
 
     public List<Transform> GetBases() => bases;
