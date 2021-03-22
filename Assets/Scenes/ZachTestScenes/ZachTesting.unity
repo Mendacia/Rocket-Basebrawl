@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5529631, g: 1.1224666, b: 0.47354126, a: 1}
+  m_IndirectSpecularColor: {r: 0.5966852, g: 0.9976336, b: 0.25882232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7457,6 +7457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fielderAccuracyObject: {fileID: 763004674}
   hUDScript: {fileID: 1712722505}
+  fpScript: {fileID: 0}
+  scoreUpdaterScript: {fileID: 0}
   pitchingCameras:
   - {fileID: 1067102855}
   - {fileID: 1394510363}
@@ -8291,6 +8293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetingBeamPrefab: {fileID: 3623002623490018393, guid: 07b0e174ba10aaa47b636082b7f828b0,
     type: 3}
+  hUDScript: {fileID: 0}
   ballsToThrowMinimum: 10
   ballsToThrowMaximum: 15
   higherTauntBallCountReductionFactor: 3
@@ -8614,7 +8617,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.15287709, y: -0.52447486, z: 0.09636735, w: 0.8320265}
+  m_LocalRotation: {x: 0.15287706, y: -0.52447486, z: 0.09636733, w: 0.8320265}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9699,6 +9702,9 @@ MonoBehaviour:
   baseNumber: {fileID: 6784341483984673715}
   arrowHolder: {fileID: 6784341481973871947}
   ballIconHolder: {fileID: 2622708238646447297}
+  baseCanvas: {fileID: 0}
+  currentBallIcon: {fileID: 0}
+  nextBallIcon: {fileID: 0}
   ballIconObject: {fileID: 9185666329665957773, guid: cf7299c759660c94f92f232706c3e0bd,
     type: 3}
   arrowObject: {fileID: 467032714953259671, guid: ab191eaee86ebf94f99c61837528edaf,
@@ -30445,7 +30451,7 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_XDamping: 0
+  m_XDamping: 0.2
   m_YDamping: 1
   m_ZDamping: 0.5
   m_TargetMovementOnly: 1
@@ -30970,7 +30976,6 @@ MonoBehaviour:
   sensitivity: 50
   useX: 1
   shouldInheritAtStart: 0
-  playerStateReference: {fileID: 5690458437906995182}
 --- !u!4 &5690458438612371883
 Transform:
   m_ObjectHideFlags: 0

@@ -17,7 +17,6 @@ public class POVCamControl : MonoBehaviour
 
     [SerializeField] private bool useX = true;
     [SerializeField] private bool shouldInheritAtStart = false;
-    [SerializeField] private playerControls playerStateReference = null;
 
     // Start is called before the first frame update
 
@@ -45,11 +44,7 @@ public class POVCamControl : MonoBehaviour
     {
         if (WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
         {
-            if (useX == true)
-            {
-                POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 3) * Time.deltaTime;
-            }
-
+            POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 3) * Time.deltaTime;
             POVCam.m_VerticalAxis.Value -= camInput.y * (sensitivity / 3) / 2.5f * Time.deltaTime;
             camInput = Vector2.zero;
         }
@@ -67,8 +62,8 @@ public class POVCamControl : MonoBehaviour
         var value = context.ReadValue<Vector2>();
         if (value != Vector2.zero)
         {
-            camInput.x = value.x;
-            camInput.y = value.y;
+            camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 60 * Time.deltaTime)).x;
+            camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 60 * Time.deltaTime)).y;
         }
     }
 
