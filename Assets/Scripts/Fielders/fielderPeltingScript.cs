@@ -6,6 +6,8 @@ public class fielderPeltingScript : MonoBehaviour
 {
     [Header("Set this prefab up please")]
     [SerializeField] private GameObject targetingBeamPrefab;
+    [SerializeField] private GameObject multiTargetingBeamPrefab;
+    [SerializeField] private GameObject multiBeamHolder;
     [SerializeField] private HUDManager hUDScript;
 
     //Things I've already set up:
@@ -151,18 +153,40 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void ReadyThrow2(masterBallStruct ball)
     {
-        foreach (Transform fielder in ball.myFielders)
+        if (ball.myFielders.Count > 1)
         {
-            var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
-            var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-            myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
-
-            //Cheating
-            if (Gilded)
+            var folder = Instantiate(multiBeamHolder, Vector3.zero, Quaternion.identity);
+            foreach (Transform fielder in ball.myFielders)
             {
-                myBeamScript.GildMe();
+                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
+                var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
+                myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
+                folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
+                myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
+
+                //Cheating
+                if (Gilded)
+                {
+                    myBeamScript.GildMe();
+                }
             }
         }
+        else
+        {
+            foreach (Transform fielder in ball.myFielders)
+            {
+                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
+                var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+                myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
+
+                //Cheating
+                if (Gilded)
+                {
+                    myBeamScript.GildMe();
+                }
+            }
+        }
+
         if (ball.myIndex != ballGodScript.masterBallList.Count - 1)
         {
             StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
