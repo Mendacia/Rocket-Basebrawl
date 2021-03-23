@@ -1260,7 +1260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &226681835
 Transform:
   m_ObjectHideFlags: 0
@@ -7448,7 +7448,7 @@ MonoBehaviour:
   hUDScript: {fileID: 1712722505}
   fpScript: {fileID: 1399274990}
   scoreUpdaterScript: {fileID: 1098240544}
-  tutorialUI: {fileID: 0}
+  tutorialUI: {fileID: 1875964255}
   pitchingCameras: []
   playerBackCam: {fileID: 1263482107}
   SplitScreenLefts: []
@@ -10299,6 +10299,7 @@ MonoBehaviour:
   - {fileID: 7743546579861236995}
   - {fileID: 7743546579646738288}
   - {fileID: 7743546579680852409}
+  scoreHold: {fileID: 1875964254}
 --- !u!4 &1923299019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 358b08eedf8aef24688155550571a924,
@@ -32693,7 +32694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7743546578429757066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32703,7 +32704,7 @@ RectTransform:
   m_GameObject: {fileID: 7743546578429757065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7743546579086071687}
   m_Father: {fileID: 7743546579646738289}
@@ -32757,9 +32758,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TutorialGodScript, Assembly-CSharp
-        m_MethodName: StartBatting
+      - m_Target: {fileID: 1875964255}
+        m_TargetAssemblyTypeName: TutorialUIPrompts, Assembly-CSharp
+        m_MethodName: BattingPhaseOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32946,9 +32947,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TutorialGodScript, Assembly-CSharp
-        m_MethodName: StartPitching
+      - m_Target: {fileID: 1875964255}
+        m_TargetAssemblyTypeName: TutorialUIPrompts, Assembly-CSharp
+        m_MethodName: PitchingPhaseOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33005,7 +33006,7 @@ RectTransform:
   m_GameObject: {fileID: 7743546578738856948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7743546580424166799}
   m_Father: {fileID: 7743546578508224502}
@@ -33034,7 +33035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7743546578965421704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33044,7 +33045,7 @@ RectTransform:
   m_GameObject: {fileID: 7743546578965421703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7743546579196341536}
   m_Father: {fileID: 7743546579861236996}
@@ -33098,9 +33099,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TutorialGodScript, Assembly-CSharp
-        m_MethodName: StartMovement
+      - m_Target: {fileID: 1875964255}
+        m_TargetAssemblyTypeName: TutorialUIPrompts, Assembly-CSharp
+        m_MethodName: MovementPhaseOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33729,9 +33730,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TutorialGodScript, Assembly-CSharp
-        m_MethodName: LoadMainGame
+      - m_Target: {fileID: 1875964255}
+        m_TargetAssemblyTypeName: TutorialUIPrompts, Assembly-CSharp
+        m_MethodName: LoadMainScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -81,7 +81,7 @@ public class tutorialPeltingScript : MonoBehaviour
 
     private void ballListPopulater(int recievedTauntLevel)
     {
-        int tempBallsToThrow = 3;
+        int tempBallsToThrow = 100;
         int myTauntLevel = 0;
         int myIndex;
         finalBallsToThrow = tempBallsToThrow;
@@ -134,7 +134,7 @@ public class tutorialPeltingScript : MonoBehaviour
         foreach (Transform fielder in ball.myFielders)
         {
             var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
-            var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+            var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<tutorialTargetingLineRenderer>();
             myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
 
             //Cheating

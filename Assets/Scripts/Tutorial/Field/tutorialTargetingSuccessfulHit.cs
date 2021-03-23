@@ -7,10 +7,12 @@ public class tutorialTargetingSuccessfulHit : MonoBehaviour
     [Header("Make sure this is actually set up on the prefab")]
     [SerializeField] private GameObject baseballPrefab = null;
     private TutorialScoreHolder scoreHold;
+    private TutorialUIPrompts tutorialUI;
 
     private void Start()
     {
         scoreHold = GameObject.Find("TutorialGod").GetComponent<TutorialScoreHolder>();
+        tutorialUI = GameObject.Find("TutorialGod").GetComponent<TutorialUIPrompts>();
     }
 
     public void SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(bool gold, Vector3 mPos)
@@ -25,7 +27,17 @@ public class tutorialTargetingSuccessfulHit : MonoBehaviour
             scoreHold.score++;
             if(scoreHold.score >= 3)
             {
-                TutorialStateMachine.SetCurrentState(TutorialState.WALKING);
+                tutorialUI.MovementPhaseOn();
+                TutorialStateMachine.SetCurrentState(TutorialState.FROZEN);
+            }
+        }
+        if (TutorialStateMachine.GetCurrentState() == TutorialState.RUNNING)
+        {
+            scoreHold.score++;
+            if (scoreHold.score >= 3)
+            {
+                tutorialUI.EndPhaseOn();
+                TutorialStateMachine.SetCurrentState(TutorialState.FROZEN);
             }
         }
     }
