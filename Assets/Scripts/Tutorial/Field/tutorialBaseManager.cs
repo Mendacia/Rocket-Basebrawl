@@ -141,51 +141,5 @@ public class tutorialBaseManager : MonoBehaviour
         nextBase = requestedNextBase;
     }
 
-    private IEnumerator BaseEffects()
-    {
-        Debug.Log(WorldStateMachine.GetCurrentState());
-        /*var rb = playerPosition.GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeAll;*/
-        playerBackCam.SetActive(true);
-        pitchingCameras[currentBase - 1].SetActive(true);
-        yield return new WaitForSeconds(1);
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
-        yield return new WaitForSeconds(2);
-        pitchingCameras[currentBase - 1].SetActive(false);
-        yield return new WaitForSeconds(1);
-        TutorialStateMachine.SetCurrentState(TutorialState.BATTING);
-    }
-
-    public void Taunt()
-    {
-        Cursor.visible = false;
-        Time.timeScale = 1;
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
-        fpScript.fielderTauntLevelIncreaser();
-        SplitScreenLefts[currentBase - 1].SetActive(true);
-        SplitScreenRights[currentBase - 1].SetActive(true);
-        StartCoroutine(BaseEffects());
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
-    }
-
-    public void Bank()
-    {
-        Cursor.visible = false;
-        Time.timeScale = 1;
-        StartCoroutine(BaseEffects());
-        scoreUpdaterScript.BankScore();
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
-    }
-
-    public void Hold()
-    {
-        Cursor.visible = false;
-        Time.timeScale = 1;
-        StartCoroutine(BaseEffects());
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
-    }
-
     public List<Transform> GetBases() => bases;
 }

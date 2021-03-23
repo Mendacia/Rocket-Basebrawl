@@ -32,6 +32,14 @@ public class tutorialPlayerDash : MonoBehaviour
                 StartCoroutine(Dash());
             }
         }
+        if (context.performed && TutorialStateMachine.GetCurrentState() == TutorialState.WALKING)
+        {
+            if (canDash)
+            {
+                canDash = false;
+                StartCoroutine(Dash());
+            }
+        }
     }
 
     IEnumerator Dash()
