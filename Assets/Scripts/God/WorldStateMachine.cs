@@ -33,6 +33,7 @@ public class WorldStateMachine : MonoBehaviour
             PeltingScript.StartMe();
             BattingPhase.enabled = false;
             PeltingScript.enabled = true;
+            //Destroy here
             hUDScript.clearTheBallUI();
             BallGod.masterBallList.Clear();
             PeltingScript.InitializeRunningPhase();
@@ -48,6 +49,7 @@ public class WorldStateMachine : MonoBehaviour
             pitchingCam.SetActive(true);
             BattingPhase.enabled = true;
             PeltingScript.enabled = false;
+            //Destroy here
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             BattingPhase.InitializeBattingPhase(BaseScript.currentBaseTarget);
@@ -59,6 +61,12 @@ public class WorldStateMachine : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
             pitchingCam.SetActive(false);
+            //Destroy here
+            GameObject[] lineRenderers = GameObject.FindGameObjectsWithTag("TargetingBeamTag");
+            foreach (GameObject linerender in lineRenderers)
+            { 
+                Destroy(linerender); 
+            }
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             BattingPhase.StopMe();
