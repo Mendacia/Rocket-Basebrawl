@@ -11,7 +11,7 @@ public class DeactiveateCamera : MonoBehaviour
 
     private void Start()
     {
-        
+        WorldStateMachine.SetCurrentState(WorldState.GAMESTART);
     }
 
     public void skipDolly()
