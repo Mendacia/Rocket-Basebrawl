@@ -8,19 +8,16 @@ using Cinemachine;
 public class DeactiveateCamera : MonoBehaviour
 {
     public GameObject startCam;
-    public CinemachineDollyCart dolCart;
-    public Transform playerRotation;
 
-    public static bool dollyActive = false;
-
-    private void Awake()
+    private void Start()
     {
-        dollyActive = true;
+        
     }
 
     public void skipDolly()
     {
-        dollyActive = false;
+        WorldStateMachine.SetCurrentState(WorldState.FIRSTPITCH);
+        //dollyActive = false;
         startCam.SetActive(false);
     }
 }

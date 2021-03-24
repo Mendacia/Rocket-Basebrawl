@@ -49,7 +49,6 @@ public class WorldStateMachine : MonoBehaviour
             pitchingCam.SetActive(true);
             BattingPhase.enabled = true;
             PeltingScript.enabled = false;
-            //Destroy here
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             BattingPhase.InitializeBattingPhase(BaseScript.currentBaseTarget);
@@ -74,6 +73,33 @@ public class WorldStateMachine : MonoBehaviour
             BattingPhase.enabled = false;
             PeltingScript.enabled = false;
         }
+        if (state == WorldState.GAMESTART)
+        {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            currentState = WorldState.GAMESTART;
+            pitchingCam.SetActive(false);
+            //BallGod.masterBallList.Clear();
+            //hUDScript.clearTheBallUI();
+            //BattingPhase.StopMe();
+            //PeltingScript.StopMe();
+            //BattingPhase.enabled = false;
+            //PeltingScript.enabled = false;
+        }
+
+        if (state == WorldState.FIRSTPITCH)
+        {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            BattingPhase.StartMe();
+            PeltingScript.StopMe();
+            pitchingCam.SetActive(true);
+            BattingPhase.enabled = true;
+            PeltingScript.enabled = false;
+            currentState = WorldState.FIRSTPITCH;
+        }
+
+
     }
 
     public static WorldState GetCurrentState() => Instance.currentState;
@@ -85,5 +111,7 @@ public enum WorldState
 {
     BATTING,
     RUNNING,
+    GAMESTART,
+    FIRSTPITCH,
     FROZEN
 }
