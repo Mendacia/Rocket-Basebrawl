@@ -7,17 +7,24 @@ using Cinemachine;
 
 public class DeactiveateCamera : MonoBehaviour
 {
-    public GameObject startCam;
+    private GameObject startCam;
+    [SerializeField] private GameObject clickStartText = null;
+    bool hasSkipped = false;
 
     private void Start()
     {
-        WorldStateMachine.SetCurrentState(WorldState.GAMESTART);
+        startCam = this.gameObject;
+        
     }
 
     public void skipDolly()
     {
-        WorldStateMachine.SetCurrentState(WorldState.FIRSTPITCH);
-        //dollyActive = false;
-        startCam.SetActive(false);
+        if(hasSkipped == false)
+        {
+            hasSkipped = true;
+            WorldStateMachine.SetCurrentState(WorldState.FIRSTPITCH);
+            clickStartText.SetActive(false);
+            startCam.SetActive(false);
+        }
     }
 }

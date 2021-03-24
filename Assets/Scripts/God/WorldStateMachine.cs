@@ -20,6 +20,7 @@ public class WorldStateMachine : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+        SetCurrentState(WorldState.GAMESTART);
     }
 
     private void SetCurrentStateInternal(WorldState state)
@@ -33,7 +34,6 @@ public class WorldStateMachine : MonoBehaviour
             PeltingScript.StartMe();
             BattingPhase.enabled = false;
             PeltingScript.enabled = true;
-            //Destroy here
             hUDScript.clearTheBallUI();
             BallGod.masterBallList.Clear();
             PeltingScript.InitializeRunningPhase();
@@ -60,14 +60,14 @@ public class WorldStateMachine : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
             pitchingCam.SetActive(false);
+            BallGod.masterBallList.Clear();
+            hUDScript.clearTheBallUI();
             //Destroy here
             GameObject[] lineRenderers = GameObject.FindGameObjectsWithTag("TargetingBeamTag");
             foreach (GameObject linerender in lineRenderers)
             { 
                 Destroy(linerender); 
             }
-            BallGod.masterBallList.Clear();
-            hUDScript.clearTheBallUI();
             BattingPhase.StopMe();
             PeltingScript.StopMe();
             BattingPhase.enabled = false;
@@ -91,12 +91,13 @@ public class WorldStateMachine : MonoBehaviour
         {
             var rb = player.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            BattingPhase.StartMe();
-            PeltingScript.StopMe();
+            //BattingPhase.StartMe();
             pitchingCam.SetActive(true);
             BattingPhase.enabled = true;
             PeltingScript.enabled = false;
+            BattingPhase.InitializeBattingPhase(BattingPhase.homeBaseTarget);
             currentState = WorldState.FIRSTPITCH;
+            
         }
 
 
