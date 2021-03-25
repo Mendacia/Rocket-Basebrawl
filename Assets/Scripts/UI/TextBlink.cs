@@ -5,38 +5,39 @@ using UnityEngine.UI;
 
 public class TextBlink : MonoBehaviour
 {
-    private Text clickStart;
+    [SerializeField] private Text clickStart = null;
     private bool shouldFadeOut = true;
     private bool fadeOut = true;
-    private bool fadeIn = true;
+    private bool fadeIn = false;
     private Color zeroAlpha;
     private Color fullAlpha;
 
     // Start is called before the first frame update
     void Start()
     {
-        clickStart = this.gameObject.GetComponent<Text>();
-        zeroAlpha.r = clickStart.color.r; zeroAlpha.g = clickStart.color.g; zeroAlpha.b = clickStart.color.b;
-        zeroAlpha.a = 0;
-        fullAlpha.r = clickStart.color.r; fullAlpha.g = clickStart.color.g; fullAlpha.b = clickStart.color.b;
-        fullAlpha.a = 255;
+        zeroAlpha = new Color(clickStart.color.r, clickStart.color.g, clickStart.color.b, 0);
+        fullAlpha = new Color(clickStart.color.r, clickStart.color.g, clickStart.color.b, 1);
+        shouldFadeOut = true;
+        //clickStart.color = zeroAlpha;
+        StartCoroutine(FadeOut());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(clickStart.color.a == 0 && !fadeIn)
+        if(clickStart.color.a <= 0.1f && !fadeIn)
         {
             fadeIn = true;
             fadeOut = false;
             shouldFadeOut = false;
+            StopCoroutine(FadeOut());
             StartCoroutine(FadeIn());
         }
-        if(clickStart.color.a == 255 && !fadeOut)
+        if (clickStart.color.a >= 0.9 && !fadeOut)
         {
-            fadeIn = false;
             fadeOut = true;
+            fadeIn = false;
             shouldFadeOut = true;
+            StopCoroutine(FadeIn());
             StartCoroutine(FadeOut());
         }
     }
@@ -45,16 +46,16 @@ public class TextBlink : MonoBehaviour
     {
         while (clickStart.color.a > 0 && shouldFadeOut)
         {
-            clickStart.color = Color.Lerp(clickStart.color, zeroAlpha, 4 * Time.deltaTime);
+            clickStart.color = Color.Lerp(clickStart.color, zeroAlpha, 1.5f * Time.deltaTime);
             yield return null;
         }
     }
 
     IEnumerator FadeIn()
     {
-        while(clickStart.color.a < 255 && !shouldFadeOut)
+        while(clickStart.color.a < 1 && shouldFadeOut == false)
         {
-            clickStart.color = Color.Lerp(clickStart.color, fullAlpha, 4 * Time.deltaTime);
+            clickStart.color = Color.Lerp(clickStart.color, fullAlpha, 1.5f * Time.deltaTime);
             yield return null;
         }
     }

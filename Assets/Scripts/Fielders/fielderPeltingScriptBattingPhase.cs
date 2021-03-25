@@ -38,7 +38,6 @@ public class fielderPeltingScriptBattingPhase : MonoBehaviour
 
     private void ballListPopulater()
     {
-        Debug.Log("Why the fuck is this triggering twice????");
         int ballsToThrow = 3;
         int myTauntLevel;
         int myIndex;

@@ -5967,7 +5967,7 @@ Light:
   m_BounceIntensity: 2.93
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.12e-43, y: 5.87e-43, z: 0, w: -0.00000001244107}
+  m_BoundingSphereOverride: {x: 0, y: 8.2206e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8573,7 +8573,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.16254012, y: -0.29687616, z: 0.051357377, w: 0.93957853}
+  m_LocalRotation: {x: 0.16254011, y: -0.2968762, z: 0.051357377, w: 0.93957853}
   m_LocalPosition: {x: -39.598053, y: 39.93906, z: -89.61091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10355,6 +10355,7 @@ GameObject:
   - component: {fileID: 2040790108}
   - component: {fileID: 2040790107}
   - component: {fileID: 2040790106}
+  - component: {fileID: 2040790109}
   m_Layer: 5
   m_Name: ClickToStart
   m_TagString: Untagged
@@ -10378,7 +10379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 26.8}
+  m_AnchoredPosition: {x: 0, y: 26.800049}
   m_SizeDelta: {x: 160, y: 29.820007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2040790106
@@ -10438,6 +10439,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040790104}
   m_CullTransparentMesh: 0
+--- !u!114 &2040790109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040790104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0474b2cdc18fbf43adcbd4b688e666f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickStart: {fileID: 2040790107}
 --- !u!1001 &2041684777
 PrefabInstance:
   m_ObjectHideFlags: 0
