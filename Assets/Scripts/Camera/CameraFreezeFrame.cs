@@ -11,26 +11,27 @@ public class CameraFreezeFrame : MonoBehaviour
     private bool sequenceStarted = false;
     private bool firstBallHit = false;
 
-    void Update()
+    private void Update()
     {
-        if(GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score == 1 && !sequenceStarted)
+        if(!firstBallHit && WorldStateMachine.GetCurrentState() == WorldState.RUNNING)
         {
-            sequenceStarted = true;
-            StartCoroutine(cameraSequence());
+            if (!sequenceStarted)
+            {
+                firstBallHit = true;
+                sequenceStarted = true;
+                StartCoroutine(cameraSequence());
+            }
         }
     }
 
     IEnumerator cameraSequence()
     {
-        if (!firstBallHit)
-        {
-            cameraRoot.SetActive(true);
-            vcam.LookAt = GameObject.Find("Baseball(Clone)").transform;
-            //vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
-            yield return new WaitForSeconds(0.1f);
-            Time.timeScale = 0.3f;
-            firstBallHit = true;
-        }
+        cameraRoot.SetActive(true);
+        vcam.LookAt = GameObject.Find("Baseball(Clone)").transform;
+        //vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 0.5f;
+        firstBallHit = true;
         yield return StartCoroutine(WaitForRealSeconds(waitTime));
         if (PauseMenu.isPaused == false)
         {
@@ -38,9 +39,7 @@ public class CameraFreezeFrame : MonoBehaviour
             cameraRoot.SetActive(false);
             this.gameObject.SetActive(false);
         }
-        else {
-            StartCoroutine(cameraSequence());
-        }
+        this.gameObject.SetActive(false);
     }
 
     IEnumerator WaitForRealSeconds(float seconds)

@@ -15,7 +15,6 @@ public class POVCamControl : MonoBehaviour
     [Range(0, 100)]
     public float sensitivity = 50;
 
-    [SerializeField] private bool useX = true;
     [SerializeField] private bool shouldInheritAtStart = false;
 
     // Start is called before the first frame update

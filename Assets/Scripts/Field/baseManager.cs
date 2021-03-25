@@ -18,7 +18,6 @@ public class baseManager : MonoBehaviour
     [SerializeField] private GameObject playerBackCam = null;
     [SerializeField] private List<GameObject> SplitScreenLefts;
     [SerializeField] private List<GameObject> SplitScreenRights;
-    [SerializeField] private GameObject baseCanvas = null;
     [SerializeField] private GameObject player = null;
 
     [Header("Visible for debug")]

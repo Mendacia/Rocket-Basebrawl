@@ -11,16 +11,12 @@ public class tutorialBaseManager : MonoBehaviour
     [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
     [SerializeField] private HUDManager hUDScript = null;
     [SerializeField] private tutorialPeltingScript fpScript= null;
-    [SerializeField] private scoreUpdater scoreUpdaterScript = null;
     [SerializeField] private TutorialUIPrompts tutorialUI = null;
 
     [Header("BaseEffects")]
     [SerializeField] private List<GameObject> pitchingCameras;
-    [SerializeField] private GameObject playerBackCam = null;
     [SerializeField] private List<GameObject> SplitScreenLefts;
     [SerializeField] private List<GameObject> SplitScreenRights;
-    [SerializeField] private GameObject baseCanvas = null;
-    [SerializeField] private GameObject player = null;
 
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;

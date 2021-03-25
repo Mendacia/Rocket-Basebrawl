@@ -3129,7 +3129,7 @@ PrefabInstance:
     - target: {fileID: 183086658321196011, guid: 414845709bbe69741881edfa5012830f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 183086658321196011, guid: 414845709bbe69741881edfa5012830f,
         type: 3}
@@ -3200,6 +3200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BaseMenuPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 183086658321196023, guid: 414845709bbe69741881edfa5012830f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 183086659425491762, guid: 414845709bbe69741881edfa5012830f,
         type: 3}
@@ -7215,7 +7220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067102855}
   m_LocalRotation: {x: -0, y: 0.38268337, z: -0, w: 0.9238796}
-  m_LocalPosition: {x: 47.05, y: 14.5, z: -46.97}
+  m_LocalPosition: {x: 52.28, y: 14.5, z: -52.2}
   m_LocalScale: {x: 0.8156791, y: 1, z: 1}
   m_Children:
   - {fileID: 337300068}
@@ -7472,7 +7477,6 @@ MonoBehaviour:
   - {fileID: 1519626911}
   - {fileID: 1685415135}
   - {fileID: 2118935077}
-  baseCanvas: {fileID: 1255866878}
   player: {fileID: 5690458437575277485}
   bases: []
   percentageOfRunRemaining: 0
@@ -8214,7 +8218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394510363}
   m_LocalRotation: {x: -0, y: -0.3826829, z: -0, w: 0.9238798}
-  m_LocalPosition: {x: 47.04, y: 14.5, z: 47}
+  m_LocalPosition: {x: 50.75, y: 14.5, z: 50.71}
   m_LocalScale: {x: 0.815679, y: 1, z: 1}
   m_Children:
   - {fileID: 1803907330}
@@ -8573,7 +8577,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.16254011, y: -0.2968762, z: 0.051357377, w: 0.93957853}
+  m_LocalRotation: {x: 0.16254012, y: -0.29687622, z: 0.051357392, w: 0.9395785}
   m_LocalPosition: {x: -39.598053, y: 39.93906, z: -89.61091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8783,7 +8787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519626911}
   m_LocalRotation: {x: -0, y: -0.38268363, z: -0, w: 0.92387944}
-  m_LocalPosition: {x: 2.6, y: 6, z: -2.6}
+  m_LocalPosition: {x: 1.64, y: 10, z: -1.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779730009}
@@ -9580,7 +9584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685415135}
   m_LocalRotation: {x: -0, y: -0.9238795, z: -0, w: 0.38268346}
-  m_LocalPosition: {x: 5.3, y: 15.6, z: 5.3}
+  m_LocalPosition: {x: 2.01, y: 10, z: 2.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1300265481}
@@ -10148,7 +10152,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 20
     OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -11328,7 +11332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077356605}
   m_LocalRotation: {x: -0, y: -0.9238795, z: -0, w: 0.38268346}
-  m_LocalPosition: {x: -46.93, y: 14.5, z: 46.98}
+  m_LocalPosition: {x: -52.16, y: 14.5, z: 52.21}
   m_LocalScale: {x: 1, y: 1, z: 0.8156791}
   m_Children:
   - {fileID: 490250642}
@@ -11519,7 +11523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118935077}
   m_LocalRotation: {x: -0, y: 0.92387956, z: -0, w: 0.38268343}
-  m_LocalPosition: {x: -5.3, y: 15, z: 5.3}
+  m_LocalPosition: {x: -1.59, y: 10, z: 1.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 373872653}
@@ -30822,8 +30826,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 6.5, y: 4, z: 4}
-  m_Center: {x: -2.5, y: 0.5, z: 1.75}
+  m_Size: {x: 6.4999995, y: 4, z: 4.5}
+  m_Center: {x: -2.4999998, y: 0.5, z: 1.55}
 --- !u!114 &5690458438508379262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30838,7 +30842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 5690458438353382400}
   hitWindow: 0.2
-  hitCooldown: 0.2
+  hitCooldown: 0.1
   dashCont: {fileID: 1749323202}
   dashBat: 0
   particleMaster: {fileID: 8422740989614231690}
@@ -31052,7 +31056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: 1864185570043263133, guid: 13ee23e1e6e56b14ea5307239f602518, type: 3}
   sensitivity: 50
-  useX: 1
   shouldInheritAtStart: 0
 --- !u!4 &5690458438612371883
 Transform:
