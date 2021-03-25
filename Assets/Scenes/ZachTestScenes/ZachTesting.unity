@@ -8577,7 +8577,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.16254012, y: -0.29687622, z: 0.051357392, w: 0.9395785}
+  m_LocalRotation: {x: 0.16254012, y: -0.29687616, z: 0.051357377, w: 0.93957853}
   m_LocalPosition: {x: -39.598053, y: 39.93906, z: -89.61091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31856,16 +31856,15 @@ MonoBehaviour:
 
     Left Click/Right Trigger - Bat
 
-    Right Click/Left Trigger
-    - Aim
-
     WASD/Left Stick - Move
 
-    Mouse/Right Stick - Look
+    Mouse/Right
+    Stick - Look
+
+    Shift/Space/Right Bumper - Dash
 
 
-    Click to
-    Continue'
+    Click to Continue'
 --- !u!222 &6784341482322512711
 CanvasRenderer:
   m_ObjectHideFlags: 0
