@@ -84,6 +84,6 @@ public class TutorialUIPrompts : MonoBehaviour
     //Put this on the button to load the main game
     public void LoadMainScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
