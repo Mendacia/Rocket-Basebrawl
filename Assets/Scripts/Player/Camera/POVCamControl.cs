@@ -49,10 +49,15 @@ public class POVCamControl : MonoBehaviour
         }
     }
 
+    //This is just to avoid camera bugs
     IEnumerator InheritAfterTime()
     {
+        while (WorldStateMachine.GetCurrentState() != WorldState.RUNNING)
+        {
+            yield return null;
+        }
         var vcam = GetComponent<CinemachineVirtualCamera>();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         vcam.m_Transitions.m_InheritPosition = true;
     }
 
@@ -61,8 +66,8 @@ public class POVCamControl : MonoBehaviour
         var value = context.ReadValue<Vector2>();
         if (value != Vector2.zero)
         {
-            camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 60 * Time.deltaTime)).x;
-            camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 60 * Time.deltaTime)).y;
+            camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 80 * Time.deltaTime)).x;
+            camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 80 * Time.deltaTime)).y;
         }
     }
 

@@ -7,13 +7,14 @@ using Cinemachine;
 
 public class DeactiveateCamera : MonoBehaviour
 {
-    private GameObject startCam;
+    [SerializeField] private GameObject startCam = null;
+    private GameObject camMaster;
     [SerializeField] private GameObject clickStartText = null;
     bool hasSkipped = false;
 
     private void Start()
     {
-        startCam = this.gameObject;
+        camMaster = this.gameObject;
         
     }
 
@@ -22,9 +23,16 @@ public class DeactiveateCamera : MonoBehaviour
         if(hasSkipped == false)
         {
             hasSkipped = true;
-            WorldStateMachine.SetCurrentState(WorldState.FIRSTPITCH);
             clickStartText.SetActive(false);
             startCam.SetActive(false);
+            StartCoroutine(delayFirstPitch());
         }
+    }
+
+    IEnumerator delayFirstPitch()
+    {
+        yield return new WaitForSeconds(0.15f);
+        WorldStateMachine.SetCurrentState(WorldState.FIRSTPITCH);
+        camMaster.SetActive(false);
     }
 }

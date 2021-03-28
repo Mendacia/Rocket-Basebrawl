@@ -34,7 +34,7 @@ public class CameraFreezeFrame : MonoBehaviour
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.3f);
         vcam.m_Lens.FieldOfView = 20;
-        Time.timeScale = 0.2f;
+        Time.timeScale = 0.3f;
         if (PauseMenu.isPaused == false)
         {
             Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1, 25 * Time.unscaledDeltaTime);

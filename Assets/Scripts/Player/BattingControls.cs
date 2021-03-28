@@ -26,7 +26,7 @@ public class BattingControls : MonoBehaviour
         switch (dashCont.isDashing)
         {
             case false:
-                if (context.performed && isHitting == false && PauseMenu.isPaused == false && WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
+                if (context.performed && isHitting == false && PauseMenu.isPaused == false && WorldStateMachine.GetCurrentState() != WorldState.FROZEN && WorldStateMachine.GetCurrentState() != WorldState.GAMESTART)
                 {
                     myCollider.enabled = true;
                     dashBat = true;
@@ -38,7 +38,7 @@ public class BattingControls : MonoBehaviour
                 break;
 
             case true:
-                if (context.performed && isHitting == false && PauseMenu.isPaused == false && WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
+                if (context.performed && isHitting == false && PauseMenu.isPaused == false && WorldStateMachine.GetCurrentState() != WorldState.FROZEN && WorldStateMachine.GetCurrentState() != WorldState.GAMESTART)
                 {
                     myCollider.enabled = true;
                     dashBat = true;

@@ -29,7 +29,7 @@ public class TutorialStateMachine : MonoBehaviour
         if (state == TutorialState.RUNNING)
         {
             var rb = player.GetComponent<Rigidbody>();
-            rb.constraints = ~RigidbodyConstraints.FreezeAll;
+            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
             pitchingCam.SetActive(false);
             BattingPhase.StopMe();
             PeltingScript.StartMe();
