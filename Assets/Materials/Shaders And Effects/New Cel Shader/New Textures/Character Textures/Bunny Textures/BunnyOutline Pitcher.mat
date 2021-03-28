@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BunnyOutline
+  m_Name: BunnyOutline Pitcher
   m_Shader: {fileID: -6465566751694194690, guid: 631fa94cf8e0a3840a8ef3bae7286990,
     type: 3}
   m_ShaderKeywords: 
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_A45485D8:
-        m_Texture: {fileID: 2800000, guid: dbe441291a0c2e04abc1c0dbd9c98f9e, type: 3}
+        m_Texture: {fileID: 2800000, guid: c14607e653d9a354cac683f1ca69ba8b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
