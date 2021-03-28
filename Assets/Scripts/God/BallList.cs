@@ -7,6 +7,7 @@ public class BallList : MonoBehaviour
 {
     public List<masterBallStruct> masterBallList;
     [SerializeField] private HUDManager hUDScript;
+    [SerializeField] private float readyAndThrowSpeedMultiplier = 1f;
 
     //Between this and the next comment is entirely setup of variables for the ball list
     public void AddThisBallToTheList(int Index, int taunt, Transform fielders)
@@ -138,27 +139,27 @@ public class BallList : MonoBehaviour
 
     private masterBallStruct StandardBallSetup(masterBallStruct thisball)
     {
-        thisball.myThrowSpeed = 0.5f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f));
-        thisball.myReadySpeed = 0.5f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f));
+        thisball.myThrowSpeed = (0.5f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))) * readyAndThrowSpeedMultiplier;
+        thisball.myReadySpeed = (0.5f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))) * readyAndThrowSpeedMultiplier;
         return thisball;
     }
     private masterBallStruct ArcBallSetup(masterBallStruct thisball)
     {
-        thisball.myThrowSpeed = 0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f);
-        thisball.myReadySpeed = 0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f);
+        thisball.myThrowSpeed = (0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
+        thisball.myReadySpeed = (0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
         return thisball;
     }
     private masterBallStruct MultiBallSetup(masterBallStruct thisball)
     {
-        thisball.myThrowSpeed = 1f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f);
-        thisball.myReadySpeed = 0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f);
+        thisball.myThrowSpeed = (1f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
+        thisball.myReadySpeed = (0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
         thisball.extraBallCount = Random.Range(1, 4);
         return thisball;
     }
     private masterBallStruct ScatterBallSetup(masterBallStruct thisball)
     {
-        thisball.myThrowSpeed = 1.2f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f);
-        thisball.myReadySpeed = 0.3f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f);
+        thisball.myThrowSpeed = (1.2f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))* readyAndThrowSpeedMultiplier;
+        thisball.myReadySpeed = (0.3f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
         return thisball;
     }
 
