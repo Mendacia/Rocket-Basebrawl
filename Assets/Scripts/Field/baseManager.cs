@@ -120,6 +120,7 @@ public class baseManager : MonoBehaviour
 
         Cursor.visible = true;
         hUDScript.runTheBaseUI(true, fpScript.GetFielderTauntLevel());
+        playerBackCam.SetActive(true);
         Time.timeScale = 0;
     }
 
