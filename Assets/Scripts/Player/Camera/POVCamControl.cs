@@ -43,7 +43,7 @@ public class POVCamControl : MonoBehaviour
     {
         if (WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
         {
-            POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 3) * Time.deltaTime;
+            POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 4) * Time.deltaTime;
             POVCam.m_VerticalAxis.Value -= camInput.y * (sensitivity / 3) / 2.5f * Time.deltaTime;
             camInput = Vector2.zero;
         }
@@ -66,9 +66,8 @@ public class POVCamControl : MonoBehaviour
         var value = context.ReadValue<Vector2>();
         if (value != Vector2.zero)
         {
-            camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 80 * Time.deltaTime)).x;
-            //camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 1f, 80 * Time.deltaTime)).y;
-            camInput.y = -20f;
+            camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 10f, 80 * Time.deltaTime)).x;
+            camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 10f, 80 * Time.deltaTime)).y;
         }
     }
 
