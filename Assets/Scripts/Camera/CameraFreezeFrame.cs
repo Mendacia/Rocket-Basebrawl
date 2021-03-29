@@ -26,22 +26,28 @@ public class CameraFreezeFrame : MonoBehaviour
 
     IEnumerator cameraSequence()
     {
+        Transform ball = GameObject.Find("Baseball(Clone)").transform;
         cameraRoot.SetActive(true);
-        vcam.LookAt = GameObject.Find("Baseball(Clone)").transform;
-        //vcam.Follow = GameObject.Find("Baseball(Clone)").transform;
+        vcam.LookAt = ball;
+        //vcam.Follow = ball;
+        //Rigidbody ballRB = GameObject.Find("Baseball(Clone)").GetComponent<Rigidbody>();
         yield return new WaitForSeconds(0.1f);
+        //ballRB.velocity = Vector3.zero;
+        //ballRB.constraints = RigidbodyConstraints.FreezeAll;
         vcam.m_Lens.FieldOfView = 10;
-        Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(0.3f);
+        Time.timeScale = 0.2f;
+        //yield return new WaitForSecondsRealtime(0.3f);
         vcam.m_Lens.FieldOfView = 20;
-        Time.timeScale = 0.3f;
+        //Time.timeScale = 0.3f;
         if (PauseMenu.isPaused == false)
         {
-            Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1, 25 * Time.unscaledDeltaTime);
+            Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1, 10 * Time.unscaledDeltaTime);
             //cameraRoot.SetActive(false);
             //this.gameObject.SetActive(false);
         }
         yield return StartCoroutine(WaitForRealSeconds(waitTime));
+        //ballRB.constraints = ~RigidbodyConstraints.FreezeAll;
+        //ballRB.velocity = transform.forward * 1069 * 100 * Time.deltaTime;
         Time.timeScale = 1;
         this.gameObject.SetActive(false);
     }
