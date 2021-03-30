@@ -124,7 +124,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
         else
         {
-            fire(false, fireAt); 
+            fire(false, fireAt);
         }
     }
 
