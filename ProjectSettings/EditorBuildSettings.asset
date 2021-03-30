@@ -11,9 +11,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LiamTestScenes/LiamBasebrawlTestingZone 1.unity
     guid: d2a0f1cdbbeb1e548a45925a6f1d5382
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
     guid: cf0894493be020b4b8b21bccd5282151
+=======
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
+    guid: cf0894493be020b4b8b21bccd5282151
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+>>>>>>> LBall
   - enabled: 1
     path: Assets/Scenes/ZachTestScenes/Tutorial.unity
     guid: a3c6a448141bc1142a3a81e1ad26d86d
