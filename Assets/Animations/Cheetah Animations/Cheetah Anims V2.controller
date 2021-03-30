@@ -268,7 +268,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cheetah Idle Alpha
+  m_Name: Cheetah Idle
   m_Speed: 3.2
   m_CycleOffset: 0
   m_Transitions:
@@ -621,7 +621,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cheetah Running Alpha
+  m_Name: Cheetah Running
   m_Speed: 15.5
   m_CycleOffset: 0
   m_Transitions:
