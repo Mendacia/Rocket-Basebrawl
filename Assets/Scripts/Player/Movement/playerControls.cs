@@ -111,6 +111,7 @@ public class playerControls : MonoBehaviour
         if (on)
         {
             currentSpeed = dashSpeed;
+            playerAnimator.SetTrigger("heDashing");
         }
         else
         {
