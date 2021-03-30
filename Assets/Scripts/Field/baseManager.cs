@@ -20,6 +20,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private List<GameObject> SplitScreenRights;
     [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject endScreenCam = null;
+    [SerializeField] private Animator playerAnim = null;
 
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
@@ -179,6 +180,7 @@ public class baseManager : MonoBehaviour
         fpScript.fielderTauntLevelIncreaser();
         SplitScreenLefts[currentBase - 1].SetActive(true);
         SplitScreenRights[currentBase - 1].SetActive(true);
+        playerAnim.SetTrigger("heTaunt");
         StartCoroutine(BaseEffects());
         hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }

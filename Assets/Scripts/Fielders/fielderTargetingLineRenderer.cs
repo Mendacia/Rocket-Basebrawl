@@ -49,7 +49,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         playerTransform = player;
         originPosition = fielder.position;
         direction = recievedDirection;
-        fielderAnimator = fielder.GetComponent<Animator>();
+        fielderAnimator = fielder.GetComponentInChildren<Animator>();
     }
 
     private void Update()

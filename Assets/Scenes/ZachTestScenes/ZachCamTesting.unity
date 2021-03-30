@@ -186,7 +186,6 @@ Transform:
   m_LocalScale: {x: 0.0076923072, y: 0.2, z: 0.0076923072}
   m_Children:
   - {fileID: 477897614}
-  - {fileID: 1817501566}
   m_Father: {fileID: 1787148855}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
@@ -4789,7 +4788,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
+  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -7221,6 +7220,7 @@ MonoBehaviour:
   - {fileID: 1038365966}
   player: {fileID: 5690458437575277485}
   endScreenCam: {fileID: 1755673190}
+  playerAnim: {fileID: 5690458438353382400}
   bases: []
   percentageOfRunRemaining: 0
   distanceFromBaseRequiredToProgress: 2
@@ -7272,36 +7272,6 @@ MonoBehaviour:
   m_PositionUnits: 1
   m_Speed: 75
   m_Position: 0
---- !u!1 &1817501565
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1817501566}
-  m_Layer: 0
-  m_Name: Home Base Target (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1817501566
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817501565}
-  m_LocalRotation: {x: -0, y: 0.9238792, z: -0, w: 0.3826843}
-  m_LocalPosition: {x: -0.12, y: 6.25, z: 0.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 35205418}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!1 &1819241080
 GameObject:
   m_ObjectHideFlags: 0
