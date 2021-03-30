@@ -846,6 +846,7 @@ Transform:
   m_LocalScale: {x: 0.0076923072, y: 0.2, z: 0.0076923072}
   m_Children:
   - {fileID: 477897614}
+  - {fileID: 1817501566}
   m_Father: {fileID: 1787148855}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
@@ -3202,7 +3203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450939171}
   m_LocalRotation: {x: -0, y: -0.3826829, z: -0, w: 0.9238798}
-  m_LocalPosition: {x: 56.053307, y: 14.5, z: 56.366844}
+  m_LocalPosition: {x: 56.16, y: 14.5, z: 56.16}
   m_LocalScale: {x: 0.815679, y: 1, z: 1}
   m_Children:
   - {fileID: 1845817566}
@@ -4474,7 +4475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554233683}
-  m_LocalRotation: {x: -0.025891889, y: -0.71083564, z: -0.026203107, w: 0.7023929}
+  m_LocalRotation: {x: -0.029075945, y: -0.70650876, z: -0.02907596, w: 0.70650876}
   m_LocalPosition: {x: -3.8, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7878,7 +7879,7 @@ MonoBehaviour:
     roll: 0
   - position: {x: -95, y: 6, z: 0}
     roll: 0
-  - position: {x: -224, y: 20, z: 0}
+  - position: {x: -236.21985, y: 20, z: 0}
     roll: 0
 --- !u!4 &1006602069
 Transform:
@@ -8283,7 +8284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153348936}
   m_LocalRotation: {x: -0, y: 0.38268337, z: -0, w: 0.9238796}
-  m_LocalPosition: {x: 56.48, y: 14.5, z: -56.38}
+  m_LocalPosition: {x: 56.68, y: 14.5, z: -56.58}
   m_LocalScale: {x: 0.8156791, y: 1, z: 1}
   m_Children:
   - {fileID: 631004040}
@@ -8649,7 +8650,7 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 1
+    m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -8995,7 +8996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445907794}
   m_LocalRotation: {x: -0, y: -0.9238795, z: -0, w: 0.38268346}
-  m_LocalPosition: {x: -56.82, y: 14.5, z: 56.74}
+  m_LocalPosition: {x: -56.63, y: 14.5, z: 56.55}
   m_LocalScale: {x: 1, y: 1, z: 0.8156791}
   m_Children:
   - {fileID: 1256859472}
@@ -10902,6 +10903,7 @@ MonoBehaviour:
   - {fileID: 499020903}
   - {fileID: 1038365966}
   player: {fileID: 5690458437575277485}
+  endScreenCam: {fileID: 1755673190}
   bases: []
   percentageOfRunRemaining: 0
   distanceFromBaseRequiredToProgress: 2
@@ -10929,7 +10931,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804151272}
-  m_LocalRotation: {x: -0.0091878995, y: -0.7070471, z: -0.0091878995, w: 0.70704716}
+  m_LocalRotation: {x: -0.009544387, y: -0.7070424, z: -0.009544387, w: 0.70704234}
   m_LocalPosition: {x: -3.8, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -10951,8 +10953,38 @@ MonoBehaviour:
   m_Path: {fileID: 1006602068}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 50
+  m_Speed: 75
   m_Position: 0
+--- !u!1 &1817501565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817501566}
+  m_Layer: 0
+  m_Name: Home Base Target (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1817501566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817501565}
+  m_LocalRotation: {x: -0, y: 0.9238792, z: -0, w: 0.3826843}
+  m_LocalPosition: {x: -0.12, y: 6.25, z: 0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 35205418}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!1 &1819241080
 GameObject:
   m_ObjectHideFlags: 0
@@ -30427,7 +30459,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5690458437575277484}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ActivatePlayer, Assembly-CSharp
         m_MethodName: PlayerActivation
         m_Mode: 0
@@ -30455,31 +30487,7 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton,/Razer Razer Raiju Tournament Edition
       Wired/trigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ActivateOnKeypress, Assembly-CSharp
-        m_MethodName: aimOn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TimeSlow, Assembly-CSharp
-        m_MethodName: TimeScale
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 3a928ead-c7bd-44f4-b176-69c7cd03aaf1
     m_ActionName: Player/Aim[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -30565,18 +30573,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 5690458437817348743}
---- !u!114 &5690458437575277484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690458437575277485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff0a74f69281314b912a2f895ced2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5690458437575277485
 GameObject:
   m_ObjectHideFlags: 0
@@ -30590,7 +30586,6 @@ GameObject:
   - component: {fileID: 5690458437575277472}
   - component: {fileID: 5690458437575277474}
   - component: {fileID: 5690458437906995182}
-  - component: {fileID: 5690458437575277484}
   - component: {fileID: 1749323202}
   m_Layer: 0
   m_Name: Player Controller

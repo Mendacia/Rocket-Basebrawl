@@ -24,10 +24,10 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: Player Camera
+  - m_From: Pitching Camera
     m_To: Base1Cam
     m_Blend:
-      m_Style: 1
+      m_Style: 4
       m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
@@ -35,10 +35,10 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: Player Camera
+  - m_From: Pitching Camera
     m_To: Base2Cam
     m_Blend:
-      m_Style: 1
+      m_Style: 4
       m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
@@ -46,10 +46,10 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: Player Camera
+  - m_From: Pitching Camera
     m_To: Base3Cam
     m_Blend:
-      m_Style: 1
+      m_Style: 4
       m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
@@ -83,6 +83,17 @@ MonoBehaviour:
     m_To: Player Camera
     m_Blend:
       m_Style: 1
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - m_From: Player Camera
+    m_To: Pitching Camera
+    m_Blend:
+      m_Style: 5
       m_Time: 1
       m_CustomCurve:
         serializedVersion: 2

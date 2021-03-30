@@ -19,6 +19,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private List<GameObject> SplitScreenLefts;
     [SerializeField] private List<GameObject> SplitScreenRights;
     [SerializeField] private GameObject player = null;
+    [SerializeField] private GameObject endScreenCam = null;
 
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
@@ -120,8 +121,10 @@ public class baseManager : MonoBehaviour
 
         Cursor.visible = true;
         hUDScript.runTheBaseUI(true, fpScript.GetFielderTauntLevel());
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
         playerBackCam.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     private void SwitchToBattingPhaseOnHomeBaseTouch()
@@ -129,6 +132,7 @@ public class baseManager : MonoBehaviour
         hUDScript.SetTheBaseString("1");
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
+        StartCoroutine(HomeBaseEffects());
 
         /*
             -Cinemachine shit for batting phase on bases
@@ -155,6 +159,15 @@ public class baseManager : MonoBehaviour
         pitchingCameras[currentBase - 1].SetActive(false);
         yield return new WaitForSeconds(1);
         WorldStateMachine.SetCurrentState(WorldState.BATTING);
+    }
+
+    private IEnumerator HomeBaseEffects()
+    {
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, 90, 0);
+        playerBackCam.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        endScreenCam.SetActive(true);
     }
 
     public void Taunt()
