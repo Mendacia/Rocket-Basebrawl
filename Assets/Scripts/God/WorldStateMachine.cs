@@ -59,7 +59,7 @@ public class WorldStateMachine : MonoBehaviour
             var rb = player.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
-            pitchingCam.SetActive(false);
+            //pitchingCam.SetActive(false);
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             //Destroy here
