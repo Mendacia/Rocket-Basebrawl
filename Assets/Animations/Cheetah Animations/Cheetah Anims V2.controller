@@ -549,7 +549,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Rare Idle/Taunt
-  m_Speed: 3
+  m_Speed: 7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3765623246336532718}
@@ -562,7 +562,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 4348a29c474ca614c85dca323c43a491,
+  m_Motion: {fileID: 1827226128182048838, guid: 4258d3bd693c2a64a8b86716a387f079,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -905,7 +905,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.20524478
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
