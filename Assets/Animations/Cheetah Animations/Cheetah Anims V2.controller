@@ -59,7 +59,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Dash
-  m_Speed: 12
+  m_Speed: 7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2670380930690323280}

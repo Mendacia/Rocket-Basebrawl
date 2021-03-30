@@ -7221,6 +7221,7 @@ MonoBehaviour:
   - {fileID: 1038365966}
   player: {fileID: 5690458437575277485}
   endScreenCam: {fileID: 1755673190}
+  playerAnim: {fileID: 5690458438353382400}
   bases: []
   percentageOfRunRemaining: 0
   distanceFromBaseRequiredToProgress: 2
