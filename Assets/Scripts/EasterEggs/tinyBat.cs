@@ -1,22 +1,24 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bigHead : MonoBehaviour
+public class tinyBat : MonoBehaviour
 {
-    [SerializeField] private GameObject head = null;
-    private bool isBigHead = false;
+    [SerializeField] private GameObject batCH = null;
+    [SerializeField] private GameObject batRB = null;
+
+    private bool isTinyBat = false;
 
     private enum easterEggState
     {
         NA,
-        B,
+        T,
         I,
-        G,
-        H,
-        E,
+        N,
+        Y,
+        B,
         A,
-        D
+        T2
     }
 
     private easterEggState currentEggState = easterEggState.NA;
@@ -28,13 +30,13 @@ public class bigHead : MonoBehaviour
             case easterEggState.NA:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.B))
+                    if (Input.GetKeyDown(KeyCode.T))
                     {
-                        currentEggState = easterEggState.B;
+                        currentEggState = easterEggState.T;
                     }
                 }
                 break;
-            case easterEggState.B:
+            case easterEggState.T:
                 if (Input.anyKeyDown)
                 {
                     if (Input.GetKeyDown(KeyCode.I))
@@ -51,9 +53,9 @@ public class bigHead : MonoBehaviour
             case easterEggState.I:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.G))
+                    if (Input.GetKeyDown(KeyCode.N))
                     {
-                        currentEggState = easterEggState.G;
+                        currentEggState = easterEggState.N;
                     }
                     else
                     {
@@ -62,12 +64,12 @@ public class bigHead : MonoBehaviour
                 }
 
                 break;
-            case easterEggState.G:
+            case easterEggState.N:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.H))
+                    if (Input.GetKeyDown(KeyCode.Y))
                     {
-                        currentEggState = easterEggState.H;
+                        currentEggState = easterEggState.Y;
                     }
                     else
                     {
@@ -76,12 +78,12 @@ public class bigHead : MonoBehaviour
                 }
 
                 break;
-            case easterEggState.H:
+            case easterEggState.Y:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.B))
                     {
-                        currentEggState = easterEggState.E;
+                        currentEggState = easterEggState.B;
                     }
                     else
                     {
@@ -90,7 +92,7 @@ public class bigHead : MonoBehaviour
                 }
 
                 break;
-            case easterEggState.E:
+            case easterEggState.B:
                 if (Input.anyKeyDown)
                 {
                     if (Input.GetKeyDown(KeyCode.A))
@@ -104,13 +106,12 @@ public class bigHead : MonoBehaviour
                 }
 
                 break;
-
             case easterEggState.A:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.D))
+                    if (Input.GetKeyDown(KeyCode.T))
                     {
-                        currentEggState = easterEggState.D;
+                        currentEggState = easterEggState.T2;
                     }
                     else
                     {
@@ -120,16 +121,18 @@ public class bigHead : MonoBehaviour
 
                 break;
 
-            case easterEggState.D:
-                if (!isBigHead)
+            case easterEggState.T2:
+                if (!isTinyBat)
                 {
-                    isBigHead = true;
-                    head.transform.localScale = new Vector3(3, 3, 3);
+                    isTinyBat = true;
+                    batCH.transform.localScale = new Vector3(.5f, .5f, .5f);
+                    batRB.transform.localScale = new Vector3(.5f, .5f, .5f);
                 }
                 else
                 {
-                    isBigHead = false;
-                    head.transform.localScale = new Vector3(1, 1, 1);
+                    isTinyBat = false;
+                    batCH.transform.localScale = new Vector3(1, 1, 1);
+                    batRB.transform.localScale = new Vector3(1, 1, 1);
                 }
                 currentEggState = easterEggState.NA;
                 break;

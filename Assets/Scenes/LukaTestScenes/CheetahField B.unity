@@ -4281,6 +4281,8 @@ GameObject:
   - component: {fileID: 973195644}
   - component: {fileID: 973195645}
   - component: {fileID: 973195646}
+  - component: {fileID: 973195647}
+  - component: {fileID: 973195648}
   m_Layer: 0
   m_Name: EasterEggHolder
   m_TagString: Untagged
@@ -4354,9 +4356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5690458437803316177}
-  batCH: {fileID: 0}
-  batR: {fileID: 0}
-  batS: {fileID: 0}
+  batCH: {fileID: 5690458438554472787}
+  batR: {fileID: 4935742434079576809}
+  batS: {fileID: 5366369492246187684}
   playerMat: {fileID: 2100000, guid: 76d0fcb58cf2ec64897cdafa5e5f5153, type: 2}
   batCHMat: {fileID: 2100000, guid: 837cf17aef4f15a4c89e2d666b6f6cc9, type: 2}
   batRMat: {fileID: 2100000, guid: f998a39b394e94849b9c91de5caa8b60, type: 2}
@@ -4378,6 +4380,34 @@ MonoBehaviour:
   Bat2: {fileID: 4935742434079576809}
   Swing1: {fileID: 986733550}
   Swing2: {fileID: 1016152889}
+--- !u!114 &973195647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973195640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b5217082d1cfd469a8ac225d4c0afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batCH: {fileID: 5690458438554472787}
+  batRB: {fileID: 4935742434079576809}
+--- !u!114 &973195648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973195640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759c53dd1b824ca4193d013c8696c3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batCH: {fileID: 5690458438554472787}
+  batRB: {fileID: 4935742434079576809}
 --- !u!1 &978481711
 GameObject:
   m_ObjectHideFlags: 0
@@ -24557,9 +24587,8 @@ MonoBehaviour:
   particleMaster: {fileID: 8422740989614231690}
   ventParticles: {fileID: 1154198446}
   ventFlamesRoot: {fileID: 544923647}
-  ventFlamesSystems: []
   MaximumSize: 0.3
-  MinimumSize: 0.001
+  MinimumSize: 0.08
   lerpDistance: 2
 --- !u!1 &5690458438508379263
 GameObject:
@@ -24572,7 +24601,6 @@ GameObject:
   - component: {fileID: 5690458438508379260}
   - component: {fileID: 5690458438508379261}
   - component: {fileID: 5690458438508379262}
-  - component: {fileID: 5690458438508379264}
   m_Layer: 11
   m_Name: Detector
   m_TagString: BallHit
@@ -24580,18 +24608,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5690458438508379264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690458438508379263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed17df6da6939a84cb7bc01bc20c0b21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &5690458438554472784
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24649,7 +24665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5690458438554472787}
   m_LocalRotation: {x: -0.44465718, y: 0.48573703, z: 0.5011213, w: 0.5614419}
-  m_LocalPosition: {x: 0.207, y: -0.064, z: 0.013}
+  m_LocalPosition: {x: 0.195, y: -0.062, z: 0.013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 544923647}

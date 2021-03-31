@@ -1,11 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bigHead : MonoBehaviour
+public class bigBat : MonoBehaviour
 {
-    [SerializeField] private GameObject head = null;
-    private bool isBigHead = false;
+    [SerializeField] private GameObject batCH = null;
+    [SerializeField] private GameObject batRB = null;
+
+    private bool isBigBat = false;
 
     private enum easterEggState
     {
@@ -13,10 +15,9 @@ public class bigHead : MonoBehaviour
         B,
         I,
         G,
-        H,
-        E,
+        B2,
         A,
-        D
+        T
     }
 
     private easterEggState currentEggState = easterEggState.NA;
@@ -65,9 +66,9 @@ public class bigHead : MonoBehaviour
             case easterEggState.G:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.H))
+                    if (Input.GetKeyDown(KeyCode.B))
                     {
-                        currentEggState = easterEggState.H;
+                        currentEggState = easterEggState.B2;
                     }
                     else
                     {
@@ -76,21 +77,7 @@ public class bigHead : MonoBehaviour
                 }
 
                 break;
-            case easterEggState.H:
-                if (Input.anyKeyDown)
-                {
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        currentEggState = easterEggState.E;
-                    }
-                    else
-                    {
-                        currentEggState = easterEggState.NA;
-                    }
-                }
-
-                break;
-            case easterEggState.E:
+            case easterEggState.B2:
                 if (Input.anyKeyDown)
                 {
                     if (Input.GetKeyDown(KeyCode.A))
@@ -104,13 +91,12 @@ public class bigHead : MonoBehaviour
                 }
 
                 break;
-
             case easterEggState.A:
                 if (Input.anyKeyDown)
                 {
-                    if (Input.GetKeyDown(KeyCode.D))
+                    if (Input.GetKeyDown(KeyCode.T))
                     {
-                        currentEggState = easterEggState.D;
+                        currentEggState = easterEggState.T;
                     }
                     else
                     {
@@ -120,16 +106,18 @@ public class bigHead : MonoBehaviour
 
                 break;
 
-            case easterEggState.D:
-                if (!isBigHead)
+            case easterEggState.T:
+                if (!isBigBat)
                 {
-                    isBigHead = true;
-                    head.transform.localScale = new Vector3(3, 3, 3);
+                    isBigBat = true;
+                    batCH.transform.localScale = new Vector3(3, 3, 3);
+                    batRB.transform.localScale = new Vector3(3, 3, 3);
                 }
                 else
                 {
-                    isBigHead = false;
-                    head.transform.localScale = new Vector3(1, 1, 1);
+                    isBigBat = false;
+                    batCH.transform.localScale = new Vector3(1, 1, 1);
+                    batRB.transform.localScale = new Vector3(1, 1, 1);
                 }
                 currentEggState = easterEggState.NA;
                 break;
