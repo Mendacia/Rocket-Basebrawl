@@ -22,6 +22,10 @@ public class playerControls : MonoBehaviour
     private Animator playerAnimator = null;
     private Rigidbody rb = null;
 
+    [Header("Particle Variables whatever i don't care")]
+    [SerializeField] private List<ParticleSystem> playerFeetParticlesForDashing;
+    [SerializeField] private float MinimumSize, lerpDistance, MaximumSize;
+
     private void Awake()
     {
         playerAnimator = GetComponentInChildren<Animator>();
@@ -30,7 +34,21 @@ public class playerControls : MonoBehaviour
 
     private void Start()
     {
-        currentSpeed = baseSpeed;
+        foreach(ParticleSystem p in playerFeetParticlesForDashing)
+            {
+                p.startLifetime = Mathf.Lerp(p.startLifetime, MinimumSize, lerpDistance * Time.deltaTime);
+            }
+    }
+
+    private void Update()
+    {
+        if (currentSpeed <= topSpeed + 5)
+        {
+            foreach (ParticleSystem p in playerFeetParticlesForDashing)
+            {
+                p.startLifetime = Mathf.Lerp(p.startLifetime, MinimumSize, lerpDistance * Time.deltaTime);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -110,6 +128,10 @@ public class playerControls : MonoBehaviour
     {
         if (on)
         {
+            foreach (ParticleSystem p in playerFeetParticlesForDashing)
+            {
+                p.startLifetime = MaximumSize;
+            }
             currentSpeed = dashSpeed;
             playerAnimator.SetTrigger("heDashing");
         }
