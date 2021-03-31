@@ -14,6 +14,7 @@ public class BattingControls : MonoBehaviour
     public bool dashBat = false;
     private BoxCollider myCollider = null;
     [SerializeField] private GameObject particleMaster = null;
+    [SerializeField] private GameObject ventParticles = null;
 
     private void Start()
     {
@@ -32,7 +33,6 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     playerAnimator.SetTrigger("heHit");
-                    particleMaster.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
                 break;
@@ -45,7 +45,6 @@ public class BattingControls : MonoBehaviour
                     isHitting = true;
                     Debug.Log("DAAAAASH BAAAAT!!!!!!!!!!!!!!!");
                     playerAnimator.SetTrigger("heDashHit");
-                    particleMaster.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
                 break;
@@ -54,9 +53,12 @@ public class BattingControls : MonoBehaviour
 
     IEnumerator Cooldown()
     {
+        ventParticles.SetActive(true);
+        particleMaster.SetActive(true);
         yield return new WaitForSeconds(hitWindow);
         myCollider.enabled = false;
         yield return new WaitForSeconds(hitCooldown);
+        ventParticles.SetActive(false);
         particleMaster.SetActive(false);
         dashBat = false;
         isHitting = false;
