@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CheetahBatB
+  m_Name: RabbitBatB
   m_Shader: {fileID: -6465566751694194690, guid: 631fa94cf8e0a3840a8ef3bae7286990,
     type: 3}
   m_ShaderKeywords: 
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_A45485D8:
-        m_Texture: {fileID: 2800000, guid: f63eea91ff30e6d48800caa1ebc457ef, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3c256c9f92fdc0a4d9c19680840b93e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -66,16 +66,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1A06547D: 2.39
-    - Vector1_3FBFDC6A: 0
+    - Vector1_1A06547D: 0
+    - Vector1_3FBFDC6A: 0.18
     - Vector1_48F29B53: 4.33
-    - Vector1_497300E1: 0.307
+    - Vector1_497300E1: 0
     - Vector1_4E87E868: 0
     - Vector1_541E821D: 1
     - Vector1_6AAE875: 1
-    - Vector1_BC878080: 3.3
-    - Vector1_E4DC2276: 0.175
-    - Vector1_EF2B9D0F: 2.41
+    - Vector1_BC878080: 3.4
+    - Vector1_E4DC2276: 0.01
+    - Vector1_EF2B9D0F: 0.45
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
