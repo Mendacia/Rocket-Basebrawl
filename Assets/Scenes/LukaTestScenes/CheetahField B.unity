@@ -6016,7 +6016,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
+  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -11755,7 +11755,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -12309,7 +12309,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 200
+    maxNumParticles: 6000000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -16907,7 +16907,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -22186,37 +22186,37 @@ PrefabInstance:
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3301427
+      value: -1.516
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7221965
+      value: 1.594
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.86412907
+      value: 0.262
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.9868474
+      value: 0.9900171
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.028738078
+      value: -0.006172622
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.11819565
+      value: 0.08777421
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.106471114
+      value: 0.11010845
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
@@ -22226,17 +22226,17 @@ PrefabInstance:
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 11.733
+      value: 12.656
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -165.847
+      value: -190.179
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -175.202
+      value: -180.417
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
@@ -23912,6 +23912,12 @@ MonoBehaviour:
   topSpeed: 30
   stoppingSpeed: 10
   dashSpeed: 100
+  playerFeetParticlesForDashing:
+  - {fileID: 4422748126085305903}
+  - {fileID: 3636620473013160727}
+  MinimumSize: 0.1
+  lerpDistance: 0.2
+  MaximumSize: 2
 --- !u!4 &5690458437933267884
 Transform:
   m_ObjectHideFlags: 0
@@ -24622,7 +24628,7 @@ MonoBehaviour:
   ventFlamesRoot: {fileID: 544923647}
   MaximumSize: 0.3
   MinimumSize: 0.08
-  lerpDistance: 2
+  lerpDistance: 1.3
 --- !u!1 &5690458438508379263
 GameObject:
   m_ObjectHideFlags: 0
