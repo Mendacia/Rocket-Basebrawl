@@ -55,7 +55,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -221,8 +221,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.95709896, b: 0, a: 1}
-      maxColor: {r: 0, g: 0.9545455, b: 1, a: 0.59607846}
+      minColor: {r: 0, g: 1, b: 0.94070315, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.8455281, a: 0.59607846}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4943,7 +4943,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -5109,8 +5109,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.5801887, g: 1, b: 0.9354136, a: 1}
-      maxColor: {r: 0.96015084, g: 1, b: 0, a: 1}
+      minColor: {r: 0.5803922, g: 1, b: 0.97859293, a: 1}
+      maxColor: {r: 0.9717935, g: 0.4669811, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9813,7 +9813,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9979,8 +9979,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.99039555, b: 0.7688679, a: 1}
-      maxColor: {r: 0.6194375, g: 0.9056604, b: 0.86131597, a: 1}
+      minColor: {r: 0, g: 0.75050783, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.77521896, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14692,7 +14692,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -14858,8 +14858,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.95496166, b: 0, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.84309745, a: 1}
+      minColor: {r: 1, g: 0, b: 0.8089566, a: 1}
+      maxColor: {r: 0.4669811, g: 1, b: 0.97891426, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19470,7 +19470,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d94d075fc71f57242bccb5ef99b6daa4, type: 2}
+  - {fileID: 2100000, guid: d5ec2f663eec1fc438ea009dff7cfb9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19526,7 +19526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6922191216323000791}
   m_Layer: 0
-  m_Name: Ball Hit V1
+  m_Name: Ball Hit Effect 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19606,7 +19606,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -19772,8 +19772,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.95709896, b: 0, a: 1}
-      maxColor: {r: 0, g: 0.9545455, b: 1, a: 0.59607846}
+      minColor: {r: 0, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.6414294, a: 0.59607846}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
