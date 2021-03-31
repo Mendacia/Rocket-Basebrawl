@@ -160,6 +160,7 @@ public class BallList : MonoBehaviour
     {
         thisball.myThrowSpeed = (1.2f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))* readyAndThrowSpeedMultiplier;
         thisball.myReadySpeed = (0.3f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
+        thisball.extraBallCount = Random.Range(5, 10);
         return thisball;
     }
 

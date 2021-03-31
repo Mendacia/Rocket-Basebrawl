@@ -14,6 +14,7 @@ public class fielderPeltingScript : MonoBehaviour
     private BallList ballGodScript; //This is holy
     private Transform player;
     private fielderProgressionBasedAccuracyScript rangeAllocationScript;
+    private fielderScatterAccuracyScript scatterAllocationScript;
 
     [System.NonSerialized] public bool activateBase = false;
 
@@ -40,6 +41,7 @@ public class fielderPeltingScript : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rangeAllocationScript = GameObject.Find("AccuracyTarget").GetComponent<fielderProgressionBasedAccuracyScript>();
+        scatterAllocationScript = GameObject.Find("AccuracyTarget").GetComponent<fielderScatterAccuracyScript>();
         ballGodScript = GameObject.Find("BallGod").GetComponent<BallList>();
         fieldingTeam = new List<Transform>();
 
@@ -173,11 +175,17 @@ public class fielderPeltingScript : MonoBehaviour
         }
         else
         {
+            var i = 0;
             foreach (Transform fielder in ball.myFielders)
             {
-                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
+                if(ball.myType == ballType.SCATTER)
+                {
+                    var myTarget = scatterAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
+                }
+                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-                myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
+                myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[i], (target - fielder.position).normalized);
+                i++;
 
                 //Cheating
                 if (Gilded)
