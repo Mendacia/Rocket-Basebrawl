@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
   m_Name: Global Batting Effects Profile
   m_EditorClassIdentifier: 
-  components: []
+  components:
+  - {fileID: 2775274494189623558}
 --- !u!114 &2775274494189623558
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -28,26 +29,26 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   postExposure:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   contrast:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
     min: -100
     max: 100
   colorFilter:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
   hueShift:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 180
     min: -180
     max: 180
   saturation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 100
     min: -100
     max: 100

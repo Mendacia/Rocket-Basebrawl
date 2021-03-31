@@ -18,6 +18,9 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
 
+    [Header("BallHitEffect")]
+    [SerializeField] private GameObject ballEffect = null;
+
     private float currentBeamTime = 0;
 
     private float beamWidth = 1f;

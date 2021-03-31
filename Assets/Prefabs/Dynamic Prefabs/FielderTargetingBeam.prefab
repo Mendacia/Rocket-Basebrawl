@@ -267,6 +267,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  ballEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
+    type: 3}
 --- !u!114 &2770760321334005192
 MonoBehaviour:
   m_ObjectHideFlags: 0

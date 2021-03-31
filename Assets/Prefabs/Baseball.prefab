@@ -5011,6 +5011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSpeed: 1069
   expireAfterSeconds: 1.65
+  ballHit: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910, type: 3}
 --- !u!198 &5845543877041761063
 ParticleSystem:
   m_ObjectHideFlags: 0
