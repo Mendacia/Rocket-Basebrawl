@@ -5,7 +5,13 @@ using UnityEngine;
 public class silhouetteMode : MonoBehaviour
 {
     [SerializeField] private GameObject player = null;
+    [SerializeField] private GameObject batCH = null;
+    [SerializeField] private GameObject batR = null;
+    [SerializeField] private GameObject batS = null;
     [SerializeField] private Material playerMat = null;
+    [SerializeField] private Material batCHMat = null;
+    [SerializeField] private Material batRMat = null;
+    [SerializeField] private Material batSMat = null;
     [SerializeField] private Material silMat = null;
     private bool isSilhouetted = false;
     private enum easterEggState
@@ -93,11 +99,17 @@ public class silhouetteMode : MonoBehaviour
                 {
                     isSilhouetted = true;
                     player.GetComponent<SkinnedMeshRenderer>().material = playerMat;
+                    batCH.GetComponent<MeshRenderer>().material = batCHMat;
+                    batR.GetComponent<MeshRenderer>().material = batRMat;
+                    batS.GetComponentInChildren<MeshRenderer>().material = batSMat;
                 }
                 else
                 {
                     isSilhouetted = false;
                     player.GetComponent<SkinnedMeshRenderer>().material = silMat;
+                    batCH.GetComponent<MeshRenderer>().material = silMat;
+                    batR.GetComponent<MeshRenderer>().material = silMat;
+                    batS.GetComponentInChildren<MeshRenderer>().material = silMat;
                 }
                 currentEggState = easterEggState.NA;
                 break;
