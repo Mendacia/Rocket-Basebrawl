@@ -35,9 +35,9 @@ TagManager:
   - OutlineV3
   - PitchingCam
   - PlayerCam
-  - 
-  - 
-  - 
+  - SportsCam
+  - MainCameras
+  - PostProcessing
   - 
   - 
   - 

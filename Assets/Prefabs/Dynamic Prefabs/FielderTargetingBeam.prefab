@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4622114389322137639}
   - component: {fileID: 2092683616380776174}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3623002623490018392}
   - component: {fileID: 2770760321334005192}
   - component: {fileID: 3094088559040947739}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: FielderTargetingBeam
   m_TagString: TargetingBeamTag
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677286459514861501}
   - component: {fileID: 6498900954136277324}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: target part x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 4948332345778576506}
   - component: {fileID: 5029753048700278757}
   - component: {fileID: 3355636648000104717}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6212122890892303188}
   - component: {fileID: 6904843786045904685}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: target part o
   m_TagString: Untagged
   m_Icon: {fileID: 0}
