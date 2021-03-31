@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else if(Time.timeScale != 0)
+            else if(Time.timeScale != 0 && WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
             {
                 Pause();
             }

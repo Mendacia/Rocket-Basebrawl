@@ -7,7 +7,8 @@ public class fielderPeltingScriptBattingPhase : MonoBehaviour
     [Header("Set this stuff up please")]
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private Transform pitcher;
-    [SerializeField] private Transform homeBaseTarget;
+    //Yes I hate this public too
+    public Transform homeBaseTarget;
 
     //Things I've already set up:
     private BallList ballGodScript; //This is holy
@@ -23,7 +24,8 @@ public class fielderPeltingScriptBattingPhase : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ballGodScript = GameObject.Find("BallGod").GetComponent<BallList>();
-        InitializeBattingPhase(homeBaseTarget);
+        //InitializeBattingPhase(homeBaseTarget);
+        //Hey this is being initialised under the FIRSTPITCH state in WorldStateMachine!
     }
 
 

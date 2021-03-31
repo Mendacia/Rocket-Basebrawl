@@ -48,6 +48,15 @@ public class PlayerTauntCamera : MonoBehaviour
             yield return new WaitForSeconds(0.005f);
         }*/
         yield return new WaitForSeconds(3);
+        for (int i = 0; i < 5; i++)
+        {
+            if (rectX < 1f)
+            {
+                rectX = rectX + 0.1f;
+            }
+            myCamera.rect = new Rect(rectX, 0, 0.5f, 1);
+            yield return new WaitForSeconds(0.0015f);
+        }
         this.gameObject.SetActive(false);
     }
 }

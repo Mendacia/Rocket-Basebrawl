@@ -32,6 +32,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     private soundEffectHolder soundFX;
     private BallList myBallList;
 
+    private Animator fielderAnimator;
+
     private void Awake()
     {
         targetingBeam = gameObject.GetComponent<LineRenderer>();
@@ -47,6 +49,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         playerTransform = player;
         originPosition = fielder.position;
         direction = recievedDirection;
+        fielderAnimator = fielder.GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -121,7 +124,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
         else
         {
-            fire(false, fireAt); 
+            fire(false, fireAt);
         }
     }
 
@@ -152,6 +155,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             {
                 myBallList.SetToGold(recievedIndex);
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                fielderAnimator.SetTrigger("heFire");
                 soundFX.GoldSoundEffect();
                 myScoreUpdater.SweetAddToScore();
             }
@@ -160,6 +164,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
                 myBallList.SetToSilver(recievedIndex);
                 gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
                 soundFX.SilverSoundEffect();
+                fielderAnimator.SetTrigger("heFire");
                 myScoreUpdater.HitAddToScore();
             }
         }
@@ -167,6 +172,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         {
             myBallList.SetToMiss(recievedIndex);
             gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget(originPosition, direction);
+            fielderAnimator.SetTrigger("heFire");
             myScoreUpdater.SubtractFromScore();
         }
         Destroy(gameObject);

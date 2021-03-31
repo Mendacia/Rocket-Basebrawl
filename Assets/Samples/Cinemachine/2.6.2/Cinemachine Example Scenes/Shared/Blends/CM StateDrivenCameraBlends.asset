@@ -14,31 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CustomBlends:
   - m_From: CM Dolly Cam
-    m_To: CM 3rdPerson Normal
+    m_To: Player Camera
     m_Blend:
       m_Style: 1
-      m_Time: 0.5
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
-    m_To: CM 3rd Person Aim
-    m_Blend:
-      m_Style: 1
-      m_Time: 0.15
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  - m_From: CM 3rd Person Aim
-    m_To: CM 3rdPerson Normal
-    m_Blend:
-      m_Style: 5
       m_Time: 0.3
       m_CustomCurve:
         serializedVersion: 2
@@ -46,10 +24,10 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
+  - m_From: Pitching Camera
     m_To: Base1Cam
     m_Blend:
-      m_Style: 1
+      m_Style: 4
       m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
@@ -57,10 +35,10 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
+  - m_From: Pitching Camera
     m_To: Base2Cam
     m_Blend:
-      m_Style: 1
+      m_Style: 4
       m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
@@ -68,10 +46,10 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
+  - m_From: Pitching Camera
     m_To: Base3Cam
     m_Blend:
-      m_Style: 1
+      m_Style: 4
       m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
@@ -79,7 +57,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
+  - m_From: Player Camera
     m_To: Freeze Frame Camera
     m_Blend:
       m_Style: 0
@@ -90,8 +68,19 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
-    m_To: LookAtBallCam
+  - m_From: Player Camera
+    m_To: Dolly Screen Cam
+    m_Blend:
+      m_Style: 1
+      m_Time: 5
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - m_From: Freeze Frame Camera
+    m_To: Player Camera
     m_Blend:
       m_Style: 1
       m_Time: 1
@@ -101,11 +90,11 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - m_From: CM 3rdPerson Normal
-    m_To: ScreenCam
+  - m_From: Player Camera
+    m_To: Pitching Camera
     m_Blend:
-      m_Style: 1
-      m_Time: 5
+      m_Style: 5
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []

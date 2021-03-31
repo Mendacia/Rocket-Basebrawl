@@ -18,8 +18,9 @@ public class baseManager : MonoBehaviour
     [SerializeField] private GameObject playerBackCam = null;
     [SerializeField] private List<GameObject> SplitScreenLefts;
     [SerializeField] private List<GameObject> SplitScreenRights;
-    [SerializeField] private GameObject baseCanvas = null;
     [SerializeField] private GameObject player = null;
+    [SerializeField] private GameObject endScreenCam = null;
+    [SerializeField] private Animator playerAnim = null;
 
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
@@ -121,7 +122,10 @@ public class baseManager : MonoBehaviour
 
         Cursor.visible = true;
         hUDScript.runTheBaseUI(true, fpScript.GetFielderTauntLevel());
-        Time.timeScale = 0;
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
+        playerBackCam.SetActive(true);
+        //Time.timeScale = 0;
     }
 
     private void SwitchToBattingPhaseOnHomeBaseTouch()
@@ -129,6 +133,7 @@ public class baseManager : MonoBehaviour
         hUDScript.SetTheBaseString("1");
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
+        StartCoroutine(HomeBaseEffects());
 
         /*
             -Cinemachine shit for batting phase on bases
@@ -157,6 +162,15 @@ public class baseManager : MonoBehaviour
         WorldStateMachine.SetCurrentState(WorldState.BATTING);
     }
 
+    private IEnumerator HomeBaseEffects()
+    {
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        player.transform.eulerAngles = new Vector3(0, 90, 0);
+        playerBackCam.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        endScreenCam.SetActive(true);
+    }
+
     public void Taunt()
     {
         Cursor.visible = false;
@@ -166,6 +180,7 @@ public class baseManager : MonoBehaviour
         fpScript.fielderTauntLevelIncreaser();
         SplitScreenLefts[currentBase - 1].SetActive(true);
         SplitScreenRights[currentBase - 1].SetActive(true);
+        playerAnim.SetTrigger("heTaunt");
         StartCoroutine(BaseEffects());
         hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }

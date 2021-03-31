@@ -15,9 +15,7 @@ public class POVCamControl : MonoBehaviour
     [Range(0, 100)]
     public float sensitivity = 50;
 
-    [SerializeField] private bool useX = true;
     [SerializeField] private bool shouldInheritAtStart = false;
-    [SerializeField] private playerControls playerStateReference = null;
 
     // Start is called before the first frame update
 
@@ -45,20 +43,21 @@ public class POVCamControl : MonoBehaviour
     {
         if (WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
         {
-            if (useX == true)
-            {
-                POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 3) * Time.deltaTime;
-            }
-
+            POVCam.m_HorizontalAxis.Value += camInput.x * (sensitivity / 4) * Time.deltaTime;
             POVCam.m_VerticalAxis.Value -= camInput.y * (sensitivity / 3) / 2.5f * Time.deltaTime;
             camInput = Vector2.zero;
         }
     }
 
+    //This is just to avoid camera bugs
     IEnumerator InheritAfterTime()
     {
+        while (WorldStateMachine.GetCurrentState() != WorldState.RUNNING)
+        {
+            yield return null;
+        }
         var vcam = GetComponent<CinemachineVirtualCamera>();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         vcam.m_Transitions.m_InheritPosition = true;
     }
 
@@ -67,8 +66,8 @@ public class POVCamControl : MonoBehaviour
         var value = context.ReadValue<Vector2>();
         if (value != Vector2.zero)
         {
-            camInput.x = value.x;
-            camInput.y = value.y;
+            camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 10f, 80 * Time.deltaTime)).x;
+            camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 10f, 80 * Time.deltaTime)).y;
         }
     }
 

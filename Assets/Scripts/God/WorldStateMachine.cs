@@ -20,6 +20,7 @@ public class WorldStateMachine : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+        SetCurrentState(WorldState.GAMESTART);
     }
 
     private void SetCurrentStateInternal(WorldState state)
@@ -27,7 +28,7 @@ public class WorldStateMachine : MonoBehaviour
         if (state == WorldState.RUNNING)
         {
             var rb = player.GetComponent<Rigidbody>();
-            rb.constraints = ~RigidbodyConstraints.FreezeAll;
+            rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
             pitchingCam.SetActive(false);
             BattingPhase.StopMe();
             PeltingScript.StartMe();
@@ -58,14 +59,48 @@ public class WorldStateMachine : MonoBehaviour
             var rb = player.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
-            pitchingCam.SetActive(false);
+            //pitchingCam.SetActive(false);
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
+            //Destroy here
+            GameObject[] lineRenderers = GameObject.FindGameObjectsWithTag("TargetingBeamTag");
+            foreach (GameObject linerender in lineRenderers)
+            { 
+                Destroy(linerender); 
+            }
             BattingPhase.StopMe();
             PeltingScript.StopMe();
             BattingPhase.enabled = false;
             PeltingScript.enabled = false;
         }
+        if (state == WorldState.GAMESTART)
+        {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            currentState = WorldState.GAMESTART;
+            pitchingCam.SetActive(false);
+            //BallGod.masterBallList.Clear();
+            //hUDScript.clearTheBallUI();
+            //BattingPhase.StopMe();
+            //PeltingScript.StopMe();
+            //BattingPhase.enabled = false;
+            //PeltingScript.enabled = false;
+        }
+
+        if (state == WorldState.FIRSTPITCH)
+        {
+            var rb = player.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            //BattingPhase.StartMe();
+            pitchingCam.SetActive(true);
+            BattingPhase.enabled = true;
+            PeltingScript.enabled = false;
+            BattingPhase.InitializeBattingPhase(BattingPhase.homeBaseTarget);
+            currentState = WorldState.FIRSTPITCH;
+            
+        }
+
+
     }
 
     public static WorldState GetCurrentState() => Instance.currentState;
@@ -77,5 +112,7 @@ public enum WorldState
 {
     BATTING,
     RUNNING,
+    GAMESTART,
+    FIRSTPITCH,
     FROZEN
 }

@@ -18,5 +18,10 @@ public class fielderTargetingSuccessfulHit : MonoBehaviour
         {
             WorldStateMachine.SetCurrentState(WorldState.RUNNING);
         }
+        if (WorldStateMachine.GetCurrentState() == WorldState.FIRSTPITCH)
+        {
+            WorldStateMachine.SetCurrentState(WorldState.RUNNING);
+
+        }
     }
 }
