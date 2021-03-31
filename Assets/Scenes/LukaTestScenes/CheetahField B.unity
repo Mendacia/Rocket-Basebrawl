@@ -5837,7 +5837,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
+  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -24556,6 +24556,11 @@ MonoBehaviour:
   dashBat: 0
   particleMaster: {fileID: 8422740989614231690}
   ventParticles: {fileID: 1154198446}
+  ventFlamesRoot: {fileID: 544923647}
+  ventFlamesSystems: []
+  MaximumSize: 0.3
+  MinimumSize: 0.001
+  lerpDistance: 2
 --- !u!1 &5690458438508379263
 GameObject:
   m_ObjectHideFlags: 0

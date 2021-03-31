@@ -16,11 +16,26 @@ public class BattingControls : MonoBehaviour
     [SerializeField] private GameObject particleMaster = null;
     [SerializeField] private GameObject ventParticles = null;
 
+    [Header("Everything to do with Vent Flames")]
+    [SerializeField] private Transform ventFlamesRoot = null;
+    private List<ParticleSystem> ventFlamesSystems = new List<ParticleSystem>();
+    [SerializeField] private float MaximumSize = 1;
+    [SerializeField] private float MinimumSize = 0;
+    [SerializeField] private float lerpDistance = 0.2f;
+
     private void Start()
     {
         myCollider = gameObject.GetComponent<BoxCollider>();
         myCollider.enabled = false;
         isHitting = false;
+    }
+
+    private void Awake()
+    {
+        foreach (Transform child in ventFlamesRoot)
+        {
+            ventFlamesSystems.Add(child.GetComponent<ParticleSystem>());
+        }
     }
     public void Batting(CallbackContext context)
     {
@@ -53,6 +68,12 @@ public class BattingControls : MonoBehaviour
 
     IEnumerator Cooldown()
     {
+
+        foreach(ParticleSystem flame in ventFlamesSystems)
+        {
+            flame.startLifetime = MaximumSize;
+        }
+
         ventParticles.SetActive(true);
         particleMaster.SetActive(true);
         yield return new WaitForSeconds(hitWindow);
@@ -62,5 +83,14 @@ public class BattingControls : MonoBehaviour
         particleMaster.SetActive(false);
         dashBat = false;
         isHitting = false;
+    }
+
+    private void Update()
+    {
+        foreach (ParticleSystem flame in ventFlamesSystems)
+        {
+            flame.startLifetime = Mathf.Lerp(flame.startLifetime, MinimumSize, lerpDistance * Time.deltaTime);
+        }
+
     }
 }
