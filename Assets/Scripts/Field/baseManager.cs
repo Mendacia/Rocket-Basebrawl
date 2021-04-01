@@ -134,10 +134,6 @@ public class baseManager : MonoBehaviour
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
         StartCoroutine(HomeBaseEffects());
-
-        /*
-            -Cinemachine shit for batting phase on bases
-        */
     }
 
     private void ProgressBase(int requestedCurrentBase, int requestedNextBase)

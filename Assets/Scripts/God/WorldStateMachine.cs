@@ -60,6 +60,7 @@ public class WorldStateMachine : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
             //pitchingCam.SetActive(false);
+            BallGod.sendBallsToExporter();
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             //Destroy here

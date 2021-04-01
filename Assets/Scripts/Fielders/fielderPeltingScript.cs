@@ -145,7 +145,6 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void ReadyThrow()
     {
-        Debug.Log("ReadyThrow was called");
         var ball = ballGodScript.CallForBall();
         if (ball.myIndex != -1)
         {
