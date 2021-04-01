@@ -10,6 +10,7 @@ public class WorldStateMachine : MonoBehaviour
     [SerializeField] private baseManager BaseScript = null;
     [SerializeField] private BallList BallGod = null;
     [SerializeField] private HUDManager hUDScript = null;
+    [SerializeField] private scoreUpdater scoreUpdatingScript = null;
     [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject pitchingCam = null;
     private WorldState currentState;
@@ -60,7 +61,9 @@ public class WorldStateMachine : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             currentState = WorldState.FROZEN;
             //pitchingCam.SetActive(false);
+            scoreUpdatingScript.SendNumbersOverToTheScoreHolder();
             BallGod.sendBallsToExporter();
+            Debug.Log("Sent balls and values over to DDOL");
             BallGod.masterBallList.Clear();
             hUDScript.clearTheBallUI();
             //Destroy here

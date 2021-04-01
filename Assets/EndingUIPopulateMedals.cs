@@ -15,6 +15,12 @@ public class EndingUIPopulateMedals : MonoBehaviour
     [SerializeField] private Transform silverHolderChild;
     [SerializeField] private Transform missedHolderChild;
 
+    [Header("Similar to above")]
+    [SerializeField] private GameObject goldTotalText;
+    [SerializeField] private GameObject silverTotalText;
+    [SerializeField] private GameObject missedTotalText;
+
+    [Header("Animation stuff")]
     [SerializeField] private float tempCountGold, tempCountSilver, tempCountMissed;
     private int i = 0;
     private float waitTime = 0.1f;
@@ -29,13 +35,20 @@ public class EndingUIPopulateMedals : MonoBehaviour
     }
     private passes currentPass = passes.GOLD;
 
+    private void Awake()
+    {
+        StartCoroutine(delayMedals());
+    }
+
+    IEnumerator delayMedals()
+    {
+        yield return new WaitForSeconds(1);
+        PopulateMedalList();
+    }
+
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            PopulateMedalList();
-        }
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             waitTime = 0.01f;
@@ -161,6 +174,16 @@ public class EndingUIPopulateMedals : MonoBehaviour
                     PopulateMedalList();
                 }
             }
+        }
+        else if (currentPass == passes.ENDED)
+        {
+            goldTotalText.SetActive(true);
+            silverTotalText.SetActive(true);
+            missedTotalText.SetActive(true);
+
+            goldTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myGold.ToString();
+            silverTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.mySilver.ToString();
+            missedTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myMiss.ToString();
         }
     }
     IEnumerator waitToContinue()

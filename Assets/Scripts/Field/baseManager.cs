@@ -160,11 +160,14 @@ public class baseManager : MonoBehaviour
 
     private IEnumerator HomeBaseEffects()
     {
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        yield return new WaitForSeconds(0.1f);
+        scoreUpdaterScript.BankScore();
+        SceneManager.LoadScene("EndingBasebrawlTestingZone");
+        /*player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, 90, 0);
         playerBackCam.SetActive(true);
         yield return new WaitForSeconds(0.05f);
-        endScreenCam.SetActive(true);
+        endScreenCam.SetActive(true);*/
     }
 
     public void Taunt()
