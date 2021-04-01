@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MenuScenes/MainMenu.unity
     guid: 010a42af1b1d5bd4a9d2beba688aa482
   - enabled: 0
@@ -14,15 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
     guid: cf0894493be020b4b8b21bccd5282151
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ZachTestScenes/Tutorial.unity
     guid: a3c6a448141bc1142a3a81e1ad26d86d
-  - enabled: 0
-    path: Assets/Scenes/ZachTestScenes/ZachTesting.unity
-    guid: 679ba647f390ea84488bc6c108b2463d
   - enabled: 1
-    path: Assets/Scenes/ZachTestScenes/ZachCamTesting.unity
-    guid: c53d0badcd4aa284aa6edac652b52228
+    path: Assets/Scenes/ZachTestScenes/ZachTestingSports.unity
+    guid: 67e4b0f0cae1a584f9feca6dd7b73bd4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 301bdb5e194e1ed43baa092f2845b086,
       type: 2}
