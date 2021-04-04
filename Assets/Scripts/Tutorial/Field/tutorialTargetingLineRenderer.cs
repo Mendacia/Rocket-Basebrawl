@@ -23,6 +23,7 @@ public class tutorialTargetingLineRenderer : MonoBehaviour
     private float beamWidth = 1f;
     private Vector3 direction = Vector3.zero;
     private Vector3 originPosition = Vector3.zero;
+    private Vector3 lastFrameMidPoint = Vector3.zero;
     private Transform playerTransform = null;
     private bool sweetSpotActive = false;
 
@@ -61,6 +62,7 @@ public class tutorialTargetingLineRenderer : MonoBehaviour
         if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
+            if (lastFrameMidPoint == Vector3.zero) { lastFrameMidPoint = hitterRayCastHit.point; }
             fire(true, midPoint);
         }
         //This is where the player has not hit the ball
@@ -92,6 +94,7 @@ public class tutorialTargetingLineRenderer : MonoBehaviour
         targetingBeam.endWidth = beamWidth;
         BeamEffectsOverLifetime(midPoint, startPoint, endPoint);
 
+        lastFrameMidPoint = midPoint;
         //Color the beam
     }
 
@@ -151,16 +154,16 @@ public class tutorialTargetingLineRenderer : MonoBehaviour
             if (sweetSpotActive)
             {
                 myBallList.SetToGold(recievedIndex);
-                gameObject.GetComponent<tutorialTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<tutorialTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 soundFX.GoldSoundEffect();
-                myScoreUpdater.SweetAddToScore();
+                myScoreUpdater.SweetAddToScore(lastFrameMidPoint);
             }
             else
             {
                 myBallList.SetToSilver(recievedIndex);
-                gameObject.GetComponent<tutorialTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<tutorialTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 soundFX.SilverSoundEffect();
-                myScoreUpdater.HitAddToScore();
+                myScoreUpdater.HitAddToScore(lastFrameMidPoint);
             }
         }
         else

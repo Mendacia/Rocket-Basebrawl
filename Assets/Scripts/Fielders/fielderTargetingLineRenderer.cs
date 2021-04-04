@@ -34,6 +34,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     private scoreUpdater myScoreUpdater;
     private soundEffectHolder soundFX;
     private BallList myBallList;
+    private Vector3 lastFrameMidPoint = Vector3.zero;
 
     private Animator fielderAnimator;
 
@@ -67,6 +68,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
+            if (lastFrameMidPoint == Vector3.zero) { lastFrameMidPoint = hitterRayCastHit.point; }
             fire(true, midPoint);
         }
         //This is where the player has not hit the ball
@@ -99,6 +101,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         BeamEffectsOverLifetime(midPoint, startPoint, endPoint);
 
         //Color the beam
+        lastFrameMidPoint = midPoint;
     }
 
     public void GildMe() //Cheat funciton
@@ -157,18 +160,18 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             if (sweetSpotActive)
             {
                 myBallList.SetToGold(recievedIndex);
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 fielderAnimator.SetTrigger("heFire");
                 soundFX.GoldSoundEffect();
-                myScoreUpdater.SweetAddToScore();
+                myScoreUpdater.SweetAddToScore(lastFrameMidPoint);
             }
             else
             {
                 myBallList.SetToSilver(recievedIndex);
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 soundFX.SilverSoundEffect();
                 fielderAnimator.SetTrigger("heFire");
-                myScoreUpdater.HitAddToScore();
+                myScoreUpdater.HitAddToScore(lastFrameMidPoint);
             }
         }
         else

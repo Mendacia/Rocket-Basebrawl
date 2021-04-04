@@ -24,6 +24,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
     private float beamWidth = 1f;
     private Vector3 direction = Vector3.zero;
     private Vector3 originPosition = Vector3.zero;
+    private Vector3 lastFrameMidPoint;
     private Transform playerTransform = null;
     private bool sweetSpotActive = false;
 
@@ -56,6 +57,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
         if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
+            if (lastFrameMidPoint == Vector3.zero) { lastFrameMidPoint = hitterRayCastHit.point; }
             fire(true, midPoint);
         }
         //This is where the player has not hit the ball
@@ -87,6 +89,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
         targetingBeam.endWidth = beamWidth;
         BeamEffectsOverLifetime(midPoint, startPoint, endPoint);
 
+        lastFrameMidPoint = midPoint;
         //Color the beam
     }
 
@@ -145,14 +148,16 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
         {
             if (sweetSpotActive)
             {
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 soundFX.GoldSoundEffect();
                 myParent.gold = true;
+                myParent.mostRecentMidPoint = lastFrameMidPoint;
             }
             else
             {
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 soundFX.SilverSoundEffect();
+                myParent.mostRecentMidPoint = lastFrameMidPoint;
             }
         }
         else

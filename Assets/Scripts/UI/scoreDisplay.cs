@@ -13,7 +13,7 @@ public class scoreDisplay : MonoBehaviour
 
     void Start()
     {
-        theAllSeeingScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        theAllSeeingScoreHolder = GameObject.Find("DDOL_Scoreholder").GetComponent<scoreHolder>();
     }
 
     void Update()

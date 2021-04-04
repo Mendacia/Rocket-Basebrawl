@@ -15,6 +15,8 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject baseCanvas = null;
     [SerializeField] private Image currentBallIcon = null;
     [SerializeField] private Image nextBallIcon = null;
+    [SerializeField] private GameObject comboObject = null;
+    [SerializeField] private GameObject comboX = null;
 
     [Header("Prefab Setup")]
     public GameObject ballIconObject;
@@ -71,5 +73,16 @@ public class HUDManager : MonoBehaviour
         else nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
 
         Debug.Log("current ball should be " + currentTaunt);
+    }
+
+    public void displayTheComboElement(Vector3 targetLocation)
+    {
+        combo.enabled = true;
+        var myImage = comboObject.GetComponent<Image>().sprite;
+        comboObject.transform.position = Camera.main.WorldToScreenPoint(targetLocation);
+        comboX.transform.position = Camera.main.WorldToScreenPoint(targetLocation);
+        comboObject.GetComponent<Animator>().SetTrigger("Display");
+        comboX.GetComponent<Image>().enabled = true;
+        comboX.GetComponent<Animator>().SetTrigger("Hit");
     }
 }

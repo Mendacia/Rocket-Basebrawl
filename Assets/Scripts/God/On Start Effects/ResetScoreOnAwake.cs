@@ -6,6 +6,6 @@ public class ResetScoreOnAwake : MonoBehaviour
 {
     private void Awake()
     {
-        GameObject.Find("Scoreholder").GetComponent<scoreHolder>().score = 0;
+        GameObject.Find("DDOL_Scoreholder").GetComponent<scoreHolder>().score = 0;
     }
 }

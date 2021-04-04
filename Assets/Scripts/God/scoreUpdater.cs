@@ -30,10 +30,10 @@ public class scoreUpdater : MonoBehaviour
 
     void Start()
     {
-        myScoreHolder = GameObject.Find("Scoreholder").GetComponent<scoreHolder>();
+        myScoreHolder = GameObject.Find("DDOL_Scoreholder").GetComponent<scoreHolder>();
     }
 
-    public void HitAddToScore()
+    public void HitAddToScore(Vector3 target)
     {
 
         unstableScore += (defaultScore + comboCount * hitComboIncrament);
@@ -42,6 +42,10 @@ public class scoreUpdater : MonoBehaviour
         {
             maxCombo = comboCount;
         }
+        if (comboCount > 1)
+        {
+            myHUDManager.displayTheComboElement(target);
+        }
         totalUnbankedBalls++;
         totalSilver++;
 
@@ -49,7 +53,7 @@ public class scoreUpdater : MonoBehaviour
         myHUDManager.UpdateTheComboMultiplier(comboCount);
     }
 
-    public void SweetAddToScore()
+    public void SweetAddToScore(Vector3 target)
     {
         Debug.Log("Fired");
         unstableScore += (int)(defaultScore * 1.25f) + (comboCount * sweetComboIncrament);
@@ -57,6 +61,10 @@ public class scoreUpdater : MonoBehaviour
         if (comboCount > maxCombo)
         {
             maxCombo = comboCount;
+        }
+        if (comboCount > 1)
+        {
+            myHUDManager.displayTheComboElement(target);
         }
         totalUnbankedBalls++;
         totalGold++;
