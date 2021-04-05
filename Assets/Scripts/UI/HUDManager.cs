@@ -7,12 +7,14 @@ public class HUDManager : MonoBehaviour
 {
     [Header("Text setup for the UI")]
     [SerializeField] private Text unstableScore = null;
+    [SerializeField] private Text score = null;
     [SerializeField] private Text combo = null;
     [SerializeField] private Text baseNumber = null;
     [SerializeField] private Transform arrowHolder = null;
     public Transform ballIconHolder;
 
     [SerializeField] private GameObject baseCanvas = null;
+    private Animator baseCanvasAnimator = null;
     [SerializeField] private Image currentBallIcon = null;
     [SerializeField] private Image nextBallIcon = null;
     [SerializeField] private GameObject comboObject = null;
@@ -24,10 +26,26 @@ public class HUDManager : MonoBehaviour
 
     private int targetUnstableScore;
     private int currentlyDisplayedUnstableScore;
+    private bool banking = false;
+
+    [Header("These go to things on the BaseCanvas")]
+    [SerializeField] private int defaultScoreAnimationFactor = 110;
+    [SerializeField] private baseManager baseScript = null;
+    [SerializeField] private Text baseUnstableScore = null;
+    [SerializeField] private Text baseScore = null;
+    private int displayedUnstableScore = 0;
+    private int displayedScore = 0;
+    private int targetDisplayedScore;
+    private int scoreAnimationFactor;
+    [Header("These are specifically for Taunt on BaseCanvas")]
+    [SerializeField, TextArea] private string taunt0Text, taunt1Text, taunt2Text, taunt3PlusText;
+    [SerializeField] private Image currentTauntBall, nextTauntBall;
+    [SerializeField] private Text description;
 
     private void Start()
     {
         SetTheBaseString("1");
+        baseCanvasAnimator = baseCanvas.GetComponent<Animator>();
     }
 
     private void Update()
@@ -38,6 +56,62 @@ public class HUDManager : MonoBehaviour
             currentlyDisplayedUnstableScore = targetUnstableScore;
         }
         unstableScore.text = currentlyDisplayedUnstableScore.ToString();
+
+        //This is purely for visuals on baseUI. It sucks, I hate it, but we have to deal with it
+        if (banking)
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                scoreAnimationFactor = defaultScoreAnimationFactor * 10;
+            }
+            else
+            {
+                scoreAnimationFactor = defaultScoreAnimationFactor;
+            }
+
+            if (targetDisplayedScore - displayedScore > scoreAnimationFactor)
+            {
+                displayedScore += scoreAnimationFactor;
+                displayedUnstableScore -= scoreAnimationFactor;
+                baseScore.text = displayedScore.ToString();
+                unstableScore.text = displayedUnstableScore.ToString();
+                score.text = displayedScore.ToString();
+                baseUnstableScore.text = displayedUnstableScore.ToString();
+            }
+            else if (targetDisplayedScore - displayedScore > 0)
+            {
+                displayedScore = targetDisplayedScore;
+                displayedUnstableScore = 0;
+                baseScore.text = displayedScore.ToString();
+                unstableScore.text = displayedUnstableScore.ToString();
+                score.text = displayedScore.ToString();
+                baseUnstableScore.text = displayedUnstableScore.ToString();
+                targetUnstableScore = 0;
+                banking = false;
+                StartCoroutine(waitforBankingEnd());
+            }
+            else
+            {
+                displayedScore = targetDisplayedScore;
+                displayedUnstableScore = 0;
+                baseScore.text = displayedScore.ToString();
+                unstableScore.text = displayedUnstableScore.ToString();
+                score.text = displayedScore.ToString();
+                baseUnstableScore.text = displayedUnstableScore.ToString();
+                targetUnstableScore = 0;
+                banking = false;
+                StartCoroutine(waitforBankingEnd());
+            }
+        }
+    }
+
+    IEnumerator waitforBankingEnd()
+    {
+        baseCanvasAnimator.SetTrigger("NumbersFinished");
+        yield return new WaitForSeconds(2);
+        baseCanvasAnimator.SetTrigger("BankComplete");
+        yield return new WaitForSeconds(0.42f);
+        baseScript.EndBankAnimation();
     }
 
     public void SetTheTargetUnstableScore(int recievedScore) => targetUnstableScore = recievedScore;
@@ -73,6 +147,49 @@ public class HUDManager : MonoBehaviour
         else nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
 
         Debug.Log("current ball should be " + currentTaunt);
+    }
+
+    public void baseUITaunt(int tauntLevelCurrent)
+    {
+        if (tauntLevelCurrent < 4) { currentTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, tauntLevelCurrent); }
+        else { currentTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3); }
+        if (tauntLevelCurrent < 3) { nextTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, tauntLevelCurrent + 1); }
+        else { nextTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3); }
+
+        switch (tauntLevelCurrent)
+        {
+            case 0:
+                description.text = taunt0Text;
+                break;
+            case 1:
+                description.text = taunt1Text;
+                break;
+            case 2:
+                description.text = taunt2Text;
+                break;
+            default:
+                description.text = taunt3PlusText;
+                break;
+        }
+
+        baseCanvasAnimator.SetTrigger("Taunt");
+    }
+    public void baseUIHold()
+    {
+        baseCanvasAnimator.SetTrigger("Hold");
+    }
+    public void baseUIBank()
+    {
+
+        baseCanvasAnimator.SetTrigger("Bank");
+        displayedScore = (int)scoreHolder.scoreStatic.score;
+        displayedUnstableScore = targetUnstableScore;
+
+        targetDisplayedScore = displayedScore + displayedUnstableScore;
+
+        baseUnstableScore.text = displayedUnstableScore.ToString();
+        baseScore.text = displayedScore.ToString();
+        banking = true;
     }
 
     public void displayTheComboElement(Vector3 targetLocation)

@@ -38,6 +38,7 @@ public class baseManager : MonoBehaviour
     private float remainingDistanceToHomeBaseSansPlayerToNextBase = 0f;
     private float realRemainingDistanceToHomeBase = 0f;
     private float remainingDistanceToNextBase = 0f;
+    private bool bankAnimation;
 
     private void Awake()
     {
@@ -144,6 +145,7 @@ public class baseManager : MonoBehaviour
 
     private IEnumerator BaseEffects()
     {
+        Debug.Log("Yeah this is running");
         Debug.Log(WorldStateMachine.GetCurrentState());
         /*var rb = playerPosition.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;*/
@@ -174,30 +176,59 @@ public class baseManager : MonoBehaviour
     {
         Cursor.visible = false;
         Time.timeScale = 1;
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
-        fpScript.fielderTauntLevelIncreaser();
-        SplitScreenLefts[currentBase - 1].SetActive(true);
-        SplitScreenRights[currentBase - 1].SetActive(true);
-        playerAnim.SetTrigger("heTaunt");
-        StartCoroutine(BaseEffects());
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+        StartCoroutine(waitForAnimation(1));
     }
 
     public void Bank()
     {
         Cursor.visible = false;
         Time.timeScale = 1;
-        StartCoroutine(BaseEffects());
-        scoreUpdaterScript.BankScore();
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+        StartCoroutine(waitForAnimation(3));
     }
 
     public void Hold()
     {
         Cursor.visible = false;
         Time.timeScale = 1;
+        StartCoroutine(waitForAnimation(2));
+    }
+
+    IEnumerator waitForAnimation(int state)
+    {
+        switch (state)
+        {
+            case 1:
+                hUDScript.baseUITaunt(fpScript.GetFielderTauntLevel());
+                yield return new WaitForSeconds(4.33333f);
+                player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+                player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
+                fpScript.fielderTauntLevelIncreaser();
+                SplitScreenLefts[currentBase - 1].SetActive(true);
+                SplitScreenRights[currentBase - 1].SetActive(true);
+                playerAnim.SetTrigger("heTaunt");
+                StartCoroutine(BaseEffects());
+                hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+                break;
+            case 2:
+                hUDScript.baseUIHold();
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(BaseEffects());
+                hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+                break;
+            case 3:
+                yield return new WaitForSeconds(0);
+                hUDScript.baseUIBank();
+                break;
+            default:
+                yield return new WaitForSeconds(0);
+                break;
+        }
+    }
+
+    public void EndBankAnimation()
+    {
         StartCoroutine(BaseEffects());
+        scoreUpdaterScript.BankScore();
         hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }
 
