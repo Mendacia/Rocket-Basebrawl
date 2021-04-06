@@ -17,6 +17,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
+    [SerializeField] private GameObject arrowRoot = null;
 
     private float currentBeamTime = 0;
 
@@ -30,6 +31,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
 
     private float recievedBeamLifetime;
     private soundEffectHolder soundFX;
+    private UIArrow myArrow;
 
     private void Awake()
     {
@@ -37,12 +39,13 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
         soundFX = GameObject.Find("SoundEffectHolder").GetComponent<soundEffectHolder>();
     }
 
-    public void SetUp(float lifetime, Transform player, Transform fielder, Vector3 recievedDirection)
+    public void SetUp(float lifetime, Transform player, Transform fielder, Vector3 recievedDirection, Transform arrowFolder)
     {
         recievedBeamLifetime = lifetime;
         playerTransform = player;
         originPosition = fielder.position;
         direction = recievedDirection;
+        myArrow = Instantiate(arrowRoot, arrowFolder).GetComponent<UIArrow>();
     }
 
     private void Update()
@@ -100,6 +103,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
 
     private void BeamEffectsOverLifetime(Vector3 fireAt, Vector3 startPoint, Vector3 endPoint)
     {
+        myArrow.giveTheUIArrowTheMidPoint(fireAt);
         if (currentBeamTime < recievedBeamLifetime)
         {
             currentBeamTime = currentBeamTime + Time.deltaTime;
@@ -131,6 +135,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
              /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
             );
         targetingBeam.colorGradient = myGradient;
+        myArrow.myInnerArrow.color = lineRendererColorSilver;
     }
     private void ColorBeamGold(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
     {
@@ -140,6 +145,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
              /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
             );
         targetingBeam.colorGradient = myGradient;
+        myArrow.myInnerArrow.color = lineRendererColorGold;
     }
 
     private void fire(bool playerHitTheBall, Vector3 midPoint)
@@ -165,6 +171,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
             gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget(originPosition, direction);
             myParent.missed = true;
         }
+        Destroy(myArrow);
         Destroy(gameObject);
     }
 }

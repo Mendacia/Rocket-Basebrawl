@@ -5,44 +5,31 @@ using UnityEngine.UI;
 
 public class UIArrow : MonoBehaviour
 {
-    private Vector3 target;
-    private Image myImage;
-    [SerializeField] private Image innerArrow;
-    public Color myColor;
+    private Vector3 target = Vector3.zero;
+    public SpriteRenderer myInnerArrow;
 
-    private void Awake()
-    {
-        myImage = gameObject.GetComponentInChildren<Image>();
-    }
     public void giveTheUIArrowTheMidPoint(Vector3 recievedMidPoint)
     {
         target = recievedMidPoint;
     } 
-
-
     private void Update()
     {
-        gameObject.transform.position = transform.parent.position;      //Camera.main.WorldToScreenPoint(target.position);         //Gets the location of pitcher's midpoint but like mapped to the canvas like a reasonable person
+        /*gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
-        var NormalizedX = Camera.main.WorldToViewportPoint(target).x;
-        var NormalizedY = Camera.main.WorldToViewportPoint(target).y;
-
-        if(NormalizedX < 1.0f && NormalizedX > 0.0f && NormalizedY < 1.0f && NormalizedY > 0.0f)
+        if (target != Vector3.zero)
         {
-            myImage.gameObject.SetActive(false);
-        }
-        else
-        {
-            myImage.gameObject.SetActive(true);
             innerArrow.color = myColor;
 
-            var targetPos = Camera.main.WorldToScreenPoint(target);
+            Vector2 theoreticalIUIElementThatRepresentsTheMidPoint = new Vector2(target.x, target.z);
+
+            var targetPos = new Vector2();
             var myPos = transform.position;
-            targetPos.x = targetPos.x - myPos.x;
-            targetPos.y = targetPos.y - myPos.y;
+            targetPos.x = myPos.x - theoreticalIUIElementThatRepresentsTheMidPoint.x;
+            targetPos.y = myPos.y - theoreticalIUIElementThatRepresentsTheMidPoint.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            
-        }
+            transform.rotation = Quaternion.Euler(new Vector3(90, 0, angle));
+        }*/
+
+        transform.LookAt(new Vector3(target.x, transform.position.y, target.z));
     }
 }

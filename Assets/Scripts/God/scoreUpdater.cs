@@ -105,4 +105,6 @@ public class scoreUpdater : MonoBehaviour
     {
         myScoreHolder.StoreVariablesFromGameplay(totalSilver, totalGold, totalMiss, maxCombo);
     }
+
+    public int GetTheScoreUpdater() => unstableScore;
 }

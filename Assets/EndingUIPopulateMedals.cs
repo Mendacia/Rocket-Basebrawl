@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EndingUIPopulateMedals : MonoBehaviour
 {
+    [SerializeField] private SavingScript save;
+
     [Header("Assets/Prefabs/BallUIPostGame")]
     [SerializeField] private GameObject goldBallPrefab;
     [SerializeField] private GameObject silverBallPrefab;
@@ -21,7 +23,19 @@ public class EndingUIPopulateMedals : MonoBehaviour
     [SerializeField] private GameObject missedTotalText;
 
     [Header("Animation stuff")]
-    [SerializeField] private float tempCountGold, tempCountSilver, tempCountMissed;
+    [SerializeField] private float tempCountGold;
+    [SerializeField] private float tempCountSilver;
+    [SerializeField] private float tempCountMissed;
+
+    [Header("Animating Score and Combo bits")]
+    [SerializeField] private Text scoreDisplay;
+    [SerializeField] private Text comboDisplay;
+    [SerializeField] private GameObject returnButton;
+
+    private bool scoreUpdateTime = false;
+    private bool comboUpdateTime = false;
+    private int displayedScore = 0;
+    private int displayedCombo = 0;
     private int i = 0;
     private float waitTime = 0.1f;
     private int offset = 20;
@@ -31,7 +45,9 @@ public class EndingUIPopulateMedals : MonoBehaviour
         GOLD,
         SILVER,
         MISSED,
-        ENDED
+        SCORE,
+        COMBO,
+        IDLE
     }
     private passes currentPass = passes.GOLD;
 
@@ -56,6 +72,40 @@ public class EndingUIPopulateMedals : MonoBehaviour
         else
         {
             waitTime = 0.1f;
+        }
+
+        if (scoreUpdateTime)
+        {
+            if (displayedScore + 30 < scoreHolder.scoreStatic.score)
+            {
+                displayedScore += 30;
+            }
+            else
+            {
+                displayedScore = (int)scoreHolder.scoreStatic.score;
+                currentPass = passes.COMBO;
+                scoreUpdateTime = false;
+                Debug.Log("We should be in combo now");
+                PopulateMedalList();
+            }
+            scoreDisplay.text = displayedScore.ToString();
+        }
+
+        if (comboUpdateTime)
+        {
+            Debug.Log("The combo should update to " + scoreHolder.scoreStatic.myCombo);
+            if (displayedCombo + 1 < scoreHolder.scoreStatic.myCombo)
+            {
+                displayedCombo += 1;
+            }
+            else
+            {
+                displayedCombo = scoreHolder.scoreStatic.myCombo;
+                currentPass = passes.IDLE;
+                comboUpdateTime = false;
+                PopulateMedalList();
+            }
+            comboDisplay.text = displayedCombo.ToString();
         }
     }
 
@@ -151,7 +201,7 @@ public class EndingUIPopulateMedals : MonoBehaviour
             {
                 offset = 20;
                 i = 0;
-                currentPass = passes.ENDED;
+                currentPass = passes.SCORE;
 
                 if (ExportableBallList.instance.holdingList[i].currentState == ballState.MISSED)
                 {
@@ -175,7 +225,7 @@ public class EndingUIPopulateMedals : MonoBehaviour
                 }
             }
         }
-        else if (currentPass == passes.ENDED)
+        else if (currentPass == passes.SCORE)
         {
             goldTotalText.SetActive(true);
             silverTotalText.SetActive(true);
@@ -184,6 +234,26 @@ public class EndingUIPopulateMedals : MonoBehaviour
             goldTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myGold.ToString();
             silverTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.mySilver.ToString();
             missedTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myMiss.ToString();
+
+            scoreUpdateTime = true;
+        }
+        else if (currentPass == passes.COMBO)
+        {
+            comboUpdateTime = true;
+        }
+        else if (currentPass == passes.IDLE)
+        {
+
+            //Saving Right here.
+            if(scoreHolder.scoreStatic.score > save.loadInt("score", 0))
+            {
+                save.SaveInt((int)scoreHolder.scoreStatic.score, "score");
+            }
+            save.SaveToFile();
+
+            Destroy(scoreHolder.scoreStatic.gameObject);
+            Destroy(ExportableBallList.instance.gameObject);
+            returnButton.SetActive(true);
         }
     }
     IEnumerator waitToContinue()

@@ -9,6 +9,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private GameObject multiTargetingBeamPrefab;
     [SerializeField] private GameObject multiBeamHolder;
     [SerializeField] private HUDManager hUDScript;
+    [SerializeField] private Transform ArrowHolderOnFloorCanvas = null;
 
     //Things I've already set up:
     private BallList ballGodScript; //This is holy
@@ -163,7 +164,7 @@ public class fielderPeltingScript : MonoBehaviour
                 var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
                 myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
                 folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
-                myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
+                myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
 
                 //Cheating
                 if (Gilded)
@@ -183,7 +184,7 @@ public class fielderPeltingScript : MonoBehaviour
                 }
                 var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-                myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[i], (target - fielder.position).normalized);
+                myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[i], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
                 i++;
 
                 //Cheating
