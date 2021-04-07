@@ -9,6 +9,7 @@ public class baseManager : MonoBehaviour
 {
     [Header("This must be manually set up until I can figure out a solution")]
     [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
+    private fielderScatterAccuracyScript scatterAccuracyObject = null;
     [SerializeField] private HUDManager hUDScript = null;
     [SerializeField] private fielderPeltingScript fpScript= null;
     [SerializeField] private scoreUpdater scoreUpdaterScript = null;
@@ -43,6 +44,7 @@ public class baseManager : MonoBehaviour
     private void Awake()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        scatterAccuracyObject = fielderAccuracyObject.GetComponent<fielderScatterAccuracyScript>();
     }
     private void Start()
     {
@@ -58,6 +60,7 @@ public class baseManager : MonoBehaviour
         currentBase = 0;
         nextBase = 1;
         fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
+        scatterAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
 
         //This populates the list for distance between bases
         for (int i = 0; i < bases.Count; i++)
@@ -109,11 +112,14 @@ public class baseManager : MonoBehaviour
                 SwitchToBattingPhaseOnHomeBaseTouch();
             }
             fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
+            scatterAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
         }
 
         realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
         percentageOfRunRemaining = realRemainingDistanceToHomeBase / totalDistanceBetweenAllBases;
         fielderAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
+        scatterAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
+
     }
 
     private void SwitchToBattingPhaseOnBaseTouch(string nextBaseString)

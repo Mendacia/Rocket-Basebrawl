@@ -157,19 +157,32 @@ public class fielderPeltingScript : MonoBehaviour
     {
         if (ball.myFielders.Count > 1)
         {
-            var folder = Instantiate(multiBeamHolder, Vector3.zero, Quaternion.identity);
-            foreach (Transform fielder in ball.myFielders)
+            if(ball.myType == ballType.MULTI)
             {
-                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
-                var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
-                myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
-                folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
-                myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
-
-                //Cheating
-                if (Gilded)
+                var folder = Instantiate(multiBeamHolder, Vector3.zero, Quaternion.identity);
+                var i = 0;
+                foreach (Transform fielder in ball.myFielders)
                 {
-                    myBeamScript.GildMe();
+                    var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
+                    var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
+                    myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
+                    folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
+                    myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
+
+                    //Cheating
+                    if (Gilded)
+                    {
+                        myBeamScript.GildMe();
+                    }
+                }
+            }
+            if (ball.myType == ballType.SCATTER)
+            {
+                var i = 0;
+                Vector3 initialTarget = Vector3.zero;
+                foreach (Transform fielder in ball.myFielders)
+                {
+                    var myTarget = scatterAllocationScript.GiveTheFielderATarget(i, initialTarget);
                 }
             }
         }
@@ -178,10 +191,6 @@ public class fielderPeltingScript : MonoBehaviour
             var i = 0;
             foreach (Transform fielder in ball.myFielders)
             {
-                if(ball.myType == ballType.SCATTER)
-                {
-                    var myTarget = scatterAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
-                }
                 var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
                 var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
                 myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[i], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
