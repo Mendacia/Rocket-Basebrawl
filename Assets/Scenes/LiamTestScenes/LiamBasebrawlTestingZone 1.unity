@@ -8507,7 +8507,7 @@ GameObject:
   - component: {fileID: 1129279249}
   - component: {fileID: 1129279248}
   m_Layer: 0
-  m_Name: Jaslynn
+  m_Name: Frogey
   m_TagString: Fielder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9455,7 +9455,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
+  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -12031,7 +12031,7 @@ GameObject:
   - component: {fileID: 1593228312}
   - component: {fileID: 1593228311}
   m_Layer: 0
-  m_Name: Sheila
+  m_Name: Mistress Sebastian The 3rd
   m_TagString: Fielder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15291,7 +15291,7 @@ GameObject:
   - component: {fileID: 2047127764}
   - component: {fileID: 2047127763}
   m_Layer: 0
-  m_Name: Luanna
+  m_Name: Goblin
   m_TagString: Fielder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
