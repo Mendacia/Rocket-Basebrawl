@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FullscreenToggle : MonoBehaviour
 {
-    bool fullscreen = true;
+    public bool fullscreen = true;
 
     private void Start()
     {
