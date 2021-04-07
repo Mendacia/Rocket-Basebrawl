@@ -2258,7 +2258,7 @@ GameObject:
   - component: {fileID: 477237533}
   - component: {fileID: 477237535}
   - component: {fileID: 477237534}
-  m_Layer: 20
+  m_Layer: 5
   m_Name: SportsCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3195,7 +3195,7 @@ GameObject:
   - component: {fileID: 569864526}
   - component: {fileID: 569864525}
   - component: {fileID: 569864524}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3399,7 +3399,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598379631}
-  m_LocalRotation: {x: 0.124751754, y: 0.34820962, z: -0.046815213, w: 0.9278984}
+  m_LocalRotation: {x: 0.12475179, y: 0.34820956, z: -0.046815224, w: 0.9278984}
   m_LocalPosition: {x: -90.5, y: 38.77, z: -103.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3472,7 +3472,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627974466}
-  m_LocalRotation: {x: 0.06766972, y: 0.70386136, z: -0.06766972, w: 0.70386136}
+  m_LocalRotation: {x: 0.06766971, y: 0.70386136, z: -0.06766971, w: 0.70386136}
   m_LocalPosition: {x: -194.1, y: 38.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7000,7 +7000,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
+  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -8160,7 +8160,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489508285}
-  m_LocalRotation: {x: -0.32886884, y: 0.66961265, z: -0.4425334, w: -0.49762282}
+  m_LocalRotation: {x: -0.32886887, y: 0.6696126, z: -0.4425334, w: -0.49762282}
   m_LocalPosition: {x: 15.369999, y: 38.77, z: 4.6300006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9904,7 +9904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49a732492908e04d9d13f13b0c64a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDuration: 0.3
+  dashDuration: 0.2
   dashCooldown: 0.75
 --- !u!1 &1755673190
 GameObject:
@@ -10338,7 +10338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1778669959}
   - component: {fileID: 1778669958}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: CameraFreezeFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10627,7 +10627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1819241082}
   - component: {fileID: 1819241081}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Freeze Frame Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20256,10 +20256,6 @@ MonoBehaviour:
       Wired/trigger]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3a928ead-c7bd-44f4-b176-69c7cd03aaf1
-    m_ActionName: Player/Aim[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: eef25fb7-69cf-4cac-aeb8-7208c9db4bfa
     m_ActionName: UI/Navigate[/Razer Razer Raiju Tournament Edition Wired/stick/up,/Razer
       Razer Raiju Tournament Edition Wired/stick/down,/Razer Razer Raiju Tournament
@@ -20304,22 +20300,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7b2a7ca7-9623-4789-b95a-af6e29bf53cd
     m_ActionName: UI/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1749323202}
-        m_TargetAssemblyTypeName: playerDash, Assembly-CSharp
-        m_MethodName: PushThePlayerForwardRealHard
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: efdb7027-3535-4f30-b525-abfb3ff5ae85
-    m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1749323202}
