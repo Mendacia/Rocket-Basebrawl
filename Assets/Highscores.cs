@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Highscores : MonoBehaviour
 {
@@ -8,38 +9,55 @@ public class Highscores : MonoBehaviour
     const string publicCode = "606d036a8f421366b065719c";
     const string webURL = "http://dreamlo.com/lb/";
 
+    [SerializeField] private string playerName;
     public Highscore[] highscoresList;
+    [SerializeField] private SavingScript save;
+    [SerializeField] private Text name;
 
-    private void Awake()
+    [SerializeField] private Animator Leaderboard;
+    [SerializeField] private GameObject EnterName, LeaderboardEmpty;
+
+    [SerializeField] private List<GameObject> leaderboardPlacesParents = new List<GameObject>();
+
+    private void Update()
     {
-        AddNewHighscore("Pepsi", 5);
-        DownloadHighScoresRightFuckingNow();
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            RetrieveHighScores();
+        }
     }
 
-    public void AddNewHighscore(string user, int score)
+
+
+
+    public void AddNewHighscore()
     {
-        StartCoroutine(UploadNewHighScore(user, score));
+        if (!string.IsNullOrEmpty(playerName))
+        {
+            StartCoroutine(UploadNewHighScore(playerName, save.loadInt("score", 0)));
+            StartCoroutine(animationSyncer());
+        }
     }
-
-
     IEnumerator UploadNewHighScore(string user, int score)
     {
         WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(user) + "/" + score);
         yield return www;
 
         if (string.IsNullOrEmpty(www.error))
+        {
             print("Upload Successful");
+            RetrieveHighScores();
+        }
         else
         {
             print("Error Uploading" + www.error);
         }
     }
 
-    public void DownloadHighScoresRightFuckingNow()
+    public void RetrieveHighScores()
     {
         StartCoroutine(DownloadHighScores());
     }
-
     IEnumerator DownloadHighScores()
     {
         WWW www = new WWW(webURL + publicCode + "/pipe/");
@@ -65,10 +83,35 @@ public class Highscores : MonoBehaviour
             int score = int.Parse(entryInfo[1]);
             highscoresList[i] = new Highscore(username, score);
             print(highscoresList[i].username + ": " + highscoresList[i].score);
+
+            if(i < 6)
+            {
+                leaderboardPlacesParents[i].transform.GetChild(0).GetComponent<Text>().text = highscoresList[i].score.ToString();
+                leaderboardPlacesParents[i].transform.GetChild(1).GetComponent<Text>().text = highscoresList[i].username;
+            }
         }
     }
-}
 
+
+    public void ChangePlayerName()
+    {
+        StartCoroutine(UpdateName());
+    }
+    IEnumerator UpdateName()
+    {
+        yield return new WaitForSeconds(0.1f);
+        playerName = name.text;
+    }
+
+    IEnumerator animationSyncer()
+    {
+        Leaderboard.SetTrigger("Swap");
+        yield return new WaitForSeconds(0.3333f);
+        EnterName.SetActive(false);
+        LeaderboardEmpty.SetActive(true);
+        Leaderboard.SetTrigger("Go");
+    }
+}
 public struct Highscore
 {
     public string username;

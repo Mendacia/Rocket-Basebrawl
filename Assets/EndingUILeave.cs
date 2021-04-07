@@ -6,9 +6,15 @@ public class EndingUILeave : MonoBehaviour
 {
     [SerializeField] private GameObject myCanvas, leaderBoardCanvas;
 
+    private void Awake()
+    {
+        Cursor.visible = true;
+    }
+
     public void LEAVE()
     {
         myCanvas.GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine(DisableTheCanvas());
     }
 
     IEnumerator DisableTheCanvas()
