@@ -9,23 +9,26 @@ public class ScreenResolution : MonoBehaviour
 
     Resolution[] resolutions;
     Dropdown dropdownMenu;
+
     void Start()
     {
         fsTog = GameObject.Find("FullscreenToggle").GetComponent<FullscreenToggle>();
         dropdownMenu = gameObject.GetComponent<Dropdown>();
+        dropdownMenu.GetComponent<Dropdown>().ClearOptions();
         resolutions = Screen.resolutions;
-        dropdownMenu.onValueChanged.AddListener(delegate { Screen.SetResolution(resolutions[dropdownMenu.value].width, resolutions[dropdownMenu.value].height, false); });
+
         for (int i = 0; i < resolutions.Length; i++)
         {
-            dropdownMenu.options[i].text = ResToString(resolutions[i]);
-            dropdownMenu.value = i;
-            dropdownMenu.options.Add(new Dropdown.OptionData(dropdownMenu.options[i].text));
+            if (!dropdownMenu.GetComponent<Dropdown>().options.Contains(new Dropdown.OptionData(ResToString(resolutions[i])))/* && resolutions[i].refreshRate == 60*/)
+            {
+                dropdownMenu.GetComponent<Dropdown>().options.Add(new Dropdown.OptionData(ResToString(resolutions[i])));
+                dropdownMenu.GetComponent<Dropdown>().value = i;
+            }
         }
     }
-
     public void SetResolution(int DropdownInt)
     {
-        Screen.SetResolution(resolutions[DropdownInt].width, resolutions[DropdownInt].height, fsTog.fullscreen, 60);
+        Screen.SetResolution(resolutions[DropdownInt].width, resolutions[DropdownInt].height, fsTog.fullscreen, resolutions[DropdownInt].refreshRate);
     }
 
     string ResToString(Resolution res)
