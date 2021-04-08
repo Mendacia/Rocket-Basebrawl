@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_A45485D8:
-        m_Texture: {fileID: 2800000, guid: dbe441291a0c2e04abc1c0dbd9c98f9e, type: 3}
+        m_Texture: {fileID: 2800000, guid: b1c6e4e7cb4f1a44c87438cc5b75a12e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -73,8 +73,8 @@ Material:
     - Vector1_4E87E868: 0
     - Vector1_541E821D: 1
     - Vector1_6AAE875: 1
-    - Vector1_BC878080: 4.78
-    - Vector1_E4DC2276: 0.423
+    - Vector1_BC878080: 3.5
+    - Vector1_E4DC2276: 1
     - Vector1_EF2B9D0F: 1.54
     - _AlphaClip: 0
     - _Blend: 0
