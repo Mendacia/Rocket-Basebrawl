@@ -7,6 +7,6 @@ public class GraphicsDropdown : MonoBehaviour
 {
     public void SetQuality(int qualityIndex)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        QualitySettings.SetQualityLevel(qualityIndex, true);
     }
 }
