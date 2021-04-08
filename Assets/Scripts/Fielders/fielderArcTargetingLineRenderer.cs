@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fielderTargetingLineRenderer : MonoBehaviour
+public class fielderArcTargetingLineRenderer : MonoBehaviour
 {
     private LineRenderer targetingBeam = null;
     [Header("This, in seconds, is how close to the ball firing you have to hit the ball to get gold")]
@@ -11,7 +11,6 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [Header("These are the visual controls for the linerenderer")]
     [SerializeField] private Color lineRendererColorSilver;
     [SerializeField] private Color lineRendererColorGold;
-    [SerializeField] private Color lineRendererColorBehindPlayer;
     [SerializeField] private LayerMask hitterLayerMask;
     [SerializeField] private LayerMask physicsLayerMask;
     [SerializeField] private GameObject oSprite = null;
@@ -40,6 +39,9 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 
     private Animator fielderAnimator;
 
+    //This version needs to run it's setup only once, so I need to store some points outside of local
+    private Vector3 startPoint, midPoint;
+
     private void Awake()
     {
         targetingBeam = gameObject.GetComponent<LineRenderer>();
@@ -47,7 +49,6 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         myBallList = GameObject.Find("BallGod").GetComponent<BallList>();
         soundFX = GameObject.Find("SoundEffectHolder").GetComponent<soundEffectHolder>();
     }
-
     public void SetUp(float lifetime, int index, Transform player, Transform fielder, Vector3 recievedDirection, Transform arrowFolder)
     {
         recievedBeamLifetime = lifetime;
@@ -57,64 +58,61 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         direction = recievedDirection;
         fielderAnimator = fielder.GetComponentInChildren<Animator>();
         myArrow = Instantiate(arrowRoot, arrowFolder).GetComponent<UIArrow>();
+        SetUpBeamVisuals();
     }
 
     private void Update()
     {
-        //Setup for Linerenderer positions
-        var startPoint = originPosition;
-        var midPoint = originPosition;
-        var midPointTwo = originPosition;
-        var endPoint = originPosition;
-
-        //This is where the player actually hits the ball
-        if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
+        if (Physics.Raycast(new Vector3(midPoint.x, 50, midPoint.z), Vector3.down, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
             if (lastFrameMidPoint == Vector3.zero) { lastFrameMidPoint = hitterRayCastHit.point; }
             fire(true);
         }
+
+        //Start shrinking the beam, failing to hit the ball also runs through ShrinkBeam
+        targetingBeam.startWidth = beamWidth;
+        targetingBeam.endWidth = beamWidth;
+        BeamEffectsOverLifetime();
+
+        //Color the beam
+        lastFrameMidPoint = midPoint;
+    }
+    public void SetUpBeamVisuals()
+    {
+        var tempSP = originPosition;
+        var peakPoint = originPosition;
+        var tempMP = originPosition;
+
         //This is where the player has not hit the ball
         if (Physics.Raycast(originPosition, direction, out var physicsRaycastHit, 1000, physicsLayerMask))
         {
-            midPoint = startPoint + direction * Vector3.Distance(startPoint, playerTransform.position);
-            midPointTwo = startPoint + (direction * 1.01f) * Vector3.Distance(startPoint, playerTransform.position);
-            endPoint = physicsRaycastHit.point;
+            tempMP = tempSP + direction * Vector3.Distance(tempSP, playerTransform.position);
+            midPoint = tempMP;
+            peakPoint = new Vector3((startPoint.x + midPoint.x) / 2, 50, (startPoint.z + midPoint.z) / 2);
         }
 
-        //Setup for the actual raycast's positions
         var positions = new List<Vector3>();
 
-        //Inputting the raycast's positions
-        positions.Add(startPoint);
-        positions.Add(midPoint);
-        positions.Add(midPointTwo);
-        positions.Add(endPoint);
+        positions.Add(tempSP);
+        positions.Add(peakPoint);
+        positions.Add(tempMP);
 
         targetingBeam.positionCount = positions.Count;
         targetingBeam.SetPositions(positions.ToArray());
 
         //Visuals to help with telling the player where to run to
-        oSprite.transform.position = midPoint;
-        xSprite.transform.position = midPoint;
-
-        //Start shrinking the beam, failing to hit the ball also runs through ShrinkBeam
-        targetingBeam.startWidth = beamWidth;
-        targetingBeam.endWidth = beamWidth;
-        BeamEffectsOverLifetime(midPoint, startPoint, endPoint);
-
-        //Color the beam
-        lastFrameMidPoint = midPoint;
-    }
+        oSprite.transform.position = tempMP;
+        xSprite.transform.position = tempMP;
+    }//This time I need to set these up and NEVER CHANGE THEM
 
     public void GildMe() //Cheat funciton
     {
         sweetSpotActive = true;
     }
-
-    private void BeamEffectsOverLifetime(Vector3 fireAt, Vector3 startPoint, Vector3 endPoint)
+    private void BeamEffectsOverLifetime()
     {
-        myArrow.giveTheUIArrowTheMidPoint(fireAt);
+        myArrow.giveTheUIArrowTheMidPoint(midPoint);
         if (currentBeamTime < recievedBeamLifetime)
         {
             currentBeamTime = currentBeamTime + Time.deltaTime;
@@ -122,14 +120,14 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             oSprite.transform.localScale = new Vector3(beamWidth, beamWidth, beamWidth);
 
             //Setting up for gold hits
-            if(currentBeamTime > recievedBeamLifetime - goldThreshold)
+            if (currentBeamTime > recievedBeamLifetime - goldThreshold)
             {
                 sweetSpotActive = true;
-                ColorBeamGold(startPoint, fireAt, endPoint);
+                ColorBeamGold();
             }
             else
             {
-                ColorBeamSilver(startPoint, fireAt, endPoint);
+                ColorBeamSilver();
             }
         }
         else
@@ -138,22 +136,20 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
     }
 
-    private void ColorBeamSilver(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
+    private void ColorBeamSilver()
     {
-        var midDistance = Vector3.Distance(recievedStartPoint, recievedMidPoint) / Vector3.Distance(recievedStartPoint, recievedEndPoint);
         myGradient.SetKeys(
-             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColorSilver, 0.0f), new GradientColorKey(lineRendererColorSilver, midDistance), new GradientColorKey(lineRendererColorBehindPlayer, (midDistance * 1.01f)), new GradientColorKey(lineRendererColorBehindPlayer, 1) },
-             /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
+             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColorSilver, 0.0f), new GradientColorKey(lineRendererColorSilver, 1.0f) },
+             /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, 1f)}
             );
         targetingBeam.colorGradient = myGradient;
         myArrow.myInnerArrow.color = lineRendererColorSilver;
     }
-    private void ColorBeamGold(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
+    private void ColorBeamGold()
     {
-        var midDistance = Vector3.Distance(recievedStartPoint, recievedMidPoint) / Vector3.Distance(recievedStartPoint, recievedEndPoint);
         myGradient.SetKeys(
-             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColorGold, 0.0f), new GradientColorKey(lineRendererColorGold, midDistance), new GradientColorKey(lineRendererColorBehindPlayer, (midDistance * 1.01f)), new GradientColorKey(lineRendererColorBehindPlayer, 1) },
-             /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
+             /*Colour Keys*/new GradientColorKey[] { new GradientColorKey(lineRendererColorGold, 0.0f), new GradientColorKey(lineRendererColorGold, 1.0f) },
+             /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, 1f) }
             );
         targetingBeam.colorGradient = myGradient;
         myArrow.myInnerArrow.color = lineRendererColorGold;

@@ -10559,6 +10559,8 @@ MonoBehaviour:
     type: 3}
   multiTargetingBeamPrefab: {fileID: 8008204630371988979, guid: 39f2c1d358d93784eb23ab4e192b5855,
     type: 3}
+  arcTargetingBeamPrefab: {fileID: 2942974084842491388, guid: 7f94a7daf4d073f42af04d2deff74573,
+    type: 3}
   multiBeamHolder: {fileID: 2303775945447737407, guid: d37ad2a8aca3c2644ae6cd9bc494707f,
     type: 3}
   hUDScript: {fileID: 1712722505}
