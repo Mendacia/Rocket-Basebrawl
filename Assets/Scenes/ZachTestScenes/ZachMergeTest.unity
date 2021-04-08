@@ -1057,7 +1057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112709399}
-  m_LocalRotation: {x: 0.06766972, y: 0.70386136, z: -0.06766972, w: 0.70386136}
+  m_LocalRotation: {x: 0.06766971, y: 0.70386136, z: -0.06766971, w: 0.70386136}
   m_LocalPosition: {x: -194.1, y: 38.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3001,7 +3001,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450939171}
   m_LocalRotation: {x: -0, y: -0.3826829, z: -0, w: 0.9238798}
-  m_LocalPosition: {x: 56.16, y: 14.5, z: 56.16}
+  m_LocalPosition: {x: 77.79, y: 14.5, z: 77.79}
   m_LocalScale: {x: 0.815679, y: 1, z: 1}
   m_Children:
   - {fileID: 1845817566}
@@ -9368,7 +9368,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153348936}
   m_LocalRotation: {x: -0, y: 0.38268337, z: -0, w: 0.9238796}
-  m_LocalPosition: {x: 56.68, y: 14.5, z: -56.58}
+  m_LocalPosition: {x: 77.84, y: 14.5, z: -77.74}
   m_LocalScale: {x: 0.8156791, y: 1, z: 1}
   m_Children:
   - {fileID: 631004040}
@@ -10138,7 +10138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
+  m_LocalRotation: {x: 0.0001377795, y: -0.711724, z: 0.00013959667, w: 0.7024593}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -10630,7 +10630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299925479}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.4, y: 0, z: 0}
+  m_LocalPosition: {x: -61.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 794016247}
@@ -11043,10 +11043,6 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3a928ead-c7bd-44f4-b176-69c7cd03aaf1
-    m_ActionName: Player/Aim[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: eef25fb7-69cf-4cac-aeb8-7208c9db4bfa
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -11101,10 +11097,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7b2a7ca7-9623-4789-b95a-af6e29bf53cd
     m_ActionName: UI/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: efdb7027-3535-4f30-b525-abfb3ff5ae85
-    m_ActionName: Player/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 6041d3b0-c361-4cdf-8dd1-1817036ac362
@@ -11399,7 +11391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445907794}
   m_LocalRotation: {x: -0, y: -0.9238795, z: -0, w: 0.38268346}
-  m_LocalPosition: {x: -56.63, y: 14.5, z: 56.55}
+  m_LocalPosition: {x: -77.85, y: 14.5, z: 77.77}
   m_LocalScale: {x: 1, y: 1, z: 0.8156791}
   m_Children:
   - {fileID: 1256859472}
@@ -11729,7 +11721,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486861977}
-  m_LocalRotation: {x: 0.14147362, y: -0.5394886, z: 0.0925302, w: 0.8248487}
+  m_LocalRotation: {x: 0.111294195, y: -0.5776831, z: 0.07989842, w: 0.8046814}
   m_LocalPosition: {x: -9.840782, y: 39.93906, z: -44.23647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15985,7 +15977,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000336490}
-  m_LocalRotation: {x: 0.124751754, y: 0.34820962, z: -0.046815213, w: 0.9278984}
+  m_LocalRotation: {x: 0.124751784, y: 0.34820956, z: -0.04681522, w: 0.9278984}
   m_LocalPosition: {x: -90.5, y: 38.77, z: -103.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
