@@ -31,7 +31,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
 
     private float recievedBeamLifetime;
     private soundEffectHolder soundFX;
-    private UIArrow myArrow;
+    [SerializeField] private UIArrow myArrow;
 
     private void Awake()
     {
@@ -171,7 +171,7 @@ public class fielderMultiTargetingLineRenderer : MonoBehaviour
             gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabAndThrowItAtTheTarget(originPosition, direction);
             myParent.missed = true;
         }
-        Destroy(myArrow);
+        Destroy(myArrow.gameObject);
         Destroy(gameObject);
     }
 }

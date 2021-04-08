@@ -17,6 +17,7 @@ public class fielderArcTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
     [SerializeField] private GameObject arrowRoot;
+    [SerializeField] private int vertexCount = 12;
 
     [Header("BallHitEffect")]
     [SerializeField] private GameObject ballEffect = null;
@@ -85,21 +86,23 @@ public class fielderArcTargetingLineRenderer : MonoBehaviour
         var tempMP = originPosition;
 
         //This is where the player has not hit the ball
-        if (Physics.Raycast(originPosition, direction, out var physicsRaycastHit, 1000, physicsLayerMask))
+        if (Physics.Raycast(originPosition, direction, 1000, physicsLayerMask))
         {
             tempMP = tempSP + direction * Vector3.Distance(tempSP, playerTransform.position);
             midPoint = tempMP;
-            peakPoint = new Vector3((startPoint.x + midPoint.x) / 2, 50, (startPoint.z + midPoint.z) / 2);
+            peakPoint = new Vector3((tempSP.x + tempMP.x) / 2, 50, (tempSP.z + tempMP.z) / 2);
         }
 
-        var positions = new List<Vector3>();
-
-        positions.Add(tempSP);
-        positions.Add(peakPoint);
-        positions.Add(tempMP);
-
-        targetingBeam.positionCount = positions.Count;
-        targetingBeam.SetPositions(positions.ToArray());
+        var pointList = new List<Vector3>();
+        for (float ratio = 0; ratio <= 1; ratio += 1.0f / vertexCount)
+        {
+            var tangentLineVertex1 = Vector3.Lerp(tempSP, peakPoint, ratio);
+            var tangentLineVertex2 = Vector3.Lerp(peakPoint, tempMP, ratio);
+            var bezierpoint = Vector3.Lerp(tangentLineVertex1, tangentLineVertex2, ratio);
+            pointList.Add(bezierpoint);
+        }
+        targetingBeam.positionCount = pointList.Count;
+        targetingBeam.SetPositions(pointList.ToArray());
 
         //Visuals to help with telling the player where to run to
         oSprite.transform.position = tempMP;

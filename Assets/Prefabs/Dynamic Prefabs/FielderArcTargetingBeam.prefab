@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fa400656639b4409c664cce2405d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldThreshold: 0.2
+  goldThreshold: 0.8
   lineRendererColorSilver: {r: 0.6784314, g: 0.7372549, b: 0.74509805, a: 1}
   lineRendererColorGold: {r: 1, g: 0.7803922, b: 0.21960786, a: 1}
   hitterLayerMask:
@@ -340,6 +340,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   arrowRoot: {fileID: 7763998708788144056, guid: ab191eaee86ebf94f99c61837528edaf,
     type: 3}
+  vertexCount: 12
   ballEffect: {fileID: 0}
 --- !u!1 &3236975732383679436
 GameObject:
