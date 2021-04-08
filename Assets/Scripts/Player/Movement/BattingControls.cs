@@ -14,14 +14,21 @@ public class BattingControls : MonoBehaviour
     public bool dashBat = false;
     private BoxCollider myCollider = null;
     [SerializeField] private GameObject particleMaster = null;
-    [SerializeField] private GameObject ventParticles = null;
+    // [SerializeField] private GameObject ventParticles = null;
 
-    [Header("Everything to do with Vent Flames")]
+    [Header("Everything to do with Base Vent Flames")]
     [SerializeField] private Transform ventFlamesRoot = null;
     private List<ParticleSystem> ventFlamesSystems = new List<ParticleSystem>();
     [SerializeField] private float MaximumSize = 1;
     [SerializeField] private float MinimumSize = 0;
     [SerializeField] private float lerpDistance = 0.2f;
+
+    // [Header("Everything to do with Boosted Vent Flames")]
+    // [SerializeField] private Transform ventFlamesBoost = null;
+    // private List<ParticleSystem> ventFlamesSystemsBoost = new List<ParticleSystem>();
+    // [SerializeField] private float MaximumSizeBoost = 1;
+    // [SerializeField] private float MinimumSizeBoost = 0;
+    // [SerializeField] private float lerpDistanceBoost = 0.2f;
 
     private void Start()
     {
@@ -71,15 +78,15 @@ public class BattingControls : MonoBehaviour
 
         foreach(ParticleSystem flame in ventFlamesSystems)
         {
-            flame.startLifetime = MaximumSize;
+            flame.startSize = MaximumSize;
         }
 
-        ventParticles.SetActive(true);
+        // ventParticles.SetActive(true);
         particleMaster.SetActive(true);
         yield return new WaitForSeconds(hitWindow);
         myCollider.enabled = false;
         yield return new WaitForSeconds(hitCooldown);
-        ventParticles.SetActive(false);
+        // ventParticles.SetActive(false);
         particleMaster.SetActive(false);
         dashBat = false;
         isHitting = false;
@@ -89,8 +96,12 @@ public class BattingControls : MonoBehaviour
     {
         foreach (ParticleSystem flame in ventFlamesSystems)
         {
-            flame.startLifetime = Mathf.Lerp(flame.startLifetime, MinimumSize, lerpDistance * Time.deltaTime);
+            flame.startSize = Mathf.Lerp(flame.startSize, MinimumSize, lerpDistance * Time.deltaTime);
         }
 
+        // foreach (ParticleSystem flame in ventFlamesSystemsBoost)
+        // {
+        //     flame.startSize = Mathf.Lerp(flame.startSize, MinimumSizeBoost, lerpDistanceBoost * Time.deltaTime);
+        // }
     }
 }

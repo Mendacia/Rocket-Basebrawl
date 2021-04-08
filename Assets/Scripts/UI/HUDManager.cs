@@ -10,7 +10,6 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Text score = null;
     [SerializeField] private Text combo = null;
     [SerializeField] private Text baseNumber = null;
-    [SerializeField] private Transform arrowHolder = null;
     public Transform ballIconHolder;
 
     [SerializeField] private GameObject baseCanvas = null;
@@ -22,7 +21,6 @@ public class HUDManager : MonoBehaviour
 
     [Header("Prefab Setup")]
     public GameObject ballIconObject;
-    [SerializeField] private GameObject arrowObject = null;
 
     private int targetUnstableScore;
     private int currentlyDisplayedUnstableScore;

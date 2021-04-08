@@ -13,6 +13,7 @@ public class WorldStateMachine : MonoBehaviour
     [SerializeField] private scoreUpdater scoreUpdatingScript = null;
     [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject pitchingCam = null;
+    [SerializeField] private Transform arrowFolder = null;
     private WorldState currentState;
     private void Awake()
     {
@@ -71,6 +72,10 @@ public class WorldStateMachine : MonoBehaviour
             foreach (GameObject linerender in lineRenderers)
             { 
                 Destroy(linerender); 
+            }
+            foreach (Transform child in arrowFolder)
+            {
+                Destroy(child.gameObject);
             }
             BattingPhase.StopMe();
             PeltingScript.StopMe();

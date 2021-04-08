@@ -90,7 +90,7 @@ public class fielderPeltingScriptBattingPhase : MonoBehaviour
     private void ReadyThrow2(masterBallStruct ball)
     {
         var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-        myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, pitcher, (pitcherTarget.position - pitcher.position).normalized);
+        myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, pitcher, (pitcherTarget.position - pitcher.position).normalized, null);
 
         StartCoroutine(ThrowDelay());
         

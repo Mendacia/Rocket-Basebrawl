@@ -7,8 +7,10 @@ public class fielderPeltingScript : MonoBehaviour
     [Header("Set this prefab up please")]
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private GameObject multiTargetingBeamPrefab;
+    [SerializeField] private GameObject arcTargetingBeamPrefab;
     [SerializeField] private GameObject multiBeamHolder;
     [SerializeField] private HUDManager hUDScript;
+    [SerializeField] private Transform ArrowHolderOnFloorCanvas = null;
 
     //Things I've already set up:
     private BallList ballGodScript; //This is holy
@@ -154,51 +156,88 @@ public class fielderPeltingScript : MonoBehaviour
 
     private void ReadyThrow2(masterBallStruct ball)
     {
-        if (ball.myFielders.Count > 1)
+        switch (ball.myType)
         {
-            var folder = Instantiate(multiBeamHolder, Vector3.zero, Quaternion.identity);
-            foreach (Transform fielder in ball.myFielders)
-            {
-                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
-                var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
-                myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
-                folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
-                myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
-
-                //Cheating
-                if (Gilded)
-                {
-                    myBeamScript.GildMe();
-                }
-            }
+            case ballType.SCATTER:
+                ReadyThrowScatter(ball);
+                break;
+            case ballType.MULTI:
+                ReadyThrowMulti(ball);
+                break;
+            case ballType.ARC:
+                ReadyThrowArc(ball);
+                break;
+            default:
+                ReadyThrowStandard(ball);
+                break;
         }
-        else
-        {
-            var i = 0;
-            foreach (Transform fielder in ball.myFielders)
-            {
-                if(ball.myType == ballType.SCATTER)
-                {
-                    var myTarget = scatterAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
-                }
-                var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
-                var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
-                myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[i], (target - fielder.position).normalized);
-                i++;
-
-                //Cheating
-                if (Gilded)
-                {
-                    myBeamScript.GildMe();
-                }
-            }
-        }
-
         if (ball.myIndex != ballGodScript.masterBallList.Count - 1)
         {
             StartCoroutine(ThrowDelay(ballGodScript.masterBallList[ball.myIndex + 1].myReadySpeed));
         }
     }
+
+    private void ReadyThrowScatter(masterBallStruct ball)
+    {
+        var folder = Instantiate(multiBeamHolder, Vector3.zero, Quaternion.identity);
+        var i = 0;
+        Vector3 initialTarget = Vector3.zero;
+        foreach (Transform fielder in ball.myFielders)
+        {
+            var myTarget = scatterAllocationScript.GiveTheFielderATarget(i, initialTarget);
+            var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
+            myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
+            folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
+            myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (myTarget - fielder.position).normalized, ArrowHolderOnFloorCanvas);
+        }
+    }
+    private void ReadyThrowMulti(masterBallStruct ball)
+    {
+        var folder = Instantiate(multiBeamHolder, Vector3.zero, Quaternion.identity);
+        var i = 0;
+        foreach (Transform fielder in ball.myFielders)
+        {
+            var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[i]);
+            var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
+            myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
+            folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
+            myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
+
+            //Cheating
+            if (Gilded)
+            {
+                myBeamScript.GildMe();
+            }
+        }
+    }
+    private void ReadyThrowArc(masterBallStruct ball)
+    {
+        var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
+        var myBeamScript = Instantiate(arcTargetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderArcTargetingLineRenderer>();
+        myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - ball.myFielders[0].position).normalized, ArrowHolderOnFloorCanvas);
+
+        //Cheating
+        if (Gilded)
+        {
+           myBeamScript.GildMe();
+        }
+    }
+
+    private void ReadyThrowStandard(masterBallStruct ball)
+    {
+        var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
+        var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<fielderTargetingLineRenderer>();
+        myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - ball.myFielders[0].position).normalized, ArrowHolderOnFloorCanvas);
+
+        //Cheating
+        if (Gilded)
+        {
+            myBeamScript.GildMe();
+        }
+
+    }
+
+
 
     public int GetFielderTauntLevel() => fielderTauntLevel;
 }

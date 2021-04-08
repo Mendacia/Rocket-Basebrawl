@@ -8,6 +8,7 @@ public class tutorialPeltingScriptBattingPhase : MonoBehaviour
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private Transform pitcher;
     [SerializeField] private Transform homeBaseTarget;
+    [SerializeField] private Transform arrowFolder;
 
     //Things I've already set up:
     private BallList ballGodScript; //This is holy
@@ -88,7 +89,7 @@ public class tutorialPeltingScriptBattingPhase : MonoBehaviour
     private void ReadyThrow2(masterBallStruct ball)
     {
         var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<tutorialTargetingLineRenderer>();
-        myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, pitcher, (pitcherTarget.position - pitcher.position).normalized);
+        myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, pitcher, (pitcherTarget.position - pitcher.position).normalized, arrowFolder);
 
         StartCoroutine(ThrowDelay());
         
