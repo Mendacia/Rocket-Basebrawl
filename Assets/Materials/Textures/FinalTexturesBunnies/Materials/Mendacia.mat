@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BunnyOutline
+  m_Name: Mendacia
   m_Shader: {fileID: -6465566751694194690, guid: 631fa94cf8e0a3840a8ef3bae7286990,
     type: 3}
   m_ShaderKeywords: 
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_A45485D8:
-        m_Texture: {fileID: 2800000, guid: 6c57b6a2654cce1408c9b9683ad12be4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1a387a918b232794cbfd19bf6eae45ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
