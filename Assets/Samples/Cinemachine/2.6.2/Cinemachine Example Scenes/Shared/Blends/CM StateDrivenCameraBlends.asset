@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CustomBlends:
   - m_From: CM Dolly Cam
-    m_To: Player Camera
+    m_To: Pitching Camera
     m_Blend:
       m_Style: 1
       m_Time: 0.3

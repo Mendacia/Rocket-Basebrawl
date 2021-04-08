@@ -6,6 +6,42 @@ using UnityEngine.UI;
 public class MouseSensitivity : MonoBehaviour
 {
     public POVCamControl mouseSens;
+    Slider sensSlider;
+
+    void Start()
+    {
+        sensSlider = gameObject.GetComponent<Slider>();
+        switch (mouseSens.sensitivity)
+        {
+            case 5:
+                sensSlider.value = 1;
+                break;
+
+            case 15:
+                sensSlider.value = 2;
+                break;
+
+            case 30:
+                sensSlider.value = 3;
+                break;
+
+            case 50:
+                sensSlider.value = 4;
+                break;
+
+            case 65:
+                sensSlider.value = 5;
+                break;
+
+            case 85:
+                sensSlider.value = 6;
+                break;
+
+            case 100:
+                sensSlider.value = 7;
+                break;
+        }
+    }
 
     public void ChangeSensitivty(float mouseValue)
     {
