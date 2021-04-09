@@ -22,4 +22,20 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
         yield return new WaitForSeconds(expireAfterSeconds);
         Destroy(gameObject);
     }
+
+    public void StartTheCoroutine(float seconds, Vector3 spawnLocation)
+    {
+        StartCoroutine(SecondPartOfArcBall(seconds, spawnLocation));
+    }
+
+    public IEnumerator SecondPartOfArcBall(float seconds, Vector3 spawnLocation)
+    {
+        Debug.Log("My Coroutine is running");
+        yield return new WaitForSeconds(seconds);
+        Debug.Log("Going");
+        transform.position = new Vector3(spawnLocation.x, 50, spawnLocation.z);
+        transform.LookAt (new Vector3(spawnLocation.x, 0, spawnLocation.z));
+        var body = GetComponent<Rigidbody>();
+        body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
+    }
 }

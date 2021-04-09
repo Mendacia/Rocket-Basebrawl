@@ -15,27 +15,15 @@ public class fielderTargetingBallSpawner : MonoBehaviour
         myBaseballObject.transform.position += new Vector3(0, 0.5f, 1);
     }
 
-    public void SpawnTheBaseballPrefabOnTheFielderAndThrowItUpward(Vector3 oPos, Vector3 ePos)
+    public fielderPeltingBallBehaviour SpawnTheBaseballPrefabOnTheFielderAndThrowItUpward(Vector3 oPos, Vector3 ePos)
     {
         var myBaseballObject = Instantiate(baseballPrefab);
         var ballScript = myBaseballObject.GetComponent<fielderPeltingBallBehaviour>();
-        ballScript.expireAfterSeconds = 5f;
+        ballScript.expireAfterSeconds = 1f;
         myBaseballObject.transform.position = oPos;
         myBaseballObject.transform.LookAt(oPos + Vector3.up);
         myBaseballObject.transform.position += new Vector3(0, 0.5f, 1);
-        StartCoroutine(SpawnTheBaseballPrefabAboveTheEndPositionAndLaunchItIntoTheGround(ePos));
         Debug.Log("Completed Spawning");
-    }
-
-    IEnumerator SpawnTheBaseballPrefabAboveTheEndPositionAndLaunchItIntoTheGround(Vector3 ePos)
-    {
-        Debug.Log("Started Coroutine");
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("Coming Down");
-        var myBaseballObject = Instantiate(baseballPrefab);
-        var ballScript = myBaseballObject.GetComponent<fielderPeltingBallBehaviour>();
-        ballScript.expireAfterSeconds = 0.5f;
-        myBaseballObject.transform.position = new Vector3(ePos.x, 50, ePos.z);
-        myBaseballObject.transform.LookAt(myBaseballObject.transform.position + Vector3.down);
+        return ballScript;
     }
 }

@@ -182,7 +182,8 @@ public class fielderArcTargetingLineRenderer : MonoBehaviour
         else
         {
             myBallList.SetToMiss(recievedIndex);
-            gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabOnTheFielderAndThrowItUpward(originPosition, midPoint);
+            var ballScript = gameObject.GetComponent<fielderTargetingBallSpawner>().SpawnTheBaseballPrefabOnTheFielderAndThrowItUpward(originPosition, midPoint);
+            ballScript.StartTheCoroutine(0.5f, midPoint);
             fielderAnimator.SetTrigger("heFire");
             myScoreUpdater.SubtractFromScore();
         }
