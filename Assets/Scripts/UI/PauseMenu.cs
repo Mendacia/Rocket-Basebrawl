@@ -10,9 +10,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject pause;
     public static bool isPaused = false;
     private bool inLeave = false;
+    private bool optionsOn = false;
     [SerializeField] private Image CurrentTaunt;
     [SerializeField] private Text currentScore, currentUnstableScore;
     [SerializeField] private Animator LeaveMenu;
+    [SerializeField] private Animator OptionsMenu;
 
     [SerializeField] private fielderPeltingScript fielderPelting;
     [SerializeField] private scoreUpdater updaterScript;
@@ -36,11 +38,22 @@ public class PauseMenu : MonoBehaviour
                 settings.enabled = true;
                 cont.enabled = true;
             }
+
+            else if (optionsOn)
+            {
+                optionsOn = false;
+                OptionsMenu.SetTrigger("Close");
+                OptionsMenu.gameObject.SetActive(false);
+                quit.enabled = true;
+                settings.enabled = true;
+                cont.enabled = true;
+            }
+
             else if (isPaused == true)
             {
                 Resume();
             }
-            else if(Time.timeScale != 0 && WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
+            else if(/*Time.timeScale != 0*/ Time.timeScale == 1 && WorldStateMachine.GetCurrentState() != WorldState.FROZEN)
             {
                 Pause();
             }
@@ -55,6 +68,16 @@ public class PauseMenu : MonoBehaviour
         LeaveMenu.gameObject.SetActive(true);
         LeaveMenu.SetTrigger("Open");
         inLeave = true;
+    }
+
+    public void OptionsOpen()
+    {
+        quit.enabled = false;
+        settings.enabled = false;
+        cont.enabled = false;
+        OptionsMenu.gameObject.SetActive(true);
+        OptionsMenu.SetTrigger("Open");
+        optionsOn = true;
     }
 
     public void Resume()
