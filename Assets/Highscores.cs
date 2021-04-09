@@ -9,16 +9,15 @@ public class Highscores : MonoBehaviour
     const string publicCode = "606d036a8f421366b065719c";
     const string webURL = "http://dreamlo.com/lb/";
 
-    [SerializeField] private string playerName;
+    [SerializeField] private string playerName = null;
     public Highscore[] highscoresList;
-    [SerializeField] private SavingScript save;
-    [SerializeField] private Text name;
+    [SerializeField] private Text NameField = null;
 
-    [SerializeField] private Animator Leaderboard;
-    [SerializeField] private GameObject EnterName, LeaderboardEmpty;
+    [SerializeField] private Animator Leaderboard = null;
+    [SerializeField] private GameObject EnterName, LeaderboardEmpty = null;
 
     [SerializeField] private List<GameObject> leaderboardPlacesParents = new List<GameObject>();
-    [SerializeField] private GameObject returnButton;
+    [SerializeField] private GameObject returnButton = null;
 
     private void Update()
     {
@@ -102,7 +101,7 @@ public class Highscores : MonoBehaviour
     IEnumerator UpdateName()
     {
         yield return new WaitForSeconds(0.1f);
-        playerName = name.text;
+        playerName = NameField.text;
     }
 
     IEnumerator animationSyncer()
