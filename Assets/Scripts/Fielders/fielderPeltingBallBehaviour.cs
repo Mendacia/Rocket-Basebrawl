@@ -5,7 +5,7 @@ using UnityEngine;
 public class fielderPeltingBallBehaviour : MonoBehaviour
 {
     [SerializeField] private float ballSpeed;
-    [SerializeField] private float expireAfterSeconds = 20;
+    public float expireAfterSeconds = 20;
     [SerializeField] private GameObject ballHit = null;
 
     void Start()

@@ -189,6 +189,8 @@ public class fielderPeltingScript : MonoBehaviour
             myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
             folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
             myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (myTarget - fielder.position).normalized, ArrowHolderOnFloorCanvas);
+            initialTarget = myTarget;
+            i++;
         }
     }
     private void ReadyThrowMulti(masterBallStruct ball)
@@ -201,7 +203,8 @@ public class fielderPeltingScript : MonoBehaviour
             var myBeamScript = Instantiate(multiTargetingBeamPrefab, folder.transform).GetComponent<fielderMultiTargetingLineRenderer>();
             myBeamScript.myParent = folder.GetComponent<fielderMultiBeamParent>();
             folder.GetComponent<fielderMultiBeamParent>().index = ball.myIndex;
-            myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[0], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
+            myBeamScript.SetUp(ball.myThrowSpeed, player.transform, ball.myFielders[i], (target - fielder.position).normalized, ArrowHolderOnFloorCanvas);
+            i++;
 
             //Cheating
             if (Gilded)
@@ -222,7 +225,6 @@ public class fielderPeltingScript : MonoBehaviour
            myBeamScript.GildMe();
         }
     }
-
     private void ReadyThrowStandard(masterBallStruct ball)
     {
         var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);

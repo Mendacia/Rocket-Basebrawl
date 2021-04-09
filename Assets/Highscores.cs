@@ -34,7 +34,7 @@ public class Highscores : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(playerName))
         {
-            StartCoroutine(UploadNewHighScore(playerName, save.loadInt("score", 0)));
+            StartCoroutine(UploadNewHighScore(playerName, (int)scoreHolder.scoreStatic.score)) ;
             StartCoroutine(animationSyncer());
         }
     }
@@ -47,6 +47,7 @@ public class Highscores : MonoBehaviour
         {
             print("Upload Successful");
             RetrieveHighScores();
+            Destroy(scoreHolder.scoreStatic.gameObject);
         }
         else
         {

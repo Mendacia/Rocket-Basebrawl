@@ -37,6 +37,7 @@ public class EndingUIPopulateMedals : MonoBehaviour
     private int displayedScore = 0;
     private int displayedCombo = 0;
     private int i = 0;
+    private int scoreTimeMultiplier = 1;
     private float waitTime = 0.1f;
     private int offset = 20;
 
@@ -78,7 +79,7 @@ public class EndingUIPopulateMedals : MonoBehaviour
         {
             if (displayedScore + 30 < scoreHolder.scoreStatic.score)
             {
-                displayedScore += 30;
+                displayedScore += 30 * scoreTimeMultiplier;
             }
             else
             {
@@ -236,6 +237,7 @@ public class EndingUIPopulateMedals : MonoBehaviour
             missedTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myMiss.ToString();
 
             scoreUpdateTime = true;
+            StartCoroutine(scoreTimerIncreaser());
         }
         else if (currentPass == passes.COMBO)
         {
@@ -250,8 +252,6 @@ public class EndingUIPopulateMedals : MonoBehaviour
                 save.SaveInt((int)scoreHolder.scoreStatic.score, "score");
             }
             save.SaveToFile();
-
-            Destroy(scoreHolder.scoreStatic.gameObject);
             Destroy(ExportableBallList.instance.gameObject);
             returnButton.SetActive(true);
         }
@@ -260,5 +260,15 @@ public class EndingUIPopulateMedals : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         PopulateMedalList();
+    }
+
+    IEnumerator scoreTimerIncreaser()
+    {
+        yield return new WaitForSeconds(2);
+        scoreTimeMultiplier *= 2;
+        if (currentPass == passes.SCORE)
+        {
+            StartCoroutine(scoreTimerIncreaser());
+        }
     }
 }

@@ -87,8 +87,9 @@ public class fielderScatterAccuracyScript : MonoBehaviour
             else
             {
                 var dir = (bases[nextBaseIndex].position - previousTarget).normalized;
-                dir = dir * 3;
+                dir = dir * 0.9f;
                 finalTargetPosition = previousTarget + dir;
+                finalTargetPosition.y = 1;
             }
             return finalTargetPosition;
         }
