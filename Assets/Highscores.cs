@@ -18,6 +18,7 @@ public class Highscores : MonoBehaviour
     [SerializeField] private GameObject EnterName, LeaderboardEmpty;
 
     [SerializeField] private List<GameObject> leaderboardPlacesParents = new List<GameObject>();
+    [SerializeField] private GameObject returnButton;
 
     private void Update()
     {
@@ -111,6 +112,13 @@ public class Highscores : MonoBehaviour
         EnterName.SetActive(false);
         LeaderboardEmpty.SetActive(true);
         Leaderboard.SetTrigger("Go");
+        StartCoroutine(enableReturnButton());
+    }
+
+    IEnumerator enableReturnButton()
+    {
+        yield return new WaitForSeconds(7);
+        returnButton.SetActive(true);
     }
 }
 public struct Highscore
