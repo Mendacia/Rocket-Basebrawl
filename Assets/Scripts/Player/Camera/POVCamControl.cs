@@ -13,7 +13,8 @@ public class POVCamControl : MonoBehaviour
     private PlayerInputActions inputActions;
     Vector2 camInput;
     [Range(0, 100)]
-    public float sensitivity = 50;
+    public float sensitivity;
+    private SensitivityHolder sensHold;
 
     [SerializeField] private bool shouldInheritAtStart = false;
 
@@ -37,6 +38,9 @@ public class POVCamControl : MonoBehaviour
             vcam.m_Transitions.m_InheritPosition = true;
         }
         StartCoroutine(InheritAfterTime());
+        sensHold = GameObject.Find("SensitivityHolder").GetComponent<SensitivityHolder>();
+        sensitivity = sensHold.sensitivity;
+        Debug.Log(sensitivity);
     }
 
     void FixedUpdate()

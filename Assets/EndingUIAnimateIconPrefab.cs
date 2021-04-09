@@ -23,6 +23,7 @@ public class EndingUIAnimateIconPrefab : MonoBehaviour
         else
         {
             gameObject.transform.localScale = defaultScale;
+            this.enabled = false;
         }
     }
 }

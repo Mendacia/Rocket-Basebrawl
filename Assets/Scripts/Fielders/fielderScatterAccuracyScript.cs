@@ -10,8 +10,6 @@ public class fielderScatterAccuracyScript : MonoBehaviour
     private List<Transform> bases;
     private int nextBaseIndex;
     private int baseAfterIndex;
-    private int nextBaseInt;
-    private int finalBase;
     private float finalScaleMultiplier;
     private float percentageOfRunRemaining;
 
@@ -77,11 +75,22 @@ public class fielderScatterAccuracyScript : MonoBehaviour
         gameObject.transform.localScale = new Vector3(finalScale, finalScale, finalScale);
     }
 
-    public Vector3 GiveTheFielderATarget(bool isFirstFielder, Transform recievedFielder)
+    public Vector3 GiveTheFielderATarget(int iterator, Vector3 previousTarget)
     {
         {
-            var finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (finalScaleMultiplier * targetingSphereScaleMaximum) / 2));
-            finalTargetPosition.y = 1f;
+            Vector3 finalTargetPosition;
+            if (iterator == 0)
+            {
+                finalTargetPosition = (gameObject.transform.position + (Random.insideUnitSphere * (finalScaleMultiplier * targetingSphereScaleMaximum) / 2));
+                finalTargetPosition.y = 1f;
+            }
+            else
+            {
+                var dir = (bases[nextBaseIndex].position - previousTarget).normalized;
+                dir = dir * 0.9f;
+                finalTargetPosition = previousTarget + dir;
+                finalTargetPosition.y = 1;
+            }
             return finalTargetPosition;
         }
     }

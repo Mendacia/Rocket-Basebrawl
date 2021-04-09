@@ -7,6 +7,7 @@ public class BallList : MonoBehaviour
 {
     public List<masterBallStruct> masterBallList;
     [SerializeField] private HUDManager hUDScript;
+    [SerializeField] private ExportableBallList exporter;
     [SerializeField] private float readyAndThrowSpeedMultiplier = 1f;
 
     //Between this and the next comment is entirely setup of variables for the ball list
@@ -175,7 +176,6 @@ public class BallList : MonoBehaviour
             var testedBall = masterBallList[i];
             if (testedBall.currentState == ballState.INACTIVE)
             {
-                Debug.Log("Fired a ball with itterator at " + i);
                 testedBall.currentState = ballState.ACTIVE;
                 masterBallList[i] = testedBall;
                 return testedBall;
@@ -189,7 +189,6 @@ public class BallList : MonoBehaviour
 
     public void SetToGold(int recievedIndex)
     {
-        Debug.Log("Set To Gold");
         var thisBall = masterBallList[recievedIndex];
         thisBall.currentState = ballState.GOLD;
         thisBall =  hUDScript.changeBallUISpriteToCorrectColor(thisBall, BallResult.GOLD);
@@ -197,7 +196,6 @@ public class BallList : MonoBehaviour
     }
     public void SetToSilver(int recievedIndex)
     {
-        Debug.Log("Set To Silver");
         var thisBall = masterBallList[recievedIndex];
         thisBall.currentState = ballState.SILVER;
         thisBall = hUDScript.changeBallUISpriteToCorrectColor(thisBall, BallResult.SILVER);
@@ -205,11 +203,24 @@ public class BallList : MonoBehaviour
     }
     public void SetToMiss(int recievedIndex)
     {
-        Debug.Log("Set To Miss");
         var thisBall = masterBallList[recievedIndex];
         thisBall.currentState = ballState.MISSED;
         thisBall = hUDScript.changeBallUISpriteToCorrectColor(thisBall, BallResult.MISS);
         masterBallList[recievedIndex] = thisBall;
+    }
+
+
+    public void sendBallsToExporter()
+    {
+        foreach (masterBallStruct ball in masterBallList)
+        {
+            Debug.Log("Fired Exporter");
+            if (ball.currentState == ballState.GOLD || ball.currentState == ballState.SILVER || ball.currentState == ballState.MISSED)
+            {
+                Debug.Log("sent a ball to the exporter");
+                exporter.addBallsToExporterlist(ball);
+            }
+        }
     }
 }
 

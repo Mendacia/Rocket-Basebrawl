@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EndingUIPopulateMedals : MonoBehaviour
 {
+    [SerializeField] private SavingScript save;
+
     [Header("Assets/Prefabs/BallUIPostGame")]
     [SerializeField] private GameObject goldBallPrefab;
     [SerializeField] private GameObject silverBallPrefab;
@@ -15,17 +17,55 @@ public class EndingUIPopulateMedals : MonoBehaviour
     [SerializeField] private Transform silverHolderChild;
     [SerializeField] private Transform missedHolderChild;
 
-    [SerializeField] private float tempCountGold, tempCountSilver, tempCountMissed;
+    [Header("Similar to above")]
+    [SerializeField] private GameObject goldTotalText;
+    [SerializeField] private GameObject silverTotalText;
+    [SerializeField] private GameObject missedTotalText;
+
+    [Header("Animation stuff")]
+    [SerializeField] private float tempCountGold;
+    [SerializeField] private float tempCountSilver;
+    [SerializeField] private float tempCountMissed;
+
+    [Header("Animating Score and Combo bits")]
+    [SerializeField] private Text scoreDisplay;
+    [SerializeField] private Text comboDisplay;
+    [SerializeField] private GameObject returnButton;
+
+    private bool scoreUpdateTime = false;
+    private bool comboUpdateTime = false;
+    private int displayedScore = 0;
+    private int displayedCombo = 0;
+    private int i = 0;
+    private int scoreTimeMultiplier = 1;
     private float waitTime = 0.1f;
     private int offset = 20;
 
+    private enum passes
+    {
+        GOLD,
+        SILVER,
+        MISSED,
+        SCORE,
+        COMBO,
+        IDLE
+    }
+    private passes currentPass = passes.GOLD;
+
+    private void Awake()
+    {
+        StartCoroutine(delayMedals());
+    }
+
+    IEnumerator delayMedals()
+    {
+        yield return new WaitForSeconds(1);
+        PopulateMedalList();
+    }
+
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            PopulateMedalList();
-        }
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             waitTime = 0.01f;
@@ -34,42 +74,201 @@ public class EndingUIPopulateMedals : MonoBehaviour
         {
             waitTime = 0.1f;
         }
+
+        if (scoreUpdateTime)
+        {
+            if (displayedScore + 30 < scoreHolder.scoreStatic.score)
+            {
+                displayedScore += 30 * scoreTimeMultiplier;
+            }
+            else
+            {
+                displayedScore = (int)scoreHolder.scoreStatic.score;
+                currentPass = passes.COMBO;
+                scoreUpdateTime = false;
+                Debug.Log("We should be in combo now");
+                PopulateMedalList();
+            }
+            scoreDisplay.text = displayedScore.ToString();
+        }
+
+        if (comboUpdateTime)
+        {
+            Debug.Log("The combo should update to " + scoreHolder.scoreStatic.myCombo);
+            if (displayedCombo + 1 < scoreHolder.scoreStatic.myCombo)
+            {
+                displayedCombo += 1;
+            }
+            else
+            {
+                displayedCombo = scoreHolder.scoreStatic.myCombo;
+                currentPass = passes.IDLE;
+                comboUpdateTime = false;
+                PopulateMedalList();
+            }
+            comboDisplay.text = displayedCombo.ToString();
+        }
     }
 
     public void PopulateMedalList()
     {
+        if (i < ExportableBallList.instance.holdingList.Count && currentPass == passes.GOLD)
+        {
+            if (ExportableBallList.instance.holdingList[i].currentState == ballState.GOLD)
+            {
+                var thisPrefab = Instantiate(goldBallPrefab, goldHolderChild);
+                thisPrefab.transform.position += new Vector3(Random.Range(-5, 5), offset, 0);
+                thisPrefab.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(BallResult.GOLD, ExportableBallList.instance.holdingList[i].myTauntLevel);
+                offset += 20;
+            }
 
-        if (tempCountGold > 0)
-        {
-            var thisPrefab = Instantiate(goldBallPrefab, goldHolderChild);
-            thisPrefab.transform.position += new Vector3(Random.Range(-5, 5), offset, 0);
-            offset += 20;
-            tempCountGold--;
-            if (tempCountGold == 0) { offset = 20; }
-            StartCoroutine(waitToContinue());
+            if(i == ExportableBallList.instance.holdingList.Count - 1)
+            {
+                offset = 20;
+                i = 0;
+                currentPass = passes.SILVER;
+
+                if (ExportableBallList.instance.holdingList[i].currentState == ballState.GOLD)
+                {
+                    StartCoroutine(waitToContinue());
+                }
+                else
+                {
+                    PopulateMedalList();
+                }
+            }
+            else
+            {
+                i++;
+                if (ExportableBallList.instance.holdingList[i].currentState == ballState.GOLD)
+                {
+                    StartCoroutine(waitToContinue());
+                }
+                else
+                {
+                    PopulateMedalList();
+                }
+            }
         }
-        else if (tempCountSilver > 0)
+        else if (i < ExportableBallList.instance.holdingList.Count && currentPass == passes.SILVER)
         {
-            var thisPrefab = Instantiate(silverBallPrefab, silverHolderChild);
-            thisPrefab.transform.position += new Vector3(Random.Range(-5, 5), offset, 0);
-            offset += 20;
-            tempCountSilver--;
-            if (tempCountSilver == 0) { offset = 20; }
-            StartCoroutine(waitToContinue());
+            if (ExportableBallList.instance.holdingList[i].currentState == ballState.SILVER)
+            {
+                var thisPrefab = Instantiate(silverBallPrefab, silverHolderChild);
+                thisPrefab.transform.position += new Vector3(Random.Range(-5, 5), offset, 0);
+                thisPrefab.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(BallResult.SILVER, ExportableBallList.instance.holdingList[i].myTauntLevel);
+                offset += 20;
+            }
+
+            if (i == ExportableBallList.instance.holdingList.Count - 1)
+            {
+                offset = 20;
+                i = 0;
+                currentPass = passes.MISSED;
+
+                if (ExportableBallList.instance.holdingList[i].currentState == ballState.SILVER)
+                {
+                    StartCoroutine(waitToContinue());
+                }
+                else
+                {
+                    PopulateMedalList();
+                }
+            }
+            else
+            {
+                i++;
+                if (ExportableBallList.instance.holdingList[i].currentState == ballState.SILVER)
+                {
+                    StartCoroutine(waitToContinue());
+                }
+                else
+                {
+                    PopulateMedalList();
+                }
+            }
         }
-        else if (tempCountMissed > 0)
+        else if (i < ExportableBallList.instance.holdingList.Count && currentPass == passes.MISSED)
         {
-            var thisPrefab = Instantiate(missedBallPrefab, missedHolderChild);
-            thisPrefab.transform.position += new Vector3(Random.Range(-5, 5), offset, 0);
-            offset += 20;
-            tempCountMissed--;
-            if (tempCountMissed == 0) { offset = 20; }
-            StartCoroutine(waitToContinue());
+            if (ExportableBallList.instance.holdingList[i].currentState == ballState.MISSED)
+            {
+                var thisPrefab = Instantiate(missedBallPrefab, missedHolderChild);
+                thisPrefab.transform.position += new Vector3(Random.Range(-5, 5), offset, 0);
+                thisPrefab.GetComponentInChildren<Image>().sprite = BallIconHolder.GetIcon(BallResult.MISS, ExportableBallList.instance.holdingList[i].myTauntLevel);
+                offset += 20;
+            }
+
+            if (i == ExportableBallList.instance.holdingList.Count - 1)
+            {
+                offset = 20;
+                i = 0;
+                currentPass = passes.SCORE;
+
+                if (ExportableBallList.instance.holdingList[i].currentState == ballState.MISSED)
+                {
+                    StartCoroutine(waitToContinue());
+                }
+                else
+                {
+                    PopulateMedalList();
+                }
+            }
+            else
+            {
+                i++;
+                if (ExportableBallList.instance.holdingList[i].currentState == ballState.MISSED)
+                {
+                    StartCoroutine(waitToContinue());
+                }
+                else
+                {
+                    PopulateMedalList();
+                }
+            }
+        }
+        else if (currentPass == passes.SCORE)
+        {
+            goldTotalText.SetActive(true);
+            silverTotalText.SetActive(true);
+            missedTotalText.SetActive(true);
+
+            goldTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myGold.ToString();
+            silverTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.mySilver.ToString();
+            missedTotalText.GetComponent<Text>().text = scoreHolder.scoreStatic.myMiss.ToString();
+
+            scoreUpdateTime = true;
+            StartCoroutine(scoreTimerIncreaser());
+        }
+        else if (currentPass == passes.COMBO)
+        {
+            comboUpdateTime = true;
+        }
+        else if (currentPass == passes.IDLE)
+        {
+
+            //Saving Right here.
+            if(scoreHolder.scoreStatic.score > save.loadInt("score", 0))
+            {
+                save.SaveInt((int)scoreHolder.scoreStatic.score, "score");
+            }
+            save.SaveToFile();
+            Destroy(ExportableBallList.instance.gameObject);
+            returnButton.SetActive(true);
         }
     }
     IEnumerator waitToContinue()
     {
         yield return new WaitForSeconds(waitTime);
         PopulateMedalList();
+    }
+
+    IEnumerator scoreTimerIncreaser()
+    {
+        yield return new WaitForSeconds(2);
+        scoreTimeMultiplier *= 2;
+        if (currentPass == passes.SCORE)
+        {
+            StartCoroutine(scoreTimerIncreaser());
+        }
     }
 }

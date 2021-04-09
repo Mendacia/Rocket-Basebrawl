@@ -17,6 +17,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     [SerializeField] private GameObject oSprite = null;
     [SerializeField] private GameObject xSprite = null;
     [SerializeField] private Gradient myGradient = new Gradient();
+    [SerializeField] private GameObject arrowRoot;
 
     [Header("BallHitEffect")]
     [SerializeField] private GameObject ballEffect = null;
@@ -34,6 +35,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
     private scoreUpdater myScoreUpdater;
     private soundEffectHolder soundFX;
     private BallList myBallList;
+    private Vector3 lastFrameMidPoint = Vector3.zero;
+    private UIArrow myArrow;
 
     private Animator fielderAnimator;
 
@@ -45,7 +48,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         soundFX = GameObject.Find("SoundEffectHolder").GetComponent<soundEffectHolder>();
     }
 
-    public void SetUp(float lifetime, int index, Transform player, Transform fielder, Vector3 recievedDirection)
+    public void SetUp(float lifetime, int index, Transform player, Transform fielder, Vector3 recievedDirection, Transform arrowFolder)
     {
         recievedBeamLifetime = lifetime;
         recievedIndex = index;
@@ -53,6 +56,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         originPosition = fielder.position;
         direction = recievedDirection;
         fielderAnimator = fielder.GetComponentInChildren<Animator>();
+        myArrow = Instantiate(arrowRoot, arrowFolder).GetComponent<UIArrow>();
     }
 
     private void Update()
@@ -67,7 +71,8 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         if (Physics.Raycast(originPosition, direction, out var hitterRayCastHit, 1000, hitterLayerMask, QueryTriggerInteraction.Collide))
         {
             midPoint = hitterRayCastHit.point;
-            fire(true, midPoint);
+            if (lastFrameMidPoint == Vector3.zero) { lastFrameMidPoint = hitterRayCastHit.point; }
+            fire(true);
         }
         //This is where the player has not hit the ball
         if (Physics.Raycast(originPosition, direction, out var physicsRaycastHit, 1000, physicsLayerMask))
@@ -99,6 +104,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         BeamEffectsOverLifetime(midPoint, startPoint, endPoint);
 
         //Color the beam
+        lastFrameMidPoint = midPoint;
     }
 
     public void GildMe() //Cheat funciton
@@ -108,6 +114,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
 
     private void BeamEffectsOverLifetime(Vector3 fireAt, Vector3 startPoint, Vector3 endPoint)
     {
+        myArrow.giveTheUIArrowTheMidPoint(fireAt);
         if (currentBeamTime < recievedBeamLifetime)
         {
             currentBeamTime = currentBeamTime + Time.deltaTime;
@@ -127,7 +134,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
         }
         else
         {
-            fire(false, fireAt);
+            fire(false);
         }
     }
 
@@ -139,6 +146,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
              /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
             );
         targetingBeam.colorGradient = myGradient;
+        myArrow.myInnerArrow.color = lineRendererColorSilver;
     }
     private void ColorBeamGold(Vector3 recievedStartPoint, Vector3 recievedMidPoint, Vector3 recievedEndPoint)
     {
@@ -148,27 +156,28 @@ public class fielderTargetingLineRenderer : MonoBehaviour
              /*Alpha Keys*/new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, midDistance), new GradientAlphaKey(0f, 1f) }
             );
         targetingBeam.colorGradient = myGradient;
+        myArrow.myInnerArrow.color = lineRendererColorGold;
     }
 
-    private void fire(bool playerHitTheBall, Vector3 midPoint)
+    private void fire(bool playerHitTheBall)
     {
         if (playerHitTheBall)
         {
             if (sweetSpotActive)
             {
                 myBallList.SetToGold(recievedIndex);
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 fielderAnimator.SetTrigger("heFire");
                 soundFX.GoldSoundEffect();
-                myScoreUpdater.SweetAddToScore();
+                myScoreUpdater.SweetAddToScore(lastFrameMidPoint);
             }
             else
             {
                 myBallList.SetToSilver(recievedIndex);
-                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, midPoint);
+                gameObject.GetComponent<fielderTargetingSuccessfulHit>().SpawnTheBaseballPrefabAndSendItInTheDirectionThePlayerIsFacing(sweetSpotActive, lastFrameMidPoint);
                 soundFX.SilverSoundEffect();
                 fielderAnimator.SetTrigger("heFire");
-                myScoreUpdater.HitAddToScore();
+                myScoreUpdater.HitAddToScore(lastFrameMidPoint);
             }
         }
         else
@@ -178,6 +187,7 @@ public class fielderTargetingLineRenderer : MonoBehaviour
             fielderAnimator.SetTrigger("heFire");
             myScoreUpdater.SubtractFromScore();
         }
+        Destroy(myArrow.gameObject);
         Destroy(gameObject);
     }
 }

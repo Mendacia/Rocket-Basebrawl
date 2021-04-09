@@ -9,6 +9,7 @@ public class baseManager : MonoBehaviour
 {
     [Header("This must be manually set up until I can figure out a solution")]
     [SerializeField] private fielderProgressionBasedAccuracyScript fielderAccuracyObject = null;
+    private fielderScatterAccuracyScript scatterAccuracyObject = null;
     [SerializeField] private HUDManager hUDScript = null;
     [SerializeField] private fielderPeltingScript fpScript= null;
     [SerializeField] private scoreUpdater scoreUpdaterScript = null;
@@ -38,10 +39,12 @@ public class baseManager : MonoBehaviour
     private float remainingDistanceToHomeBaseSansPlayerToNextBase = 0f;
     private float realRemainingDistanceToHomeBase = 0f;
     private float remainingDistanceToNextBase = 0f;
+    private bool bankAnimation;
 
     private void Awake()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        scatterAccuracyObject = fielderAccuracyObject.GetComponent<fielderScatterAccuracyScript>();
     }
     private void Start()
     {
@@ -57,6 +60,7 @@ public class baseManager : MonoBehaviour
         currentBase = 0;
         nextBase = 1;
         fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
+        scatterAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
 
         //This populates the list for distance between bases
         for (int i = 0; i < bases.Count; i++)
@@ -108,11 +112,14 @@ public class baseManager : MonoBehaviour
                 SwitchToBattingPhaseOnHomeBaseTouch();
             }
             fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
+            scatterAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
         }
 
         realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;
         percentageOfRunRemaining = realRemainingDistanceToHomeBase / totalDistanceBetweenAllBases;
         fielderAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
+        scatterAccuracyObject.updateAccuracysPercentage(percentageOfRunRemaining);
+
     }
 
     private void SwitchToBattingPhaseOnBaseTouch(string nextBaseString)
@@ -134,10 +141,6 @@ public class baseManager : MonoBehaviour
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
 
         StartCoroutine(HomeBaseEffects());
-
-        /*
-            -Cinemachine shit for batting phase on bases
-        */
     }
 
     private void ProgressBase(int requestedCurrentBase, int requestedNextBase)
@@ -148,6 +151,7 @@ public class baseManager : MonoBehaviour
 
     private IEnumerator BaseEffects()
     {
+        Debug.Log("Yeah this is running");
         Debug.Log(WorldStateMachine.GetCurrentState());
         /*var rb = playerPosition.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;*/
@@ -164,41 +168,73 @@ public class baseManager : MonoBehaviour
 
     private IEnumerator HomeBaseEffects()
     {
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        yield return new WaitForSeconds(0.1f);
+        scoreUpdaterScript.BankScore();
+        SceneManager.LoadScene("EndingBasebrawlTestingZone");
+        /*player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, 90, 0);
         playerBackCam.SetActive(true);
         yield return new WaitForSeconds(0.05f);
-        endScreenCam.SetActive(true);
+        endScreenCam.SetActive(true);*/
     }
 
     public void Taunt()
     {
         Cursor.visible = false;
         Time.timeScale = 1;
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
-        fpScript.fielderTauntLevelIncreaser();
-        SplitScreenLefts[currentBase - 1].SetActive(true);
-        SplitScreenRights[currentBase - 1].SetActive(true);
-        playerAnim.SetTrigger("heTaunt");
-        StartCoroutine(BaseEffects());
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+        StartCoroutine(waitForAnimation(1));
     }
 
     public void Bank()
     {
         Cursor.visible = false;
         Time.timeScale = 1;
-        StartCoroutine(BaseEffects());
-        scoreUpdaterScript.BankScore();
-        hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+        StartCoroutine(waitForAnimation(3));
     }
 
     public void Hold()
     {
         Cursor.visible = false;
         Time.timeScale = 1;
+        StartCoroutine(waitForAnimation(2));
+    }
+
+    IEnumerator waitForAnimation(int state)
+    {
+        switch (state)
+        {
+            case 1:
+                hUDScript.baseUITaunt(fpScript.GetFielderTauntLevel());
+                yield return new WaitForSeconds(4.33333f);
+                player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+                player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
+                fpScript.fielderTauntLevelIncreaser();
+                SplitScreenLefts[currentBase - 1].SetActive(true);
+                SplitScreenRights[currentBase - 1].SetActive(true);
+                playerAnim.SetTrigger("heTaunt");
+                StartCoroutine(BaseEffects());
+                hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+                break;
+            case 2:
+                hUDScript.baseUIHold();
+                yield return new WaitForSeconds(0.5f);
+                StartCoroutine(BaseEffects());
+                hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
+                break;
+            case 3:
+                yield return new WaitForSeconds(0);
+                hUDScript.baseUIBank();
+                break;
+            default:
+                yield return new WaitForSeconds(0);
+                break;
+        }
+    }
+
+    public void EndBankAnimation()
+    {
         StartCoroutine(BaseEffects());
+        scoreUpdaterScript.BankScore();
         hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
     }
 

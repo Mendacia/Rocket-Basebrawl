@@ -9,6 +9,7 @@ public class fielderMultiBeamParent : MonoBehaviour
     private scoreUpdater myScoreUpdater;
     private BallList myBallList;
     public int index;
+    public Vector3 mostRecentMidPoint = Vector3.zero;
 
     private void Awake()
     {
@@ -27,12 +28,12 @@ public class fielderMultiBeamParent : MonoBehaviour
             }
             else if (gold)
             {
-                myScoreUpdater.SweetAddToScore();
+                myScoreUpdater.SweetAddToScore(mostRecentMidPoint);
                 myBallList.SetToGold(index);
             }
             else
             {
-                myScoreUpdater.HitAddToScore();
+                myScoreUpdater.HitAddToScore(mostRecentMidPoint);
                 myBallList.SetToSilver(index);
             }
 

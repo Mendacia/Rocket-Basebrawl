@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldThreshold: 0.8
   lineRendererColorSilver: {r: 0.6784888, g: 0.73832935, b: 0.745283, a: 1}
-  lineRendererColorGold: {r: 1, g: 0.78039217, b: 0.21960784, a: 0}
+  lineRendererColorGold: {r: 1, g: 0.78039217, b: 0.21960784, a: 1}
   lineRendererColorBehindPlayer: {r: 0, g: 0, b: 0, a: 0}
   hitterLayerMask:
     serializedVersion: 2
@@ -267,6 +267,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  arrowRoot: {fileID: 7763998708788144056, guid: ab191eaee86ebf94f99c61837528edaf,
+    type: 3}
   ballEffect: {fileID: 6922191216323000792, guid: e99fbfe479b573543bb67cd89fcff910,
     type: 3}
 --- !u!114 &2770760321334005192

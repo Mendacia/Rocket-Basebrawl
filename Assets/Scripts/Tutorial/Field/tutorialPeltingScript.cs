@@ -7,6 +7,7 @@ public class tutorialPeltingScript : MonoBehaviour
     [Header("Set this prefab up please")]
     [SerializeField] private GameObject targetingBeamPrefab;
     [SerializeField] private HUDManager hUDScript;
+    [SerializeField] private Transform arrowFolder;
 
     //Things I've already set up:
     private BallList ballGodScript; //This is holy
@@ -135,7 +136,7 @@ public class tutorialPeltingScript : MonoBehaviour
         {
             var target = rangeAllocationScript.GiveTheFielderATarget(true, ball.myFielders[0]);
             var myBeamScript = Instantiate(targetingBeamPrefab, Vector3.zero, Quaternion.identity).GetComponent<tutorialTargetingLineRenderer>();
-            myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized);
+            myBeamScript.SetUp(ball.myThrowSpeed, ball.myIndex, player.transform, ball.myFielders[0], (target - fielder.position).normalized, arrowFolder);
 
             //Cheating
             if (Gilded)

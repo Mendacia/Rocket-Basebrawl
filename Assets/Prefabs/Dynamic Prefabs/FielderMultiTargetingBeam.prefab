@@ -457,6 +457,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  arrowRoot: {fileID: 7763998708788144056, guid: ab191eaee86ebf94f99c61837528edaf,
+    type: 3}
 --- !u!114 &8869296081176360034
 MonoBehaviour:
   m_ObjectHideFlags: 0

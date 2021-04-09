@@ -12,6 +12,18 @@ public class fielderTargetingBallSpawner : MonoBehaviour
         var myBaseballObject = Instantiate(baseballPrefab);
         myBaseballObject.transform.position = oPos;
         myBaseballObject.transform.LookAt(oPos + dir);
-        myBaseballObject.transform.position = myBaseballObject.transform.position + new Vector3(0, 0.5f, 1);
+        myBaseballObject.transform.position += new Vector3(0, 0.5f, 1);
+    }
+
+    public fielderPeltingBallBehaviour SpawnTheBaseballPrefabOnTheFielderAndThrowItUpward(Vector3 oPos, Vector3 ePos)
+    {
+        var myBaseballObject = Instantiate(baseballPrefab);
+        var ballScript = myBaseballObject.GetComponent<fielderPeltingBallBehaviour>();
+        ballScript.expireAfterSeconds = 1f;
+        myBaseballObject.transform.position = oPos;
+        myBaseballObject.transform.LookAt(oPos + Vector3.up);
+        myBaseballObject.transform.position += new Vector3(0, 0.5f, 1);
+        Debug.Log("Completed Spawning");
+        return ballScript;
     }
 }
