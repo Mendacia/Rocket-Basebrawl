@@ -3462,7 +3462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &731511251
 GameObject:
@@ -3608,7 +3608,7 @@ PrefabInstance:
     - target: {fileID: 4983643922540995106, guid: c11f1b289353e504cafe2adc4cc7b2c7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4983643922540995106, guid: c11f1b289353e504cafe2adc4cc7b2c7,
         type: 3}
@@ -5826,7 +5826,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
+  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -6303,9 +6303,11 @@ MonoBehaviour:
     type: 3}
   multiTargetingBeamPrefab: {fileID: 8008204630371988979, guid: 39f2c1d358d93784eb23ab4e192b5855,
     type: 3}
+  arcTargetingBeamPrefab: {fileID: 0}
   multiBeamHolder: {fileID: 2303775945447737407, guid: d37ad2a8aca3c2644ae6cd9bc494707f,
     type: 3}
   hUDScript: {fileID: 1712722505}
+  ArrowHolderOnFloorCanvas: {fileID: 0}
   ballsToThrowMinimum: 10
   ballsToThrowMaximum: 15
   higherTauntBallCountReductionFactor: 3
@@ -7971,8 +7973,10 @@ MonoBehaviour:
   BaseScript: {fileID: 1787148857}
   BallGod: {fileID: 1777289290}
   hUDScript: {fileID: 1712722505}
+  scoreUpdatingScript: {fileID: 0}
   player: {fileID: 5690458437575277485}
   pitchingCam: {fileID: 1263482107}
+  arrowFolder: {fileID: 0}
 --- !u!114 &1712722505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7986,17 +7990,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unstableScore: {fileID: 481174977}
+  score: {fileID: 0}
   combo: {fileID: 2622708238173227879}
   baseNumber: {fileID: 6784341483984673715}
-  arrowHolder: {fileID: 1528431281}
   ballIconHolder: {fileID: 2622708238646447297}
   baseCanvas: {fileID: 183086658368643992}
   currentBallIcon: {fileID: 978481713}
   nextBallIcon: {fileID: 1626995439}
+  comboObject: {fileID: 0}
+  comboX: {fileID: 0}
   ballIconObject: {fileID: 9185666329665957773, guid: cf7299c759660c94f92f232706c3e0bd,
     type: 3}
-  arrowObject: {fileID: 467032714953259671, guid: ab191eaee86ebf94f99c61837528edaf,
-    type: 3}
+  defaultScoreAnimationFactor: 110
+  baseScript: {fileID: 0}
+  baseUnstableScore: {fileID: 0}
+  baseScore: {fileID: 0}
+  taunt0Text: 
+  taunt1Text: 
+  taunt2Text: 
+  taunt3PlusText: 
+  currentTauntBall: {fileID: 0}
+  nextTauntBall: {fileID: 0}
+  description: {fileID: 0}
 --- !u!114 &1712722513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8272,6 +8287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterBallList: []
   hUDScript: {fileID: 1712722505}
+  exporter: {fileID: 0}
   readyAndThrowSpeedMultiplier: 1.3
 --- !u!4 &1777289291
 Transform:
@@ -23286,7 +23302,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -1819088923225176383, guid: dee82e081c1f312418b9fde3f2a327f0, type: 3}
+  m_Mesh: {fileID: 5974550412163766233, guid: dee82e081c1f312418b9fde3f2a327f0, type: 3}
   m_Bones:
   - {fileID: 5690458437583309550}
   - {fileID: 5690458438424134917}
@@ -25449,10 +25465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9da978b94570649a096bb5c3622820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silverText: {fileID: 0}
-  goldText: {fileID: 0}
-  missText: {fileID: 0}
-  comboText: {fileID: 0}
 --- !u!114 &6784341483602782170
 MonoBehaviour:
   m_ObjectHideFlags: 0
