@@ -46,6 +46,7 @@ public class BattingControls : MonoBehaviour
     }
     public void Batting(CallbackContext context)
     {
+
         switch (dashCont.isDashing)
         {
             case false:

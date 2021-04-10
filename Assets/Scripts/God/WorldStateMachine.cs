@@ -25,6 +25,11 @@ public class WorldStateMachine : MonoBehaviour
         SetCurrentState(WorldState.GAMESTART);
     }
 
+    private void Update()
+    {
+        Debug.Log(currentState);
+    }
+
     private void SetCurrentStateInternal(WorldState state)
     {
         if (state == WorldState.RUNNING)
