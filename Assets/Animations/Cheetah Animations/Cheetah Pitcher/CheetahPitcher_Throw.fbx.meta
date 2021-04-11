@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 973cb1e5ad0c26d4f8d5a591f4ad9269
+guid: ed1487a2cb2ae9a4685cde722272a656
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cheetah Fielder Throw Taunt 1
+    second: Cheetah Pitcher Throw
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah Fielder Throw Taunt 1
+      name: Cheetah Pitcher Throw
       takeName: Take 001
       internalID: 0
       firstFrame: 2
-      lastFrame: 180
+      lastFrame: 550
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
