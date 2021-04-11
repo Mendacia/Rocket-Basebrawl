@@ -35,6 +35,8 @@ public class fielderPeltingScript : MonoBehaviour
 
     public bool canThrow = false; //Delete this
 
+    private List<Animator> fielderAnims;
+
     /* -----------
      Code below 
      ------------*/
@@ -46,11 +48,18 @@ public class fielderPeltingScript : MonoBehaviour
         scatterAllocationScript = GameObject.Find("AccuracyTarget").GetComponent<fielderScatterAccuracyScript>();
         ballGodScript = GameObject.Find("BallGod").GetComponent<BallList>();
         fieldingTeam = new List<Transform>();
+        fielderAnims = new List<Animator>();
+        
 
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
         {
             fieldingTeam.Add(child.transform);
+        }
+
+        foreach (Animator child in gameObject.transform.Find("Team"))
+        {
+            fielderAnims.Add(child.GetComponentInChildren<Animator>());
         }
     }
 
@@ -77,6 +86,10 @@ public class fielderPeltingScript : MonoBehaviour
     public void fielderTauntLevelIncreaser()
     {
         fielderTauntLevel++;
+        foreach (Animator fielderAnimation in fielderAnims)
+        {
+            fielderAnimation.SetInteger("", fielderTauntLevel);
+        }
     }
 
     public void InitializeRunningPhase()
