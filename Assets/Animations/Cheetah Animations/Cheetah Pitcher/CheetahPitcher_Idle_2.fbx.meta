@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 973cb1e5ad0c26d4f8d5a591f4ad9269
+guid: 44299fe98d5c027439174df7fb1e13ce
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cheetah Fielder Throw Taunt 1
+    second: Cheetah Pitcher Idle 2
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,18 +35,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cheetah Fielder Throw Taunt 1
+      name: Cheetah Pitcher Idle 2
       takeName: Take 001
       internalID: 0
       firstFrame: 2
-      lastFrame: 180
+      lastFrame: 500
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -62,7 +62,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 2
     isReadable: 0
   meshes:
     lODScreenPercentages: []
