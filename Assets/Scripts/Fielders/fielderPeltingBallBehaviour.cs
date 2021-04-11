@@ -6,15 +6,20 @@ public class fielderPeltingBallBehaviour : MonoBehaviour
 {
     [SerializeField] private float ballSpeed;
     public float expireAfterSeconds = 20;
+    public Rigidbody body;
     [SerializeField] private GameObject ballHit = null;
 
     void Start()
     {
-        var body = GetComponent<Rigidbody>();
-        Instantiate(ballHit, this.transform);
+        Instantiate(ballHit, transform);
         ballHit.transform.parent = null;
         body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
         StartCoroutine(Expire());
+    }
+
+    public void changeDirection()
+    {
+        body.velocity = transform.forward * ballSpeed * 100 * Time.deltaTime;
     }
 
     IEnumerator Expire()

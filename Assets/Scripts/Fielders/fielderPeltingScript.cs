@@ -26,7 +26,7 @@ public class fielderPeltingScript : MonoBehaviour
     [SerializeField] private int higherTauntBallCountReductionFactor = 3;
     private int finalBallsToThrow;
 
-    private List<Transform> fieldingTeam;
+    [System.NonSerialized] public List<Transform> fieldingTeam;
     private int fielderTauntLevel = 0;
     private bool pleaseStop = false;
 
