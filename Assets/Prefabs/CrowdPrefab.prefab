@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1247335995970191754}
   - component: {fileID: 2034193053356632690}
+  - component: {fileID: 6902993010951693782}
   m_Layer: 0
   m_Name: CrowdPrefab
   m_TagString: Untagged
@@ -133,3 +134,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6902993010951693782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026683911340459726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed53f914d3ab1a4286d3e7a262758fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crowdImages:
+  - {fileID: 21300000, guid: aa5d1d0e706764b4f9196ee02edc1880, type: 3}
+  - {fileID: 21300000, guid: de213af568c595648a1bcf2e90c03686, type: 3}
+  - {fileID: 21300000, guid: d8956ee7dfe6e684d9471fea993ed6a9, type: 3}
+  - {fileID: 21300000, guid: 675c1f68d1839a24ba2a7ff3516c55f2, type: 3}
+  - {fileID: 21300000, guid: 5552ec2364dd40246ac597b707291b77, type: 3}
+  - {fileID: 21300000, guid: 35105eee4d03c794a9a0e8ae961989cd, type: 3}
+  myCrowd: {fileID: 9074206588951902541}
