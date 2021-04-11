@@ -27,7 +27,7 @@ public class WorldStateMachine : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     private void SetCurrentStateInternal(WorldState state)

@@ -40,7 +40,6 @@ public class POVCamControl : MonoBehaviour
         StartCoroutine(InheritAfterTime());
         sensHold = GameObject.Find("SensitivityHolder").GetComponent<SensitivityHolder>();
         sensitivity = sensHold.sensitivity;
-        Debug.Log(sensitivity);
     }
 
     void FixedUpdate()
