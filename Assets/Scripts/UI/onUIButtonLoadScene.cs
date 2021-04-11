@@ -5,21 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class onUIButtonLoadScene : MonoBehaviour
 {
+    [SerializeField] private bool useLoadingUI = false;
     [SerializeField] private LoadingScreenControls loadingUI;
     [Header("Make sure this is spelled right")]
     [SerializeField] private string sceneToLoad = "Change This In Editor";
 
-    private void Start()
-    {
-        //loadingUI = GameObject.Find("Loading Screen UI").GetComponent<LoadingScreenControls>();
-        
-    }
-
     public void loadTheScene()
     {
-        loadingUI.CommenceLoading();
-        //SceneManager.LoadScene(sceneToLoad);
-        StartCoroutine(ActuallyLoadTheScene());
+        if (useLoadingUI)
+        {
+            loadingUI.CommenceLoading();
+            StartCoroutine(ActuallyLoadTheScene());
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     IEnumerator ActuallyLoadTheScene()
