@@ -22,6 +22,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject endScreenCam = null;
     [SerializeField] private Animator playerAnim = null;
+    [SerializeField] private Animator pitcherAnim = null;
 
     [Header("Visible for debug")]
     [SerializeField] private List<Transform> bases = null;
@@ -76,7 +77,7 @@ public class baseManager : MonoBehaviour
         }
 
         totalDistanceBetweenAllBases = distanceBetweenBases.Sum();
-       
+
         //Storing this for percentage calculations
         remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases - distanceBetweenBases[currentBase];
     }
@@ -212,6 +213,7 @@ public class baseManager : MonoBehaviour
                 SplitScreenLefts[currentBase - 1].SetActive(true);
                 SplitScreenRights[currentBase - 1].SetActive(true);
                 playerAnim.SetTrigger("heTaunt");
+                pitcherAnim.SetTrigger("heTaunt");
                 StartCoroutine(BaseEffects());
                 hUDScript.runTheBaseUI(false, fpScript.GetFielderTauntLevel());
                 break;
