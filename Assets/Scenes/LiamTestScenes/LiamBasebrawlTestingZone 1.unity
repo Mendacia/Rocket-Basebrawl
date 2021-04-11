@@ -236,6 +236,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &30266808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 760340166}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30266809}
+  m_Layer: 0
+  m_Name: RabbitPitcher_Main (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30266809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 760340166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30266808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 108691308}
+  - {fileID: 108691306}
+  m_Father: {fileID: 794016247}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &35205417
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,18 +830,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &108691305 stripped
+--- !u!1 &108691305
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: defb5be75f2d5554fb01b7ce8f51f3e0,
     type: 3}
   m_PrefabInstance: {fileID: 760340166}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &108691306 stripped
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108691308}
+  - component: {fileID: 108691307}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &108691306
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: defb5be75f2d5554fb01b7ce8f51f3e0,
     type: 3}
   m_PrefabInstance: {fileID: 760340166}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930310631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 30266809}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &108691307
 Animator:
   serializedVersion: 3
@@ -829,6 +882,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &108691308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 760340166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108691305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 30266809}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &110335177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6375,7 +6442,7 @@ Transform:
   m_LocalPosition: {x: -58.6, y: 1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 108691306}
+  - {fileID: 30266809}
   m_Father: {fileID: 1299925480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9511,7 +9578,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263482107}
-  m_LocalRotation: {x: 0.0001798046, y: -0.713139, z: 0.0001829123, w: 0.7010226}
+  m_LocalRotation: {x: 0.00017982634, y: -0.713139, z: 0.00018293441, w: 0.7010226}
   m_LocalPosition: {x: 7.4499993, y: 1.1, z: 1.670001}
   m_LocalScale: {x: 0.81573206, y: 1, z: 0.9999203}
   m_Children:
@@ -14981,6 +15048,22 @@ Transform:
   m_Father: {fileID: 852177894}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1930310631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 760340166}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108691306}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1951439069
 GameObject:
   m_ObjectHideFlags: 0
@@ -22911,6 +22994,7 @@ MonoBehaviour:
   currentScore: {fileID: 118649997}
   currentUnstableScore: {fileID: 683092040}
   LeaveMenu: {fileID: 204168844}
+  OptionsMenu: {fileID: 0}
   fielderPelting: {fileID: 1399274990}
   updaterScript: {fileID: 1098240544}
   quit: {fileID: 1650947937}
@@ -24294,10 +24378,6 @@ MonoBehaviour:
       Wired/trigger]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3a928ead-c7bd-44f4-b176-69c7cd03aaf1
-    m_ActionName: Player/Aim[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: eef25fb7-69cf-4cac-aeb8-7208c9db4bfa
     m_ActionName: UI/Navigate[/Razer Razer Raiju Tournament Edition Wired/stick/up,/Razer
       Razer Raiju Tournament Edition Wired/stick/down,/Razer Razer Raiju Tournament
@@ -24342,22 +24422,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7b2a7ca7-9623-4789-b95a-af6e29bf53cd
     m_ActionName: UI/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5690458437906995182}
-        m_TargetAssemblyTypeName: playerControls, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: efdb7027-3535-4f30-b525-abfb3ff5ae85
-    m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1749323202}
@@ -24758,7 +24822,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -3343195567117295240, guid: bc2f5c51cf9c6c349bebe88053147c80, type: 3}
+  m_Mesh: {fileID: -1819088923225176383, guid: dee82e081c1f312418b9fde3f2a327f0, type: 3}
   m_Bones:
   - {fileID: 5690458437583309550}
   - {fileID: 5690458438424134917}
