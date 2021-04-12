@@ -8,6 +8,8 @@ public class playerSwap : MonoBehaviour
     [SerializeField] private GameObject Bat2 = null;
     [SerializeField] private GameObject Swing1 = null;
     [SerializeField] private GameObject Swing2 = null;
+    [SerializeField] private GameObject Swing1B = null;
+    [SerializeField] private GameObject Swing2B = null;
     private bool isSwapped = false;
 
     private enum easterEggState
@@ -82,6 +84,7 @@ public class playerSwap : MonoBehaviour
                     isSwapped = true;
                     Bat1.SetActive (false);
                     Swing1.SetActive (false);
+                    Swing1B.SetActive (false);
                     Bat2.SetActive (true);
                     Swing2.SetActive (true);
                 }
@@ -91,6 +94,7 @@ public class playerSwap : MonoBehaviour
                     Bat1.SetActive (true);
                     Swing1.SetActive (true);
                     Bat2.SetActive (false);
+                    Swing2B.SetActive (false);
                     Swing2.SetActive (false);
                 }
                 currentEggState = easterEggState.NA;

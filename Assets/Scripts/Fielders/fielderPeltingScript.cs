@@ -38,7 +38,7 @@ public class fielderPeltingScript : MonoBehaviour
     private List<Animator> fielderAnims;
 
     /* -----------
-     Code below 
+     Code below
      ------------*/
 
     private void Awake()
@@ -49,7 +49,7 @@ public class fielderPeltingScript : MonoBehaviour
         ballGodScript = GameObject.Find("BallGod").GetComponent<BallList>();
         fieldingTeam = new List<Transform>();
         fielderAnims = new List<Animator>();
-        
+
 
         //Populate fieldingTeam list with the children of this gameObject
         foreach (Transform child in gameObject.transform.Find("Team"))
@@ -88,7 +88,7 @@ public class fielderPeltingScript : MonoBehaviour
         fielderTauntLevel++;
         foreach (Animator fielderAnimation in fielderAnims)
         {
-            fielderAnimation.SetInteger("", fielderTauntLevel);
+            fielderAnimation.SetInteger("fielderTauntLevel", fielderTauntLevel);
         }
     }
 
@@ -130,7 +130,7 @@ public class fielderPeltingScript : MonoBehaviour
             {
                 myTauntLevel = 3;
             }
-            
+
             myIndex = i;
 
             //Finally adding the ball to the list
@@ -251,8 +251,6 @@ public class fielderPeltingScript : MonoBehaviour
         }
 
     }
-
-
 
     public int GetFielderTauntLevel() => fielderTauntLevel;
 }

@@ -21,8 +21,8 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.08571422
-  m_TransitionOffset: 0.08000013
-  m_ExitTime: 0.948047
+  m_TransitionOffset: 0
+  m_ExitTime: 0.9232055
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -48,9 +48,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.35120475
+  m_TransitionDuration: 0.07420826
   m_TransitionOffset: 0
-  m_ExitTime: 0.86903626
+  m_ExitTime: 0.9405191
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -70,7 +70,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6606937750370872719}
-    m_Position: {x: 578.76416, y: 43.639954, z: 0}
+    m_Position: {x: 580, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -142448932991119740}
     m_Position: {x: 580, y: 150, z: 0}
@@ -110,9 +110,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.06811893
   m_TransitionOffset: 0
-  m_ExitTime: 0.95
+  m_ExitTime: 0.9453063
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -126,7 +126,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rabbit Throw Taunt 2
-  m_Speed: 1
+  m_Speed: 12
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -551977612463072358}
@@ -176,7 +176,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rabbit Throw Taunt 1
-  m_Speed: 1
+  m_Speed: 12
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 9118750420687183237}
@@ -210,13 +210,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fielderTauntLevel
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -260,7 +260,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rabbit Throw Taunt 3
-  m_Speed: 1
+  m_Speed: 12
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8871020770413395498}
@@ -328,9 +328,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.6259034
+  m_TransitionDuration: 0.06386316
   m_TransitionOffset: 0
-  m_ExitTime: 0.6492774
+  m_ExitTime: 0.9299869
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

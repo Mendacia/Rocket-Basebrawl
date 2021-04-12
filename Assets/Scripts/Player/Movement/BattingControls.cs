@@ -13,7 +13,8 @@ public class BattingControls : MonoBehaviour
     private bool isHitting = false;
     public bool dashBat = false;
     private BoxCollider myCollider = null;
-    [SerializeField] private GameObject particleMaster = null;
+    [SerializeField] private GameObject battingEffectsUpright = null;
+    [SerializeField] private GameObject battingEffectsSliding = null;
     // [SerializeField] private GameObject ventParticles = null;
 
     [Header("Everything to do with Base Vent Flames")]
@@ -48,6 +49,7 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     playerAnimator.SetTrigger("heHit");
+                    battingEffectsUpright.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
                 break;
@@ -59,6 +61,7 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     playerAnimator.SetTrigger("heDashHit");
+                    battingEffectsSliding.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
                 break;
@@ -73,13 +76,11 @@ public class BattingControls : MonoBehaviour
             flame.startSize = MaximumSize;
         }
 
-        // ventParticles.SetActive(true);
-        particleMaster.SetActive(true);
         yield return new WaitForSeconds(hitWindow);
         myCollider.enabled = false;
         yield return new WaitForSeconds(hitCooldown);
-        // ventParticles.SetActive(false);
-        particleMaster.SetActive(false);
+        battingEffectsSliding.SetActive(false);
+        battingEffectsUpright.SetActive(false);
         dashBat = false;
         isHitting = false;
     }
@@ -90,10 +91,5 @@ public class BattingControls : MonoBehaviour
         {
             flame.startSize = Mathf.Lerp(flame.startSize, MinimumSize, lerpDistance * Time.deltaTime);
         }
-
-        // foreach (ParticleSystem flame in ventFlamesSystemsBoost)
-        // {
-        //     flame.startSize = Mathf.Lerp(flame.startSize, MinimumSizeBoost, lerpDistanceBoost * Time.deltaTime);
-        // }
     }
 }
