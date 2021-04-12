@@ -70,6 +70,8 @@ public class POVCamControl : MonoBehaviour
         {
             camInput.x = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 10f, 80 * Time.deltaTime)).x;
             camInput.y = Vector2.Lerp(camInput, value, Mathf.SmoothStep(0f, 10f, 80 * Time.deltaTime)).y;
+            //camInput.x = value.x;
+            //camInput.y = value.y;
         }
     }
 

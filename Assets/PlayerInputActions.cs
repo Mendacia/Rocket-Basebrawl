@@ -689,6 +689,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""38e028df-9d40-464b-9077-99352b9b3bcc"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c6bf07ac-f9a3-4eb8-bd12-441c2620b1fa"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
