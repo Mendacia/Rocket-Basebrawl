@@ -42,9 +42,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.11717355
+  m_TransitionDuration: 0.11717343
   m_TransitionOffset: 0
-  m_ExitTime: 0.9075089
+  m_ExitTime: 0.8975901
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -70,9 +70,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.32496643
+  m_TransitionDuration: 0.06938398
   m_TransitionOffset: 0
-  m_ExitTime: 0.7167867
+  m_ExitTime: 0.93548954
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -132,9 +132,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.60341346
+  m_TransitionDuration: 0.14397573
   m_TransitionOffset: 0
-  m_ExitTime: 0.49425918
+  m_ExitTime: 0.85953224
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -204,7 +204,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Fielder Throw Taunt 1
-  m_Speed: 1
+  m_Speed: 12
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6270814202990282538}
@@ -232,7 +232,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Fielder Throw Taunt 3
-  m_Speed: 1
+  m_Speed: 8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8990940960109217383}
@@ -294,9 +294,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25000006
+  m_TransitionDuration: 0.060982823
   m_TransitionOffset: 0
-  m_ExitTime: 0.79441255
+  m_ExitTime: 0.94664115
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -391,7 +391,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cheetah Fielder Throw Taunt 2
-  m_Speed: 1
+  m_Speed: 8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5279019732140968535}
