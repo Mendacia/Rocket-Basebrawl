@@ -40,8 +40,8 @@ public class playerDash : MonoBehaviour
         isDashing = true;
         yield return new WaitForSeconds(dashDuration);
         playerCont.Dash(false);
-        yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 }
