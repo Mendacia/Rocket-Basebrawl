@@ -150,9 +150,9 @@ public class HUDManager : MonoBehaviour
     public void baseUITaunt(int tauntLevelCurrent)
     {
         if (tauntLevelCurrent < 4) { currentTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, tauntLevelCurrent); }
-        else { currentTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3); }
+        else {}
         if (tauntLevelCurrent < 3) { nextTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, tauntLevelCurrent + 1); }
-        else { nextTauntBall.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3); }
+        else {}
 
         switch (tauntLevelCurrent)
         {
