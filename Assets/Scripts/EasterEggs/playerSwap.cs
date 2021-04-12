@@ -87,15 +87,17 @@ public class playerSwap : MonoBehaviour
                     Swing1B.SetActive (false);
                     Bat2.SetActive (true);
                     Swing2.SetActive (true);
+                    Swing2B.SetActive (true);
                 }
                 else
                 {
                     isSwapped = false;
                     Bat1.SetActive (true);
                     Swing1.SetActive (true);
+                    Swing1B.SetActive (true);
                     Bat2.SetActive (false);
-                    Swing2B.SetActive (false);
                     Swing2.SetActive (false);
+                    Swing2B.SetActive (false);
                 }
                 currentEggState = easterEggState.NA;
                 break;
