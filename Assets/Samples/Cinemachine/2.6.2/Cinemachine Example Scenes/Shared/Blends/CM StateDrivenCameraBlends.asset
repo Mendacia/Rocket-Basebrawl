@@ -60,8 +60,8 @@ MonoBehaviour:
   - m_From: Player Camera
     m_To: Freeze Frame Camera
     m_Blend:
-      m_Style: 0
-      m_Time: 2
+      m_Style: 4
+      m_Time: 0.2
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []

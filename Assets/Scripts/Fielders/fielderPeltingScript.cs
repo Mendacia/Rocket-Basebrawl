@@ -57,7 +57,7 @@ public class fielderPeltingScript : MonoBehaviour
             fieldingTeam.Add(child.transform);
         }
 
-        foreach (Animator child in gameObject.transform.Find("Team"))
+        foreach (Transform child in gameObject.transform.Find("Team").transform)
         {
             fielderAnims.Add(child.GetComponentInChildren<Animator>());
         }
