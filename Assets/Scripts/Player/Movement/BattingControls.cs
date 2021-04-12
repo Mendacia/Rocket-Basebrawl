@@ -49,6 +49,7 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     playerAnimator.SetTrigger("heHit");
+                    battingEffectsUpright.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
                 break;
@@ -60,6 +61,7 @@ public class BattingControls : MonoBehaviour
                     dashBat = true;
                     isHitting = true;
                     playerAnimator.SetTrigger("heDashHit");
+                    battingEffectsSliding.SetActive(true);
                     StartCoroutine(Cooldown());
                 }
                 break;
@@ -74,10 +76,10 @@ public class BattingControls : MonoBehaviour
             flame.startSize = MaximumSize;
         }
 
-        battingEffectsUpright.SetActive(true);
         yield return new WaitForSeconds(hitWindow);
         myCollider.enabled = false;
         yield return new WaitForSeconds(hitCooldown);
+        battingEffectsSliding.SetActive(false);
         battingEffectsUpright.SetActive(false);
         dashBat = false;
         isHitting = false;
