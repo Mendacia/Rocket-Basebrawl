@@ -11107,7 +11107,7 @@ Transform:
   - {fileID: 3880523456917888594}
   - {fileID: 3880523456160270218}
   m_Father: {fileID: 3880523458087679922}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.770123}
 --- !u!1 &3880523456711185593
 GameObject:
@@ -11778,7 +11778,7 @@ Transform:
   - {fileID: 3880523457982945188}
   - {fileID: 3880523457619707361}
   m_Father: {fileID: 3880523458087679922}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.77012}
 --- !u!1 &3880523457518515119
 GameObject:
@@ -11840,7 +11840,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3880523458087679922}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3880523457530398818
 SkinnedMeshRenderer:
@@ -12708,6 +12708,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1135298564044065592}
+  - {fileID: 6339378380311344146}
   - {fileID: 3880523456706023771}
   - {fileID: 3880523457530398821}
   - {fileID: 3880523457464448186}
@@ -13300,17 +13301,17 @@ PrefabInstance:
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3301427
+      value: -1.38
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7221965
+      value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.86412907
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
@@ -13355,7 +13356,7 @@ PrefabInstance:
     - target: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
       propertyPath: m_Name
-      value: Bat Swing V3
+      value: Bat Swing V3 Up
       objectReference: {fileID: 0}
     - target: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
         type: 3}
@@ -13375,6 +13376,86 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
     type: 3}
   m_PrefabInstance: {fileID: 4032534348501955465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8056635805036252323
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3880523458087679922}
+    m_Modifications:
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9868474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.028738078
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.11819565
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.106471114
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 11.733
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -165.847
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -175.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Bat Swing V3 Slide
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9cf101d95d679014e812d38f3b7c65cc, type: 3}
+--- !u!4 &6339378380311344146 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8056635805036252323}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8872920617936752508
 PrefabInstance:
