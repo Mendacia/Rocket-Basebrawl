@@ -22,14 +22,6 @@ public class BattingControls : MonoBehaviour
     [SerializeField] private float MaximumSize = 1;
     [SerializeField] private float MinimumSize = 0;
     [SerializeField] private float lerpDistance = 0.2f;
-
-    // [Header("Everything to do with Boosted Vent Flames")]
-    // [SerializeField] private Transform ventFlamesBoost = null;
-    // private List<ParticleSystem> ventFlamesSystemsBoost = new List<ParticleSystem>();
-    // [SerializeField] private float MaximumSizeBoost = 1;
-    // [SerializeField] private float MinimumSizeBoost = 0;
-    // [SerializeField] private float lerpDistanceBoost = 0.2f;
-
     private void Start()
     {
         myCollider = gameObject.GetComponent<BoxCollider>();
@@ -66,7 +58,6 @@ public class BattingControls : MonoBehaviour
                     myCollider.enabled = true;
                     dashBat = true;
                     isHitting = true;
-                    Debug.Log("DAAAAASH BAAAAT!!!!!!!!!!!!!!!");
                     playerAnimator.SetTrigger("heDashHit");
                     StartCoroutine(Cooldown());
                 }
