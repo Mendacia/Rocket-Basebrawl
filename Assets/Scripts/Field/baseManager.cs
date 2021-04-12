@@ -15,6 +15,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private scoreUpdater scoreUpdaterScript = null;
 
     [Header("BaseEffects")]
+    [SerializeField] private Transform nextBaseIndicator;
     [SerializeField] private List<GameObject> pitchingCameras;
     [SerializeField] private GameObject playerBackCam = null;
     [SerializeField] private List<GameObject> SplitScreenLefts;
@@ -102,7 +103,7 @@ public class baseManager : MonoBehaviour
                 ProgressBase(currentBase + 1, nextBase = 0);
                 remainingDistanceToHomeBaseSansPlayerToNextBase = 0;
                 currentBaseTarget = bases[currentBase].GetComponent<MyBaseTargetHolder>().myTarget;
-                SwitchToBattingPhaseOnBaseTouch("HOME");
+                SwitchToBattingPhaseOnBaseTouch("H");
             }
             else if (nextBase == 0)
             {
@@ -114,6 +115,7 @@ public class baseManager : MonoBehaviour
             }
             fielderAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
             scatterAccuracyObject.NewTargetingNextBaseUpdater(GetBases(), currentBase);
+            nextBaseIndicator.position = bases[nextBase].position;
         }
 
         realRemainingDistanceToHomeBase = remainingDistanceToHomeBaseSansPlayerToNextBase + remainingDistanceToNextBase;

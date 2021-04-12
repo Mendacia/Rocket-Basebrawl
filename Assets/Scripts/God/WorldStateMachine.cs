@@ -14,6 +14,7 @@ public class WorldStateMachine : MonoBehaviour
     [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject pitchingCam = null;
     [SerializeField] private Transform arrowFolder = null;
+    [SerializeField] private GameObject baseBeam = null;
     private WorldState currentState;
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class WorldStateMachine : MonoBehaviour
         {
             var rb = player.GetComponent<Rigidbody>();
             rb.constraints = ~RigidbodyConstraints.FreezePositionX & ~RigidbodyConstraints.FreezePositionZ;
+            baseBeam.SetActive(true);
             pitchingCam.SetActive(false);
             BattingPhase.StopMe();
             PeltingScript.StartMe();
