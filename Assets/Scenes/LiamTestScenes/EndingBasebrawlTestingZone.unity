@@ -618,7 +618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &180880918
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2485,8 +2485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  save: {fileID: 1516895988}
-  name: {fileID: 1878444725}
+  NameField: {fileID: 1878444725}
   Leaderboard: {fileID: 2021000324}
   EnterName: {fileID: 1141998801}
   LeaderboardEmpty: {fileID: 180880917}
@@ -2621,7 +2620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1141998802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3569,6 +3568,7 @@ GameObject:
   - component: {fileID: 1575420705}
   - component: {fileID: 1575420704}
   - component: {fileID: 1575420707}
+  - component: {fileID: 1575420708}
   m_Layer: 5
   m_Name: ReturnToHomeMenu
   m_TagString: Untagged
@@ -3639,7 +3639,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575420705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1575420708}
+        m_TargetAssemblyTypeName: onUIButtonLoadScene, Assembly-CSharp
+        m_MethodName: loadTheScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1575420705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3690,9 +3702,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b1abf33d0deb643a81b44031a52d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSize: {x: 1, y: 0.7, z: 1}
+  maxSize: {x: 0.1, y: 0.07, z: 1}
   minSizeDifferencebeforeSnap: 0.001
   lerpSpeed: 5
+--- !u!114 &1575420708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575420702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b28cdb16c0c924e8d776072f0fe88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useLoadingUI: 0
+  loadingUI: {fileID: 0}
+  sceneToLoad: MainMenu
 --- !u!1 &1596271359
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,7 +3961,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 34.633595, y: 30}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615852116
 MonoBehaviour:
@@ -4160,7 +4187,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -360}
-  m_SizeDelta: {x: 34.633595, y: 30}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700433745
 MonoBehaviour:
@@ -4352,7 +4379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1799668594
 Animator:
   serializedVersion: 3
@@ -4875,7 +4902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &2021000324
 Animator:
   serializedVersion: 3

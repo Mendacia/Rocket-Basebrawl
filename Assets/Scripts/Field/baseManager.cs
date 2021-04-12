@@ -77,7 +77,7 @@ public class baseManager : MonoBehaviour
         }
 
         totalDistanceBetweenAllBases = distanceBetweenBases.Sum();
-       
+
         //Storing this for percentage calculations
         remainingDistanceToHomeBaseSansPlayerToNextBase = totalDistanceBetweenAllBases - distanceBetweenBases[currentBase];
     }
