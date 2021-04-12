@@ -188,14 +188,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914917715}
-  m_LocalRotation: {x: -0.0136052435, y: 0.006840677, z: -0.17663659, w: 0.9841584}
-  m_LocalPosition: {x: 0.011, y: 0.321, z: 0.012}
+  m_LocalRotation: {x: -0.023175394, y: -0.03620388, z: -0.10324889, w: 0.99372625}
+  m_LocalPosition: {x: -0.029, y: 0.175, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 181630162}
   - {fileID: 1669078798}
-  m_Father: {fileID: 3880523457182523088}
-  m_RootOrder: 3
+  m_Father: {fileID: 3880523456486019826}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.396, y: 1.047, z: -20.363}
 --- !u!1 &1669078797
 GameObject:
@@ -10255,7 +10255,7 @@ GameObject:
   - component: {fileID: 3880523456400081512}
   - component: {fileID: 3880523456400081515}
   - component: {fileID: 3880523456400081514}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -10307,7 +10307,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1834807
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -10669,6 +10669,7 @@ Transform:
   m_LocalPosition: {x: -8.297959e-18, y: 0.13968661, z: 1.1074475e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 914917716}
   - {fileID: 3880523458006100378}
   m_Father: {fileID: 3880523457182523088}
   m_RootOrder: 2
@@ -11482,7 +11483,6 @@ Transform:
   - {fileID: 3880523458214359387}
   - {fileID: 3880523456669707979}
   - {fileID: 3880523456486019826}
-  - {fileID: 914917716}
   m_Father: {fileID: 3880523456917888594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -3.533, z: 0}
@@ -11659,7 +11659,7 @@ MonoBehaviour:
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: 15
+    m_MinValue: 0
     m_MaxValue: 15
     m_Wrap: 0
     m_Recentering:
@@ -12157,7 +12157,7 @@ GameObject:
   - component: {fileID: 3880523457793020444}
   - component: {fileID: 3880523457793020447}
   - component: {fileID: 3880523457230173828}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Player Camera
   m_TagString: CineNormal
   m_Icon: {fileID: 0}
@@ -12171,8 +12171,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3880523457793020449}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0000004768374, y: 4.1, z: -20.000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3880523457338961223}
@@ -12287,6 +12287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSens: {fileID: 3880523457793020447}
+  sensSlider: {fileID: 0}
 --- !u!1 &3880523457850408054
 GameObject:
   m_ObjectHideFlags: 0
@@ -12449,7 +12450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3880523457971908473}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Camera Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12532,7 +12533,7 @@ Transform:
   m_LocalScale: {x: 1.0126835, y: 1.0126835, z: 1.0126835}
   m_Children: []
   m_Father: {fileID: 3880523456486019826}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.43616998}
 --- !u!1818360610 &6221321904165022298
 ScaleConstraint:
@@ -12893,7 +12894,8 @@ MonoBehaviour:
   hitCooldown: 0.12
   dashCont: {fileID: 8872920619785328247}
   dashBat: 0
-  particleMaster: {fileID: 1135298564044065599}
+  battingEffectsUpright: {fileID: 1135298564044065599}
+  battingEffectsSliding: {fileID: 6339378380311344149}
   ventFlamesRoot: {fileID: 8872920618580132938}
   MaximumSize: 0.3
   MinimumSize: 0.001
@@ -13454,6 +13456,12 @@ PrefabInstance:
 --- !u!4 &6339378380311344146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4050729035274041521, guid: 9cf101d95d679014e812d38f3b7c65cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8056635805036252323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6339378380311344149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4050729035274041526, guid: 9cf101d95d679014e812d38f3b7c65cc,
     type: 3}
   m_PrefabInstance: {fileID: 8056635805036252323}
   m_PrefabAsset: {fileID: 0}
