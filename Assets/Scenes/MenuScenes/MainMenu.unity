@@ -2766,25 +2766,23 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Fuckin placeholder text I dunno, what do you want from me?\r\r\n\nThis
-    is where a brief summary of patchnotes would go, assuming\r this game has any
-    kind of post release support. \r\rI\u2019m still not entirely sure on the scrollable
-    window or the slight \rtilt, or even using this font in here due to accessibility
-    for\r dyslexics, but that\u2019s an issue to be solved at a later date.\r\r\n\nSo
-    I'm gonna level with you. I'm not 100% sure this textbox even works. I'm buying
-    time until the end of the scrollable window by typing random shit. Did you know
-    that the percent in this text box wasn't working initially? It gave me conniptions,
-    but that's resolved now. For some reason there was an outdated version of the
-    font in the files? Why? Who the fuck imported that shit (me)? I'll fucking kill
-    them.\n\nNew Game sends you to the Tutorial while Continue just slaps you straight
-    into the main game scene. Helps with making sure you don't waste time when testing
-    this shit y'know. Eventually they'll actually do what they say but we're at the
-    end of the textbox and if you're reading this then it either scrolls properly
-    or you have a really fucking big screen and I have no way of knowing which is
-    true. I'm only realizing now that this box will change in size based on the aspect
-    ratio you're using, but this exceeds mine so I honestly don't care about the
-    issues you're having because now I can test it\n\nWhy the fuck did you read any
-    of that?"
+  m_Text: 'WASD to move
+
+    Space / Shift to dash
+
+    Click to swing
+
+
+    Left
+    joystick to move
+
+    Left bumper to dash
+
+    Right trigger to swing
+
+
+    Tutorial
+    is incomplete, and the leaderboard only works for Cheetahs.'
 --- !u!222 &513805665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2986,6 +2984,7 @@ RectTransform:
   - {fileID: 1637466925}
   - {fileID: 737721842}
   - {fileID: 808719313}
+  - {fileID: 1476843500}
   m_Father: {fileID: 1928948740}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6669,6 +6668,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1476843499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476843500}
+  - component: {fileID: 1476843502}
+  - component: {fileID: 1476843501}
+  m_Layer: 0
+  m_Name: Alpha 0.1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1476843500
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476843499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 522652691}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.9}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1476843501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476843499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5cc9a5cdb54d6bf4da5d680cfa15b93b, type: 3}
+    m_FontSize: 300
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Alpha 0.1
+--- !u!222 &1476843502
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476843499}
+  m_CullTransparentMesh: 0
 --- !u!114 &1477806245 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2105034921651515536, guid: 72949d7a47d059646b8b6ecf85aea805,
@@ -7713,8 +7791,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1685926775}
   m_HandleRect: {fileID: 580979797}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5351046
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
