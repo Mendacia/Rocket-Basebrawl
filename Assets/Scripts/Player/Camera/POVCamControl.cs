@@ -38,8 +38,7 @@ public class POVCamControl : MonoBehaviour
             vcam.m_Transitions.m_InheritPosition = true;
         }
         StartCoroutine(InheritAfterTime());
-        sensHold = GameObject.Find("SensitivityHolder").GetComponent<SensitivityHolder>();
-        sensitivity = sensHold.sensitivity;
+        sensitivity = 50f;
     }
 
     void FixedUpdate()
