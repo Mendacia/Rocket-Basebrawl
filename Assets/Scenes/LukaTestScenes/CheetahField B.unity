@@ -837,6 +837,11 @@ PrefabInstance:
       propertyPath: m_MaxParticleSize
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4261157653646399130, guid: 5485280f1080e4e42b53708e8d117950,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4765a4a9c5076846899fa82e2e66259, type: 2}
     - target: {fileID: 4458697954389657229, guid: 5485280f1080e4e42b53708e8d117950,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -6357,6 +6362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   peltingScript: {fileID: 0}
+  ballGod: {fileID: 0}
   ragdoll: {fileID: 8902833058278786760, guid: 64b492f1349f6134d8b783e57f23c8c9, type: 3}
   hitStrength: 1
 --- !u!1 &1445907794
@@ -8514,6 +8520,7 @@ MonoBehaviour:
   player: {fileID: 5690458437575277485}
   endScreenCam: {fileID: 1755673190}
   playerAnim: {fileID: 5690458438353382400}
+  pitcherAnim: {fileID: 0}
   bases: []
   percentageOfRunRemaining: 0
   distanceFromBaseRequiredToProgress: 2
@@ -23351,7 +23358,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76d0fcb58cf2ec64897cdafa5e5f5153, type: 2}
+  - {fileID: 2100000, guid: d4765a4a9c5076846899fa82e2e66259, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
