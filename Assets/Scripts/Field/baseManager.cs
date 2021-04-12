@@ -126,13 +126,17 @@ public class baseManager : MonoBehaviour
     private void SwitchToBattingPhaseOnBaseTouch(string nextBaseString)
     {
         hUDScript.SetTheBaseString(nextBaseString);
+        playerBackCam.SetActive(true);
+        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        //player.transform.eulerAngles = new Vector3(0, playerBackCam.transform.eulerAngles.y, 0);
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
-
         Cursor.visible = true;
         hUDScript.runTheBaseUI(true, fpScript.GetFielderTauntLevel());
-        player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
+        //This line only works if the pitcher is centered
         player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
-        playerBackCam.SetActive(true);
+        //This line works if the pitcher isn't centered, but doesn't if it is
+        
+        
         //Time.timeScale = 0;
     }
 
@@ -160,7 +164,7 @@ public class baseManager : MonoBehaviour
         pitchingCameras[currentBase - 1].SetActive(true);
         yield return new WaitForSeconds(1);
         player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-        player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
+        player.transform.eulerAngles = new Vector3(0, playerBackCam.transform.eulerAngles.y, 0);
         yield return new WaitForSeconds(2);
         pitchingCameras[currentBase - 1].SetActive(false);
         yield return new WaitForSeconds(1);
@@ -208,7 +212,7 @@ public class baseManager : MonoBehaviour
                 hUDScript.baseUITaunt(fpScript.GetFielderTauntLevel());
                 yield return new WaitForSeconds(4.33333f);
                 player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
-                player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
+                player.transform.eulerAngles = new Vector3(0, playerBackCam.transform.eulerAngles.y, 0);
                 fpScript.fielderTauntLevelIncreaser();
                 SplitScreenLefts[currentBase - 1].SetActive(true);
                 SplitScreenRights[currentBase - 1].SetActive(true);
