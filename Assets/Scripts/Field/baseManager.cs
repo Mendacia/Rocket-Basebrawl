@@ -31,6 +31,7 @@ public class baseManager : MonoBehaviour
 
     [Header("Tweak this")]
     [SerializeField] private float distanceFromBaseRequiredToProgress = 5;
+    [SerializeField] private string sceneToLoad = "EndingBasebrawlTestingZone";
 
     private Transform playerPosition = null;
     [System.NonSerialized] public Transform currentBaseTarget = null;
@@ -137,8 +138,8 @@ public class baseManager : MonoBehaviour
         //This line only works if the pitcher is centered
         player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
         //This line works if the pitcher isn't centered, but doesn't if it is
-        
-        
+
+
         //Time.timeScale = 0;
     }
 
@@ -177,7 +178,7 @@ public class baseManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         scoreUpdaterScript.BankScore();
-        SceneManager.LoadScene("EndingBasebrawlTestingZone");
+        SceneManager.LoadScene(sceneToLoad);
         /*player.transform.position = bases[currentBase].transform.position + new Vector3(0, 1.1f, 0);
         player.transform.eulerAngles = new Vector3(0, 90, 0);
         playerBackCam.SetActive(true);
