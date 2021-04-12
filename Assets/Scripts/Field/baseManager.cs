@@ -13,6 +13,7 @@ public class baseManager : MonoBehaviour
     [SerializeField] private HUDManager hUDScript = null;
     [SerializeField] private fielderPeltingScript fpScript= null;
     [SerializeField] private scoreUpdater scoreUpdaterScript = null;
+    [SerializeField] private Button bankButton = null;
 
     [Header("BaseEffects")]
     [SerializeField] private Transform nextBaseIndicator;
@@ -135,6 +136,7 @@ public class baseManager : MonoBehaviour
         WorldStateMachine.SetCurrentState(WorldState.FROZEN);
         Cursor.visible = true;
         hUDScript.runTheBaseUI(true, fpScript.GetFielderTauntLevel());
+        bankButton.enabled = true;
         //This line only works if the pitcher is centered
         player.transform.eulerAngles = new Vector3(0, SplitScreenLefts[currentBase - 1].transform.eulerAngles.y, 0);
         //This line works if the pitcher isn't centered, but doesn't if it is
@@ -196,6 +198,7 @@ public class baseManager : MonoBehaviour
     public void Bank()
     {
         Cursor.visible = false;
+        bankButton.enabled = false;
         Time.timeScale = 1;
         StartCoroutine(waitForAnimation(3));
     }

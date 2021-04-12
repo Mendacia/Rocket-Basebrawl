@@ -2073,6 +2073,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 914917716, guid: 2c4cc6efdd43fb6498d0d7bd9c92da9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.038
+      objectReference: {fileID: 0}
+    - target: {fileID: 914917716, guid: 2c4cc6efdd43fb6498d0d7bd9c92da9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.177
+      objectReference: {fileID: 0}
+    - target: {fileID: 914917716, guid: 2c4cc6efdd43fb6498d0d7bd9c92da9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.009
+      objectReference: {fileID: 0}
     - target: {fileID: 3880523456680550423, guid: 2c4cc6efdd43fb6498d0d7bd9c92da9c,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -3970,6 +3982,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6533488052006916750, guid: 7847a6e5a3349854d82e2a347f14d7f7, type: 3}
+--- !u!114 &1164475177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8074851444713697475, guid: 080cecbd367204249842a03eaa1aa131,
+    type: 3}
+  m_PrefabInstance: {fileID: 489904276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1201177531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2344152927608421260, guid: 7847a6e5a3349854d82e2a347f14d7f7,
@@ -5409,7 +5433,7 @@ PrefabInstance:
     - target: {fileID: 14551949962529188, guid: ad6c5ec82e1da1141af49f36f267ad6a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.34958956
+      value: 0.34958953
       objectReference: {fileID: 0}
     - target: {fileID: 14551949962529188, guid: ad6c5ec82e1da1141af49f36f267ad6a,
         type: 3}
@@ -5419,7 +5443,7 @@ PrefabInstance:
     - target: {fileID: 14551949962529188, guid: ad6c5ec82e1da1141af49f36f267ad6a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.04396839
+      value: 0.043968387
       objectReference: {fileID: 0}
     - target: {fileID: 14551949962529188, guid: ad6c5ec82e1da1141af49f36f267ad6a,
         type: 3}
@@ -6139,6 +6163,7 @@ MonoBehaviour:
   hUDScript: {fileID: 1137195147}
   fpScript: {fileID: 2098555976}
   scoreUpdaterScript: {fileID: 1137195146}
+  bankButton: {fileID: 1164475177}
   nextBaseIndicator: {fileID: 788155608}
   pitchingCameras:
   - {fileID: 1153348936}

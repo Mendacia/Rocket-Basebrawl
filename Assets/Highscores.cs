@@ -116,7 +116,7 @@ public class Highscores : MonoBehaviour
 
     IEnumerator enableReturnButton()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(3);
         returnButton.SetActive(true);
     }
 }

@@ -12,14 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LiamTestScenes/LiamBasebrawlTestingZone 1.unity
     guid: d2a0f1cdbbeb1e548a45925a6f1d5382
   - enabled: 1
+    path: Assets/Scenes/LiamTestScenes/LiamBasebrawlTestingZone 2.unity
+    guid: 31847143d59ae2c49b306feb75b9bb3e
+  - enabled: 1
     path: Assets/Scenes/LiamTestScenes/EndingBasebrawlTestingZone.unity
     guid: cf0894493be020b4b8b21bccd5282151
-  - enabled: 1
-    path: Assets/Scenes/ZachTestScenes/Tutorial.unity
-    guid: a3c6a448141bc1142a3a81e1ad26d86d
-  - enabled: 1
-    path: Assets/Scenes/ZachTestScenes/ZachMergeTest.unity
-    guid: 74ebf63983962db4995534aa83ee1c74
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 301bdb5e194e1ed43baa092f2845b086,
       type: 2}

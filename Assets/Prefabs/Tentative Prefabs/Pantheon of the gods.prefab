@@ -630,6 +630,8 @@ MonoBehaviour:
   Bat2: {fileID: 0}
   Swing1: {fileID: 0}
   Swing2: {fileID: 0}
+  Swing1B: {fileID: 0}
+  Swing2B: {fileID: 0}
 --- !u!1 &5435921044655408619
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +678,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5435921044655408619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49e03f9bbdd61be4e9f9ab84a4aaeb9e, type: 3}
   m_Name: 
@@ -793,6 +795,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pitchingCam: {fileID: 0}
   arrowFolder: {fileID: 0}
+  baseBeam: {fileID: 0}
 --- !u!114 &4766512144779264194
 MonoBehaviour:
   m_ObjectHideFlags: 0
