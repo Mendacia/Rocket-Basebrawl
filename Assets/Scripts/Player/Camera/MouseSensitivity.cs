@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class MouseSensitivity : MonoBehaviour
 {
     public POVCamControl mouseSens;
-    Slider sensSlider;
+    [SerializeField] Slider sensSlider;
 
     void Start()
     {
-        sensSlider = gameObject.GetComponent<Slider>();
         switch (mouseSens.sensitivity)
         {
             case 5:
