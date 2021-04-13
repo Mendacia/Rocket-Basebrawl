@@ -140,14 +140,14 @@ public class BallList : MonoBehaviour
 
     private masterBallStruct StandardBallSetup(masterBallStruct thisball)
     {
-        thisball.myThrowSpeed = (0.5f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))) * readyAndThrowSpeedMultiplier;
+        thisball.myThrowSpeed = (0.6f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))) * readyAndThrowSpeedMultiplier;
         thisball.myReadySpeed = (0.5f + (2 / (thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f))) * readyAndThrowSpeedMultiplier;
         return thisball;
     }
     private masterBallStruct ArcBallSetup(masterBallStruct thisball)
     {
         thisball.myThrowSpeed = (0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
-        thisball.myReadySpeed = (0.7f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
+        thisball.myReadySpeed = (0.5f + (2 / thisball.myTauntLevel + 1) * Random.Range(0.7f, 1.1f)) * readyAndThrowSpeedMultiplier;
         return thisball;
     }
     private masterBallStruct MultiBallSetup(masterBallStruct thisball)

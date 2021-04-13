@@ -26,7 +26,14 @@ public class PauseMenu : MonoBehaviour
     {
         if (context.performed)
         {
-            CurrentTaunt.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, fielderPelting.GetFielderTauntLevel());
+            if (fielderPelting.GetFielderTauntLevel() < 4)
+            {
+                CurrentTaunt.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, fielderPelting.GetFielderTauntLevel());
+            }
+            else
+            {
+                CurrentTaunt.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3);
+            }
             currentScore.text = scoreHolder.scoreStatic.score.ToString();
             currentUnstableScore.text = "+" + updaterScript.GetTheScoreUpdater().ToString();
 

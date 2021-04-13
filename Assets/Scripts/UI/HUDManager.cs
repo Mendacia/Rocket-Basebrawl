@@ -140,9 +140,11 @@ public class HUDManager : MonoBehaviour
     public void runTheBaseUI(bool isActive, int currentTaunt)
     {
         baseCanvas.SetActive(isActive);
-        currentBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
-        if (currentTaunt != 3) nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt + 1);
-        else nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
+        if (currentTaunt < 4) currentBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt);
+        else currentBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3);
+
+        if (currentTaunt < 3) nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, currentTaunt + 1);
+        else nextBallIcon.sprite = BallIconHolder.GetIcon(BallResult.UNTHROWN, 3);
 
         Debug.Log("current ball should be " + currentTaunt);
     }

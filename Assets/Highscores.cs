@@ -19,6 +19,12 @@ public class Highscores : MonoBehaviour
     [SerializeField] private List<GameObject> leaderboardPlacesParents = new List<GameObject>();
     [SerializeField] private GameObject returnButton = null;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = true;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))

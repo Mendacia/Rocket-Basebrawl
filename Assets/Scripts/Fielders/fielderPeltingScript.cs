@@ -138,9 +138,25 @@ public class fielderPeltingScript : MonoBehaviour
             ballGodScript.AddThisBallToTheList(myIndex, myTauntLevel, deliveredFielder);
 
             List<Transform> chosenFielders = new List<Transform>();
+            Transform scatterFielder = null;
             for(int i2=ballGodScript.masterBallList[i].extraBallCount; i2>=0; i2--)
             {
-                chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
+                if (ballGodScript.masterBallList[myIndex].myType == ballType.SCATTER)
+                {
+                    if (scatterFielder == null)
+                    {
+                        scatterFielder = fieldingTeam[Random.Range(0, fieldingTeam.Count)];
+                        chosenFielders.Add(scatterFielder);
+                    }
+                    else
+                    {
+                        chosenFielders.Add(scatterFielder);
+                    }
+                }
+                else
+                {
+                    chosenFielders.Add(fieldingTeam[Random.Range(0, fieldingTeam.Count)]);
+                }
             }
             ballGodScript.AddFieldersToTheBall(chosenFielders, myIndex);
         }
