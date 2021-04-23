@@ -19,27 +19,25 @@ public class Highscores : MonoBehaviour
     [SerializeField] private List<GameObject> leaderboardPlacesParents = new List<GameObject>();
     [SerializeField] private GameObject returnButton = null;
 
+    [SerializeField] private List<string> disallowedWords = new List<string>();
+
     private void Awake()
     {
         Time.timeScale = 1;
         Cursor.visible = true;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            RetrieveHighScores();
-        }
-    }
-
-
-
-
     public void AddNewHighscore()
     {
         if (!string.IsNullOrEmpty(playerName))
         {
+            foreach(string word in disallowedWords)
+            {
+                if(playerName == word)
+                {
+                    return;
+                }
+            }
             StartCoroutine(UploadNewHighScore(playerName, (int)scoreHolder.scoreStatic.score)) ;
             StartCoroutine(animationSyncer());
         }
@@ -107,7 +105,7 @@ public class Highscores : MonoBehaviour
     IEnumerator UpdateName()
     {
         yield return new WaitForSeconds(0.1f);
-        playerName = NameField.text;
+        playerName = NameField.text.ToUpper();
     }
 
     IEnumerator animationSyncer()

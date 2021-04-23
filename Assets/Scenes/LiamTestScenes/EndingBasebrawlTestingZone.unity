@@ -1453,6 +1453,7 @@ GameObject:
   - component: {fileID: 491190023}
   - component: {fileID: 491190022}
   - component: {fileID: 491190021}
+  - component: {fileID: 491190024}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -1523,14 +1524,14 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491190022}
   m_TextComponent: {fileID: 1878444725}
   m_Placeholder: {fileID: 653124413}
-  m_ContentType: 0
+  m_ContentType: 9
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
-  m_CharacterLimit: 12
+  m_CharacterValidation: 4
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1541,6 +1542,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Highscores, Assembly-CSharp
         m_MethodName: ChangePlayerName
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 491190024}
+        m_TargetAssemblyTypeName: stringToCaps, Assembly-CSharp
+        m_MethodName: changeString
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1594,6 +1607,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491190019}
   m_CullTransparentMesh: 0
+--- !u!114 &491190024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491190019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8328140a5374f6439b14780fa25ffee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerText: {fileID: 1878444725}
 --- !u!1 &498474163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2497,6 +2523,21 @@ MonoBehaviour:
   - {fileID: 547340537}
   - {fileID: 113685860}
   returnButton: {fileID: 1575420702}
+  disallowedWords:
+  - ASS
+  - FUK
+  - COK
+  - DIK
+  - SHT
+  - CNT
+  - FCK
+  - FUC
+  - COC
+  - DIC
+  - DCK
+  - KKK
+  - CBT
+  - FAG
 --- !u!4 &765478288
 Transform:
   m_ObjectHideFlags: 0
